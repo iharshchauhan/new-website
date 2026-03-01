@@ -80,3 +80,10 @@
     .prose strong {
   color: inherit;
 }
+
+@layer base {
+  .prose a {
+    color: inherit;
+    text-decoration: underline;
+  }
+}
