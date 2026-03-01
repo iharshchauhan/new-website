@@ -107,3 +107,26 @@
 .prose h6 {
   color: inherit;
 }
+
+/* Code blocks */
+.prose pre {
+  background: hsl(var(--muted));
+  color: hsl(var(--foreground));
+  border-radius: 0.5rem;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+/* Inline code */
+.prose code {
+  color: inherit;
+  background: hsl(var(--muted));
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.25rem;
+}
+
+/* Remove extra backtick styling inside pre */
+.prose pre code {
+  background: transparent;
+  padding: 0;
+}
