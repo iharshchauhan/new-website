@@ -16,6 +16,8 @@ jobs:
           node-version: "20"
       - run: npm ci
       - run: npm run build
+        env:
+          NEXT_PUBLIC_BASE_PATH: ${{ endsWith(github.event.repository.name, '.github.io') && '' || format('/{0}', github.event.repository.name) }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
