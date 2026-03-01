@@ -81,9 +81,11 @@
   color: inherit;
 }
 
-@layer base {
-  .prose a {
-    color: inherit;
-    text-decoration: underline;
-  }
+.prose strong {
+  color: inherit;
+}
+
+.prose a {
+  color: inherit;
+  text-decoration: underline;
 }
