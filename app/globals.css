@@ -129,4 +129,5 @@
 .prose pre code {
   background: transparent;
   padding: 0;
+  color: hsl(var(--foreground));
 }
