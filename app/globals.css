@@ -89,3 +89,21 @@
   color: inherit;
   text-decoration: underline;
 }
+
+  .prose strong {
+  color: inherit;
+}
+
+.prose a {
+  color: inherit;
+  text-decoration: underline;
+}
+
+.prose h1,
+.prose h2,
+.prose h3,
+.prose h4,
+.prose h5,
+.prose h6 {
+  color: inherit;
+}
