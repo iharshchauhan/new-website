@@ -15,6 +15,8 @@ Built an end-to-end AI pricing system for India coffee shops that **proves 16% m
 
 **Bottom Line:** ₹17,959 annual revenue opportunity for a typical high-street coffee shop, validated across 388 days of real Bengaluru weather data.
 
+![Backtest Results](/images/ai-dynamic-pricing/backtest-results.png)
+
 ---
 
 ## 📈 Business Impact
@@ -57,6 +59,8 @@ Top drivers of price optimization:
 2. **Weather Conditions** (11.0%) — Cold + rainy = higher willingness-to-pay
 3. **Time Patterns** (5.5%) — Peak hours (lunch rush) vs slow periods
 4. **Day of Week** (1.0%) — Weekend vs weekday behavior
+
+![Feature Importance](/images/ai-dynamic-pricing/feature-importance-analysis.png)
 
 ---
 
@@ -109,6 +113,8 @@ Backtest Validation (388 days)
 **Finding:** 36% of transactions occur on rainy days. Cold + rainy conditions show 8-10% higher willingness-to-pay for hot drinks.
 
 **Impact:** Weather features account for 11% of model's predictive power.
+
+![SHAP Weather Analysis](/images/ai-dynamic-pricing/shap-weather-analysis.png)
 
 ### 2. Why SHAP Explainability?
 **Stakeholder Quote:** *"I need something I can explain to the board in 5 minutes and defend to customers in 30 seconds."*
