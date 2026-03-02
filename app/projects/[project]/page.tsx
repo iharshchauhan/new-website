@@ -2,7 +2,8 @@ import { getPostBySlug, getPostSlugs, getProjectSubpages } from '@/lib/mdx';
 import { MDXContent } from '@/components/mdx-content';
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, ArrowRight, FileText } from 'lucide-react';
+import { BackNavLink } from '@/components/back-nav-link';
+import { ArrowRight, FileText } from 'lucide-react';
 import Image from 'next/image';
 
 export async function generateStaticParams() {
@@ -23,10 +24,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
   return (
     <article className="max-w-4xl mx-auto space-y-16">
       <div className="space-y-8">
-        <Link href="/logbook" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors">
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Logbook
-        </Link>
+        <BackNavLink href="/logbook" label="Back to Logbook" />
         <div className="space-y-6">
           <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
             {post.meta.title}
