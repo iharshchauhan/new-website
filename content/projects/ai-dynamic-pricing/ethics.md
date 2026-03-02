@@ -6,7 +6,7 @@ description: "Ethical design, fairness checks, and governance controls."
 # Responsible AI & Ethics Framework
 ## AI Dynamic Pricing - Fairness, Transparency, Accountability
 
-**Author:** Harsh Osaheni  
+**Author:** Harsh Chauhan  
 **Date:** November 2025
 **Status:** Pre-Deployment Audit Complete  
 **Compliance:** India DPDP Act, 2023, India AI governance guidance (2024), Indian data protection guidelines
@@ -40,7 +40,7 @@ Every price recommendation must be explainable in plain English. Users (shop own
 Human oversight is mandatory. Shop owners can override any recommendation. We maintain audit trails for all pricing decisions.
 
 **Principle 4: Privacy**
-No personally identifiable information (PII) is used in pricing decisions. All data is anonymized and GDPR-compliant.
+No personally identifiable information (PII) is used in pricing decisions. All data is anonymized and aligned to Indian data protection requirements.
 
 **Principle 5: Consumer Protection**
 Price increases are capped. Essential items remain affordable. Vulnerable customers are protected through discount programs.
@@ -48,6 +48,10 @@ Price increases are capped. Essential items remain affordable. Vulnerable custom
 ---
 
 ## 2. Bias Audit Results
+
+![SHAP Summary Plot](/images/ai-dynamic-pricing/shap-summary-plot.png)
+
+![SHAP Bar Plot](/images/ai-dynamic-pricing/shap-bar-plot.png)
 
 ### 2.1 Methodology
 
@@ -483,8 +487,9 @@ Use this checklist before every model deployment:
 
 ---
 
-**Document Owner:** Harsh Osaheni  
+**Document Owner:** Harsh Chauhan  
 **Last Updated:** November 26, 2025  
 **Review Cycle:** Quarterly (or upon regulatory change)  
 **Next Review:** February 2026  
 **External Audit:** [Planned for Q2 2026]
+

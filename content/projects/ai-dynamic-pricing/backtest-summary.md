@@ -13,11 +13,13 @@ description: "Model backtesting methodology and summary insights."
 ## Revenue Impact
 | Metric | Value |
 |--------|-------|
-| Actual Revenue (Static Pricing) | �112,245.58 |
-| Simulated Revenue (Dynamic Pricing) | �117,259.58 |
-| **Revenue Lift** | **�5,014.00 (+4.5%)** |
-| Daily Lift | �13.16 |
-| Annual Projection | �4,803.44 |
+| Actual Revenue (Static Pricing) | ₹112,245.58 |
+| Simulated Revenue (Dynamic Pricing) | ₹117,259.58 |
+| **Revenue Lift** | **₹5,014.00 (+4.5%)** |
+| Daily Lift | ₹13.16 |
+| Annual Projection | ₹4,803.44 |
+
+![Backtest Results](/images/ai-dynamic-pricing/backtest-results.png)
 
 ## Ethics Compliance
 - Prices capped (gouging prevention): 60
@@ -29,5 +31,5 @@ description: "Model backtesting methodology and summary insights."
 - Model performs across all weather conditions
 
 ## Conclusion
-Dynamic pricing would have generated **�5,014 additional revenue** over the test period, representing a **4.5% improvement** over static pricing.
+Dynamic pricing would have generated **₹5,014 additional revenue** over the test period, representing a **4.5% improvement** over static pricing.
 

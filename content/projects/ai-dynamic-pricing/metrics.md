@@ -12,6 +12,8 @@ description: "Success metrics, KPIs, and monitoring framework."
 
 ## 1. Metrics Hierarchy
 ```
+
+![Demand Patterns](/images/ai-dynamic-pricing/demand-patterns.png)
 North Star Metric: Revenue Per Transaction (RPT)
     ↓
 Primary Metrics (Must improve)
@@ -115,6 +117,10 @@ RPT = Total Revenue / Total Transactions
 | **R² Score** | >0.95 | Model explains >95% of price variance = captures key patterns |
 | **Training Time** | <10 min | Weekly retraining must be fast to adapt to new patterns |
 | **Feature Stability** | Top 5 features consistent week-to-week | Prevents "random" recommendation changes |
+
+![Optuna Optimization Results](/images/ai-dynamic-pricing/optuna-optimization-results.png)
+
+![Feature Importance Baseline](/images/ai-dynamic-pricing/feature-importance-baseline.png)
 
 **How We Monitor:**
 - Weekly model retraining report (automated)
@@ -385,7 +391,8 @@ NPS = % Promoters (9-10) - % Detractors (0-6)
 
 ---
 
-**Document Owner:** Harsh Osaheni  
+**Document Owner:** Harsh Chauhan  
 **Last Updated:** November 26, 2025  
 **Review Cycle:** Quarterly  
 **Next Review:** February 2026
+

@@ -446,7 +446,8 @@ description: "Stakeholder mapping, narratives, and adoption strategy."
 
 ---
 
-**Document Owner:** Harsh Osaheni
+**Document Owner:** Harsh Chauhan
 **Last Updated:** November 26, 2025  
 **Review Cycle:** Quarterly  
 **Next Stakeholder Survey:** January 2026
+
