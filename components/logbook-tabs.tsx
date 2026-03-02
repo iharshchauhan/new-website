@@ -1,7 +1,8 @@
 'use client';
 
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import Link from 'next/link';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { BookOpen, Briefcase, LayoutTemplate, Star, ArrowRight, Sparkles } from 'lucide-react';
 import { Post } from '@/lib/mdx';
 import { cn } from '@/lib/utils';
@@ -15,7 +16,21 @@ const TABS = [
 ];
 
 export function LogbookTabs({ posts }: { posts: Post[] }) {
-  const [activeTab, setActiveTab] = useState('Logbook');
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  const tabFromUrl = searchParams.get('tab');
+  const validTabIds = useMemo(() => new Set(TABS.map((tab) => tab.id)), []);
+  const [activeTabState, setActiveTabState] = useState('Logbook');
+  const activeTab = tabFromUrl && validTabIds.has(tabFromUrl) ? tabFromUrl : activeTabState;
+
+  const handleTabChange = (tabId: string) => {
+    setActiveTabState(tabId);
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('tab', tabId);
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
 
   const filteredPosts = posts.filter(post => post.meta.category === activeTab);
 
@@ -29,7 +44,7 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
           return (
             <button
               key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
+              onClick={() => handleTabChange(tab.id)}
               className={cn(
                 "flex items-center space-x-2 pb-4 border-b-2 transition-colors px-1 shrink-0 -mb-[1px]",
                 isActive ? "border-primary text-primary" : "border-transparent text-muted-foreground hover:text-foreground hover:border-border"
@@ -50,7 +65,7 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
           return (
             <Link 
               key={post.slug} 
-              href={`/${post.type}/${post.slug}`}
+              href={`/${post.type}/${post.slug}?tab=${encodeURIComponent(activeTab)}`}
               className="group block"
             >
               <article className="bg-card rounded-[2rem] p-6 sm:p-8 border border-border hover:shadow-lg hover:border-primary/20 transition-all duration-300 flex flex-col sm:flex-row sm:items-center justify-between gap-6">
