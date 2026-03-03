@@ -185,8 +185,8 @@ export function CTASection() {
             }
           `}</style>
 
-          <div className="relative z-10 pb-2 text-slate-900/90 md:grid md:min-h-[440px] md:grid-cols-[72px_1fr] md:items-stretch md:gap-4">
-            <div className="hidden flex-row items-center gap-3 md:flex md:self-end md:pb-2">
+          <div className="relative z-10 pb-2 text-slate-900/90 md:grid md:min-h-[440px] md:grid-cols-[168px_1fr] md:items-stretch md:gap-4">
+            <div className="hidden flex-row flex-nowrap items-center gap-3 md:flex md:self-end md:pb-2">
               <a
                 href="https://github.com/iharshchauhan"
                 target="_blank"
