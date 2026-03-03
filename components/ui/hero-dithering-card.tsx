@@ -63,33 +63,61 @@ export function CTASection() {
             }
           `}</style>
 
-          <div className="relative z-10 grid gap-6 text-slate-900/90 md:grid-cols-[minmax(0,1fr)_220px] md:items-end">
-            <div className="space-y-4">
+          <div className="relative z-10 text-slate-900/90">
+            <div className="mx-auto max-w-3xl space-y-4 text-center">
               <div className="inline-flex items-center rounded-full border border-white/60 bg-white/45 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-slate-700">
                 AI Powered Writing
               </div>
 
-              <h2 className="max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
+              <h2 className="mx-auto max-w-2xl text-2xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
                 Your words, delivered perfectly.
               </h2>
 
-              <div className="max-w-2xl space-y-3 text-[1.04rem] leading-relaxed text-slate-700 md:text-[1.08rem]">
+              <div className="mx-auto max-w-2xl space-y-3 text-[1.04rem] leading-relaxed text-slate-700 md:text-[1.08rem]">
                 <p>
-                Welcome to my little corner of the web! I&apos;m a Product/Growth enthusiast and an
-                amateur human figuring out both the world and the web.
+                  Welcome to my little corner of the web! I&apos;m a Product/Growth enthusiast and an
+                  amateur human figuring out both the world and the web.
                 </p>
                 <p>
-                I dream of making a TON of money with computers, and then... maybe never touching
-                one again (just kidding... or am I?)
+                  I dream of making a TON of money with computers, and then... maybe never touching
+                  one again (just kidding... or am I?)
                 </p>
                 <p>
-                Stick around as I document cool stuff and try to create content that&apos;s as
-                engaging as my playlist.
+                  Stick around as I document cool stuff and try to create content that&apos;s as
+                  engaging as my playlist.
                 </p>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 pt-1 md:justify-end">
+            <div className="absolute left-4 top-1/2 hidden -translate-y-1/2 flex-col gap-3 md:flex">
+              <a
+                href="https://github.com/iharshchauhan"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                aria-label="GitHub"
+              >
+                <Github className="h-4.5 w-4.5" />
+              </a>
+              <a
+                href="https://twitter.com/harshc_"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                aria-label="Twitter"
+              >
+                <Twitter className="h-4.5 w-4.5" />
+              </a>
+              <a
+                href="mailto:hey@iharsh.xyz"
+                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                aria-label="Email"
+              >
+                <Mail className="h-4.5 w-4.5" />
+              </a>
+            </div>
+
+            <div className="mt-5 flex items-center justify-center gap-3 md:hidden">
               <a
                 href="https://github.com/iharshchauhan"
                 target="_blank"
