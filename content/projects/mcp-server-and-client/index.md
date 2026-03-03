@@ -245,7 +245,7 @@ MCP represents the **infrastructure layer** for the next generation of AI applic
 
 The MCP marketplace is growing rapidly, with servers being developed for virtually every major platform and data source. This ecosystem approach ensures that as new platforms emerge, they can be instantly accessible to all MCP-compatible AI applications.
 
-# Let's talk technical: The Context Problem and Evolution of Solutions
+# Let's talk technical: Building a MCP Server from Scratch
 
 As AI continues to evolve, MCP will serve as the foundational infrastructure enabling seamless integration, enhanced productivity, and the realization of AI's full potential in transforming how we work.
 ## Building MCP Server and Client
@@ -254,7 +254,6 @@ As AI continues to evolve, MCP will serve as the foundational infrastructure ena
 
 We will cover,
 
-- What is MCP Client
 - How to build MCP Client
 - Connect MCP Client to Local, Pre-built, Remote MCP Server
 
