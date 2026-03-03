@@ -89,8 +89,8 @@ export function CTASection() {
                 </p>
                 <p className="italic [font-family:ui-cursive,cursive]">
                   I dream of making a TON of money with computers, and then... maybe never touching
-                  one again 
-                  (just kidding... or am I? 🤨)
+                  one again <p> (just kidding... or am I? 🤨)
+                  </p>
                 </p>
                 <p>
                   Stick around as I document cool stuff and try to create content that&apos;s as
