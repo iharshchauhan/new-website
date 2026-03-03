@@ -90,31 +90,34 @@ export function CTASection() {
               </div>
             </div>
 
-            <div className="mt-auto flex w-max flex-col gap-3 pt-6">
+            <div className="mt-auto flex flex-wrap items-center gap-3 pt-6">
               <a
                 href="https://github.com/iharshchauhan"
                 target="_blank"
                 rel="noreferrer"
-                className="shrink-0 rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/45 px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="GitHub"
               >
-                <Github className="h-4.5 w-4.5" />
+                <Github className="h-4 w-4" />
+                <span>GitHub</span>
               </a>
               <a
                 href="https://twitter.com/harshc_"
                 target="_blank"
                 rel="noreferrer"
-                className="shrink-0 rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/45 px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="Twitter"
               >
-                <Twitter className="h-4.5 w-4.5" />
+                <Twitter className="h-4 w-4" />
+                <span>Twitter</span>
               </a>
               <a
                 href="mailto:hey@iharsh.xyz"
-                className="shrink-0 rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/45 px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="Email"
               >
-                <Mail className="h-4.5 w-4.5" />
+                <Mail className="h-4 w-4" />
+                <span>Email</span>
               </a>
             </div>
           </div>
