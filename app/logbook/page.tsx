@@ -18,7 +18,7 @@ export default function LogbookPage() {
   return (
     <div className="space-y-12 max-w-6xl mx-auto">
       <header className="space-y-4 text-center pb-8">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Logbook</h1>
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Articles</h1>
         <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
           A collection of my writings, projects, frameworks, and reviews.
         </p>

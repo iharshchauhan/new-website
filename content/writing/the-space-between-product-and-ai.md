@@ -6,7 +6,7 @@ tags: ["Artificial Intelligence", "Deep-Dive Analysis"]
 category: "Logbook"
 ---
 
-## The Misalignment Dilemma
+# The Misalignment Dilemma
 
 **Picture this:** I am a product manager at a well known Indian e commerce company, trying to revolutionise the customer experience with a cutting edge AI recommendation engine. In the initial presentation, the energy in the room is electric. PowerPoint slides show exponential growth curves, leadership applauds the vision, and the product roadmap glows with optimism. A few days later, the PRD lands neatly on the AI team’s desk. It outlines everything, goals, KPIs, timelines, except for one critical detail, how these worlds, product and AI, will actually work together.
 
@@ -16,7 +16,7 @@ This scenario, familiar to many tech organisations I have worked with, reflects 
 
 ---
 
-### A Tale of Two Rhythms
+# A Tale of Two Rhythms
 
 Product management speaks in speed, iteration, and user impact. The cycle is built around discovery, delivery, and continuous improvement. It thrives on immediacy, feature adoption, conversion rates, NPS scores. Each sprint gives me a hit of progress. We move fast, celebrate small wins, and adjust quickly.
 
@@ -140,7 +140,7 @@ Mature teams build rituals around iteration, retrospectives, sprint reviews, sma
 
 ---
 
-## Why Progress Feels So Good
+# Why Progress Feels So Good
 
 Behind all these stages lies a simpler truth: our brains are addicted to visible progress. Every design approved, every bug fixed, every launch announcement scratches that itch for achievement. Agile frameworks lean into this with stand ups, demos, and burn up charts that keep reward circuits firing.
 
@@ -210,7 +210,7 @@ This misalignment is not born of incompetence but of differing architectures of 
 
 ---
 
-## Special Case, GenAI vs Traditional ML
+# Special Case, GenAI vs Traditional ML
 
 The contrast between traditional ML and GenAI is not merely architectural, it is philosophical. Traditional ML is a craftsman’s pursuit, defined datasets, deliberate feature engineering, months of tuning. GenAI, in comparison, is a magician’s show, dazzling in seconds, unpredictable beneath the surface. Where ML models predict, GenAI performs, and that performance often convinces even the skeptical of its intelligence.
 
@@ -244,7 +244,7 @@ And this is the real payoff. Reinforcing alignment early prevents downstream col
 
 ---
 
-## Proposed Unified AI Product Development Framework
+# Proposed Unified AI Product Development Framework
 
 When AI enters product development, linearity fades. Instead of assembly line predictability, we move through fluid phases that merge logic with empathy, data with doubt, and iteration with introspection. This unified framework is less about structure and more about alignment, a choreography between product managers, AI scientists, engineers, and the quieter habits that guide their decisions.
 
@@ -366,7 +366,7 @@ When metrics evolve from scoring tools to reflection mirrors, stress turns into 
 
 ---
 
-## Practical First Steps for Teams
+# Practical First Steps for Teams
 
 Alignment does not begin with frameworks or org charts. It starts with one humble experiment that works. Teams that bridge the AI and Product divide rarely start with moonshots. They prove that they can think together before they build together.
 
