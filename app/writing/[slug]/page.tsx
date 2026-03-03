@@ -1,8 +1,7 @@
 import { getPostBySlug, getPostSlugs } from '@/lib/mdx';
 import { MDXContent } from '@/components/mdx-content';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
-import { ArrowLeft } from 'lucide-react';
+import { BackNavLink } from '@/components/back-nav-link';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs('writing');
@@ -20,10 +19,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   return (
     <article className="max-w-3xl mx-auto space-y-12">
       <div className="space-y-8 border-b border-border pb-8">
-        <Link href="/logbook" className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors">
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to Logbook
-        </Link>
+        <BackNavLink href="/logbook" label="Back to Logbook" />
         <div className="space-y-4">
           <h1 className="text-3xl md:text-5xl font-semibold tracking-tight">
             {post.meta.title}
