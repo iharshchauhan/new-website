@@ -8,7 +8,7 @@ import { Post } from '@/lib/mdx';
 import { cn } from '@/lib/utils';
 
 const TABS = [
-  { id: 'Logbook', label: 'Logbook', icon: BookOpen },
+  { id: 'Logbook', label: 'Articles', icon: BookOpen },
   { id: 'Fun Projects', label: 'Fun Projects', icon: Sparkles },
   { id: 'Proof of work', label: 'Proof of Work', icon: Briefcase },
   { id: 'Frameworks', label: 'Frameworks', icon: LayoutTemplate },
