@@ -7,7 +7,7 @@ description: "Step-by-step walkthrough to build and connect your first terminal 
 
 ---
 
-## 📌 What is an MCP Server?
+##  What is an MCP Server?
 
 An **MCP Server** is a small program that gives Claude new "tools" or "abilities".
 
@@ -17,7 +17,7 @@ In this guide, we will build a **Terminal MCP Server**,  which lets Claude run r
 
 ---
 
-## 🗺️ What Are We Building? (Big Picture)
+##  What Are We Building? (Big Picture)
 
 ```mermaid
 flowchart LR
@@ -130,7 +130,7 @@ uv init
 
 ## Step 5: Create a Virtual Environment
 
-###  Mac & 🪟 Windows
+###  Mac &  Windows
 ```bash
 uv venv
 ```
@@ -356,7 +356,7 @@ explorer $env:APPDATA\Claude\
 ```
 > ⚠️ Replace `YOUR_USERNAME` with your actual Mac username (run `whoami` in terminal to find it)
 
-#### 🪟 Windows Version
+####  Windows Version
 ```json
 {
   "mcpServers": {
