@@ -64,8 +64,8 @@ export function CTASection() {
             }
           `}</style>
 
-          <div className="relative z-10 flex min-h-[440px] flex-col pb-2 text-slate-900/90">
-            <div className="w-full space-y-4 text-left md:w-[88%]">
+          <div className="relative z-10 min-h-[520px] pb-20 text-slate-900/90 sm:pb-24">
+            <div className="w-full space-y-4 text-left md:w-[90%] lg:w-[88%]">
               <div className="inline-flex items-center rounded-full border border-white/60 bg-white/45 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-slate-700">
                 AI Powered Writing
               </div>
