@@ -1,11 +1,9 @@
 ﻿---
 title: "First MCP Terminal Server"
-date: "2026-03-02"
+date: "2025-12-02"
 description: "Step-by-step walkthrough to build and connect your first terminal MCP server."
 ---
-# 🖥️ Building Your First MCP Terminal Server — Step-by-Step Guide
-
-> **Who is this for?** Students with some basic coding knowledge who want to build and connect their own MCP (Model Context Protocol) server to Claude.
+# Building our First MCP Terminal Server
 
 ---
 
@@ -13,10 +11,9 @@ description: "Step-by-step walkthrough to build and connect your first terminal 
 
 An **MCP Server** is a small program that gives Claude new "tools" or "abilities".
 
-Think of it like this:
-> Claude is a smart assistant, but by default it can only *talk*. An MCP server gives Claude *hands* — the ability to actually **do things** on your computer, like running terminal commands.
 
-In this guide, we will build a **Terminal MCP Server** — which lets Claude run real terminal/shell commands on your computer on your behalf.
+
+In this guide, we will build a **Terminal MCP Server**,  which lets Claude run real terminal/shell commands on your computer on your behalf.
 
 ---
 
@@ -42,9 +39,9 @@ flowchart LR
 
 ---
 
-## 🛠️ Prerequisites
+## Prerequisites
 
-Before starting, make sure you have:
+Before starting, make sure we have:
 
 | Tool | What it is | Download |
 |------|-----------|----------|
@@ -54,98 +51,98 @@ Before starting, make sure you have:
 
 ---
 
-## 📁 Step 1: Create the Project Folders
+## Step 1: Create the Project Folders
 
 We need two folders:
 - `terminal_server` → where our code lives
 - `workspace` → where Claude will run commands
 
-### 🍎 Mac
+### Mac
 ```bash
 mkdir -p ~/mcp/servers/terminal_server
 mkdir -p ~/mcp/workspace
 ```
 
-### 🪟 Windows (PowerShell)
+### Windows (PowerShell)
 ```powershell
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\mcp\servers\terminal_server"
 New-Item -ItemType Directory -Force -Path "$env:USERPROFILE\mcp\workspace"
 ```
 
-> 💡 **What does this do?**
+>  **What does this do?**
 > `mkdir -p` creates folders. The `-p` flag means "create all parent folders too, don't throw an error if they already exist."
 > On Windows, `New-Item` does the same thing.
 
 ---
 
-## 📂 Step 2: Navigate Into the Project Folder
+## Step 2: Navigate Into the Project Folder
 
-### 🍎 Mac
+### Mac
 ```bash
 cd ~/mcp/servers/terminal_server
 ```
 
-### 🪟 Windows (PowerShell)
+### Windows (PowerShell)
 ```powershell
 cd "$env:USERPROFILE\mcp\servers\terminal_server"
 ```
 
-> 💡 **What does this do?**
+>  **What does this do?**
 > `cd` stands for "change directory" — it moves you into the folder you just created.
 
 ---
 
-## ⚡ Step 3: Install `uv` (Python Package Manager)
+##  Step 3: Install `uv` (Python Package Manager)
 
 `uv` is a super fast Python tool manager. We use it instead of the default `pip` because it's faster and handles project environments cleanly.
 
-### 🍎 Mac
+###  Mac
 ```bash
 curl -LsSf https://astral.sh/uv/install.sh | sh
 ```
 
-### 🪟 Windows (PowerShell)
+### Windows (PowerShell)
 ```powershell
 powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
-> 💡 **What does this do?**
+>  **What does this do?**
 > Both commands download and run the `uv` installer from the internet directly into your system.
 
 After installation, verify it worked:
 ```bash
 uv --version
 ```
-You should see something like: `uv 0.9.3`
+We should see something like: `uv 0.9.3`
 
 ---
 
-## 🚀 Step 4: Initialize the Project
+##  Step 4: Initialize the Project
 
 ```bash
 uv init
 ```
 
-> 💡 **What does this do?**
+> **What does this do?**
 > `uv init` sets up your project — it creates a `pyproject.toml` file (a config file that tracks your project name, Python version, and dependencies).
 
 ---
 
-## 🐍 Step 5: Create a Virtual Environment
+## Step 5: Create a Virtual Environment
 
-### 🍎 Mac & 🪟 Windows
+###  Mac & 🪟 Windows
 ```bash
 uv venv
 ```
 
 Then **activate** the environment:
 
-### 🍎 Mac
+###  Mac
 ```bash
 source .venv/bin/activate
 ```
 
-### 🪟 Windows (PowerShell)
+### Windows (PowerShell)
 ```powershell
 .venv\Scripts\activate
 ```
@@ -155,20 +152,20 @@ source .venv/bin/activate
 
 ---
 
-## 📦 Step 6: Install the MCP Package
+## Step 6: Install the MCP Package
 
 ```bash
 uv add "mcp[cli]"
 ```
 
-> 💡 **What does this do?**
+>  **What does this do?**
 > This installs the `mcp` library — the toolkit that lets you build MCP servers. The `[cli]` part installs extra command-line tools that come with it.
 
 You'll see a list of packages being installed. That's normal!
 
 ---
 
-## 💻 Step 7: Write the Code
+##  Step 7: Write the Code
 
 Open VS Code in your project folder:
 ```bash
@@ -211,13 +208,13 @@ if __name__ == "__main__":
 
 ---
 
-## 🧠 Understanding the Code (Non-Coder Friendly)
+##  Understanding the Code (Non-Coder Friendly)
 
 Let's break this down piece by piece. No jargon!
 
 ---
 
-### 🔷 Part 1: Importing Tools
+###  Part 1: Importing Tools
 
 ```python
 import os
@@ -232,7 +229,7 @@ from mcp.server.fastmcp import FastMCP
 
 ---
 
-### 🔷 Part 2: Creating the Server
+###  Part 2: Creating the Server
 
 ```python
 mcp = FastMCP("terminal")
@@ -244,7 +241,7 @@ DEFAULT_WORKSPACE = os.path.expanduser("~/mcp/workspace")
 
 ---
 
-### 🔷 Part 3: The Tool (The Heart of the Server)
+###  Part 3: The Tool (The Heart of the Server)
 
 ```python
 @mcp.tool()
@@ -258,7 +255,7 @@ async def run_command(command: str) -> str:
 
 ---
 
-### 🔷 Part 4: Running the Command
+###  Part 4: Running the Command
 
 ```python
 try:
@@ -278,7 +275,7 @@ except Exception as e:
 
 ---
 
-### 🔷 Part 5: Starting the Server
+###  Part 5: Starting the Server
 
 ```python
 if __name__ == "__main__":
@@ -290,7 +287,7 @@ if __name__ == "__main__":
 
 ---
 
-### 📊 Code Flow Diagram
+###  Code Flow Diagram
 
 ```mermaid
 flowchart TD
@@ -311,11 +308,11 @@ flowchart TD
 
 ---
 
-## ⚙️ Step 8: Configure Claude Desktop
+##  Step 8: Configure Claude Desktop
 
 Now we need to tell Claude Desktop where to find our MCP server.
 
-### 🍎 Mac — Config File Location
+###  Mac — Config File Location
 ```
 ~/Library/Application Support/Claude/claude_desktop_config.json
 ```
@@ -325,7 +322,7 @@ Open it with:
 open ~/Library/Application\ Support/Claude/
 ```
 
-### 🪟 Windows — Config File Location
+###  Windows — Config File Location
 ```
 %APPDATA%\Claude\claude_desktop_config.json
 ```
@@ -337,9 +334,9 @@ explorer $env:APPDATA\Claude\
 
 ---
 
-### 📝 Config File Content
+###  Config File Content
 
-#### 🍎 Mac Version
+####  Mac Version
 ```json
 {
   "mcpServers": {
@@ -381,23 +378,23 @@ explorer $env:APPDATA\Claude\
 
 ---
 
-## 🔁 Step 9: Restart Claude Desktop
+##  Step 9: Restart Claude Desktop
 
 Fully quit and reopen Claude Desktop so it loads the new config.
 
-### 🍎 Mac
+###  Mac
 ```
 Cmd + Q → Reopen Claude
 ```
 
-### 🪟 Windows
+###  Windows
 ```
 Right-click taskbar icon → Quit → Reopen Claude
 ```
 
 ---
 
-## ✅ Step 10: Test It!
+##  Step 10: Test It!
 
 In Claude Desktop, type:
 
@@ -412,7 +409,7 @@ If everything is working, Claude will:
 
 ---
 
-## 🚨 Common Errors & Fixes
+##  Common Errors & Fixes
 
 | Error | What it means | Fix |
 |-------|--------------|-----|
@@ -423,7 +420,7 @@ If everything is working, Claude will:
 
 ---
 
-## 🎯 Summary — What You Built
+##  Summary
 
 ```mermaid
 flowchart LR
@@ -435,9 +432,5 @@ flowchart LR
     style B fill:#4A90D9,color:#fff
 ```
 
-Congratulations! You've built a real MCP server that gives Claude the ability to run terminal commands on your computer. This is the foundation for building much more powerful AI tools! 🚀
-
----
-
-*Guide created for AI Product Management students | Feel free to share and adapt*
+Congratulations! We have built a real MCP server that gives Claude the ability to run terminal commands on your computer. This is the foundation for building much more powerful AI tools!
 
