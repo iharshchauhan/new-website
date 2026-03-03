@@ -90,7 +90,7 @@ export function CTASection() {
               </div>
             </div>
 
-            <div className="mt-auto flex w-max flex-col gap-3 pt-6">
+            <div className="mt-auto flex w-max flex-row gap-3 pt-6">
               <a
                 href="https://github.com/iharshchauhan"
                 target="_blank"
