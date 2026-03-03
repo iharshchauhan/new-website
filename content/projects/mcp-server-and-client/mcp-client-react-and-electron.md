@@ -3,18 +3,18 @@ title: "MCP Client (React and Electron)"
 date: "2026-03-02"
 description: "Cross-platform MCP client architecture with FastAPI backend, React UI, and Electron desktop shell."
 ---
-# 🖥️ MCP Client (React & Electron)
+# MCP Client (React & Electron)
 
 This is a modern, cross-platform client for interacting with any MCP (Model Context Protocol) server. It provides both a web-based chat interface and a standalone Electron desktop application.
 
-## ✨ Features
+## Features
 
 - **Web Interface**: A clean React-based chat UI built with Vite.
 - **Desktop App**: A standalone Electron application for a native experience.
 - **FastAPI Backend**: A robust Python backend that bridges the Gemini AI with MCP servers.
 - **Real-time Interaction**: Watch as Gemini calls tools and processes results in real-time.
 
-## 🚀 Getting Started
+## Getting Started
 
 ### 1. Prerequisites
 
@@ -59,7 +59,7 @@ This is a modern, cross-platform client for interacting with any MCP (Model Cont
    cd electron && npm start
    ```
 
-## 🛠️ Project Structure
+## Project Structure
 
 - `backend.py`: The FastAPI server handling AI logic and MCP connections.
 - `client.py`: The core MCP client logic utilizing Google's Gen AI SDK.
