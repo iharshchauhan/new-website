@@ -70,7 +70,7 @@ The adaptability of LLM APIs and incumbents’ extensive reach have resulted in 
 
 Even with GPT-4 and upcoming models' capabilities, completely novel product categories could emerge, diverging from the traditional formula of adding AI to incumbent workflows. These new ventures will demand distinct user experiences to attract customers. This is a golden opportunity for startups to position themselves against incumbents by designing radically different product experiences.
 
-The burst of high-quality LLMs has already spurred promising niches, including enterprise search (Glean), legal automation (Harvey, Casetext), and marketing automation (Typeface, Jasper). These applications have the potential to flourish. Pioneering new categories takes time—during the productivity boom of the 2010s, platforms like Figma and Notion required years to develop market-ready products.
+The burst of high-quality LLMs has already spurred promising niches, including enterprise search (Glean), legal automation (Harvey, Casetext), and marketing automation (Typeface, Jasper). These applications have the potential to flourish. Pioneering new categories takes time;during the productivity boom of the 2010s, platforms like Figma and Notion required years to develop market-ready products.
 
 Claiming that only incumbents will emerge victorious is an oversimplified perspective, justifying inaction with the belief that all opportunities are already seized. The idea of a major technological shift without room for new entrants is implausible.
 
@@ -104,7 +104,7 @@ Numerous individuals have reasons to advocate for slowing down LLM development: 
 
 Highlighting GPT-4's failures in tasks involving mathematics and logic has gained popularity. There’s a sense of reassurance in acknowledging that AI has not yet surpassed human capabilities in every area.
 
-**AI pessimists:** While the potential dangers of AI should be taken seriously, the argument for an imminent AI catastrophe is unfalsifiable — a doomed forecast cannot be disproven easily. The underlying value systems of these commentators also introduce biases, warranting a critical analysis remaining an exercise for the reader.
+**AI pessimists:** While the potential dangers of AI should be taken seriously, the argument for an imminent AI catastrophe is unfalsifiable ; a doomed forecast cannot be disproven easily. The underlying value systems of these commentators also introduce biases, warranting a critical analysis remaining an exercise for the reader.
 
 The argument for slowing down should be approached with caution, especially in the absence of concrete evidence suggesting an imminent AI escalation. Premature alarm could undermine the credibility of AI safety discussions, with premature doomsday predictions potentially desensitizing people to genuine risks. Meanwhile, the potential benefits of AI for humanity are too significant to postpone.
 
