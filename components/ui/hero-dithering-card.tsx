@@ -15,7 +15,7 @@ export function CTASection() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/50 bg-white/28 p-5 shadow-[0_20px_80px_rgba(16,24,40,0.2)] backdrop-blur-2xl sm:p-7 md:p-8">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/50 bg-white/28 p-5 pb-3 shadow-[0_20px_80px_rgba(16,24,40,0.2)] backdrop-blur-2xl sm:p-7 sm:pb-4 md:p-8 md:pb-5">
           <div className="pointer-events-none absolute inset-0 z-0">
             <HeroParticles />
             <div
@@ -64,7 +64,7 @@ export function CTASection() {
             }
           `}</style>
 
-          <div className="relative z-10 flex min-h-[440px] flex-col pb-2 text-slate-900/90">
+          <div className="relative z-10 flex min-h-[440px] flex-col text-slate-900/90">
             <div className="w-full space-y-4 text-left md:w-[88%]">
               <div className="inline-flex items-center rounded-full border border-white/60 bg-white/45 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-slate-700">
                 AI Powered Writing
@@ -90,31 +90,34 @@ export function CTASection() {
               </div>
             </div>
 
-            <div className="mt-auto flex w-max flex-col gap-3 pt-6">
+            <div className="mt-auto flex flex-wrap items-center gap-3 pt-6">
               <a
                 href="https://github.com/iharshchauhan"
                 target="_blank"
                 rel="noreferrer"
-                className="shrink-0 rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/45 px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="GitHub"
               >
-                <Github className="h-4.5 w-4.5" />
+                <Github className="h-4 w-4" />
+                <span>GitHub</span>
               </a>
               <a
                 href="https://twitter.com/harshc_"
                 target="_blank"
                 rel="noreferrer"
-                className="shrink-0 rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/45 px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="Twitter"
               >
-                <Twitter className="h-4.5 w-4.5" />
+                <Twitter className="h-4 w-4" />
+                <span>Twitter</span>
               </a>
               <a
                 href="mailto:hey@iharsh.xyz"
-                className="shrink-0 rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                className="inline-flex items-center gap-2 rounded-full border border-white/60 bg-white/45 px-3 py-2 text-sm font-medium text-slate-700 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="Email"
               >
-                <Mail className="h-4.5 w-4.5" />
+                <Mail className="h-4 w-4" />
+                <span>Email</span>
               </a>
             </div>
           </div>
