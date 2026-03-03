@@ -63,7 +63,7 @@ export function CTASection() {
             }
           `}</style>
 
-          <div className="relative z-10 text-slate-900/90">
+          <div className="relative z-10 pb-2 text-slate-900/90 md:pl-20">
             <div className="mx-auto max-w-3xl space-y-4 text-center">
               <div className="inline-flex items-center rounded-full border border-white/60 bg-white/45 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-slate-700">
                 AI Powered Writing
@@ -89,7 +89,7 @@ export function CTASection() {
               </div>
             </div>
 
-            <div className="absolute left-4 top-1/2 hidden -translate-y-1/2 flex-col gap-3 md:flex">
+            <div className="absolute bottom-4 left-4 hidden flex-col gap-3 md:flex">
               <a
                 href="https://github.com/iharshchauhan"
                 target="_blank"
