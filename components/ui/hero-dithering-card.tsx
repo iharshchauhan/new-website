@@ -89,35 +89,7 @@ export function CTASection() {
               </div>
             </div>
 
-            <div className="absolute bottom-4 left-4 hidden flex-col gap-3 md:flex">
-              <a
-                href="https://github.com/iharshchauhan"
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
-                aria-label="GitHub"
-              >
-                <Github className="h-4.5 w-4.5" />
-              </a>
-              <a
-                href="https://twitter.com/harshc_"
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
-                aria-label="Twitter"
-              >
-                <Twitter className="h-4.5 w-4.5" />
-              </a>
-              <a
-                href="mailto:hey@iharsh.xyz"
-                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
-                aria-label="Email"
-              >
-                <Mail className="h-4.5 w-4.5" />
-              </a>
-            </div>
-
-            <div className="mt-5 flex items-center justify-center gap-3 md:hidden">
+            <div className="absolute bottom-4 left-4 flex flex-col gap-3">
               <a
                 href="https://github.com/iharshchauhan"
                 target="_blank"
