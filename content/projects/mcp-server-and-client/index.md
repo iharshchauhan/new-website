@@ -26,7 +26,7 @@ MCP Client is a protocol client that maintains one to one connection with MCP Se
 Think of it like this:
 > Claude is a smart assistant, but by default, it can only *talk*. An MCP server gives Claude *hands* -> the ability to actually **do things** on your computer, like running terminal commands.
 
-<img width="1336" height="354" alt="image" src="https://github.com/user-attachments/assets/61e7585e-5009-4c17-8afe-e37dc2014cdc" />
+![image](https://github.com/user-attachments/assets/61e7585e-5009-4c17-8afe-e37dc2014cdc)
 
 
 ## Some popular MCP Clients are:
@@ -49,7 +49,7 @@ To make it even clearer, here is a breakdown of the steps involved.
 6. Executes tools using the server's tools/call endpoint
 7. Returns tool results to the LLM for continued conversation
 
-<img width="1536" height="587" alt="image" src="https://github.com/user-attachments/assets/d0a9d47f-3b61-4e86-97e1-18396aa570f7" />
+![image](https://github.com/user-attachments/assets/d0a9d47f-3b61-4e86-97e1-18396aa570f7)
 
 Now that we have a basic idea of what an MCP client is, let us build one step by step. Once we put it into practice, the concepts will make a lot more sense and feel less abstract.
 
