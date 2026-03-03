@@ -63,7 +63,35 @@ export function CTASection() {
             }
           `}</style>
 
-          <div className="relative z-10 pb-2 text-slate-900/90 md:pl-20">
+          <div className="relative z-10 pb-2 text-slate-900/90 md:grid md:grid-cols-[72px_1fr] md:items-center md:gap-4">
+            <div className="hidden flex-col items-start gap-3 md:flex">
+              <a
+                href="https://github.com/iharshchauhan"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                aria-label="GitHub"
+              >
+                <Github className="h-4.5 w-4.5" />
+              </a>
+              <a
+                href="https://twitter.com/harshc_"
+                target="_blank"
+                rel="noreferrer"
+                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                aria-label="Twitter"
+              >
+                <Twitter className="h-4.5 w-4.5" />
+              </a>
+              <a
+                href="mailto:hey@iharsh.xyz"
+                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                aria-label="Email"
+              >
+                <Mail className="h-4.5 w-4.5" />
+              </a>
+            </div>
+
             <div className="mx-auto max-w-3xl space-y-4 text-center">
               <div className="inline-flex items-center rounded-full border border-white/60 bg-white/45 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-slate-700">
                 AI Powered Writing
@@ -89,7 +117,7 @@ export function CTASection() {
               </div>
             </div>
 
-            <div className="absolute bottom-4 left-4 flex flex-col gap-3">
+            <div className="mt-5 flex flex-col items-center gap-3 md:hidden">
               <a
                 href="https://github.com/iharshchauhan"
                 target="_blank"
