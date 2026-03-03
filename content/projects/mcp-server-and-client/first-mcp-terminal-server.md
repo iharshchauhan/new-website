@@ -19,7 +19,8 @@ In this guide, we will build a **Terminal MCP Server**,  which lets Claude run r
 
 ##  What Are We Building? (Big Picture)
 
-```mermaid
+<Mermaid
+  chart={`
 flowchart LR
     A[You — Type in Claude] --> B[Claude Desktop App]
     B --> C[MCP Terminal Server]
@@ -27,7 +28,8 @@ flowchart LR
     D --> E[Result comes back to Claude]
     E --> B
     B --> F[Claude replies to you]
-```
+  `}
+/>
 
 **In plain English:**
 1. You ask Claude something
