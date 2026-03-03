@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { getAllPosts } from '@/lib/mdx';
 import { LogbookTabs } from '@/components/logbook-tabs';
 
@@ -23,7 +24,9 @@ export default function LogbookPage() {
         </p>
       </header>
       
-      <LogbookTabs posts={allPosts} />
+      <Suspense fallback={<div className="text-center py-24 text-muted-foreground">Loading logbook...</div>}>
+        <LogbookTabs posts={allPosts} />
+      </Suspense>
     </div>
   );
 }

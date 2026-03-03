@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { getAllPosts } from "@/lib/mdx";
-import { ArrowRight, Github, Twitter, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
+import { CTASection } from "@/components/ui/hero-dithering-card";
 
 export default function Home() {
   const writingPosts = getAllPosts("writing");
@@ -12,53 +13,7 @@ export default function Home() {
 
   return (
     <div className="space-y-24">
-      <section className="relative p-8 md:p-12 rounded-[2rem] overflow-hidden border border-white/60 shadow-[0_8px_32px_rgba(0,0,0,0.04)] bg-white/40 backdrop-blur-2xl">
-        <div className="absolute inset-0 bg-gradient-to-br from-white/60 to-white/10 pointer-events-none" />
-        <div className="relative space-y-6">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight">
-            Hey, Stranger! <span className="inline-block animate-wave">👋</span>
-          </h1>
-          <div className="prose prose-neutral sm:prose-lg text-muted-foreground">
-            <p>
-              Welcome to my little corner of the web! I'm a Product/Growth
-              enthusiast and an amateur human figuring out both the world and the
-              web.
-            </p>
-            <p>
-              I dream of making a TON of money with computers, and then... maybe
-              never touching one again (just kidding... or am I?)
-            </p>
-            <p>
-              Stick around as I document cool stuff and try to create content
-              that's as engaging as my playlist.
-            </p>
-          </div>
-          <div className="flex items-center space-x-4 pt-4">
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noreferrer"
-              className="p-3 rounded-full bg-white/50 hover:bg-white/80 border border-white/60 shadow-sm text-muted-foreground hover:text-foreground transition-all"
-            >
-              <Github className="w-5 h-5" />
-            </a>
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noreferrer"
-              className="p-3 rounded-full bg-white/50 hover:bg-white/80 border border-white/60 shadow-sm text-muted-foreground hover:text-foreground transition-all"
-            >
-              <Twitter className="w-5 h-5" />
-            </a>
-            <a
-              href="mailto:hey@iharsh.xyz"
-              className="p-3 rounded-full bg-white/50 hover:bg-white/80 border border-white/60 shadow-sm text-muted-foreground hover:text-foreground transition-all"
-            >
-              <Mail className="w-5 h-5" />
-            </a>
-          </div>
-        </div>
-      </section>
+      <CTASection />
 
       <div className="space-y-16">
         <section className="space-y-8">
