@@ -19,6 +19,7 @@
     "date-fns": "^4.1.0",
     "gray-matter": "^4.0.3",
     "lucide-react": "^0.553.0",
+    "mermaid": "^11.12.3",
     "motion": "^12.23.24",
     "next": "^15.4.9",
     "postcss": "^8.5.6",
