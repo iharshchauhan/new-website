@@ -30,8 +30,8 @@ export function AnimatedBackground() {
       Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.09,
-        vy: (Math.random() - 0.5) * 0.09,
+        vx: (Math.random() - 0.5) * 0.26,
+        vy: (Math.random() - 0.5) * 0.26,
         r: Math.random() * 1.25 + 0.35,
         a: Math.random() * 0.22 + 0.06,
       }))
@@ -56,8 +56,8 @@ export function AnimatedBackground() {
       ctx.clearRect(0, 0, w, h)
 
       const base = ctx.createLinearGradient(0, 0, w, h)
-      base.addColorStop(0, '#eef5f3')
-      base.addColorStop(1, '#ececf7')
+      base.addColorStop(0, '#e9f3f4')
+      base.addColorStop(1, '#ececf8')
       ctx.fillStyle = base
       ctx.fillRect(0, 0, w, h)
 
@@ -71,17 +71,17 @@ export function AnimatedBackground() {
         ctx.fill()
       }
 
-      const x1 = w * 0.2 + Math.sin(t * 0.62) * w * 0.08
-      const y1 = h * 0.3 + Math.cos(t * 0.52) * h * 0.08
-      drawBlob(x1, y1, w * 0.45, 'rgba(122, 188, 255, 0.12)')
+      const x1 = w * 0.2 + Math.sin(t * 1.1) * w * 0.1
+      const y1 = h * 0.3 + Math.cos(t * 0.9) * h * 0.1
+      drawBlob(x1, y1, w * 0.45, 'rgba(150, 203, 255, 0.14)')
 
-      const x2 = w * 0.75 + Math.cos(t * 0.72) * w * 0.07
-      const y2 = h * 0.7 + Math.sin(t * 0.56) * h * 0.08
-      drawBlob(x2, y2, w * 0.4, 'rgba(194, 168, 255, 0.1)')
+      const x2 = w * 0.75 + Math.cos(t * 1.0) * w * 0.08
+      const y2 = h * 0.7 + Math.sin(t * 0.8) * h * 0.1
+      drawBlob(x2, y2, w * 0.4, 'rgba(198, 178, 255, 0.12)')
 
-      const x3 = w * 0.5 + Math.sin(t * 0.86 + Math.PI) * w * 0.06
-      const y3 = h * 0.45 + Math.cos(t * 0.64 + Math.PI) * h * 0.07
-      drawBlob(x3, y3, w * 0.34, 'rgba(120, 231, 205, 0.08)')
+      const x3 = w * 0.5 + Math.sin(t * 0.95 + Math.PI) * w * 0.07
+      const y3 = h * 0.45 + Math.cos(t * 0.75 + Math.PI) * h * 0.08
+      drawBlob(x3, y3, w * 0.34, 'rgba(140, 236, 214, 0.1)')
 
       dots.forEach((d) => {
         if (!reduceMotion) {

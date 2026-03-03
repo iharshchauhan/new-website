@@ -14,28 +14,30 @@ export function CTASection() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative overflow-hidden rounded-[2rem] border border-[#3a2a21] bg-[#0f0f10] p-6 shadow-[0_20px_80px_rgba(0,0,0,0.5)] sm:p-8 md:p-12">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/50 bg-white/28 p-6 shadow-[0_20px_80px_rgba(16,24,40,0.2)] backdrop-blur-2xl sm:p-8 md:p-12">
           <div className="pointer-events-none absolute inset-0 z-0">
             <HeroParticles />
             <div
-              className={`absolute inset-0 ${isHovered ? 'animate-pulse' : ''} opacity-90`}
+              className={`absolute inset-0 ${isHovered ? 'animate-pulse' : ''} opacity-70`}
               style={{
                 backgroundImage:
-                  'radial-gradient(circle at 14% 20%, rgba(255,108,43,0.32), transparent 36%), radial-gradient(circle at 84% 22%, rgba(255,126,36,0.2), transparent 42%), radial-gradient(circle at 60% 82%, rgba(255,99,24,0.18), transparent 38%)',
+                  'radial-gradient(circle at 14% 20%, rgba(255,146,99,0.28), transparent 36%), radial-gradient(circle at 84% 22%, rgba(125,168,255,0.22), transparent 42%), radial-gradient(circle at 60% 82%, rgba(140,237,214,0.2), transparent 38%)',
                 backgroundSize: '160% 160%',
-                animation: 'heroGradientDrift 18s ease-in-out infinite',
+                animation: 'heroGradientDrift 12s ease-in-out infinite',
               }}
             />
             <div
-              className="absolute inset-0 opacity-20"
+              className="absolute inset-0 opacity-[0.18]"
               style={{
                 backgroundImage:
-                  'linear-gradient(45deg, rgba(255,255,255,0.06) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.06) 75%, transparent 75%, transparent)',
+                  'linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 50%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.2) 75%, transparent 75%, transparent)',
                 backgroundSize: '10px 10px',
-                animation: 'heroGridPan 22s linear infinite',
+                animation: 'heroGridPan 14s linear infinite',
               }}
             />
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.12),transparent_42%)]" />
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.55),transparent_52%)]" />
+            <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-white/55 to-transparent" />
+            <div className="absolute inset-0 ring-1 ring-inset ring-white/45" />
           </div>
 
           <style>{`
@@ -61,16 +63,16 @@ export function CTASection() {
             }
           `}</style>
 
-          <div className="relative z-10 space-y-6 text-white/90">
-            <div className="inline-flex items-center rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-medium uppercase tracking-[0.08em] text-white/70">
+          <div className="relative z-10 space-y-6 text-slate-900/90">
+            <div className="inline-flex items-center rounded-full border border-white/60 bg-white/45 px-3 py-1 text-xs font-medium uppercase tracking-[0.08em] text-slate-700">
               AI Powered Writing
             </div>
 
-            <h2 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-white sm:text-4xl md:text-6xl">
+            <h2 className="max-w-3xl text-3xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-4xl md:text-6xl">
               Your words, delivered perfectly.
             </h2>
 
-            <div className="prose prose-invert max-w-none text-white/75 sm:prose-lg">
+            <div className="prose prose-neutral max-w-none text-slate-700 sm:prose-lg">
               <p>
                 Welcome to my little corner of the web! I&apos;m a Product/Growth enthusiast and an
                 amateur human figuring out both the world and the web.
@@ -90,7 +92,7 @@ export function CTASection() {
                 href="https://github.com/iharshchauhan"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-white/20 bg-white/10 p-3 text-white/70 shadow-sm transition-all hover:bg-white/20 hover:text-white"
+                className="rounded-full border border-white/60 bg-white/45 p-3 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="GitHub"
               >
                 <Github className="h-5 w-5" />
@@ -99,14 +101,14 @@ export function CTASection() {
                 href="https://twitter.com/harshc_"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-white/20 bg-white/10 p-3 text-white/70 shadow-sm transition-all hover:bg-white/20 hover:text-white"
+                className="rounded-full border border-white/60 bg-white/45 p-3 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="Twitter"
               >
                 <Twitter className="h-5 w-5" />
               </a>
               <a
                 href="mailto:hey@iharsh.xyz"
-                className="rounded-full border border-white/20 bg-white/10 p-3 text-white/70 shadow-sm transition-all hover:bg-white/20 hover:text-white"
+                className="rounded-full border border-white/60 bg-white/45 p-3 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="Email"
               >
                 <Mail className="h-5 w-5" />
@@ -118,4 +120,3 @@ export function CTASection() {
     </section>
   )
 }
-

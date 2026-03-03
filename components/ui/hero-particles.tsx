@@ -29,8 +29,8 @@ export function HeroParticles() {
       Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.16,
-        vy: (Math.random() - 0.5) * 0.16,
+        vx: (Math.random() - 0.5) * 0.44,
+        vy: (Math.random() - 0.5) * 0.44,
         r: Math.random() * 1.5 + 0.45,
         a: Math.random() * 0.36 + 0.12,
       }))
@@ -55,8 +55,8 @@ export function HeroParticles() {
       ctx.clearRect(0, 0, w, h)
 
       const glow = ctx.createRadialGradient(w * 0.18, h * 0.2, 0, w * 0.2, h * 0.22, Math.max(w, h) * 0.7)
-      glow.addColorStop(0, 'rgba(255, 122, 48, 0.24)')
-      glow.addColorStop(1, 'rgba(255, 122, 48, 0)')
+      glow.addColorStop(0, 'rgba(255, 141, 84, 0.2)')
+      glow.addColorStop(1, 'rgba(255, 141, 84, 0)')
       ctx.fillStyle = glow
       ctx.fillRect(0, 0, w, h)
 
@@ -72,7 +72,7 @@ export function HeroParticles() {
         }
 
         ctx.beginPath()
-        ctx.fillStyle = `rgba(255, 186, 130, ${p.a})`
+        ctx.fillStyle = `rgba(255, 163, 120, ${p.a})`
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2)
         ctx.fill()
       })
