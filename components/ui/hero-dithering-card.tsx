@@ -65,12 +65,12 @@ export function CTASection() {
           `}</style>
 
           <div className="relative z-10 pb-2 text-slate-900/90 md:grid md:min-h-[440px] md:grid-cols-[168px_1fr] md:items-stretch md:gap-4">
-            <div className="hidden flex-row flex-nowrap items-center gap-3 md:flex md:self-end md:pb-2">
+            <div className="hidden md:flex md:flex-row md:flex-nowrap md:items-center md:gap-3 md:self-end md:pb-2 md:w-max">
               <a
                 href="https://github.com/iharshchauhan"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                className="shrink-0 rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="GitHub"
               >
                 <Github className="h-4.5 w-4.5" />
@@ -79,14 +79,14 @@ export function CTASection() {
                 href="https://twitter.com/harshc_"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                className="shrink-0 rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="Twitter"
               >
                 <Twitter className="h-4.5 w-4.5" />
               </a>
               <a
                 href="mailto:hey@iharsh.xyz"
-                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                className="shrink-0 rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="Email"
               >
                 <Mail className="h-4.5 w-4.5" />
@@ -118,12 +118,12 @@ export function CTASection() {
               </div>
             </div>
 
-            <div className="mt-5 flex flex-row items-center gap-3 md:hidden">
+            <div className="mt-5 flex flex-row flex-nowrap items-center gap-3 md:hidden">
               <a
                 href="https://github.com/iharshchauhan"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                className="shrink-0 rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="GitHub"
               >
                 <Github className="h-4.5 w-4.5" />
@@ -132,14 +132,14 @@ export function CTASection() {
                 href="https://twitter.com/harshc_"
                 target="_blank"
                 rel="noreferrer"
-                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                className="shrink-0 rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="Twitter"
               >
                 <Twitter className="h-4.5 w-4.5" />
               </a>
               <a
                 href="mailto:hey@iharsh.xyz"
-                className="rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
+                className="shrink-0 rounded-full border border-white/60 bg-white/45 p-2.5 text-slate-600 shadow-sm transition-all hover:bg-white/70 hover:text-slate-900"
                 aria-label="Email"
               >
                 <Mail className="h-4.5 w-4.5" />
