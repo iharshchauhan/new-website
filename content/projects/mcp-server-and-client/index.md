@@ -35,7 +35,7 @@ Think of it like this:
 - Cursor
 - Windsurf
 - Goose
--VS Code Editor, and [there is few more.](https://modelcontextprotocol.io/clients#feature-support-matrix)
+-VS Code Editor, and [there are few more.](https://modelcontextprotocol.io/clients#feature-support-matrix)
 
 While the previous diagram covered the high-level MCP client flow, the one below takes a closer look at how the MCP client and MCP server communicate step by step during a session.
 
