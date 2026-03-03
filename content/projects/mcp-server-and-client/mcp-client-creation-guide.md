@@ -3,13 +3,13 @@ title: "MCP Client Creation Guide"
 date: "2026-03-02"
 description: "Practical build guide for creating a React and Electron MCP client from scratch."
 ---
-# 🚀 Step-by-Step Guide: Building MCP Client (React & Electron)
+# Step-by-Step Guide: Building MCP Client (React & Electron)
 
 This guide walks you through creating a modern MCP client from scratch, including a Python backend, a React frontend, and an Electron desktop wrapper.
 
 ---
 
-## 🛠️ Phase 1: Backend Setup (FastAPI & MCP Logic)
+## Phase 1: Backend Setup (FastAPI & MCP Logic)
 
 The backend acts as the bridge between the Gemini AI and any MCP server.
 
@@ -52,7 +52,7 @@ GEMINI_API_KEY="YOUR_ACTUAL_KEY_HERE"
 
 ---
 
-## 💻 Phase 2: Frontend Setup (React + Vite)
+## Phase 2: Frontend Setup (React + Vite)
 
 ### 1. Create the React App
 
@@ -72,7 +72,7 @@ npm install axios
 
 ---
 
-## 🖥️ Phase 3: Desktop App (Electron)
+## Phase 3: Desktop App (Electron)
 
 ### 1. Initialize Electron
 
@@ -90,7 +90,7 @@ Configure Electron to open a window and load the local React dev server (usually
 
 ---
 
-## 🧹 Phase 4: Cleanup & Security
+## Phase 4: Cleanup & Security
 
 **CRITICAL: Never push your API keys to GitHub.**
 
@@ -111,7 +111,7 @@ Configure Electron to open a window and load the local React dev server (usually
 
 ---
 
-## 📤 Phase 5: Push to GitHub
+## Phase 5: Push to GitHub
 
 ### 1. Initialize Git
 
@@ -134,7 +134,7 @@ git commit -m "Initial commit: MCP Client React & Electron"
 
 ---
 
-## 🚀 Success
+## Success
 
-Your project is now live on GitHub and ready for other developers to explore.
+Our project is now live on GitHub and ready for other developers to explore.
 
