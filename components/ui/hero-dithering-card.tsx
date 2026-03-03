@@ -15,7 +15,7 @@ export function CTASection() {
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
       >
-        <div className="relative overflow-hidden rounded-[2rem] border border-white/50 bg-white/28 p-5 shadow-[0_20px_80px_rgba(16,24,40,0.2)] backdrop-blur-2xl sm:p-7 md:p-8">
+        <div className="relative overflow-hidden rounded-[2rem] border border-white/50 bg-white/28 p-5 pb-3 shadow-[0_20px_80px_rgba(16,24,40,0.2)] backdrop-blur-2xl sm:p-7 sm:pb-4 md:p-8 md:pb-5">
           <div className="pointer-events-none absolute inset-0 z-0">
             <HeroParticles />
             <div
@@ -64,8 +64,8 @@ export function CTASection() {
             }
           `}</style>
 
-          <div className="relative z-10 min-h-[520px] pb-20 text-slate-900/90 sm:pb-24">
-            <div className="w-full space-y-4 text-left md:w-[90%] lg:w-[88%]">
+          <div className="relative z-10 flex min-h-[440px] flex-col text-slate-900/90">
+            <div className="w-full space-y-4 text-left md:w-[88%]">
               <div className="inline-flex items-center rounded-full border border-white/60 bg-white/45 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.08em] text-slate-700">
                 AI Powered Writing
               </div>
