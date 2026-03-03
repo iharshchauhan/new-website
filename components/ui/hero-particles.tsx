@@ -29,10 +29,10 @@ export function HeroParticles() {
       Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.26,
-        vy: (Math.random() - 0.5) * 0.26,
-        r: Math.random() * 1.8 + 0.5,
-        a: Math.random() * 0.5 + 0.15,
+        vx: (Math.random() - 0.5) * 0.16,
+        vy: (Math.random() - 0.5) * 0.16,
+        r: Math.random() * 1.5 + 0.45,
+        a: Math.random() * 0.36 + 0.12,
       }))
 
     const resize = () => {
@@ -41,7 +41,10 @@ export function HeroParticles() {
       canvas.width = Math.max(1, Math.floor(rect.width * dpr))
       canvas.height = Math.max(1, Math.floor(rect.height * dpr))
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      const count = Math.max(36, Math.min(130, Math.floor((rect.width * rect.height) / 11000)))
+      const isMobile = rect.width < 640
+      const count = isMobile
+        ? Math.max(24, Math.min(64, Math.floor((rect.width * rect.height) / 18000)))
+        : Math.max(38, Math.min(96, Math.floor((rect.width * rect.height) / 14000)))
       particles = buildParticles(count, rect.width, rect.height)
     }
 
@@ -74,7 +77,11 @@ export function HeroParticles() {
         ctx.fill()
       })
 
-      ctx.strokeStyle = 'rgba(255, 150, 84, 0.12)'
+      const isMobile = w < 640
+      const linkDistance = isMobile ? 70 : 90
+      const maxLinkAlpha = isMobile ? 0.14 : 0.2
+
+      ctx.strokeStyle = 'rgba(255, 150, 84, 0.1)'
       ctx.lineWidth = 1
       for (let i = 0; i < particles.length; i += 1) {
         const a = particles[i]
@@ -83,8 +90,8 @@ export function HeroParticles() {
           const dx = a.x - b.x
           const dy = a.y - b.y
           const dist = Math.sqrt(dx * dx + dy * dy)
-          if (dist < 95) {
-            const opacity = (1 - dist / 95) * 0.24
+          if (dist < linkDistance) {
+            const opacity = (1 - dist / linkDistance) * maxLinkAlpha
             ctx.strokeStyle = `rgba(255, 150, 84, ${opacity})`
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
@@ -110,4 +117,3 @@ export function HeroParticles() {
 
   return <canvas ref={canvasRef} className="absolute inset-0 h-full w-full" aria-hidden />
 }
-

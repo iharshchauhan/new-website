@@ -30,10 +30,10 @@ export function AnimatedBackground() {
       Array.from({ length: count }, () => ({
         x: Math.random() * w,
         y: Math.random() * h,
-        vx: (Math.random() - 0.5) * 0.14,
-        vy: (Math.random() - 0.5) * 0.14,
-        r: Math.random() * 1.5 + 0.4,
-        a: Math.random() * 0.3 + 0.08,
+        vx: (Math.random() - 0.5) * 0.09,
+        vy: (Math.random() - 0.5) * 0.09,
+        r: Math.random() * 1.25 + 0.35,
+        a: Math.random() * 0.22 + 0.06,
       }))
 
     const resize = () => {
@@ -41,7 +41,10 @@ export function AnimatedBackground() {
       canvas.width = Math.floor(window.innerWidth * dpr)
       canvas.height = Math.floor(window.innerHeight * dpr)
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
-      const count = Math.max(40, Math.min(140, Math.floor((window.innerWidth * window.innerHeight) / 16000)))
+      const isMobile = window.innerWidth < 640
+      const count = isMobile
+        ? Math.max(20, Math.min(50, Math.floor((window.innerWidth * window.innerHeight) / 26000)))
+        : Math.max(34, Math.min(92, Math.floor((window.innerWidth * window.innerHeight) / 21000)))
       dots = makeDots(count, window.innerWidth, window.innerHeight)
     }
 
@@ -68,16 +71,16 @@ export function AnimatedBackground() {
         ctx.fill()
       }
 
-      const x1 = w * 0.2 + Math.sin(t * 0.8) * w * 0.1
-      const y1 = h * 0.3 + Math.cos(t * 0.65) * h * 0.1
+      const x1 = w * 0.2 + Math.sin(t * 0.62) * w * 0.08
+      const y1 = h * 0.3 + Math.cos(t * 0.52) * h * 0.08
       drawBlob(x1, y1, w * 0.45, 'rgba(122, 188, 255, 0.12)')
 
-      const x2 = w * 0.75 + Math.cos(t * 0.9) * w * 0.08
-      const y2 = h * 0.7 + Math.sin(t * 0.7) * h * 0.1
+      const x2 = w * 0.75 + Math.cos(t * 0.72) * w * 0.07
+      const y2 = h * 0.7 + Math.sin(t * 0.56) * h * 0.08
       drawBlob(x2, y2, w * 0.4, 'rgba(194, 168, 255, 0.1)')
 
-      const x3 = w * 0.5 + Math.sin(t + Math.PI) * w * 0.07
-      const y3 = h * 0.45 + Math.cos(t * 0.9 + Math.PI) * h * 0.09
+      const x3 = w * 0.5 + Math.sin(t * 0.86 + Math.PI) * w * 0.06
+      const y3 = h * 0.45 + Math.cos(t * 0.64 + Math.PI) * h * 0.07
       drawBlob(x3, y3, w * 0.34, 'rgba(120, 231, 205, 0.08)')
 
       dots.forEach((d) => {
@@ -115,4 +118,3 @@ export function AnimatedBackground() {
 
   return <canvas ref={canvasRef} className="fixed inset-0 z-[-1] pointer-events-none" />
 }
-
