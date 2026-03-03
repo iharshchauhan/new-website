@@ -23,6 +23,9 @@ MCP Client is a protocol client that maintains one to one connection with MCP Se
 
 **LLM + Transport Layer + Protocol Implementation = MCP Client**
 
+Think of it like this:
+> Claude is a smart assistant, but by default, it can only *talk*. An MCP server gives Claude *hands* -> the ability to actually **do things** on your computer, like running terminal commands.
+
 <img width="1336" height="354" alt="image" src="https://github.com/user-attachments/assets/61e7585e-5009-4c17-8afe-e37dc2014cdc" />
 
 
