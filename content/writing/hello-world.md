@@ -1,6 +1,5 @@
 ---
 title: "Hello, World!"
-date: "2025-08-17"
 description: "A simple opening note with a classic hello and placeholder prose."
 category: "Logbook"
 tags: ["General"]
