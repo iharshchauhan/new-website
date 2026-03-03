@@ -84,12 +84,13 @@ export function CTASection() {
 
               <div className="max-w-4xl space-y-3 text-[1.04rem] leading-relaxed text-slate-700 md:text-[1.08rem]">
                 <p>
-                  Welcome to my little corner of the web! I&apos;m a Product/Growth enthusiast and an
+                  Welcome to my little corner of the web! I am a Product enthusiast and an
                   amateur human figuring out both the world and the web.
                 </p>
                 <p className="italic [font-family:ui-cursive,cursive]">
                   I dream of making a TON of money with computers, and then... maybe never touching
-                  one again (just kidding... or am I?)
+                  one again 
+                  (just kidding... or am I? 🤨)
                 </p>
                 <p>
                   Stick around as I document cool stuff and try to create content that&apos;s as
