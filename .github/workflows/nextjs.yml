@@ -73,6 +73,12 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
+      - name: Debug hero-dithering-card content
+        run: |
+          echo "Workspace: ${{ github.workspace }}"
+          ls -la components/ui || true
+          sha256sum components/ui/hero-dithering-card.tsx || true
+          nl -ba components/ui/hero-dithering-card.tsx | sed -n '1,220p' || true
       - name: Build with Next.js
         run: ${{ steps.detect-package-manager.outputs.runner }} next build
       - name: Upload artifact
