@@ -69,7 +69,7 @@ export function CTASection() {
 
             <div className="flex items-center gap-4 pt-2">
               <a
-                href="https://github.com"
+                href="https://github.com/iharshchauhan"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full border border-white/60 bg-white/50 p-3 text-muted-foreground shadow-sm transition-all hover:bg-white/80 hover:text-foreground"
@@ -77,7 +77,7 @@ export function CTASection() {
                 <Github className="h-5 w-5" />
               </a>
               <a
-                href="https://twitter.com"
+                href="https://twitter.com/harshc_"
                 target="_blank"
                 rel="noreferrer"
                 className="rounded-full border border-white/60 bg-white/50 p-3 text-muted-foreground shadow-sm transition-all hover:bg-white/80 hover:text-foreground"
