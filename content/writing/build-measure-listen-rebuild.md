@@ -21,11 +21,4 @@ Regularly evaluating my creation and engagement strategies has been a journey. I
 
 Whether you're developing a product, building a business, or working on something else, I encourage you to constantly question, measure, and refine. So, take this challenge: measure your work, ask the hard questions, and be ready to change.
 
-We're all somewhere between the before-picture and the after-picture. The key is to keep moving forward. 🚀
-
-## **Tools I use to measure**
-
-These are some of the tools I reach for to help me measure and improve my work. The links below also contain referral codes - if you sign up for any of these tools, I'll get a small kickback. If you'd rather not use the referral links, I ain't mad atcha.
-
-- [PostHog](https://posthog.com/) has become an invaluable tool for understanding how people interact with the products I build. Being able to build dashboards with rich analytics and insights means the difference between guessing what's working and knowing what's working.
-- [Fathom Analytics](https://usefathom.com/) has long been the analytics tool I use for my personal site. It's simple, privacy-focused, and gives me the insights.
+We're all somewhere between the before-picture and the after-picture. The key is to keep moving forward.
