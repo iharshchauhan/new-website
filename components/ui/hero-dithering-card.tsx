@@ -91,7 +91,6 @@ export function CTASection() {
             </div>
 
             <div className="mt-auto flex flex-wrap items-center gap-3 pt-6">
-            <div className="absolute bottom-2 left-0 flex w-max flex-col gap-3 pt-6 sm:bottom-3">
               <a
                 href="https://github.com/iharshchauhan"
                 target="_blank"
