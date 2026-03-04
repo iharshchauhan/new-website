@@ -1,4 +1,4 @@
----
+﻿---
 title: "Why I treat chunking as a product decision"
 date: "2026-03-04"
 description: "I break down fixed-size, semantic, recursive, structure-based, and LLM chunking through a product lens and share how we should choose in production."
@@ -151,3 +151,4 @@ When answer quality drops, I inspect chunk boundaries before changing models or 
 There is no universally superior chunking strategy. The correct choice depends on corpus structure, query distribution, latency budget, and business risk. As a Technical AI PM, I treat chunking as a controllable product surface that evolves with evidence.
 
 We instrument early. We adapt by document class and intent. We layer sophistication only when metrics justify it. In mature RAG systems, chunking is not static preprocessing. It is an active lever that shapes retrieval quality, cost profile, and ultimately user trust.
+
