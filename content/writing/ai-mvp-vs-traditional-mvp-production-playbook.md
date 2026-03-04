@@ -1,409 +1,236 @@
-﻿---
+---
+
 title: "AI MVP vs Traditional MVP: My Production Playbook for B2B SaaS"
-date: "2026-03-05"
-description: "A systems-first guide for designing, shipping, and governing AI MVPs with clear tradeoffs across UX, cost, reliability, and business outcomes."
+date: "2025-07-05"
+description: "A systems-first guide for designing, shipping, and governing AI MVPs with explicit controls across UX, cost, reliability, and business outcomes."
 category: "Articles"
 tags: ["AI MVP", "B2B SaaS", "Product Strategy", "Agents", "RAG", "Evaluation"]
----
+-------------------------------------------------------------------------------
 
 # AI MVP vs Traditional MVP: My Production Playbook for B2B SaaS
 
-**Core question**
-How do I decide when to build a traditional MVP versus an AI MVP, and how do I ship the AI version fast without losing reliability, governance, or unit economics?
+## Core Question
 
-I have seen two common failure patterns.
+How do I decide when to build a traditional MVP versus an AI MVP, and how do I ship the AI version fast without sacrificing reliability, governance, or unit economics?
 
-The first is teams adding AI too late, after they already locked product architecture around deterministic workflows that are hard to adapt.
+In B2B SaaS, I repeatedly see two architectural extremes. Some teams over-rotate on caution. They build rigid deterministic systems, prove workflow demand, and only later attempt to layer AI on top. Retrofitting intelligence into a system that was never designed for probabilistic execution creates friction at every seam. Other teams sprint in the opposite direction. They wire a model endpoint to a UI, call it an AI MVP, and discover a few weeks later that they have no traceability, no evaluation baseline, and no understanding of cost per outcome.
 
-The second is teams adding AI too early, turning the MVP into a prompt demo with no operational controls, no evaluation baseline, and no cost model.
+My approach treats AI MVP design as a constrained systems problem. I evaluate workflow leverage, execution quality, control surfaces, unit economics, and long-term evolvability as a connected set. An AI MVP is not simply a faster MVP. It is a different operational category.
 
-My approach is to treat AI MVP design as a systems problem. I do not ask only "Can we build this quickly?" I ask five connected questions:
+---
 
-1. Does AI create a measurable workflow advantage over rules and forms?
-2. What minimum intelligence is required to validate that advantage?
-3. What controls are required so early users can trust outputs?
-4. What is the cost per successful outcome at expected usage?
-5. Can I evolve this architecture without rewriting the product in 90 days?
+# What Actually Changes in an AI MVP
 
-This article is my operating playbook.
+A traditional MVP proves demand for a workflow. An AI MVP must prove demand and model-mediated execution quality under variability at the same time.
 
-## 1) What Actually Changes in an AI MVP
-
-A traditional MVP proves demand for a workflow.
-An AI MVP must prove demand and model-mediated execution quality at the same time.
-
-That changes scope, risk, and validation design.
-
-### 1.1 Traditional MVP Validation Unit
-
-In a traditional MVP, my validation unit is usually a deterministic flow:
-
-- user input
-- rules
-- saved output
-- user action completion
-
-If completion rate is high and users return, I expand.
-
-### 1.2 AI MVP Validation Unit
-
-In an AI MVP, my validation unit has two layers:
-
-- workflow completion
-- response quality under variability
-
-The same user input can produce different outputs. So I need explicit quality instrumentation on day one.
-
-### 1.3 Practical Consequence
-
-When teams say "AI MVP in days," I agree with speed potential, but I only accept it if these five controls are included in the first release:
-
-1. structured output contract
-2. observable prompt and context traces
-3. safe fallback path
-4. basic offline eval set
-5. cost and latency budget alerts
-
-Without these, the MVP is not viable. It is only fast.
-
-## 2) Decision Framework: Traditional MVP or AI MVP
-
-I use this decision table before writing any PRD.
-
-| Decision Axis | Traditional MVP Preferred | AI MVP Preferred | PM Decision Rule |
-| --- | --- | --- | --- |
-| Task determinism | Rules are stable and explicit | Inputs are messy and variable | If exceptions > 20% and expensive, use AI MVP |
-| Data type | Structured fields | Unstructured text, docs, mixed context | If value depends on interpretation, use AI MVP |
-| Error tolerance | Low and binary | Moderate with human review | If false positives are costly, start with assistive mode |
-| Time to value | Basic flow can launch quickly | AI creates clear workflow compression | If AI reduces cycle time by >30%, prioritize AI MVP |
-| Governance burden | Low | Medium to high | If compliance critical, add gated rollout plan |
-
-My rule is simple: I do not choose AI because it is modern. I choose AI when it changes workflow economics.
-
-## 3) Architecture: Minimum Viable Intelligence Stack
-
-When I build an AI MVP, I separate the architecture into control planes and execution planes.
+In a deterministic MVP, the validation loop is structurally simple.
 
 ```
-User Interface
-   |
-Application API
-   |
-AI Orchestration Layer
-   |-----------------------------|
-   |                             |
-Prompt + Policy Engine      Retrieval + Tools
-   |                             |
-Model Endpoint            Data Sources / APIs
-   |                             |
-Post-Processing + Validators
-   |
-Response + Action
-   |
-Telemetry + Evaluation + Cost Logs
+User Input
+    ↓
+Deterministic Rules Engine
+    ↓
+Stored Output
+    ↓
+Task Completion
 ```
 
-This separation avoids a common anti-pattern where prompt logic, business rules, and tool permissions are mixed in one place.
+Variance is low because the same input produces the same output. Instrumentation focuses on funnel metrics such as completion rate, drop-off, and retention.
 
-## 4) The Six Workstreams I Run in Parallel
-
-An AI MVP ships fast only when I run six workstreams in parallel with explicit interfaces.
-
-### 4.1 Problem and Job Definition
-
-I start with one narrow, high-value B2B job. If the team cannot state that job in one sentence, I stop.
-
-Example:
-"For support leads, reduce first-response drafting time for policy-based tickets from 12 minutes to under 4 minutes while keeping policy violations below 2%."
-
-### 4.2 Data and Context Design
-
-I define:
-
-- what context is required for a correct answer
-- what context must never be sent to model providers
-- what source metadata must be surfaced to users
-
-This is where many AI MVPs fail. Teams prototype on ideal sample data, then collapse on real enterprise data quality.
-
-### 4.3 Output Contract and UX Surface
-
-I choose one output schema first, then design UX around it.
-
-If I need downstream automation, I enforce structured output early. If user trust is fragile, I surface citations and confidence bands.
-
-### 4.4 Orchestration and Fallback
-
-I define routing logic before launch:
-
-- small model for default path
-- larger model on low confidence or high complexity
-- deterministic fallback when model or tool fails
-
-### 4.5 Evaluation and Monitoring
-
-I create a lightweight but representative offline dataset before beta.
-
-I log in production:
-
-- prompt template version
-- retrieved context IDs
-- tool call arguments
-- output validity
-- latency, token use, and cost per request
-
-### 4.6 Governance and Change Control
-
-I treat prompts and tool policies like code:
-
-- version control
-- review gates
-- staged rollout
-- rollback strategy
-
-## 5) AI MVP vs Traditional MVP: Systems Tradeoff Matrix
-
-| Dimension | Traditional MVP | AI MVP | What I Optimize |
-| --- | --- | --- | --- |
-| Build speed for first prototype | High | High with AI tooling | Time to first user feedback |
-| Deterministic behavior | High | Lower by default | Add validators and guardrails |
-| Differentiation potential | Medium | High | Capture workflow depth quickly |
-| Operational complexity | Low | Medium to high | Keep architecture modular |
-| Unit economics predictability | High | Medium early | Track cost per successful outcome |
-| Governance overhead | Low | High in regulated spaces | Start with human-in-loop |
-
-I do not compare these as good versus bad. I compare them as control surfaces.
-
-## 6) Cost Model: From Cost per Call to Cost per Outcome
-
-Many teams stop at token pricing. That is not enough.
-
-I track cost per successful outcome:
+In an AI MVP, the validation unit contains a probabilistic core.
 
 ```
-Cost per successful outcome =
-(model inference + retrieval + tool execution + orchestration overhead + rework)
-/ successful task completions
+User Input
+    ↓
+Context Assembly (RAG, state, metadata)
+    ↓
+Model Execution
+    ↓
+Schema Validation
+    ↓
+User Review or Automated Action
 ```
 
-Rework is critical. If output quality is inconsistent, users rerun prompts. That can double effective cost even if nominal per-call cost looks low.
+The same input may produce different outputs depending on context retrieval, prompt version, and model routing. That forces me to introduce a second measurement plane that sits beneath workflow metrics.
 
-### 6.1 Cost Drivers I Monitor
+| Layer         | What I Measure                       | Why It Matters              |
+| ------------- | ------------------------------------ | --------------------------- |
+| Workflow      | Completion rate, cycle time          | Proves demand               |
+| Model Quality | First-pass acceptance, edit distance | Proves usable intelligence  |
+| Grounding     | Faithfulness to retrieved context    | Controls hallucination risk |
+| Economics     | Cost per accepted output             | Protects margin             |
 
-| Driver | Why It Grows | Mitigation |
-| --- | --- | --- |
-| Context length | Unbounded retrieval or verbose prompts | Retrieval tuning and prompt compaction |
-| Retry loops | Invalid outputs and tool errors | Schema constraints and stronger validators |
-| Model tier escalation | Poor routing thresholds | Confidence calibration and task classification |
-| Human correction load | Low first-pass quality | Better context, examples, and eval feedback loop |
+Without this layered instrumentation, I cannot attribute success or failure correctly.
 
-## 7) Latency and UX Coupling
+---
 
-Latency is not only an infra metric. It is a UX strategy decision.
+# When I Choose AI Instead of Deterministic Logic
 
-I classify AI interactions into three latency classes:
+I do not default to AI. I adopt it when it materially changes workflow economics.
 
-| Interaction Type | Target p95 Latency | UX Pattern |
-| --- | --- | --- |
-| Inline assist | < 1.5s | Streaming, partial completion |
-| Guided generation | 2-6s | Progress state + editable draft |
-| Background automation | 10-120s | Async notifications and job status |
+If a task is governed by stable rules and structured inputs, deterministic systems are often superior. They are predictable, cheap, and easy to reason about. AI becomes compelling when inputs are ambiguous, unstructured, or context-heavy, and when exceptions are frequent and expensive.
 
-I do not force one architecture across all interactions. I map each job to the right latency class.
+In B2B environments, I look for workflows where interpretation drives value. Support triage across messy ticket descriptions. Policy-grounded drafting based on long documentation. Cross-document reasoning that would otherwise require manual synthesis. If AI compresses cycle time meaningfully or increases throughput without linear headcount expansion, I treat it as justified architectural complexity.
 
-## 8) Failure Modes I Design For Before Beta
+Error tolerance is another decisive factor. In high-risk domains, I often begin in assistive mode. The AI drafts. The human approves. Only after quality stabilizes do I consider automation of state-changing actions.
 
-AI MVPs fail in predictable ways. I document these before launch.
+AI is not chosen because it is modern. It is chosen because it shifts the cost structure or the throughput curve.
 
-| Failure Mode | Root Cause | User Impact | Control |
-| --- | --- | --- | --- |
-| Hallucinated policy claim | Missing or weak retrieval | Trust loss and compliance risk | Citation requirement + no-evidence refusal |
-| Valid JSON, wrong business action | Weak tool permissioning | Operational incident | Scoped tools + approval gates |
-| Latency spikes under load | No model routing/caching | User abandonment | Tiered models + queue backpressure |
-| Cost runaway | Unbounded context and retries | Margin collapse | Budget alerts + capped token policy |
-| Silent quality drift | Prompt edits without evals | Gradual KPI erosion | Prompt versioning + regression suite |
+---
 
-## 9) Agentic MVPs: When I Use Agents and When I Do Not
+# The Minimum Viable Intelligence Stack
 
-Recent workflows use AI agents for speed. I use agent loops selectively.
+When I build an AI MVP, I separate control from execution. This is what allows rapid iteration without entangling business logic with probabilistic behavior.
 
-I use deterministic chains when:
+A simplified production view looks like this:
 
-- task path is known
-- correctness is contract-heavy
-- latency budget is strict
+```
+                    ┌───────────────────┐
+                    │   User Interface  │
+                    └─────────┬─────────┘
+                              ↓
+                    ┌───────────────────┐
+                    │ Application Layer │
+                    └─────────┬─────────┘
+                              ↓
+                    ┌───────────────────┐
+                    │ Orchestration     │
+                    │ Routing + Policy  │
+                    └───────┬─────┬─────┘
+                            ↓     ↓
+                 ┌────────────┐  ┌──────────────┐
+                 │ Prompt     │  │ Retrieval +  │
+                 │ Engine     │  │ Tool Gateway │
+                 └─────┬──────┘  └──────┬───────┘
+                       ↓                ↓
+                   ┌────────────────────────┐
+                   │      Model Endpoint    │
+                   └────────────┬───────────┘
+                                ↓
+                   ┌────────────────────────┐
+                   │ Validators + Parsers   │
+                   └────────────┬───────────┘
+                                ↓
+                   ┌────────────────────────┐
+                   │ Telemetry + Cost Logs  │
+                   └────────────────────────┘
+```
 
-I use a bounded single-agent loop when:
+The orchestration layer is my control surface. It owns routing, prompt versioning, tool permissions, and trace logging. The model is treated as a capability provider, not as the core system.
 
-- task needs iterative discovery
-- tool sequence is not predictable
-- value of autonomy exceeds added risk
+From the first release, I require explicit controls.
 
-### 9.1 Agent Control Contract
+| Control Surface               | Purpose                         | Failure if Missing                     |
+| ----------------------------- | ------------------------------- | -------------------------------------- |
+| Structured output schema      | Enforces downstream reliability | Retry loops and silent data corruption |
+| Full prompt and context trace | Enables debugging and audit     | Non-reproducible incidents             |
+| Deterministic fallback        | Preserves workflow continuity   | Hard failure under model outage        |
+| Offline evaluation baseline   | Protects against regression     | Invisible quality drift                |
+| Cost and latency budgets      | Protects unit economics         | Margin erosion                         |
 
-If I use an agent in MVP stage, I enforce this control contract:
+These are not scale optimizations. They define whether the MVP is operationally credible.
 
-1. maximum steps
-2. tool allowlist
-3. explicit stop conditions
-4. human confirmation for state-changing actions
-5. full trace logging
+---
 
-Without this contract, agent speed becomes governance debt.
+# Cost Is Measured Per Outcome, Not Per Call
 
-## 10) Evaluation Design: Offline First, Online Always
+Token pricing is a misleading abstraction if viewed in isolation. What matters in B2B SaaS is cost per successful outcome.
 
-I evaluate in two loops.
+I calculate it as the combined cost of inference, retrieval, tool execution, orchestration overhead, and rework, divided by successful task completions. Rework is often the hidden multiplier. If users rerun prompts due to low trust or inconsistent quality, effective cost can double even when nominal per-call cost looks stable.
 
-### 10.1 Offline Loop (Pre-release)
+Context length growth, retry loops caused by schema violations, and unnecessary model escalations are the most common early drivers of margin erosion. I monitor these aggressively. Retrieval tuning and tighter chunking reduce irrelevant context. Schema validators reduce retries. Calibrated routing prevents overuse of large models.
 
-I create a compact but high-signal test set with:
+If I cannot explain cost per accepted output to leadership in one sentence, I do not yet understand my own system.
 
-- representative user requests
-- edge cases
-- adversarial prompts
-- expected quality labels
+---
 
-Offline metrics I track:
+# Latency Is a Product Decision
 
-| Metric | Why It Matters |
-| --- | --- |
-| task accuracy | Direct quality baseline |
-| faithfulness to context | Controls hallucination risk |
-| format validity | Protects downstream automation |
-| policy compliance rate | Governance baseline |
+Latency is not merely an infrastructure metric. It shapes the cognitive contract between user and system.
 
-### 10.2 Online Loop (Post-release)
+Inline assistive experiences demand sub-two-second responsiveness and often benefit from streaming. Guided generation can tolerate a few seconds if the user sees progress and receives an editable draft. Background automation can run asynchronously, provided status and auditability are clear.
 
-I track:
+Instead of forcing one latency target across all workflows, I classify each interaction and design architecture accordingly. Queue management, tiered models, and caching strategies are chosen based on the UX contract, not in isolation.
 
-| Metric Class | Example |
-| --- | --- |
-| adoption | weekly active AI users |
-| productivity | median cycle-time reduction |
-| reliability | timeout rate, fallback rate |
-| quality proxy | user edit distance, rerun rate |
-| economics | cost per successful outcome |
+---
 
-If online quality falls while adoption rises, I prioritize reliability work before adding features.
+# Failure Modes I Design for Before Beta
 
-## 11) Governance in Real B2B Environments
+AI systems fail in patterned ways. I document these patterns before exposing the system to real customers because each maps to a specific architectural weakness.
 
-In enterprise settings, governance is part of product quality.
+| Failure Pattern           | Typical Root Cause              | Architectural Control                                  |
+| ------------------------- | ------------------------------- | ------------------------------------------------------ |
+| Hallucinated policy claim | Weak or misaligned retrieval    | Mandatory citation fields and refusal without evidence |
+| Incorrect business action | Over-broad tool permissions     | Scoped allowlists and approval gates                   |
+| Latency spikes under load | No routing or backpressure      | Tiered models and queue constraints                    |
+| Cost runaway              | Unbounded context and retries   | Token caps and budget alerts                           |
+| Silent quality drift      | Prompt edits without regression | Versioned prompts with evaluation diffs                |
 
-My MVP governance baseline includes:
+These patterns are predictable because probabilistic systems amplify small configuration errors. By treating each failure as a design category rather than an incident, I reduce roadmap volatility.
 
-- data classification and redaction policy
-- prompt and policy version control
-- tool-level permissions and audit trails
-- explicit escalation rules for high-risk actions
-- vendor and model change review process
+To visualize this, I think in terms of layered risk:
 
-### 11.1 Governance Traceability Table
+```
+User Layer Risk      → Misleading Output
+Business Layer Risk  → Wrong Action Executed
+Economic Risk        → Margin Compression
+Governance Risk      → Audit Failure
+```
 
-| Product Promise | Technical Control | Audit Artifact |
-| --- | --- | --- |
-| "answers are policy-grounded" | retrieval with source IDs | query-to-source trace log |
-| "sensitive data is protected" | redaction + restricted connectors | redaction and access logs |
-| "automations are safe" | approval gates on write actions | action approval records |
-| "quality is monitored" | offline regression + online telemetry | evaluation reports |
+Each risk layer must have a corresponding control in architecture. If one layer lacks a control, the MVP is structurally fragile.
 
-## 12) 30-60-90 Day Execution Plan I Use
+---
 
-### Days 0-30: Validation Setup
+# Controlled Use of Agents
 
-I narrow to one high-frequency workflow, design output schema, build baseline chain, and instrument logging.
+I do not introduce agents because they are fashionable. I introduce them when deterministic chains cannot express the workflow.
 
-Exit criteria:
+If the task path is known and correctness is contract-heavy, a chain is preferable. If the workflow requires iterative discovery, tool sequencing that cannot be predetermined, or exploration across dynamic context, a bounded single-agent loop can create leverage.
 
-- one working end-to-end flow
-- baseline offline eval set
-- initial user pilot cohort
+Even then, I enforce strict constraints. Maximum step limits, explicit tool allowlists, termination conditions, and mandatory confirmation for state-changing actions are part of the contract. Full trace logging is non-negotiable.
 
-### Days 31-60: Quality and Reliability Hardening
+Autonomy without boundaries compounds governance debt.
 
-I improve retrieval precision, add routing and fallback logic, and tune prompt contracts using observed failure clusters.
+---
 
-Exit criteria:
+# Evaluation as an Operating Rhythm
 
-- measurable improvement in first-pass acceptance
-- bounded latency at pilot volume
-- no critical safety violations in monitored runs
+Evaluation operates in two interconnected loops.
 
-### Days 61-90: Economics and Expansion Readiness
+Offline, I maintain a compact but high-signal regression dataset containing representative, edge, and adversarial cases. This dataset is used to test prompt changes, routing thresholds, and retrieval adjustments before release.
 
-I optimize model mix, reduce rework-driven cost, and formalize governance for broader rollout.
+Online, I monitor adoption, productivity impact, reliability metrics, quality proxies such as edit distance and rerun rate, and cost per successful outcome. If adoption increases while quality degrades, I slow feature expansion and focus on reliability.
 
-Exit criteria:
+Evaluation is not a milestone. It is an ongoing rhythm that governs iteration speed.
 
-- stable cost per successful outcome
-- agreed SLO and release gates
-- clear roadmap for adjacent workflows
+---
 
-## 13) Where Most Teams Overbuild and Underbuild
+# Governance as a Competitive Advantage
 
-I see consistent patterns:
+In enterprise B2B, governance is product quality. Buyers care about traceability, data boundaries, and controlled automation.
 
-Teams overbuild:
+For every public product promise, I map a technical control and an auditable artifact. If I claim answers are policy-grounded, I must log query-to-source traces. If I claim sensitive data is protected, I must demonstrate redaction and connector scoping. If I claim automations are safe, I must show approval records. If I claim quality is monitored, I must produce regression reports.
 
-- multi-agent architectures before proving single-chain value
-- model fine-tuning before fixing retrieval and prompt contracts
-- broad feature sets before one workflow reaches strong adoption
+This traceability framework reduces friction in enterprise expansion conversations. Governance, when designed well, accelerates sales rather than slowing it.
 
-Teams underbuild:
+---
 
-- evaluation harness
-- observability
-- permission boundaries for tools
-- cost instrumentation at outcome level
+# Execution Phasing in Practice
 
-The market does not reward complexity. It rewards reliable workflow improvement.
+In the first phase, I narrow the scope to a single high-frequency workflow, build a baseline chain, instrument logging, and construct an initial offline evaluation set. The goal is not perfection. The goal is measurable baseline performance.
 
-## 14) Practical Build Stack for Fast AI MVP Delivery
+In the second phase, I harden the system. Retrieval precision improves. Routing logic becomes calibrated. Prompt contracts are refined based on observed failure clusters. Latency and first-pass acceptance are stabilized at pilot volume.
 
-I use pragmatic tooling choices based on speed and control requirements.
+In the third phase, I optimize economics and formalize governance. Model mix is tuned. Rework-driven cost is reduced. Release gates and service-level objectives are defined. Only then do I expand to adjacent workflows.
 
-| Layer | Fast MVP Option | Scale-ready Option | Selection Logic |
-| --- | --- | --- | --- |
-| UI and flow prototyping | low-code builders | custom React/Next stack | move custom when UX complexity grows |
-| orchestration | lightweight workflow tools | typed service orchestration | move when branching and policy logic grows |
-| retrieval | managed vector storage | hybrid retrieval stack | move when precision and metadata controls matter |
-| model access | hosted LLM APIs | routed multi-provider stack | move when cost/risk concentration rises |
-| monitoring | basic logs + dashboards | full tracing + eval pipeline | move before broad rollout |
+This phasing prevents premature architectural sprawl.
 
-The point is not tool purity. The point is preserving migration paths.
+---
 
-## 15) How I Communicate AI MVP Health to Leadership
+# Final Operating Logic
 
-I use a one-page operating review with six lines:
+If I compress my approach into operating logic, it is this.
 
-1. workflow adoption
-2. first-pass acceptance
-3. median latency and p95
-4. fallback rate
-5. cost per successful outcome
-6. top three failure classes and mitigation status
+I start with a narrow workflow where AI materially shifts economics. I ship minimum viable intelligence rather than maximum model complexity. I treat evaluation, governance, and cost instrumentation as first-release scope. I optimize for cost per successful outcome rather than cost per API call. And I preserve architectural evolution paths from the beginning so that iteration does not require rewriting the product surface.
 
-This keeps the conversation grounded in execution quality, not model hype.
-
-## 16) Final Operating Principles
-
-If I compress this article into my core operating principles, they are:
-
-1. Start with a narrow workflow where AI has measurable leverage.
-2. Ship minimum viable intelligence, not maximum model complexity.
-3. Treat evaluation, governance, and cost controls as MVP scope, not later scope.
-4. Optimize for cost per successful outcome, not cost per API call.
-5. Prefer architectures that can evolve without rewriting product surfaces.
-
-AI MVPs can absolutely ship in days. I have seen that happen. But durable AI products are built by teams that pair speed with controls from day one.
-
-## References Considered
-
-This article was informed by the following sources you shared, combined with my production architecture framing:
-
-1. `https://www.knguru.de/en/blog/ki-mvp-vs-trad-mvp-innovative-ansatze-in-der-app-entwicklung-knguru-de`
-2. `https://www.fuselio.com/blog/building-mvp-with-ai-for-rapid-market-entry-and-maximized-efficiency`
-3. `https://medium.com/@filip_70113/a-guide-to-develop-your-ai-mvp-36f8e204e1cb`
-4. `https://bilalsevinc.medium.com/how-to-build-a-b2b-saas-mvp-in-days-not-months-using-ai-agents-996739e30a05`
-5. `https://bytebridge.medium.com/ai-agents-current-status-industry-impact-and-job-market-implications-f8f1ccd0e01f`
+AI MVPs can ship quickly. Durable AI businesses are built by teams that combine speed with explicit control surfaces from the first release.
