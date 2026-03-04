@@ -48,6 +48,8 @@ React Frontend (User sees issues BEFORE submitting)
 ```
 
 
+
+
 ## API Reference
 
 | Endpoint | Method | Description |
@@ -57,6 +59,8 @@ React Frontend (User sees issues BEFORE submitting)
 | `/analytics/summary` | GET | Aggregate stats |
 | `/document-types` | GET | List supported doc types |
 | `/health` | GET | Health check |
+
+
 
 
 ## Infrastructure (AWS)
