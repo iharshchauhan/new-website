@@ -18,3 +18,20 @@ View your app in AI Studio: https://ai.studio/apps/37ec1f41-9811-44cd-a8d0-ba7a1
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Cloudinary image integration
+
+If local markdown images break on GitHub Pages/static export, use Cloudinary URLs instead of serving from the repo.
+
+1. Add Cloudinary keys to `.env.local`:
+   `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
+2. Optional: set `CLOUDINARY_FOLDER` (defaults to `new-website`).
+3. Upload local site images and generate a manifest:
+   `npm run cloudinary:upload`
+4. Build/run:
+   `npm run build` or `npm run dev`
+
+How it works:
+- Upload script pushes images from `public/images` and `public/support/images`.
+- A mapping file is generated at `lib/cloudinary-manifest.json`.
+- Markdown `<img>` rendering in `components/mdx-content.tsx` uses Cloudinary URL when a local path exists in this mapping.

@@ -8,7 +8,8 @@
     "postbuild": "touch out/.nojekyll",
     "start": "next start",
     "lint": "eslint .",
-    "clean": "next clean"
+    "clean": "next clean",
+    "cloudinary:upload": "node scripts/upload-to-cloudinary.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.17.0",
