@@ -1,15 +1,15 @@
 ﻿---
-title: "KYC Review Agent"
+title: "KYC Review Agent: assisting compliance teams"
 date: "2026-03-02"
 description: "AI-assisted compliance review workflow with confidence scoring, queueing, and draft decisions."
 ---
-# 🔍 KYC Review Agent — AI Compliance Review Copilot
+# KYC Review Agent: AI Compliance Review Copilot
 
 > Flipping the perspective: instead of helping the user submit, help the compliance team review at 10x speed.
 
 ## What It Does
 
-KYC Review Agent is an internal AI tool for compliance teams. Instead of a human agent manually comparing each document to the applicant's profile and writing rejection emails, the AI does the first-pass review in seconds — with confidence scores, specific evidence, regulatory citations, and pre-drafted rejection emails.
+KYC Review Agent is an internal AI tool for compliance teams. Instead of a human agent manually comparing each document to the applicant's profile and writing rejection emails, the AI does the first-pass review in seconds, with confidence scores, specific evidence, regulatory citations, and pre-drafted rejection emails.
 
 ### The Before/After
 
@@ -147,14 +147,3 @@ SQS Queue → Lambda Trigger → ECS Task (Review Agent)
 | **Cost per review** | **~$0.019** |
 | **Manual cost per review** | **~$4.00 (agent salary)** |
 | **Savings** | **99.5% cost reduction** |
-
-## Running Tests
-
-```bash
-pip install pytest pytest-asyncio httpx opencv-python-headless
-pytest tests/ -v
-```
-
-## License
-MIT
-
