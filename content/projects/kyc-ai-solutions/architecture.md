@@ -1,9 +1,9 @@
 ﻿---
-title: "Architecture"
+title: "System overview"
 date: "2026-03-02"
 description: "Detailed architecture for KYC Copilot and KYC Compliance Agent with data and security flows."
 ---
-# 🏛️ Architecture Documentation
+# Architecture Documentation
 ## KYC Copilot + KYC Compliance Agent
 
 ---
@@ -17,11 +17,11 @@ Two complementary AI systems designed to eliminate KYC document rejection loops:
 | **KYC Copilot** (Idea 1) | Applicants | Validates documents BEFORE submission |
 | **KYC Compliance Agent** (Idea 3) | Compliance teams | AI-assists review AFTER submission |
 
-Together they attack the problem from both ends: preventing bad submissions AND making review faster.
+Together, they attack the problem from both ends: preventing bad submissions AND making review faster.
 
 ---
 
-## Idea 1: KYC Copilot — Technical Architecture
+## Idea 1: KYC Copilot: Technical Architecture
 
 ### Component Architecture
 
@@ -144,7 +144,7 @@ Internet → CloudFront CDN → WAF (rate limit, SQLi, XSS) → ALB → EKS
 
 ---
 
-## Idea 3: KYC Compliance Agent — Technical Architecture
+## Idea 3: KYC Compliance Agent: Technical Architecture
 
 ### Component Architecture
 

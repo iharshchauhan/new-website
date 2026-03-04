@@ -2,29 +2,51 @@
 title: "KYC AI Solutions"
 date: "2026-03-02"
 description: "Dual-agent KYC architecture combining pre-submission validation and AI-assisted compliance review."
-coverImage: "https://picsum.photos/seed/kyc-ai-solutions/800/400"
 category: "Proof of work"
 tags: ["KYC", "Compliance", "AI Agents"]
 ---
 
-# KYC AI Solutions
+When I look at how most financial institutions handle Know Your Customer (KYC) processes, the pattern is almost always the same.
 
-This project contains two complementary systems:
+Customers struggle to submit the right documents. Compliance teams spend hours reviewing incomplete applications. Operations teams chase missing paperwork. And regulators expect strict traceability for every decision.
 
-- KYC Copilot: catches document issues before submission.
-- KYC Review Agent: accelerates internal compliance review after submission.
+The result is a system that is slow, expensive, and frustrating for everyone involved.
 
-## What it includes
+From a product perspective, the issue is not simply automation. The issue is **where automation should happen in the workflow**.
 
-- End-to-end technical design and business rationale
-- Copilot architecture and validation pipeline
-- Cost analysis for startup and enterprise scale
-- Compliance review-agent workflow and decision framework
+If automation only happens during internal compliance review, we are already too late. The errors were introduced when the customer uploaded the documents.
 
-## Deep Dives
+This project approaches the problem differently by splitting the system into two complementary AI systems.
 
-- [Solution Overview](/projects/kyc-ai-solutions/solution-overview)
-- [KYC Copilot](/projects/kyc-ai-solutions/kyc-copilot)
-- [Architecture](/projects/kyc-ai-solutions/architecture)
-- [Cost Analysis](/projects/kyc-ai-solutions/cost-analysis)
-- [KYC Review Agent](/projects/kyc-ai-solutions/kyc-review-agent)
+| System               | Purpose                                            | Stage             |
+| -------------------- | -------------------------------------------------- | ----------------- |
+| **KYC Copilot**      | Validate and guide document submission             | Before submission |
+| **KYC Review Agent** | Assist compliance officers with automated analysis | After submission  |
+
+Together, they create a dual-agent architecture that improves both **customer experience and compliance efficiency**.
+
+## Why KYC processes break down
+
+KYC workflows appear straightforward on paper.
+
+1. Customer uploads identification documents
+2. Institution validates identity and risk
+3. Compliance team approves or rejects the application
+
+In practice, the process breaks down at multiple points.
+
+| Failure Point         | What Happens                                           |
+| --------------------- | ------------------------------------------------------ |
+| Document quality      | Blurry scans, cropped IDs, missing pages               |
+| Document mismatch     | Name or address differences across documents           |
+| Regulatory complexity | Different jurisdictions require different checks       |
+| Manual workload       | Compliance teams review hundreds of applications daily |
+
+These problems compound quickly at scale.
+
+A single missing page or unreadable document can delay onboarding by days. Compliance analysts spend time fixing preventable issues instead of focusing on actual risk analysis.
+
+This is where AI agents can provide leverage.
+
+The result is a system that is not only more efficient but also easier for customers and analysts to trust.
+

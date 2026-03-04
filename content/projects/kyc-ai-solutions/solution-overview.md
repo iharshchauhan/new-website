@@ -3,16 +3,16 @@ title: "Solution Overview"
 date: "2026-03-02"
 description: "Full technical design for the two-system KYC solution and implementation plan."
 ---
-# KYC AI Solutions — Full Technical Design
-**Prepared for: Wealthsimple PM Role Application**  
-**Author: Sana Khan**  
-**Date: March 2026**
+# KYC AI Solutions: Full Technical Design
+**Prepared for: Fintech PM Role Application**  
+**Author: Harsh Chauhan**  
+**Date: January 2026**
 
 ---
 
 ## Background: The Real Problem
 
-Between December 2024 and May 2025, I experienced **4 KYC rejections** with a Wealthsimple competitor (Questrade), each requiring 2-4 business days of waiting just to receive a rejection notice:
+Between December 2024 and May 2025, I experienced **4 KYC rejections** , each requiring 2-4 business days of waiting just to receive a rejection notice:
 
 | Date | Document | Rejection Reason |
 |------|----------|-----------------|
@@ -35,8 +35,8 @@ Between December 2024 and May 2025, I experienced **4 KYC rejections** with a We
 │                                                                             │
 │  USER SIDE                              COMPLIANCE SIDE                     │
 │  ┌──────────────────────────┐          ┌──────────────────────────────┐    │
-│  │   💡 KYC COPILOT         │          │  🔍 KYC REVIEW AGENT        │    │
-│  │                          │─────────▶│                              │    │
+│  │      KYC COPILOT         │          │      KYC REVIEW AGENT        │    │
+│  │                          │────────▶│                              │    │
 │  │  Pre-validates BEFORE    │  Submit  │  Auto-reviews AFTER          │    │
 │  │  submission              │  only    │  submission                  │    │
 │  │                          │  valid   │                              │    │
@@ -44,7 +44,7 @@ Between December 2024 and May 2025, I experienced **4 KYC rejections** with a We
 │                                                                             │
 │  SHARED INFRASTRUCTURE                                                      │
 │  ┌───────────────────────────────────────────────────────────────────────┐  │
-│  │  Claude API (Anthropic) │ GCS │ Cloud SQL │ Memorystore │ Pub/Sub    │  │
+│  │  Claude API (Anthropic) │ GCS │ Cloud SQL │ Memorystore │ Pub/Sub     │  │
 │  └───────────────────────────────────────────────────────────────────────┘  │
 └─────────────────────────────────────────────────────────────────────────────┘
 ```
@@ -53,8 +53,8 @@ Between December 2024 and May 2025, I experienced **4 KYC rejections** with a We
 
 ## KYC Copilot (User-Facing Validator)
 
-### What It Does
-Intercepts the document upload flow and validates documents in real-time before they are submitted to compliance review. The user gets a checklist of issues and specific suggestions — turning a multi-week back-and-forth into a 30-second fix.
+### What It Does:
+Intercepts the document upload flow and validates documents in real-time before they are submitted to compliance review. The user gets a checklist of issues and specific suggestions, turning a multi-week back-and-forth into a 30-second fix.
 
 ### Technical Architecture
 
@@ -65,18 +65,18 @@ User (Web/Mobile)
 Cloud Load Balancer + Cloud Armor (WAF)
       │
       ▼
-Cloud Run (KYC Copilot API — fully managed, auto-scales to zero)
+Cloud Run (KYC Copilot API; fully managed, auto-scales to zero)
       │
       ├──▶ Image Quality Checker (OpenCV)
       │      • Blur detection (Laplacian variance)
       │      • Resolution check (≥800×600)
       │      • File size check (>50KB)
       │
-      └──▶ Claude Vision Analyzer
+      └──▶ Claude Vision Analyser
              Document Type Handlers:
              • W-8BEN Analyzer
-             • W-8BEN Tax Form Analyzer
-             • Financial Doc Analyzer
+             • W-8BEN Tax Form Analyser
+             • Financial Doc Analyser
              • Proof of Address
 
              For each doc type:
@@ -108,7 +108,7 @@ Step 3: Claude Vision → extract {name, DOB, address, expiry}
 Step 4: Cross-validate against user profile:
         - Name match (fuzzy, handles "Khan, Sana" vs "Sana Khan")
         - DOB exact match
-        - Address match (normalized)
+        - Address match (normalised)
 Step 5: Expiry date check (must be valid)
 Step 6: Return ValidationResult with specific flags
 ```
@@ -131,7 +131,7 @@ Step 4: Return specific field-level errors with suggestions
 #### Bank Statement
 ```
 Step 1: Claude Vision → extract {account_holder, account_number, bank, date, address}
-Step 2: Truncation check — is account number complete?
+Step 2: Truncation check — is the account number complete?
 Step 3: Date recency check — within 90 days?
 Step 4: Name and address match vs profile
 Step 5: Return flags with specific fix suggestions
@@ -351,64 +351,10 @@ Document Submission (from user or intake)
                           └──────────────────────────────────────────┘
 ```
 
-## Terraform Infrastructure (Key Resources)
-
-```hcl
-# Cloud Run service for KYC Copilot
-resource "google_cloud_run_v2_service" "kyc_copilot" {
-  name     = "kyc-copilot"
-  location = "northamerica-northeast1"  # Toronto region
-
-  template {
-    containers {
-      image = "northamerica-northeast1-docker.pkg.dev/${var.project}/kyc/copilot:latest"
-      resources { limits = { cpu = "1", memory = "2Gi" } }
-      env { name = "REDIS_HOST" value = google_redis_instance.cache.host }
-      env {
-        name = "ANTHROPIC_API_KEY"
-        value_source {
-          secret_key_ref {
-            secret  = google_secret_manager_secret.anthropic.secret_id
-            version = "latest"
-          }
-        }
-      }
-    }
-    scaling { min_instance_count = 0  max_instance_count = 10 }
-  }
-}
-
-# GCS with lifecycle policy (auto-delete temp documents after 24h)
-resource "google_storage_bucket" "kyc_documents" {
-  name     = "${var.project}-kyc-docs"
-  location = "northamerica-northeast1"
-
-  lifecycle_rule {
-    condition { age = 1  matches_prefix = ["temp/"] }
-    action    { type = "Delete" }
-  }
-  lifecycle_rule {
-    condition { age = 90  matches_prefix = ["reviewed/"] }
-    action    { type = "Delete" }  # FINTRAC requires 5-year retention in production
-  }
-
-  encryption { default_kms_key_name = google_kms_crypto_key.kyc.id }
-}
-
-# Memorystore (managed Redis)
-resource "google_redis_instance" "cache" {
-  name           = "kyc-cache"
-  tier           = "STANDARD_HA"
-  memory_size_gb = 1
-  region         = "northamerica-northeast1"
-}
-```
-
----
 
 ## Cost Analysis
 
-### KYC Copilot — Monthly GCP Costs
+### KYC Copilot: Monthly GCP Costs
 
 #### Tier 1: Startup (10K validations/month)
 
@@ -442,7 +388,7 @@ resource "google_redis_instance" "cache" {
 
 ---
 
-### KYC Review Agent — Monthly GCP Costs
+### KYC Review Agent: Monthly GCP Costs
 
 #### Tier 1: Small Team (5K reviews/month)
 
@@ -532,7 +478,7 @@ Both systems are designed with clear human oversight boundaries — critical for
 | Phase 3: Scale | Weeks 15–22 | Performance optimization, feedback loops, mobile |
 | Phase 4: Enterprise | Weeks 23–30 | Multi-jurisdiction, full regulatory sign-off |
 
-**MVP focus for application demo:** Weeks 1–6 deliverables only — this is sufficient to demonstrate the full concept with real validation against the actual rejection emails.
+**MVP focus for application demo:** Weeks 1–6 deliverables only; this is sufficient to demonstrate the full concept with real validation against the actual rejection emails.
 
 
 
