@@ -2,11 +2,10 @@
 title: "Building MCP Server and Client"
 date: "2026-03-02"
 description: "Hands-on MCP projects covering theory, a terminal server, and a React plus Electron client stack."
-coverImage: "https://www.k2view.com/hubfs/Frame%20238551.png"
 category: "Proof of work"
 tags: ["MCP", "AI Tools", "Developer Platform"]
 ---
-The Model Context Protocol (MCP) represents a paradigm shift in how AI systems interact with data sources and tools. This document synthesizes insights from a comprehensive presentation covering the evolution of AI adoption, the challenges of fragmented AI ecosystems, and how MCP provides a unified solution for context management across different platforms and tools.
+The Model Context Protocol (MCP) represents a paradigm shift in how AI systems interact with data sources and tools. This document synthesises insights from a comprehensive presentation covering the evolution of AI adoption, the challenges of fragmented AI ecosystems, and how MCP provides a unified solution for context management across different platforms and tools.
 
 ---
 
