@@ -1,0 +1,120 @@
+┌─────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                    ON-PREMISES DATA CENTER                                          │
+│                                                                                                     │
+│  ┌────────────────────────────┐  ┌────────────────────────────┐  ┌────────────────────────────┐    │
+│  │    VMware Environment      │  │   OpenShift Bare Metal     │  │   OpenStack Environment    │    │
+│  │                            │  │                            │  │                            │    │
+│  │  ┌───────┐  ┌──────────┐  │  │  ┌────────┐  ┌──────────┐ │  │  ┌──────────┐  ┌─────────┐ │    │
+│  │  │vCenter│─▶│ESXi Hosts│  │  │  │Master  │─▶│Worker    │ │  │  │OpenStack │─▶│Compute  │ │    │
+│  │  │Server │  │(XX srv)  │  │  │  │Nodes   │  │Nodes     │ │  │  │Controller│  │Nodes    │ │    │
+│  │  └───────┘  └────┬─────┘  │  │  │(X)     │  │(XX srv)  │ │  │  │(X nodes) │  │(XX srv) │ │    │
+│  │                  │        │  │  └────────┘  └────┬─────┘ │  │  └──────────┘  └────┬────┘ │    │
+│  │                  ▼        │  │                   │       │  │                      │      │    │
+│  │  ┌───────────────────┐    │  │  ┌────────────────┼─────┐ │  │  ┌──────────────────┼────┐ │    │
+│  │  │   XXX VMs         │    │  │  │Ceph Storage    │     │ │  │  │Cinder/Swift      │    │ │    │
+│  │  │ (Win/Linux)       │    │  │  │XXX TB          │     │ │  │  │Storage           │    │ │    │
+│  │  │                   │    │  │  └────────────────┘     │ │  │  │XXX TB            │    │ │    │
+│  │  │- Dev/Test: XXX   │    │  │           ▼             │ │  │  └──────────────────┘    │ │    │
+│  │  │- Staging: XXX     │    │  │  ┌──────────┐  ┌──────┐ │ │  │           ▼              │ │    │
+│  │  │- Production: XX  │    │  │  │GPU Nodes │  │Pods  │ │ │  │  ┌────────────────────┐  │ │    │
+│  │  └─────────┬─────────┘    │  │  │(X A100)  │  │XXX+  │ │ │  │  │   XXX Instances    │  │ │    │
+│  │            │              │  │  └──────────┘  └──────┘ │ │  │  │ (Ubuntu/CentOS)    │  │ │    │
+│  │            ▼              │  │                         │ │  │  │                    │  │ │    │
+│  │  ┌─────────────────┐      │  │  ┌────────────────┐    │ │  │  │- Research: XXX     │  │ │    │
+│  │  │Applications     │      │  │  │Workloads       │    │ │  │  │- Analytics: XXX    │  │ │    │
+│  │  │- Web servers    │      │  │  │- Microservices │    │ │  │  │- Development: XX   │  │ │    │
+│  │  │- Databases      │      │  │  │- Customer      │    │ │  │  └─────────┬──────────┘  │ │    │
+│  │  │- Legacy apps    │      │  │  │  portal        │    │ │  │            │             │ │    │
+│  │  │- File servers   │      │  │  │- Payment API   │    │ │  │            ▼             │ │    │
+│  │  └─────────────────┘      │  │  │- Real-time     │    │ │  │  ┌──────────────────┐   │ │    │
+│  └───────────────────────────┘  │  │  processing    │    │ │  │  │Applications      │   │ │    │
+│                                 │  └────────────────┘    │ │  │  │- HPC workloads   │   │ │    │
+│                                 │                        │ │  │  │- AI/ML training  │   │ │    │
+│                                 └────────────────────────┘ │  │  │- Data processing │   │ │    │
+│                                                            │  │  │- Testing envs    │   │ │    │
+│                                                            │  │  └──────────────────┘   │ │    │
+│                                                            │  └─────────────────────────┘    │
+│                                                            │                                  │
+│  ┌───────────────────────────────────────────────────────────────────── ──────────────────┐    │
+│  │                            Data & Analytics Platform                                   │    │
+│  │                                                                                        │    │
+│  │  ┌─────────────────────────────────────────────────────────────────────────┐           |    │  
+│  │  │                                  Hadoop Cluster                         |           |    |
+│  │  │                                  HDFS X TB                              |           |    |  
+│  │  │                                  Network logs                           |           |    |
+│  │  │                                   X Hive tbl                            |           │    |              
+│  │  └─────────────────────────────────────────────────────────────────────────┘           │    │
+│  └────────────────────────────────────────────────────────────────────────────────────────┘    │
+│                                                                                                │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────┐    │
+│  │                           Shared Infrastructure & Services                             │    │
+│  │                                                                                        │    │
+│  │  ┌─────────────────┐  ┌─────────────────┐  ┌─────────────────┐  ┌──────────────────┐   │    │
+│  │  │Data Center      │  │Network Fabric   │  │Storage Arrays   │  │Backup/DR         │   │    │
+│  │  │Facilities       │  │                 │  │                 │  │                  │   │    │
+│  │  │- Power: XXXkW   │  │- XXXXXXXX GbE   │  │- SAN: XXXTB     │  │- Veeam           │   │    │
+│  │  │- Cooling: CRAC  │  │- Spine/Leaf     │  │- NAS: XXXTB     │  │- CommVault       │   │    │
+│  │  │- Rack space:    │  │- XX core switches│  │- Object: XXXTB  │  │- Tape libraries  │   │    │
+│  │  │  XX racks       │  │- VLAN isolation │  │                 │  │                  │   │    │
+│  │  └─────────────────┘  └─────────────────┘  └─────────────────┘  └──────────────────┘   │    │
+│  └────────────────────────────────────────────────────────────────────────────────────────┘    │
+│                                                                                                │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────┐    │
+│  │                        Licensing & Contracts (Annual Costs)                            │    │
+│  │                                                                                        │    │
+│  │  VMware ELA: $1.2M   │   Red Hat OpenShift: $480K   │   OpenStack Support: $120K       │    │
+│  │                      │   Cloudera Hadoop: $600K     │   Hardware Maintenance: $450K    │    │
+│  └────────────────────────────────────────────────────────────────────────────────────────┘    │
+└────────────────────────────────────────────────────────────────────────────────────────────────┘
+                                              │
+                                              │ Network Connectivity
+                                              ▼
+┌────────────────────────────────────────────────────────────────────────────────────────────────┐
+│                                          USERS & CONSUMERS                                     │
+│                                                                                                │
+│  ┌────────────────────────────────────────┐  ┌────────────────────────────────────────────┐    │
+│  │      1200+ Enterprise Users            │  │      External Clients & Integrations       │    │
+│  │                                        │  │                                            │    │
+│  │  - Network Operations Team (450)      │  │  - Partner integrations via API             │    │
+│  │  - Customer Service Reps (380)        │  │  - Public-facing customer portal            │    │
+│  │  - Finance & Billing (180)            │  │  - Payment gateway connections              │    │
+│  │  - Marketing & Analytics (120)        │  │  - Third-party data feeds                   │    │
+│  │  - IT Operations (70)                 │  │  - Mobile app backends                      │    │
+│  │                                        │  │                                            │    │
+│  │  Access via:                          │  │  Protocols:                                 │    │
+│  │  - VPN (remote workers)               │  │  - REST APIs (HTTPS)                        │    │
+│  │  - Direct LAN (on-site)               │  │                                             │    │
+│  │  - Jump hosts (secure access)         │  │  - GraphQL (modern apps)                    │    │
+│  └────────────────────────────────────────┘  └────────────────────────────────────────────┘    │
+│                                                                                                │
+│  ┌────────────────────────────────────────────────────────────────────────────────────────┐    │
+│  │                              Peak Usage Patterns                                       │    │
+│  │                                                                                        │    │
+│  │  Business Hours (9AM-6PM): 85% utilization  │  Off-hours: 35% utilization              │    │
+│  │  Month-end billing: 95% utilization          │  Planned maintenance window: Weekends   │    │
+│  └────────────────────────────────────────────────────────────────────────────────────────┘    │
+└────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+
+MIGRATION DRIVERS & COST BREAKDOWN:
+═══════════════════════════════════════════════════════════════════════════════════════════════════
+
+Current Annual Operating Costs: $5.2M
+├─ Licensing (VMware, Cloudera, RedHat, OpenStack): $3.65M (70%)
+├─ Data Center (Power, Cooling, Space): $850K (16%)
+├─ Hardware Maintenance: $450K (9%)
+└─ Network & Infrastructure: $250K (5%)
+
+Target Post-Migration Annual Costs: $3.2M
+├─ GCP Compute & Storage: $2.1M
+├─ GCP Licensing (committed): $850K
+└─ Network egress & services: $250K
+
+Net Annual Savings Target: $2.0M (38% reduction)
+
+Key Migration Priorities:
+1. Immediate Quick Wins: VM rightsizing, contract negotiations ($500K in 4 months)
+2. Hadoop→GCS/BigQuery: Decommission Hadoop cluster ($600K/year savings)
+3. VMware VMs→GCE/GKE: Reduce VMware ELA ($400K/year savings)
+4. OpenShift→GKE: Eliminate OpenShift licenses ($480K/year savings)
+5. OpenStack→GCE: Eliminate OpenStack support costs ($120K/year savings)
