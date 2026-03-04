@@ -10,6 +10,56 @@ My goal with architecture discussions is always the same. I want the platform to
 
 The diagrams below reflect how I typically frame that journey. I start by understanding the current state deeply. Then I define a target platform architecture that removes operational friction while introducing strong platform guardrails. Finally, I design a cost attribution and chargeback model so teams understand how their infrastructure usage translates into spend.
 
+```text
+$ platform-transformation
+
+┌──────────────────────────────────────────────┐
+│ 1. CURRENT STATE DISCOVERY                   │
+│----------------------------------------------│
+│ VMware VMs        OpenShift Clusters         │
+│ OpenStack Cloud   Hadoop / Legacy Data       │
+│                                              │
+│ Symptoms:                                     │
+│ - Low utilization                            │
+│ - Slow provisioning                          │
+│ - Platform fragmentation                     │
+└───────────────────────────┬──────────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────┐
+│ 2. TARGET CLOUD PLATFORM                     │
+│----------------------------------------------│
+│ Google Cloud Platform                        │
+│                                              │
+│  VPC Hub-Spoke Network                       │
+│        │                                     │
+│   ┌────┴───────────────┐                     │
+│   │                    │                     │
+│ GKE Platform     Managed Data Services       │
+│ CI/CD Pipelines  BigQuery / Storage          │
+│ IAM & Policies   Observability               │
+│                                              │
+│ Outcome: Standardized developer platform     │
+└───────────────────────────┬──────────────────┘
+                            │
+                            ▼
+┌──────────────────────────────────────────────┐
+│ 3. COST ATTRIBUTION & FINOPS                 │
+│----------------------------------------------│
+│ GCP Billing Export                           │
+│        │                                     │
+│ Cost Attribution Engine                      │
+│        │                                     │
+│ Team / Service Mapping                       │
+│        │                                     │
+│ Chargeback Dashboards                        │
+│                                              │
+│ Outcome: Transparent infrastructure spend    │
+└──────────────────────────────────────────────┘
+
+pipeline:  discovery  →  platform design  →  cost accountability
+```
+
 ## Project context and vision
 
 This platform transformation usually begins with a clear business goal. In this case the objective is to evolve a fragmented on-prem infrastructure into a unified cloud data platform that supports self service analytics, real time insights, and scalable product development.
