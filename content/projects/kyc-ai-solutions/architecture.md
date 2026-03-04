@@ -8,7 +8,7 @@ description: "Detailed architecture for KYC Copilot and KYC Compliance Agent wit
 
 ---
 
-## System Overview
+## System Overview:
 
 Two complementary AI systems designed to eliminate KYC document rejection loops:
 
