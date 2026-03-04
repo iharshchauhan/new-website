@@ -3,7 +3,7 @@ title: "KYC Copilot"
 date: "2026-03-02"
 description: "AI pre-submission validation service for document quality, field extraction, and profile cross-checks."
 ---
-# 🤖 KYC Copilot:  AI Pre-Submission Document Validator
+# KYC Copilot: AI Pre-Submission Document Validator
 
 > Inspired by 4 real KYC rejections at Questrade over 5 months. Built to make sure that never happens again.
 
