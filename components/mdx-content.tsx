@@ -21,8 +21,16 @@ function normalizeImageSrc(rawSrc: string): string {
   return normalizedSrc;
 }
 
+function normalizeMermaidBlocks(rawContent: string): string {
+  return rawContent.replace(/<Mermaid\s+chart=\{`([\s\S]*?)`\}\s*\/>/g, (_match, chart) => {
+    const trimmedChart = String(chart ?? "").trim();
+    return `\n\`\`\`mermaid\n${trimmedChart}\n\`\`\`\n`;
+  });
+}
+
 export function MDXContent({ content }: { content: string }) {
   const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+  const normalizedContent = normalizeMermaidBlocks(content);
 
   return (
     <div className="markdown-body">
@@ -32,7 +40,12 @@ export function MDXContent({ content }: { content: string }) {
           pre: ({ children, ...props }) => {
             const firstChild = Array.isArray(children) ? children[0] : children;
 
-            if (React.isValidElement(firstChild)) {
+            if (
+              React.isValidElement<{
+                className?: string;
+                children?: React.ReactNode;
+              }>(firstChild)
+            ) {
               const className = typeof firstChild.props.className === "string" ? firstChild.props.className : "";
               if (className.includes("language-mermaid")) {
                 const rawChart = firstChild.props.children;
@@ -67,7 +80,7 @@ export function MDXContent({ content }: { content: string }) {
           },
         }}
       >
-        {content}
+        {normalizedContent}
       </ReactMarkdown>
     </div>
   );

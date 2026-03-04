@@ -1,0 +1,595 @@
+1:"$Sreact.fragment"
+2:I[20522,["2619","static/chunks/2619-04bc32f026a0d946.js","760","static/chunks/760-c78e84cfc696fc42.js","119","static/chunks/119-278ffde9ad5ee685.js","7177","static/chunks/app/layout-183ff81b9a1c27b1.js"],"AnimatedBackground"]
+3:I[44352,["2619","static/chunks/2619-04bc32f026a0d946.js","760","static/chunks/760-c78e84cfc696fc42.js","119","static/chunks/119-278ffde9ad5ee685.js","7177","static/chunks/app/layout-183ff81b9a1c27b1.js"],"Navigation"]
+4:I[9766,[],""]
+5:I[98924,[],""]
+17:I[57150,[],""]
+:HL["/_next/static/css/7c7dcc5da74f563b.css","style"]
+0:{"P":null,"b":"HGoUdIk8EXHBpT284nT1q","p":"","c":["","projects","ai-decision-orchestration-platform-saas",""],"i":false,"f":[[["",{"children":["projects",{"children":[["project","ai-decision-orchestration-platform-saas","d"],{"children":["__PAGE__",{}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/7c7dcc5da74f563b.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"antialiased min-h-screen flex flex-col selection:bg-primary selection:text-primary-foreground","suppressHydrationWarning":true,"children":[["$","$L2",null,{}],["$","$L3",null,{}],["$","main",null,{"className":"flex-1 pt-32 pb-16 px-4 sm:px-6 md:px-12 max-w-3xl mx-auto w-full","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"w-full max-w-4xl mx-auto py-12 px-6 md:px-12 text-sm text-muted-foreground flex flex-col items-center space-y-8","children":[["$","div",null,{"className":"w-full flex justify-center overflow-hidden text-[#6b21a8] text-[10px] tracking-[0.5em] opacity-80","children":[["$","span","0",{"children":"•"}],["$","span","1",{"children":"•"}],["$","span","2",{"children":"•"}],["$","span","3",{"children":"•"}],["$","span","4",{"children":"•"}],["$","span","5",{"children":"•"}],["$","span","6",{"children":"•"}],["$","span","7",{"children":"•"}],["$","span","8",{"children":"•"}],["$","span","9",{"children":"•"}],["$","span","10",{"children":"•"}],["$","span","11",{"children":"•"}],["$","span","12",{"children":"•"}],["$","span","13",{"children":"•"}],["$","span","14",{"children":"•"}],["$","span","15",{"children":"•"}],["$","span","16",{"children":"•"}],["$","span","17",{"children":"•"}],["$","span","18",{"children":"•"}],["$","span","19",{"children":"•"}],["$","span","20",{"children":"•"}],["$","span","21",{"children":"•"}],["$","span","22",{"children":"•"}],["$","span","23",{"children":"•"}],["$","span","24",{"children":"•"}],["$","span","25",{"children":"•"}],["$","span","26",{"children":"•"}],["$","span","27",{"children":"•"}],["$","span","28",{"children":"•"}],["$","span","29",{"children":"•"}],["$","span","30",{"children":"•"}],["$","span","31",{"children":"•"}],["$","span","32",{"children":"•"}],["$","span","33",{"children":"•"}],["$","span","34",{"children":"•"}],["$","span","35",{"children":"•"}],["$","span","36",{"children":"•"}],["$","span","37",{"children":"•"}],["$","span","38",{"children":"•"}],["$","span","39",{"children":"•"}],["$","span","40",{"children":"•"}],["$","span","41",{"children":"•"}],["$","span","42",{"children":"•"}],["$","span","43",{"children":"•"}],["$","span","44",{"children":"•"}],["$","span","45",{"children":"•"}],["$","span","46",{"children":"•"}],["$","span","47",{"children":"•"}],["$","span","48",{"children":"•"}],["$","span","49",{"children":"•"}],["$","span","50",{"children":"•"}],["$","span","51",{"children":"•"}],["$","span","52",{"children":"•"}],["$","span","53",{"children":"•"}],["$","span","54",{"children":"•"}],["$","span","55",{"children":"•"}],["$","span","56",{"children":"•"}],["$","span","57",{"children":"•"}],["$","span","58",{"children":"•"}],["$","span","59",{"children":"•"}]]}],["$","div",null,{"className":"flex flex-wrap items-center justify-center gap-x-3 gap-y-4 text-center text-[#4b5563]","children":[["$","div",null,{"className":"flex items-center space-x-4 mr-2","children":[["$","a",null,{"href":"https://github.com","target":"_blank","rel":"noreferrer","className":"hover:text-foreground transition-colors","children":"$L6"}],"$L7","$L8","$L9","$La","$Lb","$Lc"]}],"$Ld","$Le","$Lf","$L10","$L11","$L12"]}]]}]]}]}]]}],{"children":["projects","$L13",{"children":[["project","ai-decision-orchestration-platform-saas","d"],"$L14",{"children":["__PAGE__","$L15",{},null,false]},null,false]},null,false]},null,false],"$L16",false]],"m":"$undefined","G":["$17",[]],"s":false,"S":true}
+18:I[52619,["590","static/chunks/0dbeb660-9e82e99813552576.js","2619","static/chunks/2619-04bc32f026a0d946.js","1663","static/chunks/1663-eef6a54c38da0554.js","1356","static/chunks/1356-ffb62d74256664de.js","7555","static/chunks/app/projects/%5Bproject%5D/page-4eb2ff21eb168189.js"],""]
+1a:I[24431,[],"OutletBoundary"]
+1c:I[15278,[],"AsyncMetadataOutlet"]
+1e:I[24431,[],"ViewportBoundary"]
+20:I[24431,[],"MetadataBoundary"]
+21:"$Sreact.suspense"
+6:["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-github w-4 h-4","aria-hidden":"true","children":[["$","path","tonef",{"d":"M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"}],["$","path","9comsn",{"d":"M9 18c-4.51 2-5-2-7-2"}],"$undefined"]}]
+7:["$","span",null,{"className":"opacity-50","children":"|"}]
+8:["$","a",null,{"href":"https://twitter.com","target":"_blank","rel":"noreferrer","className":"hover:text-foreground transition-colors","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-twitter w-4 h-4","aria-hidden":"true","children":[["$","path","pff0z6",{"d":"M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"}],"$undefined"]}]}]
+9:["$","span",null,{"className":"opacity-50","children":"|"}]
+a:["$","a",null,{"href":"https://instagram.com","target":"_blank","rel":"noreferrer","className":"hover:text-foreground transition-colors","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-instagram w-4 h-4","aria-hidden":"true","children":[["$","rect","2e1cvw",{"width":"20","height":"20","x":"2","y":"2","rx":"5","ry":"5"}],["$","path","9exkf1",{"d":"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"}],["$","line","r4j83e",{"x1":"17.5","x2":"17.51","y1":"6.5","y2":"6.5"}],"$undefined"]}]}]
+b:["$","span",null,{"className":"opacity-50","children":"|"}]
+c:["$","a",null,{"href":"#","className":"hover:text-foreground transition-colors","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-music w-4 h-4","aria-hidden":"true","children":[["$","path","1jmyc2",{"d":"M9 18V5l12-2v13"}],["$","circle","fqmcym",{"cx":"6","cy":"18","r":"3"}],["$","circle","1hluhg",{"cx":"18","cy":"16","r":"3"}],"$undefined"]}]}]
+d:["$","span",null,{"className":"hidden sm:inline opacity-50","children":"|"}]
+e:["$","span",null,{"className":"w-full sm:w-auto","children":"2025 © Harsh Chauhan"}]
+f:["$","span",null,{"className":"hidden sm:inline opacity-50","children":"|"}]
+10:["$","$L18",null,{"href":"/contact","className":"hover:text-foreground transition-colors border-b-2 border-[#166534] pb-0.5","children":"Contact"}]
+11:["$","span",null,{"className":"hidden sm:inline opacity-50","children":"|"}]
+12:["$","span",null,{"className":"w-full sm:w-auto","children":["This page visit emitted ",["$","span",null,{"className":"border-b-2 border-[#166534] pb-0.5","children":"0.04g of CO2"}]," :)"]}]
+13:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+14:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+15:["$","$1","c",{"children":["$L19",null,["$","$L1a",null,{"children":["$L1b",["$","$L1c",null,{"promise":"$@1d"}]]}]]}]
+16:["$","$1","h",{"children":[null,[["$","$L1e",null,{"children":"$L1f"}],null],["$","$L20",null,{"children":["$","div",null,{"hidden":true,"children":["$","$21",null,{"fallback":null,"children":"$L22"}]}]}]]}]
+23:I[94032,["590","static/chunks/0dbeb660-9e82e99813552576.js","2619","static/chunks/2619-04bc32f026a0d946.js","1663","static/chunks/1663-eef6a54c38da0554.js","1356","static/chunks/1356-ffb62d74256664de.js","7555","static/chunks/app/projects/%5Bproject%5D/page-4eb2ff21eb168189.js"],"BackNavLink"]
+19:["$","article",null,{"className":"max-w-4xl mx-auto space-y-16","children":[["$","div",null,{"className":"space-y-8","children":[["$","$L23",null,{"href":"/logbook","label":"Back to Logbook"}],["$","div",null,{"className":"space-y-6","children":[["$","h1",null,{"className":"text-4xl md:text-6xl font-semibold tracking-tight","children":"AI Decision Orchestration Platform (SaaS)"}],["$","p",null,{"className":"text-xl text-muted-foreground max-w-2xl","children":"Agentic intelligence for enterprise operations with context-aware AI decisions, confidence-based execution, and full auditability."}]]}]]}],"$undefined",["$","div",null,{"className":"grid md:grid-cols-[1fr_300px] gap-12","children":[["$","div",null,{"className":"space-y-12","children":["$","div",null,{"className":"markdown-body","children":[["$","h1","h1-0",{"children":"AI Decision Orchestration Platform (SaaS)"}],"\n",["$","p","p-0",{"children":["$","strong","strong-0",{"children":"Agentic Intelligence for Enterprise Operations"}]}],"\n",["$","p","p-1",{"children":"An enterprise-grade SaaS platform that transforms operational signals, documents, and system events into context-aware AI decisions with automated execution, human governance, and full auditability."}],"\n",["$","p","p-2",{"children":"The platform combines multi-agent orchestration, retrieval intelligence, and confidence-based automation to reduce operational cost, accelerate decision cycles, and control enterprise risk."}],"\n",["$","p","p-3",{"children":"Originally deployed in a large-scale real estate environment, the system automated lease intelligence and portfolio optimization across 3,500+ assets. The architecture has since been generalized into a domain-agnostic decision layer applicable to Governance, Risk & Compliance, FinOps, Contract Intelligence, Security Operations, and enterprise workflow automation."}],"\n",["$","hr","hr-0",{}],"\n",["$","h2","h2-0",{"children":"Platform Purpose"}],"\n",["$","p","p-4",{"children":"Modern SaaS environments generate enormous operational noise. Alerts, reports, documents, tickets, and cost anomalies require constant human interpretation. Teams spend hours reviewing events that could be safely automated if sufficient context and controls existed."}],"\n",["$","p","p-5",{"children":"Traditional automation relies on rigid rules. These rules fail when business context changes. Static thresholds block legitimate activity or allow risky behavior because they cannot reason about customer value, historical patterns, or financial exposure."}],"\n",["$","p","p-6",{"children":"This platform introduces a controlled AI decision layer that evaluates each situation with context, produces a structured judgment with reasoning and confidence, and executes actions only when risk thresholds are satisfied. Low-confidence cases are routed to humans. Every decision is logged for audit and learning."}],"\n",["$","p","p-7",{"children":"The result is operational scale without loss of control."}],"\n",["$","hr","hr-1",{}],"\n",["$","h2","h2-1",{"children":"Core Workflow Model"}],"\n",["$","p","p-8",{"children":"Every use case follows the same lifecycle:"}],"\n",["$","pre","pre-0",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{"className":["language-text"]},"children":[{"type":"text","value":"Signal or Document\r\n        ↓\r\nContext Enrichment\r\n        ↓\r\nAgentic Analysis\r\n        ↓\r\nDecision + Confidence\r\n        ↓\r\nAutomated Action or Human Review\r\n        ↓\r\nImmutable Audit + Analytics\n"}],"position":{"start":{"line":30,"column":1,"offset":1883},"end":{"line":42,"column":4,"offset":2094}}}],"position":{"start":{"line":30,"column":1,"offset":1883},"end":{"line":42,"column":4,"offset":2094}}},"children":["$","code","code-0",{"className":"language-text","children":"Signal or Document\r\n        ↓\r\nContext Enrichment\r\n        ↓\r\nAgentic Analysis\r\n        ↓\r\nDecision + Confidence\r\n        ↓\r\nAutomated Action or Human Review\r\n        ↓\r\nImmutable Audit + Analytics\n"}]}],"\n","$L24","\n","$L25","\n","$L26","\n","$L27","\n","$L28","\n","$L29","\n","$L2a","\n","$L2b","\n","$L2c","\n","$L2d","\n","$L2e","\n","$L2f","\n","$L30","\n","$L31","\n","$L32","\n","$L33","\n","$L34","\n","$L35","\n","$L36","\n","$L37","\n","$L38","\n","$L39","\n","$L3a","\n","$L3b","\n","$L3c","\n","$L3d","\n","$L3e","\n","$L3f","\n","$L40","\n","$L41","\n","$L42","\n","$L43","\n","$L44","\n","$L45","\n","$L46","\n","$L47","\n","$L48","\n","$L49","\n","$L4a","\n","$L4b","\n","$L4c","\n","$L4d","\n","$L4e","\n","$L4f","\n","$L50","\n","$L51","\n","$L52","\n","$L53","\n","$L54","\n","$L55","\n","$L56","\n","$L57","\n","$L58","\n","$L59","\n","$L5a","\n","$L5b","\n","$L5c","\n","$L5d","\n","$L5e","\n","$L5f","\n","$L60","\n","$L61","\n","$L62","\n","$L63","\n","$L64","\n","$L65","\n","$L66","\n","$L67","\n","$L68","\n","$L69","\n","$L6a","\n","$L6b","\n","$L6c","\n","$L6d","\n","$L6e","\n","$L6f","\n","$L70","\n","$L71","\n","$L72","\n","$L73","\n","$L74","\n","$L75","\n","$L76","\n","$L77","\n","$L78","\n","$L79","\n","$L7a","\n","$L7b","\n","$L7c","\n","$L7d","\n","$L7e","\n","$L7f","\n","$L80","\n","$L81","\n","$L82","\n","$L83","\n","$L84","\n","$L85","\n","$L86","\n","$L87","\n","$L88","\n","$L89","\n","$L8a","\n","$L8b","\n","$L8c","\n","$L8d","\n","$L8e","\n","$L8f","\n","$L90","\n","$L91","\n","$L92","\n","$L93","\n","$L94","\n","$L95","\n","$L96","\n","$L97","\n","$L98","\n","$L99","\n","$L9a","\n","$L9b","\n","$L9c"]}]}],false]}]]}]
+24:["$","p","p-9",{"children":"This pattern applies equally to:"}]
+25:["$","ul","ul-0",{"children":["\n",["$","li","li-0",{"children":"Contract analysis"}],"\n",["$","li","li-1",{"children":"Compliance violations"}],"\n",["$","li","li-2",{"children":"Cloud cost spikes"}],"\n",["$","li","li-3",{"children":"Access risk events"}],"\n",["$","li","li-4",{"children":"Vendor risk changes"}],"\n",["$","li","li-5",{"children":"Financial approvals"}],"\n"]}]
+26:["$","hr","hr-2",{}]
+27:["$","h2","h2-2",{"children":"High-Level Architecture"}]
+9d:T12a1,┌──────────────────────────────────────────────────────────────┐
+│                        CLIENT SYSTEMS                         │
+│  SaaS Apps │ Cloud │ CRM │ Finance │ Identity │ Documents     │
+└───────────────────────┬──────────────────────────────────────┘
+                        │
+                        ▼
+┌──────────────────────────────────────────────────────────────┐
+│                        INGESTION LAYER                        │
+│  REST APIs │ Webhooks │ Batch Jobs │ Email │ File Uploads     │
+└───────────────────────┬──────────────────────────────────────┘
+                        │
+                        ▼
+┌──────────────────────────────────────────────────────────────┐
+│                    CONTEXT ENRICHMENT                         │
+│  User tier │ Asset value │ Historical behavior │ Environment  │
+│  Financial exposure │ Risk profile │ Related records           │
+└───────────────────────┬──────────────────────────────────────┘
+                        │
+                        ▼
+┌──────────────────────────────────────────────────────────────┐
+│              AI ORCHESTRATION (LangGraph)                     │
+│                                                              │
+│  Router Agent (fast classification)                          │
+│  ├── Risk Analysis Agent                                     │
+│  ├── Compliance Agent                                        │
+│  ├── Cost / Optimization Agent                               │
+│  └── Domain-Specific Agents                                  │
+│                                                              │
+│  State Management • Parallel Execution • Aggregation         │
+└───────────────────────┬──────────────────────────────────────┘
+                        │
+                        ▼
+┌──────────────────────────────────────────────────────────────┐
+│                     DECISION ENGINE                           │
+│  AUTO_EXECUTE │ EXECUTE_WITH_NOTICE │ EXCEPTION │ ESCALATE    │
+└───────────────────────┬──────────────────────────────────────┘
+                        │
+                        ▼
+┌──────────────────────────────────────────────────────────────┐
+│                  AUTOMATION & INTEGRATIONS                    │
+│  n8n │ ServiceNow │ Slack │ Email │ Custom APIs               │
+└───────────────────────┬──────────────────────────────────────┘
+                        │
+                        ▼
+┌──────────────────────────────────────────────────────────────┐
+│                    AUDIT & ANALYTICS                          │
+│  Decision history │ Reasoning │ Confidence │ Overrides        │
+│  ROI metrics │ Risk trends │ Operational performance          │
+└──────────────────────────────────────────────────────────────┘
+9e:T12a1,┌──────────────────────────────────────────────────────────────┐
+│                        CLIENT SYSTEMS                         │
+│  SaaS Apps │ Cloud │ CRM │ Finance │ Identity │ Documents     │
+└───────────────────────┬──────────────────────────────────────┘
+                        │
+                        ▼
+┌──────────────────────────────────────────────────────────────┐
+│                        INGESTION LAYER                        │
+│  REST APIs │ Webhooks │ Batch Jobs │ Email │ File Uploads     │
+└───────────────────────┬──────────────────────────────────────┘
+                        │
+                        ▼
+┌──────────────────────────────────────────────────────────────┐
+│                    CONTEXT ENRICHMENT                         │
+│  User tier │ Asset value │ Historical behavior │ Environment  │
+│  Financial exposure │ Risk profile │ Related records           │
+└───────────────────────┬──────────────────────────────────────┘
+                        │
+                        ▼
+┌──────────────────────────────────────────────────────────────┐
+│              AI ORCHESTRATION (LangGraph)                     │
+│                                                              │
+│  Router Agent (fast classification)                          │
+│  ├── Risk Analysis Agent                                     │
+│  ├── Compliance Agent                                        │
+│  ├── Cost / Optimization Agent                               │
+│  └── Domain-Specific Agents                                  │
+│                                                              │
+│  State Management • Parallel Execution • Aggregation         │
+└───────────────────────┬──────────────────────────────────────┘
+                        │
+                        ▼
+┌──────────────────────────────────────────────────────────────┐
+│                     DECISION ENGINE                           │
+│  AUTO_EXECUTE │ EXECUTE_WITH_NOTICE │ EXCEPTION │ ESCALATE    │
+└───────────────────────┬──────────────────────────────────────┘
+                        │
+                        ▼
+┌──────────────────────────────────────────────────────────────┐
+│                  AUTOMATION & INTEGRATIONS                    │
+│  n8n │ ServiceNow │ Slack │ Email │ Custom APIs               │
+└───────────────────────┬──────────────────────────────────────┘
+                        │
+                        ▼
+┌──────────────────────────────────────────────────────────────┐
+│                    AUDIT & ANALYTICS                          │
+│  Decision history │ Reasoning │ Confidence │ Overrides        │
+│  ROI metrics │ Risk trends │ Operational performance          │
+└──────────────────────────────────────────────────────────────┘
+28:["$","pre","pre-1",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{"className":["language-text"]},"children":[{"type":"text","value":"$9d"}],"position":{"start":{"line":57,"column":1,"offset":2308},"end":{"line":107,"column":4,"offset":5102}}}],"position":{"start":{"line":57,"column":1,"offset":2308},"end":{"line":107,"column":4,"offset":5102}}},"children":["$","code","code-0",{"className":"language-text","children":"$9e"}]}]
+29:["$","hr","hr-3",{}]
+2a:["$","h2","h2-3",{"children":"Decision Philosophy"}]
+2b:["$","p","p-10",{"children":"The system is designed around controlled autonomy."}]
+2c:["$","p","p-11",{"children":"Each decision includes:"}]
+2d:["$","ul","ul-1",{"children":["\n",["$","li","li-0",{"children":"Structured outcome"}],"\n",["$","li","li-1",{"children":"Detailed reasoning"}],"\n",["$","li","li-2",{"children":"Confidence score"}],"\n",["$","li","li-3",{"children":"Risk factors and exception signals"}],"\n",["$","li","li-4",{"children":"Evidence references"}],"\n"]}]
+2e:["$","p","p-12",{"children":"Execution is determined by configurable confidence thresholds."}]
+2f:["$","p","p-13",{"children":"High-confidence cases execute automatically. Medium-confidence cases execute with notification. Low-confidence cases are routed to human reviewers. Human decisions are captured and used to improve future performance."}]
+30:["$","p","p-14",{"children":"This model enables automation without sacrificing governance."}]
+31:["$","hr","hr-4",{}]
+32:["$","h2","h2-4",{"children":"Real Deployment Example (Vertical Use Case)"}]
+33:["$","p","p-15",{"children":"The platform was originally deployed to automate real estate lease intelligence."}]
+34:["$","p","p-16",{"children":"Operations team context:"}]
+35:["$","ul","ul-2",{"children":["\n",["$","li","li-0",{"children":"3,500+ properties"}],"\n",["$","li","li-1",{"children":"Manual lease review took 2–3 hours per document"}],"\n",["$","li","li-2",{"children":"12% manual error rate"}],"\n",["$","li","li-3",{"children":"Significant undiscovered portfolio optimization opportunities"}],"\n"]}]
+36:["$","p","p-17",{"children":"System outcomes:"}]
+37:["$","ul","ul-3",{"children":["\n",["$","li","li-0",{"children":"72% automation rate"}],"\n",["$","li","li-1",{"children":"Average processing time reduced to 3.2 minutes"}],"\n",["$","li","li-2",{"children":"98% accuracy on critical financial fields"}],"\n",["$","li","li-3",{"children":"$$1.2M annual operational savings"}],"\n",["$","li","li-4",{"children":"$$5.8M optimization opportunities identified"}],"\n",["$","li","li-5",{"children":"99.7% production uptime"}],"\n"]}]
+38:["$","p","p-18",{"children":"This use case validated the architecture and demonstrated strong financial impact."}]
+39:["$","hr","hr-5",{}]
+3a:["$","h2","h2-5",{"children":"Technology Stack"}]
+3b:["$","p","p-19",{"children":"The platform is designed for enterprise deployment with optional on-premise AI for data sovereignty."}]
+3c:["$","h3","h3-0",{"children":"AI Layer"}]
+3d:["$","ul","ul-4",{"children":["\n",["$","li","li-0",{"children":"LLaMA 3.1 70B for deep analysis"}],"\n",["$","li","li-1",{"children":"LLaMA 3.2 8B for routing and lightweight classification"}],"\n",["$","li","li-2",{"children":"Low-temperature inference for consistent decisions"}],"\n"]}]
+3e:["$","h3","h3-1",{"children":"Orchestration"}]
+3f:["$","p","p-20",{"children":"LangGraph provides stateful multi-agent workflows, conditional routing, parallel execution, and failure recovery."}]
+40:["$","h3","h3-2",{"children":"Retrieval Intelligence"}]
+41:["$","p","p-21",{"children":"Milvus vector database enables semantic search across historical cases and documents with average 87ms latency."}]
+42:["$","h3","h3-3",{"children":"Data Layer"}]
+43:["$","ul","ul-5",{"children":["\n",["$","li","li-0",{"children":"PostgreSQL stores structured operational data"}],"\n",["$","li","li-1",{"children":"Redis provides high-speed caching with a 70% hit rate"}],"\n"]}]
+44:["$","h3","h3-4",{"children":"APIs and Services"}]
+45:["$","p","p-22",{"children":"FastAPI exposes REST endpoints for ingestion and decision services."}]
+46:["$","h3","h3-5",{"children":"Automation Layer"}]
+47:["$","p","p-23",{"children":"n8n executes operational workflows and integrates with external systems."}]
+48:["$","h3","h3-6",{"children":"Observability"}]
+49:["$","p","p-24",{"children":"Prometheus and Grafana provide system and business metrics."}]
+4a:["$","h3","h3-7",{"children":"Infrastructure"}]
+4b:["$","p","p-25",{"children":"Docker and Kubernetes support scalable cloud or hybrid deployment."}]
+4c:["$","hr","hr-6",{}]
+4d:["$","h2","h2-6",{"children":"SaaS Repository Structure"}]
+9f:T7e1,ai-decision-platform/
+│
+├── README.md
+├── LICENSE
+├── docker-compose.yml
+├── .env.example
+│
+├── docs/
+│   ├── architecture.md
+│   ├── deployment.md
+│   ├── security.md
+│   ├── soc2-controls.md
+│   ├── use-cases/
+│   │   ├── grc.md
+│   │   ├── finops.md
+│   │   ├── contract-intelligence.md
+│   │   └── real-estate.md
+│
+├── services/
+│   ├── ingestion-service/
+│   │   ├── api.py
+│   │   └── validators.py
+│   │
+│   ├── context-service/
+│   │   ├── enrichers.py
+│   │   └── connectors/
+│   │       ├── crm.py
+│   │       ├── finance.py
+│   │       └── identity.py
+│   │
+│   ├── decision-engine/
+│   │   ├── router.py
+│   │   ├── orchestrator.py
+│   │   ├── confidence.py
+│   │   └── policies.py
+│   │
+│   ├── agents/
+│   │   ├── risk_agent.py
+│   │   ├── compliance_agent.py
+│   │   ├── cost_agent.py
+│   │   └── document_parser.py
+│   │
+│   ├── retrieval/
+│   │   ├── milvus_client.py
+│   │   └── embedding_service.py
+│   │
+│   ├── automation/
+│   │   ├── n8n_client.py
+│   │   └── workflows/
+│   │       ├── auto_execute.json
+│   │       ├── escalate.json
+│   │       └── exception.json
+│   │
+│   └── audit/
+│       ├── logger.py
+│       └── analytics.py
+│
+├── infrastructure/
+│   ├── kubernetes/
+│   ├── terraform/
+│   └── monitoring/
+│       ├── prometheus.yml
+│       └── grafana/
+│
+├── frontend/
+│   ├── dashboard/
+│   └── decision-review-ui/
+│
+└── tests/
+    ├── unit/
+    ├── integration/
+    └── load/
+a0:T7e1,ai-decision-platform/
+│
+├── README.md
+├── LICENSE
+├── docker-compose.yml
+├── .env.example
+│
+├── docs/
+│   ├── architecture.md
+│   ├── deployment.md
+│   ├── security.md
+│   ├── soc2-controls.md
+│   ├── use-cases/
+│   │   ├── grc.md
+│   │   ├── finops.md
+│   │   ├── contract-intelligence.md
+│   │   └── real-estate.md
+│
+├── services/
+│   ├── ingestion-service/
+│   │   ├── api.py
+│   │   └── validators.py
+│   │
+│   ├── context-service/
+│   │   ├── enrichers.py
+│   │   └── connectors/
+│   │       ├── crm.py
+│   │       ├── finance.py
+│   │       └── identity.py
+│   │
+│   ├── decision-engine/
+│   │   ├── router.py
+│   │   ├── orchestrator.py
+│   │   ├── confidence.py
+│   │   └── policies.py
+│   │
+│   ├── agents/
+│   │   ├── risk_agent.py
+│   │   ├── compliance_agent.py
+│   │   ├── cost_agent.py
+│   │   └── document_parser.py
+│   │
+│   ├── retrieval/
+│   │   ├── milvus_client.py
+│   │   └── embedding_service.py
+│   │
+│   ├── automation/
+│   │   ├── n8n_client.py
+│   │   └── workflows/
+│   │       ├── auto_execute.json
+│   │       ├── escalate.json
+│   │       └── exception.json
+│   │
+│   └── audit/
+│       ├── logger.py
+│       └── analytics.py
+│
+├── infrastructure/
+│   ├── kubernetes/
+│   ├── terraform/
+│   └── monitoring/
+│       ├── prometheus.yml
+│       └── grafana/
+│
+├── frontend/
+│   ├── dashboard/
+│   └── decision-review-ui/
+│
+└── tests/
+    ├── unit/
+    ├── integration/
+    └── load/
+4e:["$","pre","pre-2",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{"className":["language-text"]},"children":[{"type":"text","value":"$9f"}],"position":{"start":{"line":198,"column":1,"offset":7487},"end":{"line":271,"column":4,"offset":8981}}}],"position":{"start":{"line":198,"column":1,"offset":7487},"end":{"line":271,"column":4,"offset":8981}}},"children":["$","code","code-0",{"className":"language-text","children":"$a0"}]}]
+4f:["$","hr","hr-7",{}]
+50:["$","h2","h2-7",{"children":"Multi-Tenant Architecture"}]
+51:["$","p","p-26",{"children":["This architecture separates ",["$","strong","strong-0",{"children":"tenant data and execution boundaries"}]," from shared platform services. Each customer operates in an isolated logical environment while benefiting from shared orchestration, monitoring, and infrastructure efficiency."]}]
+52:["$","p","p-27",{"children":"The design supports SOC 2, enterprise security requirements, and large-scale SaaS growth."}]
+53:["$","hr","hr-8",{}]
+54:["$","h2","h2-8",{"children":"Architecture Overview"}]
+a1:T25e1,┌─────────────────────────────────────────────────────────────────────────────┐
+│                              CLIENT TENANTS                                  │
+│                                                                             │
+│  Tenant A        Tenant B        Tenant C        Enterprise Tenant         │
+│  (Finance)       (Healthcare)    (SaaS)          (On-prem AI option)       │
+└──────────────┬──────────────┬──────────────┬────────────────────────────────┘
+               │              │              │
+               ▼              ▼              ▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         GLOBAL ACCESS LAYER                                  │
+│                                                                             │
+│  API Gateway │ OAuth / SSO │ Rate Limiting │ Tenant Routing │ WAF           │
+│                                                                             │
+│  • Tenant identified via token / domain / API key                          │
+│  • Requests routed to isolated tenant context                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         CONTROL PLANE (SHARED)                              │
+│                                                                             │
+│  Tenant Management Service                                                  │
+│  Subscription & Billing                                                     │
+│  Policy & Configuration Service                                             │
+│  Model Registry & Version Control                                           │
+│  Workflow Templates (LangGraph / n8n definitions)                           │
+│                                                                             │
+│  This layer manages platform behavior but never stores tenant business data │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         DATA PLANE (ISOLATED)                               │
+│                                                                             │
+│   ┌─────────────────────────────────────────────────────────────────────┐   │
+│   │                        Tenant Workspace                             │   │
+│   │                                                                     │   │
+│   │  Context Service                                                    │   │
+│   │  Decision Engine                                                    │   │
+│   │  Agent Orchestration (LangGraph)                                    │   │
+│   │  Automation Execution (n8n / API calls)                             │   │
+│   │                                                                     │   │
+│   │  Data Isolation:                                                    │   │
+│   │  • Separate database schema or instance                             │   │
+│   │  • Separate object storage bucket                                   │   │
+│   │  • Separate vector namespace (Milvus)                               │   │
+│   │                                                                     │   │
+│   └─────────────────────────────────────────────────────────────────────┘   │
+│                                                                             │
+│   Each tenant workspace runs in isolated containers or namespaces          │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         AI INFERENCE LAYER                                  │
+│                                                                             │
+│  Shared GPU Cluster (default SaaS)                                         │
+│  • LLaMA / domain models                                                   │
+│  • Request isolation via tenant context                                    │
+│                                                                             │
+│  Optional Dedicated Model Deployment                                       │
+│  • Single-tenant GPU                                                       │
+│  • Private endpoint                                                        │
+│                                                                             │
+│  Optional On-Prem Model (Enterprise Tier)                                  │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         STORAGE LAYER                                       │
+│                                                                             │
+│  PostgreSQL (Tenant schema isolation)                                      │
+│  Object Storage (tenant-scoped buckets)                                    │
+│  Milvus Vector DB (tenant namespaces)                                      │
+│  Redis Cache (tenant key prefixing)                                        │
+│                                                                             │
+│  Encryption at rest and in transit                                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         OBSERVABILITY & GOVERNANCE                          │
+│                                                                             │
+│  Audit Logs (tenant-scoped)                                                │
+│  Decision History                                                          │
+│  Confidence & Override Tracking                                            │
+│  Prometheus Metrics                                                        │
+│  Grafana Dashboards                                                        │
+│                                                                             │
+│  Platform Admin sees aggregated metrics only                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+55:["$","pre","pre-3",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{"className":["language-text"]},"children":[{"type":"text","value":"$a1"}],"position":{"start":{"line":285,"column":1,"offset":9400},"end":{"line":383,"column":4,"offset":16248}}}],"position":{"start":{"line":285,"column":1,"offset":9400},"end":{"line":383,"column":4,"offset":16248}}},"children":"$La2"}]
+56:["$","hr","hr-9",{}]
+57:["$","h2","h2-9",{"children":"Tenant Isolation Model"}]
+58:["$","p","p-28",{"children":"Isolation is enforced across multiple layers."}]
+59:["$","h3","h3-8",{"children":"Identity Isolation"}]
+5a:["$","p","p-29",{"children":"Each request carries tenant identity through OAuth, SSO, or API tokens. All downstream services enforce tenant context."}]
+5b:["$","h3","h3-9",{"children":"Data Isolation"}]
+5c:["$","p","p-30",{"children":"Each tenant receives:"}]
+5d:["$","ul","ul-6",{"children":["\n",["$","li","li-0",{"children":"Dedicated database schema or instance"}],"\n",["$","li","li-1",{"children":"Separate object storage bucket"}],"\n",["$","li","li-2",{"children":"Vector database namespace"}],"\n",["$","li","li-3",{"children":"Tenant-prefixed cache keys"}],"\n"]}]
+5e:["$","p","p-31",{"children":"No cross-tenant queries are permitted."}]
+5f:["$","h3","h3-10",{"children":"Compute Isolation"}]
+60:["$","p","p-32",{"children":"Tenant workloads run in Kubernetes namespaces with resource quotas. Enterprise tiers can receive dedicated worker pools."}]
+61:["$","h3","h3-11",{"children":"AI Isolation"}]
+62:["$","p","p-33",{"children":"Inference requests include tenant context. Enterprise customers may choose:"}]
+63:["$","ul","ul-7",{"children":["\n",["$","li","li-0",{"children":"Dedicated model instances"}],"\n",["$","li","li-1",{"children":"Private inference endpoints"}],"\n",["$","li","li-2",{"children":"On-prem deployment"}],"\n"]}]
+64:["$","hr","hr-10",{}]
+65:["$","h2","h2-10",{"children":"Control Plane vs Data Plane"}]
+66:["$","p","p-34",{"children":"The architecture separates platform management from customer data."}]
+67:["$","h3","h3-12",{"children":"Control Plane (Shared)"}]
+68:["$","p","p-35",{"children":"Manages configuration, templates, billing, and model versions. It contains no operational tenant data."}]
+69:["$","h3","h3-13",{"children":"Data Plane (Per Tenant)"}]
+6a:["$","p","p-36",{"children":"Processes events, runs agents, stores decisions, and executes automation. This boundary supports compliance and customer trust."}]
+6b:["$","hr","hr-11",{}]
+6c:["$","h2","h2-11",{"children":"Decision Flow in Multi-Tenant Context"}]
+6d:["$","pre","pre-4",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{"className":["language-text"]},"children":[{"type":"text","value":"1. Tenant system sends event via API\r\n2. API Gateway authenticates and identifies tenant\r\n3. Request routed to tenant workspace\r\n4. Context enrichment pulls tenant-specific data\r\n5. Agents analyze within tenant boundary\r\n6. Decision executed via tenant integrations\r\n7. Audit record stored in tenant storage\n"}],"position":{"start":{"line":436,"column":1,"offset":17503},"end":{"line":444,"column":4,"offset":17824}}}],"position":{"start":{"line":436,"column":1,"offset":17503},"end":{"line":444,"column":4,"offset":17824}}},"children":["$","code","code-0",{"className":"language-text","children":"1. Tenant system sends event via API\r\n2. API Gateway authenticates and identifies tenant\r\n3. Request routed to tenant workspace\r\n4. Context enrichment pulls tenant-specific data\r\n5. Agents analyze within tenant boundary\r\n6. Decision executed via tenant integrations\r\n7. Audit record stored in tenant storage\n"}]}]
+6e:["$","hr","hr-12",{}]
+6f:["$","h2","h2-12",{"children":"Security Controls"}]
+70:["$","p","p-37",{"children":"The architecture supports enterprise security expectations:"}]
+71:["$","ul","ul-8",{"children":["\n",["$","li","li-0",{"children":"Encryption in transit (TLS)"}],"\n",["$","li","li-1",{"children":"Encryption at rest (KMS)"}],"\n",["$","li","li-2",{"children":"Role-based access control per tenant"}],"\n",["$","li","li-3",{"children":"Network segmentation via Kubernetes namespaces"}],"\n",["$","li","li-4",{"children":"Tenant-scoped audit logging"}],"\n",["$","li","li-5",{"children":"Optional private networking (VPC peering / PrivateLink)"}],"\n"]}]
+72:["$","p","p-38",{"children":"These controls align with SOC 2 logical access, system operations, and confidentiality requirements."}]
+73:["$","hr","hr-13",{}]
+74:["$","h2","h2-13",{"children":"Scaling Model"}]
+75:["$","p","p-39",{"children":"The platform scales independently along three dimensions."}]
+76:["$","h3","h3-14",{"children":"Tenant Scaling"}]
+77:["$","p","p-40",{"children":"New tenants are provisioned automatically with isolated resources."}]
+78:["$","h3","h3-15",{"children":"Workload Scaling"}]
+79:["$","p","p-41",{"children":"Decision workers scale horizontally based on queue depth."}]
+7a:["$","h3","h3-16",{"children":"AI Scaling"}]
+7b:["$","p","p-42",{"children":"Inference cluster auto-scales GPU capacity. High-volume tenants can be moved to dedicated inference pools."}]
+7c:["$","hr","hr-14",{}]
+7d:["$","h2","h2-14",{"children":"SaaS Tier Mapping"}]
+7e:["$","h3","h3-17",{"children":"Standard Tier"}]
+7f:["$","ul","ul-9",{"children":["\n",["$","li","li-0",{"children":"Shared compute"}],"\n",["$","li","li-1",{"children":"Shared inference cluster"}],"\n",["$","li","li-2",{"children":"Logical data isolation"}],"\n"]}]
+80:["$","h3","h3-18",{"children":"Enterprise Tier"}]
+81:["$","ul","ul-10",{"children":["\n",["$","li","li-0",{"children":"Dedicated worker pool"}],"\n",["$","li","li-1",{"children":"Dedicated vector namespace and database instance"}],"\n",["$","li","li-2",{"children":"Private networking"}],"\n"]}]
+82:["$","h3","h3-19",{"children":"Regulated / Sovereign Tier"}]
+83:["$","ul","ul-11",{"children":["\n",["$","li","li-0",{"children":"Dedicated infrastructure"}],"\n",["$","li","li-1",{"children":"Customer-managed keys"}],"\n",["$","li","li-2",{"children":"Optional on-prem AI"}],"\n"]}]
+84:["$","hr","hr-15",{}]
+85:["$","h2","h2-15",{"children":"Governance and Compliance Design"}]
+86:["$","p","p-43",{"children":"The system was built with auditability and enterprise risk control as first-class concerns."}]
+87:["$","p","p-44",{"children":"Every decision captures:"}]
+88:["$","ul","ul-12",{"children":["\n",["$","li","li-0",{"children":"Input data snapshot"}],"\n",["$","li","li-1",{"children":"Context used"}],"\n",["$","li","li-2",{"children":"Model output"}],"\n",["$","li","li-3",{"children":"Confidence level"}],"\n",["$","li","li-4",{"children":"Action taken"}],"\n",["$","li","li-5",{"children":"Human overrides"}],"\n"]}]
+89:["$","p","p-45",{"children":"This supports:"}]
+8a:["$","ul","ul-13",{"children":["\n",["$","li","li-0",{"children":"SOC 2 evidence"}],"\n",["$","li","li-1",{"children":"Internal audit traceability"}],"\n",["$","li","li-2",{"children":"Model risk governance"}],"\n",["$","li","li-3",{"children":"Change impact analysis"}],"\n"]}]
+8b:["$","p","p-46",{"children":"Rule sets and policies are versioned, allowing historical reconstruction of decisions under the policy active at the time."}]
+8c:["$","hr","hr-16",{}]
+8d:["$","h2","h2-16",{"children":"Performance Characteristics"}]
+8e:["$","p","p-47",{"children":"The production environment demonstrated:"}]
+8f:["$","ul","ul-14",{"children":["\n",["$","li","li-0",{"children":"72% automated decision rate"}],"\n",["$","li","li-1",{"children":"3.2 minute average processing time for complex document workflows"}],"\n",["$","li","li-2",{"children":"98% accuracy on critical fields"}],"\n",["$","li","li-3",{"children":"87ms vector retrieval latency"}],"\n",["$","li","li-4",{"children":"10× operational throughput increase"}],"\n",["$","li","li-5",{"children":"$$2.50 average processing cost per transaction"}],"\n"]}]
+90:["$","p","p-48",{"children":"Three-year ROI exceeded 400%."}]
+91:["$","hr","hr-17",{}]
+92:["$","h2","h2-17",{"children":"SaaS Positioning"}]
+93:["$","p","p-49",{"children":"The platform represents a new operational category:"}]
+94:["$","p","p-50",{"children":["$","strong","strong-0",{"children":"AI Decision Infrastructure"}]}]
+95:["$","p","p-51",{"children":["Traditional SaaS systems generate information. This platform generates ",["$","strong","strong-0",{"children":"controlled actions"}],"."]}]
+96:["$","p","p-52",{"children":"Instead of dashboards and alerts, organizations gain:"}]
+97:["$","ul","ul-15",{"children":["\n",["$","li","li-0",{"children":"Autonomous operational execution"}],"\n",["$","li","li-1",{"children":"Context-aware decision logic"}],"\n",["$","li","li-2",{"children":"Financial impact visibility"}],"\n",["$","li","li-3",{"children":"Human governance where needed"}],"\n"]}]
+98:["$","hr","hr-18",{}]
+99:["$","h2","h2-18",{"children":"Deployment Options"}]
+9a:["$","p","p-53",{"children":"The platform supports multiple enterprise deployment models:"}]
+9b:["$","ul","ul-16",{"children":["\n",["$","li","li-0",{"children":"Fully cloud-hosted SaaS"}],"\n",["$","li","li-1",{"children":"Private cloud"}],"\n",["$","li","li-2",{"children":"Hybrid architecture"}],"\n",["$","li","li-3",{"children":"On-premise AI inference for regulated environments"}],"\n"]}]
+9c:["$","p","p-54",{"children":"Data residency and model isolation requirements can be enforced at the tenant level."}]
+a3:T25e1,┌─────────────────────────────────────────────────────────────────────────────┐
+│                              CLIENT TENANTS                                  │
+│                                                                             │
+│  Tenant A        Tenant B        Tenant C        Enterprise Tenant         │
+│  (Finance)       (Healthcare)    (SaaS)          (On-prem AI option)       │
+└──────────────┬──────────────┬──────────────┬────────────────────────────────┘
+               │              │              │
+               ▼              ▼              ▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         GLOBAL ACCESS LAYER                                  │
+│                                                                             │
+│  API Gateway │ OAuth / SSO │ Rate Limiting │ Tenant Routing │ WAF           │
+│                                                                             │
+│  • Tenant identified via token / domain / API key                          │
+│  • Requests routed to isolated tenant context                              │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         CONTROL PLANE (SHARED)                              │
+│                                                                             │
+│  Tenant Management Service                                                  │
+│  Subscription & Billing                                                     │
+│  Policy & Configuration Service                                             │
+│  Model Registry & Version Control                                           │
+│  Workflow Templates (LangGraph / n8n definitions)                           │
+│                                                                             │
+│  This layer manages platform behavior but never stores tenant business data │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         DATA PLANE (ISOLATED)                               │
+│                                                                             │
+│   ┌─────────────────────────────────────────────────────────────────────┐   │
+│   │                        Tenant Workspace                             │   │
+│   │                                                                     │   │
+│   │  Context Service                                                    │   │
+│   │  Decision Engine                                                    │   │
+│   │  Agent Orchestration (LangGraph)                                    │   │
+│   │  Automation Execution (n8n / API calls)                             │   │
+│   │                                                                     │   │
+│   │  Data Isolation:                                                    │   │
+│   │  • Separate database schema or instance                             │   │
+│   │  • Separate object storage bucket                                   │   │
+│   │  • Separate vector namespace (Milvus)                               │   │
+│   │                                                                     │   │
+│   └─────────────────────────────────────────────────────────────────────┘   │
+│                                                                             │
+│   Each tenant workspace runs in isolated containers or namespaces          │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         AI INFERENCE LAYER                                  │
+│                                                                             │
+│  Shared GPU Cluster (default SaaS)                                         │
+│  • LLaMA / domain models                                                   │
+│  • Request isolation via tenant context                                    │
+│                                                                             │
+│  Optional Dedicated Model Deployment                                       │
+│  • Single-tenant GPU                                                       │
+│  • Private endpoint                                                        │
+│                                                                             │
+│  Optional On-Prem Model (Enterprise Tier)                                  │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         STORAGE LAYER                                       │
+│                                                                             │
+│  PostgreSQL (Tenant schema isolation)                                      │
+│  Object Storage (tenant-scoped buckets)                                    │
+│  Milvus Vector DB (tenant namespaces)                                      │
+│  Redis Cache (tenant key prefixing)                                        │
+│                                                                             │
+│  Encryption at rest and in transit                                         │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                │
+                                ▼
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                         OBSERVABILITY & GOVERNANCE                          │
+│                                                                             │
+│  Audit Logs (tenant-scoped)                                                │
+│  Decision History                                                          │
+│  Confidence & Override Tracking                                            │
+│  Prometheus Metrics                                                        │
+│  Grafana Dashboards                                                        │
+│                                                                             │
+│  Platform Admin sees aggregated metrics only                               │
+└─────────────────────────────────────────────────────────────────────────────┘
+a2:["$","code","code-0",{"className":"language-text","children":"$a3"}]
+1f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1b:null
+1d:{"metadata":[["$","title","0",{"children":"harshc_ | Product & Growth"}],["$","meta","1",{"name":"description","content":"Product/Growth enthusiast and an amateur human figuring out both the world and the web."}]],"error":null,"digest":"$undefined"}
+22:"$1d:metadata"

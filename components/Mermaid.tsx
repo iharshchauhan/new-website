@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useId, useRef, useState } from 'react'
 import mermaid from 'mermaid'
 
 let isMermaidInitialized = false
@@ -26,28 +26,27 @@ function ensureMermaidInitialized() {
 export default function Mermaid({ chart }: { chart: string }) {
   const ref = useRef<HTMLDivElement>(null)
   const [hasError, setHasError] = useState(false)
-  const diagramId = useMemo(
-    () => `mermaid-diagram-${Math.random().toString(36).slice(2, 10)}`,
-    [],
-  )
+  const reactId = useId()
+  const diagramId = `mermaid-diagram-${reactId.replace(/[^a-zA-Z0-9_-]/g, '')}`
 
   useEffect(() => {
     let isCancelled = false
+    const container = ref.current
+
+    if (!container) {
+      return
+    }
 
     const renderDiagram = async () => {
-      if (!ref.current) {
-        return
-      }
-
       ensureMermaidInitialized()
 
       try {
         const { svg, bindFunctions } = await mermaid.render(diagramId, chart.trim())
-        if (isCancelled || !ref.current) {
+        if (isCancelled) {
           return
         }
-        ref.current.innerHTML = svg
-        bindFunctions?.(ref.current)
+        container.innerHTML = svg
+        bindFunctions?.(container)
         setHasError(false)
       } catch {
         if (!isCancelled) {
@@ -60,9 +59,7 @@ export default function Mermaid({ chart }: { chart: string }) {
 
     return () => {
       isCancelled = true
-      if (ref.current) {
-        ref.current.innerHTML = ''
-      }
+      container.innerHTML = ''
     }
   }, [chart, diagramId])
 

@@ -1,0 +1,600 @@
+<!DOCTYPE html><!--HGoUdIk8EXHBpT284nT1q--><html lang="en"><head><meta charSet="utf-8"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="/_next/static/css/7c7dcc5da74f563b.css" data-precedence="next"/><link rel="preload" as="script" fetchPriority="low" href="/_next/static/chunks/webpack-4725fc7c016e949d.js"/><script src="/_next/static/chunks/4bd1b696-182b6b13bdad92e3.js" async=""></script><script src="/_next/static/chunks/1255-52f9acdaf039a823.js" async=""></script><script src="/_next/static/chunks/main-app-08e8894417e428cc.js" async=""></script><script src="/_next/static/chunks/2619-04bc32f026a0d946.js" async=""></script><script src="/_next/static/chunks/760-c78e84cfc696fc42.js" async=""></script><script src="/_next/static/chunks/119-278ffde9ad5ee685.js" async=""></script><script src="/_next/static/chunks/app/layout-183ff81b9a1c27b1.js" async=""></script><script src="/_next/static/chunks/0dbeb660-9e82e99813552576.js" async=""></script><script src="/_next/static/chunks/1663-eef6a54c38da0554.js" async=""></script><script src="/_next/static/chunks/1356-ffb62d74256664de.js" async=""></script><script src="/_next/static/chunks/app/projects/%5Bproject%5D/page-4eb2ff21eb168189.js" async=""></script><script src="/_next/static/chunks/app/projects/%5Bproject%5D/%5Bsubpage%5D/page-41304f4461fd411f.js" async=""></script><title>harshc_ | Product &amp; Growth</title><meta name="description" content="Product/Growth enthusiast and an amateur human figuring out both the world and the web."/><script src="/_next/static/chunks/polyfills-42372ed130431b0a.js" noModule=""></script></head><body class="antialiased min-h-screen flex flex-col selection:bg-primary selection:text-primary-foreground"><div hidden=""><!--$--><!--/$--></div><canvas class="fixed inset-0 z-[-1] pointer-events-none"></canvas><nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50"><div class="bg-background/80 backdrop-blur-md border border-border shadow-sm px-2 py-2 rounded-full flex items-center space-x-1"><a class="relative px-4 py-1.5 text-sm font-medium transition-colors rounded-full text-muted-foreground hover:text-foreground" href="/"><span class="relative z-10">Home</span></a><a class="relative px-4 py-1.5 text-sm font-medium transition-colors rounded-full text-muted-foreground hover:text-foreground" href="/about/"><span class="relative z-10">About</span></a><a class="relative px-4 py-1.5 text-sm font-medium transition-colors rounded-full text-muted-foreground hover:text-foreground" href="/logbook/"><span class="relative z-10">Logbook</span></a></div></nav><main class="flex-1 pt-32 pb-16 px-4 sm:px-6 md:px-12 max-w-3xl mx-auto w-full"><article class="max-w-3xl mx-auto space-y-12"><div class="space-y-8 border-b border-border pb-8"><a class="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors" href="/projects/ll-stack/"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-left w-4 h-4 mr-2" aria-hidden="true"><path d="m12 19-7-7 7-7"></path><path d="M19 12H5"></path></svg>Back to LL Stack</a><div class="space-y-4"><h1 class="text-3xl md:text-5xl font-semibold tracking-tight">LLM Stack: A Practical 5-Layer Map</h1><p class="text-xl text-muted-foreground">A practical framework for understanding AI systems across infrastructure, models, data, orchestration, and product.</p></div></div><div class="markdown-body"><h1>LLM Stack – A Practical 5-Layer Map for Product Managers</h1>
+<p>This document describes a <strong>5-layer mental model</strong> for modern LLM systems and a <strong>learning flow for PMs</strong> who want enough depth to design and ship AI features (not become researchers).</p>
+<p>The five layers are:</p>
+<table><thead><tr><th>#</th><th>Layer Name</th><th>What it covers</th><th>Sub-layers</th></tr></thead><tbody><tr><td>1</td><td><strong>Infra</strong></td><td>Physical and cloud infrastructure needed to train and run LLMs</td><td>Hardware &amp; Infra (1)</td></tr><tr><td>2</td><td><strong>Models</strong></td><td>How LLMs are built and aligned before being used in products</td><td>Data &amp; Pretraining (2), Transformer Architecture (3), Training &amp; Alignment (4)</td></tr><tr><td>3</td><td><strong>Data &amp; Knowledge</strong></td><td>How models are adapted to a product and connected to data (prompts, RAG, tools, APIs, DBs)</td><td>Adaptation via Prompts &amp; Fine-tuning (5), Knowledge &amp; Tools / RAG (6)</td></tr><tr><td>4</td><td><strong>Orchestration</strong></td><td>How all components run together in production, including workflows, agents, evals, and safety</td><td>Workflows/Chains (7), Single &amp; Multi-Agent Systems (8, 9), Evals &amp; Safety &amp; Governance (10)</td></tr><tr><td>5</td><td><strong>App / Product</strong></td><td>The actual product: UX, JTBD, interaction patterns, pricing, adoption, and feedback loops</td><td>Product Layer – UX &amp; Business (11)</td></tr></tbody></table>
+<hr/>
+<h2>How a PM Should Learn This Stack (High-Level Flow)</h2>
+<p>A product manager does <strong>not</strong> need equal depth in every layer.</p>
+<p>A sensible learning sequence:</p>
+<ol>
+<li>
+<p><strong>Start with Models (Layer 2)</strong></p>
+<ul>
+<li>Understand transformers, tokens, context windows, and why different models behave differently.</li>
+<li>This gives the mental foundation for everything else.</li>
+</ul>
+</li>
+<li>
+<p><strong>Move quickly to Data &amp; Knowledge (Layer 3)</strong></p>
+<ul>
+<li>This is the core of practical PM work: prompting, RAG, embeddings, tools, connecting the model to product data.</li>
+<li>Hands-on project work should primarily live here.</li>
+</ul>
+</li>
+<li>
+<p><strong>In parallel, think about App / Product (Layer 5)</strong></p>
+<ul>
+<li>Map AI capabilities to real user jobs, UX patterns, and metrics.</li>
+<li>Anchor learning in one or two concrete example features or side projects.</li>
+</ul>
+</li>
+<li>
+<p><strong>Then add Orchestration (Layer 4)</strong></p>
+<ul>
+<li>Understand how chains and agents fit together, and how evaluation and safety wrap around them.</li>
+<li>Use simple flows and a basic eval plan rather than over-engineering.</li>
+</ul>
+</li>
+<li>
+<p><strong>Keep Infra (Layer 1) as background context</strong></p>
+<ul>
+<li>Enough to reason about latency, cost, and limits—no need to go deep into GPU details.</li>
+</ul>
+</li>
+</ol>
+<p>The rest of this README describes each layer and suggests <strong>what depth a PM needs</strong> and <strong>what to practice or document</strong> at that layer.</p>
+<hr/>
+<h2>Layer 1 – Infra</h2>
+<p><strong>Question answered:</strong></p>
+<blockquote>
+<p>What physical and cloud infrastructure is needed to train and run LLMs, and why does it matter for product decisions?</p>
+</blockquote>
+<h3>What this layer includes</h3>
+<ul>
+<li>GPUs / TPUs and other accelerator hardware</li>
+<li>Clusters and high-speed interconnects</li>
+<li>Training vs inference workloads</li>
+<li>Horizontal vs vertical scaling</li>
+<li>Latency, throughput, rate limits</li>
+<li>Cost per token / per request</li>
+<li>Reliability and SLOs</li>
+</ul>
+<h3>How deep a PM needs to go</h3>
+<ul>
+<li><strong>Conceptual only.</strong>
+<ul>
+<li>Understand that large models need specialized hardware and that <strong>inference is not free</strong>.</li>
+<li>Recognize that model choice + context size = latency + cost trade-offs.</li>
+</ul>
+</li>
+</ul>
+<h3>Practical PM questions at this layer</h3>
+<ul>
+<li>How fast does the feature need to feel? (sub-second, 2–3 seconds, 10+ seconds is acceptable?)</li>
+<li>How often will it be called? (per user session, per click, in the background?)</li>
+<li>Is it okay to call a “big, expensive” model all the time, or should a smaller/cheaper model be used for most cases with fallbacks?</li>
+</ul>
+<p><strong>Suggested learning artifact</strong></p>
+<ul>
+<li>A short note (1–2 pages) explaining:<!-- -->
+<ul>
+<li>Training vs inference</li>
+<li>Cost &amp; latency trade-offs</li>
+<li>How this affects design of one example feature (e.g., why a small model might be used for “instant suggestions” and a bigger model for “full analysis”).</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h2>Layer 2 – Models</h2>
+<p><strong>Question answered:</strong></p>
+<blockquote>
+<p>What actually is an LLM under the hood, and why do different models behave differently?</p>
+</blockquote>
+<p>This is the <strong>conceptual backbone</strong>. Once this is clear, later layers (RAG, prompting, context limits) make intuitive sense.</p>
+<h3>2.1 Data &amp; Pretraining</h3>
+<ul>
+<li>Pretraining corpus:<!-- -->
+<ul>
+<li>Web pages, code, books, documentation, etc.</li>
+</ul>
+</li>
+<li>Self-supervised learning:<!-- -->
+<ul>
+<li>Model learns to predict the next token from previous tokens.</li>
+</ul>
+</li>
+<li>Scale laws:<!-- -->
+<ul>
+<li>More data, parameters, and compute generally improve performance, with diminishing returns.</li>
+</ul>
+</li>
+<li>Training cut-off:<!-- -->
+<ul>
+<li>Models only know world events and content up to a certain date.</li>
+</ul>
+</li>
+</ul>
+<p><strong>PM depth:</strong><br/>
+<!-- -->Enough to explain that:</p>
+<ul>
+<li>A base model has <strong>general world knowledge</strong>, not product-specific knowledge.</li>
+<li>It will not know about <strong>recent policies or internal docs</strong> unless given context via RAG or fine-tuning.</li>
+</ul>
+<hr/>
+<h3>2.2 Transformer Architecture</h3>
+<ul>
+<li>Tokens &amp; tokenization</li>
+<li>Self-attention:<!-- -->
+<ul>
+<li>Mechanism for deciding which previous tokens to “focus on”.</li>
+</ul>
+</li>
+<li>Context window:<!-- -->
+<ul>
+<li>Fixed limit on how many tokens the model can see at once (e.g., 8k, 32k, 128k).</li>
+</ul>
+</li>
+<li>Parameters:<!-- -->
+<ul>
+<li>Number of weights (billions), affecting capacity, quality, and cost.</li>
+</ul>
+</li>
+</ul>
+<p><strong>PM depth:</strong></p>
+<ul>
+<li>Be able to describe, in simple language:<!-- -->
+<ul>
+<li>That input text is broken into tokens.</li>
+<li>The model looks back over previous tokens using attention.</li>
+<li>The context window is a hard cap: not all data can be stuffed into one prompt.</li>
+</ul>
+</li>
+<li>Use this to reason about:<!-- -->
+<ul>
+<li>Why long inputs need summarization or retrieval.</li>
+<li>Why context engineering and RAG exist at all.</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h3>2.3 Training &amp; Alignment</h3>
+<ul>
+<li>Base model:<!-- -->
+<ul>
+<li>Raw model after pretraining, not user-friendly.</li>
+</ul>
+</li>
+<li>Instruction tuning:<!-- -->
+<ul>
+<li>Training on instruction → response examples (“Explain X…”, “Write an email to…”).</li>
+</ul>
+</li>
+<li>RLHF / RLAIF:<!-- -->
+<ul>
+<li>Reinforcement Learning from Human/AI Feedback to improve helpfulness, safety, tone.</li>
+</ul>
+</li>
+<li>Different model families:<!-- -->
+<ul>
+<li>General chat, code-focused, smaller on-device, domain-specialized.</li>
+</ul>
+</li>
+</ul>
+<p><strong>PM depth:</strong></p>
+<ul>
+<li>Be able to answer:<!-- -->
+<ul>
+<li>Why Model A is more “chatty” and Model B is more “code-focused”.</li>
+<li>Why different vendors’ models feel different (alignment policies, training data, objectives).</li>
+</ul>
+</li>
+<li>Use this when selecting a model for a feature (e.g., “support assistant vs code assistant”).</li>
+</ul>
+<p><strong>Suggested learning artifacts</strong></p>
+<ul>
+<li>A concise markdown note:<!-- -->
+<ul>
+<li>“What is a transformer?” in 8–10 steps.</li>
+<li>What “tokens”, “context window”, and “parameters” mean for product decisions.</li>
+</ul>
+</li>
+<li>A small table comparing a few model families (OpenAI, Anthropic, Gemini, etc.) and what they’re good at.</li>
+</ul>
+<hr/>
+<h2>Layer 3 – Data &amp; Knowledge</h2>
+<p><em>(Prompts, RAG, Tools)</em></p>
+<p><strong>Question answered:</strong></p>
+<blockquote>
+<p>How is a general LLM adapted to a specific product, and how does it see the product’s data?</p>
+</blockquote>
+<p>This is the <strong>core practical layer</strong> for product managers building LLM features.</p>
+<h3>3.1 Adaptation via Prompts &amp; Fine-Tuning</h3>
+<p>This is where <strong>“prompt engineering”</strong> and “context engineering” live.</p>
+<h4>Concepts</h4>
+<ul>
+<li>System prompts:<!-- -->
+<ul>
+<li>Instructions that set role, behavior, and constraints (“You are a cautious recipe assistant…”).</li>
+</ul>
+</li>
+<li>User prompts:<!-- -->
+<ul>
+<li>The actual user input or structured request built from UI.</li>
+</ul>
+</li>
+<li>Few-shot prompting:<!-- -->
+<ul>
+<li>Adding examples (“When the user says X, respond like Y”).</li>
+</ul>
+</li>
+<li>Structured output:<!-- -->
+<ul>
+<li>JSON, tables, or fixed templates that downstream code can parse reliably.</li>
+</ul>
+</li>
+<li>Fine-tuning:<!-- -->
+<ul>
+<li>Training on labeled examples to specialize behavior for narrow tasks.</li>
+</ul>
+</li>
+<li>Lightweight tuning:<!-- -->
+<ul>
+<li>LoRA, adapters, parameter-efficient fine-tuning techniques.</li>
+</ul>
+</li>
+</ul>
+<h4>PM depth</h4>
+<ul>
+<li>Understand that <strong>prompting is the first lever</strong>:<!-- -->
+<ul>
+<li>Many behaviors can be shaped without fine-tuning if prompts are carefully designed.</li>
+</ul>
+</li>
+<li>Know when fine-tuning is worth it:<!-- -->
+<ul>
+<li>Narrow tasks, high volume, requirement for consistent style or decisions, enough labeled examples.</li>
+</ul>
+</li>
+</ul>
+<h4>Suggested practice</h4>
+<ul>
+<li>Design at least one <strong>system prompt</strong> and iterate with:<!-- -->
+<ul>
+<li>Clear role, constraints, and output format.</li>
+<li>Document test cases (good, edge, fail).</li>
+</ul>
+</li>
+<li>Write a short note on when a team might move from “prompt only” to fine-tuning.</li>
+</ul>
+<hr/>
+<h3>3.2 RAG, Embeddings, and Tools (Connecting to Data &amp; APIs)</h3>
+<p>This is where the LLM is grounded in <strong>product knowledge</strong>.</p>
+<h4>RAG (Retrieval-Augmented Generation)</h4>
+<ul>
+<li>Embeddings:<!-- -->
+<ul>
+<li>Numerical vectors representing text; similar meaning = close vectors.</li>
+</ul>
+</li>
+<li>Vector databases:<!-- -->
+<ul>
+<li>Specialized or extended DBs (e.g., Supabase + pgvector, Pinecone) that can store embeddings and do similarity search.</li>
+</ul>
+</li>
+<li>Chunking:<!-- -->
+<ul>
+<li>Splitting documents into smaller pieces with overlaps so retrieval is more targeted.</li>
+</ul>
+</li>
+<li>Classic RAG loop:<!-- -->
+<ol>
+<li>Index content → store as chunks + embeddings.</li>
+<li>At query time, embed the query.</li>
+<li>Retrieve top-k similar chunks.</li>
+<li>Inject them into a <code>Context:</code> section in the prompt.</li>
+<li>Ask the LLM to answer using that context.</li>
+</ol>
+</li>
+</ul>
+<h4>Tools &amp; APIs</h4>
+<ul>
+<li>Function calling:<!-- -->
+<ul>
+<li>Giving the model structured tools it can request, e.g. <code>get_user_profile(id)</code>, <code>fetch_orders(userId)</code>.</li>
+</ul>
+</li>
+<li>External systems:<!-- -->
+<ul>
+<li>SQL databases, analytics stores, search services, other ML models.</li>
+</ul>
+</li>
+<li>Orchestration around tools:<!-- -->
+<ul>
+<li>Passing arguments, validating, handling errors.</li>
+</ul>
+</li>
+</ul>
+<h4>PM depth</h4>
+<ul>
+<li>Be able to describe <strong>why RAG is used</strong>:<!-- -->
+<ul>
+<li>To access <strong>private, up-to-date, or opinionated</strong> knowledge that is not in the base model.</li>
+</ul>
+</li>
+<li>Understand design decisions:<!-- -->
+<ul>
+<li>What to store in the KB (policies, patterns, FAQs, logs).</li>
+<li>How to chunk and tag content.</li>
+<li>When to combine RAG with tools (e.g., “retrieve docs” + “query DB”).</li>
+</ul>
+</li>
+<li>Be ready to discuss:<!-- -->
+<ul>
+<li>How RAG improves <strong>groundedness</strong>, <strong>consistency</strong>, and <strong>explainability</strong> (“here are the sources used”).</li>
+</ul>
+</li>
+</ul>
+<h4>Suggested practice</h4>
+<ul>
+<li>Build or at least design a small RAG-backed feature:<!-- -->
+<ul>
+<li>Curated KB in a DB (e.g., Supabase),</li>
+<li>Embeddings + vector search,</li>
+<li>Prompt that includes a <code>Context:</code> section from retrieved chunks,</li>
+<li>UI that exposes “Why this answer?” (patterns / sources used).</li>
+</ul>
+</li>
+<li>Document the RAG architecture in a short diagram or markdown file.</li>
+</ul>
+<hr/>
+<h2>Layer 4 – Orchestration</h2>
+<p><em>(Workflows, Agents, Evals, Safety)</em></p>
+<p><strong>Question answered:</strong></p>
+<blockquote>
+<p>How do all the pieces (prompts, RAG, tools, models) run together in production, and how is the system evaluated and governed?</p>
+</blockquote>
+<h3>4.1 Workflows / Chains</h3>
+<ul>
+<li>Chains / pipelines:<!-- -->
+<ul>
+<li>Multi-step flows like “classify → retrieve → call LLM → post-process → save → respond”.</li>
+</ul>
+</li>
+<li>Routing:<!-- -->
+<ul>
+<li>Choosing which model or chain to use based on input type or risk.</li>
+</ul>
+</li>
+<li>Caching:<!-- -->
+<ul>
+<li>Reusing results for repeated queries.</li>
+</ul>
+</li>
+<li>Fallbacks:<!-- -->
+<ul>
+<li>Using simpler or smaller models first, falling back to more capable models when needed.</li>
+</ul>
+</li>
+</ul>
+<p><strong>PM depth:</strong></p>
+<ul>
+<li>Represent a feature as a simple flow:<!-- -->
+<ul>
+<li>Inputs → steps → outputs.</li>
+</ul>
+</li>
+<li>Understand where humans or approvals fit.</li>
+<li>Know how additional steps impact latency, reliability, and cost.</li>
+</ul>
+<hr/>
+<h3>4.2 Agents (Single &amp; Multi-Agent)</h3>
+<ul>
+<li>Single-agent systems:<!-- -->
+<ul>
+<li>One LLM loop that:<!-- -->
+<ul>
+<li>Has a goal,</li>
+<li>Uses tools,</li>
+<li>Maintains state,</li>
+<li>Plans and executes multiple steps.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>Multi-agent systems:<!-- -->
+<ul>
+<li>Multiple agents with different roles:<!-- -->
+<ul>
+<li>Planner, researcher, coder, reviewer, supervisor.</li>
+</ul>
+</li>
+<li>Agents passing messages and tasks between each other.</li>
+</ul>
+</li>
+<li>Debate / ensemble:<!-- -->
+<ul>
+<li>Multiple agents generate alternatives; another selects or merges.</li>
+</ul>
+</li>
+</ul>
+<p><strong>PM depth:</strong></p>
+<ul>
+<li>Recognize that an “agent” is not magic; it is an LLM + tools + a loop.</li>
+<li>Decide when a <strong>simple chain</strong> is enough vs when an agent is justified:<!-- -->
+<ul>
+<li>Complex, decomposable tasks</li>
+<li>Need for iterative refinement or multiple tool calls</li>
+<li>Need for multiple “opinions” on critical tasks</li>
+</ul>
+</li>
+</ul>
+<p>For many MVPs, <strong>chains + RAG + a well-designed prompt</strong> are sufficient; agents can be future extensions.</p>
+<hr/>
+<h3>4.3 Observability, Evaluation, Safety, Governance</h3>
+<ul>
+<li>Offline evaluation:<!-- -->
+<ul>
+<li>Test sets of inputs with expected outputs or quality labels.</li>
+</ul>
+</li>
+<li>Online metrics:<!-- -->
+<ul>
+<li>Conversion, deflection, time saved, CSAT, error rates.</li>
+</ul>
+</li>
+<li>Tracing:<!-- -->
+<ul>
+<li>Logging prompts, retrieved context, tool calls, and responses for debugging.</li>
+</ul>
+</li>
+<li>Guardrails:<!-- -->
+<ul>
+<li>Input filters (block certain prompts),</li>
+<li>Output filters (PII, toxicity, hallucinations about restricted topics),</li>
+<li>Policy rules for certain actions.</li>
+</ul>
+</li>
+<li>Governance:<!-- -->
+<ul>
+<li>Who can change prompts, tools, and workflows; change management and approvals.</li>
+</ul>
+</li>
+</ul>
+<p><strong>PM depth:</strong></p>
+<ul>
+<li>Define “good enough” behavior for an AI feature.</li>
+<li>Design a basic eval plan:<!-- -->
+<ul>
+<li>Test cases, success/failure criteria, manual review process.</li>
+</ul>
+</li>
+<li>Be able to explain how the system would be monitored in production and how regressions would be caught.</li>
+</ul>
+<p><strong>Suggested practice</strong></p>
+<ul>
+<li>For any side project:<!-- -->
+<ul>
+<li>Create a small set of test cases and document what a “good” vs “bad” output looks like.</li>
+<li>Capture a few traces (prompt + context + response) to reason about failures.</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h2>Layer 5 – App / Product</h2>
+<p><strong>Question answered:</strong></p>
+<blockquote>
+<p>What is the actual product, who is it for, how does the AI show up in UX, and how is success measured?</p>
+</blockquote>
+<h3>What this layer includes</h3>
+<ul>
+<li>Use case &amp; Jobs-To-Be-Done (JTBD)</li>
+<li>Target personas and workflows</li>
+<li>Interaction patterns:<!-- -->
+<ul>
+<li>Chat, forms, autocomplete, command palettes, background agents, suggestions.</li>
+</ul>
+</li>
+<li>Human-in-the-loop:<!-- -->
+<ul>
+<li>When the user must review or approve AI output.</li>
+</ul>
+</li>
+<li>Feedback mechanisms:<!-- -->
+<ul>
+<li>Ratings, flags, inline edits used as signals.</li>
+</ul>
+</li>
+<li>Pricing &amp; packaging:<!-- -->
+<ul>
+<li>Free vs paid features, usage limits, AI add-ons.</li>
+</ul>
+</li>
+<li>Adoption &amp; impact metrics:<!-- -->
+<ul>
+<li>Usage, retention, time saved, revenue impact, quality.</li>
+</ul>
+</li>
+</ul>
+<h3>PM depth</h3>
+<ul>
+<li>
+<p>Be able to define:</p>
+<ul>
+<li><strong>Who</strong> the AI feature serves (persona).</li>
+<li><strong>What job</strong> it solves (JTBD).</li>
+<li><strong>Why AI</strong> is appropriate (flexible reasoning, working with messy input, automation).</li>
+<li><strong>How</strong> the interaction should feel (chatty, precise, background helper, etc.).</li>
+<li><strong>What metrics</strong> define success (e.g., time saved, reduced manual effort, higher completion rates).</li>
+</ul>
+</li>
+<li>
+<p>Tie the underlying layers back to this:</p>
+<ul>
+<li>Why prompting and RAG choices support the UX.</li>
+<li>Why orchestrations (chains/agents) are structured in a certain way.</li>
+<li>How evaluation and guardrails protect users and the business.</li>
+</ul>
+</li>
+</ul>
+<h3>Suggested practice</h3>
+<ul>
+<li>For each AI project or side project:<!-- -->
+<ul>
+<li>Write a short “Product Notes” or mini-PRD including:<!-- -->
+<ul>
+<li>Problem and JTBD</li>
+<li>Target users</li>
+<li>AI’s role (assistant, generator, summarizer, decision helper, etc.)</li>
+<li>Chosen interaction pattern (form vs chat vs suggestions)</li>
+<li>High-level design of how prompts + RAG + tools serve that UX</li>
+<li>Success metrics and basic evaluation plan</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr/>
+<h2>Recommended Learning Flow for PMs (Summary)</h2>
+<ol>
+<li>
+<p><strong>Models (Layer 2)</strong></p>
+<ul>
+<li>Learn transformers, tokens, context windows, and model families.</li>
+<li>Output: short explainer notes + one comparison table of a few model options.</li>
+</ul>
+</li>
+<li>
+<p><strong>Data &amp; Knowledge (Layer 3)</strong></p>
+<ul>
+<li>Go deep on prompting, context engineering, RAG, embeddings, and tools.</li>
+<li>Output: a small working feature or side project (e.g., recipe assistant, support helper) with:<!-- -->
+<ul>
+<li>A designed system prompt,</li>
+<li>A simple or moderate RAG setup,</li>
+<li>Notes on how the KB and prompt are structured.</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>App / Product (Layer 5)</strong></p>
+<ul>
+<li>Wrap the feature in a clear product story: JTBD, UX, metrics.</li>
+<li>Output: a mini-PRD or product notes, plus a simple UI that demonstrates the feature.</li>
+</ul>
+</li>
+<li>
+<p><strong>Orchestration (Layer 4)</strong></p>
+<ul>
+<li>Describe the end-to-end flow as a chain; decide where agents might fit in the future; design a basic eval plan.</li>
+<li>Output: a simple diagram / markdown of the flow and a small evaluation checklist.</li>
+</ul>
+</li>
+<li>
+<p><strong>Infra (Layer 1)</strong></p>
+<ul>
+<li>Maintain a high-level understanding of cost and latency constraints and how they influence model selection and UX, without needing deep systems knowledge.</li>
+</ul>
+</li>
+</ol>
+<p>This 5-layer structure keeps the richness of the original 11-layer view but groups it into <strong>manageable “drawers”</strong> that align with how PMs actually work: from <strong>product</strong> down into <strong>data/knowledge and models</strong>, wrapped by <strong>orchestration and infra constraints</strong>.</p></div></article><!--$--><!--/$--></main><footer class="w-full max-w-4xl mx-auto py-12 px-6 md:px-12 text-sm text-muted-foreground flex flex-col items-center space-y-8"><div class="w-full flex justify-center overflow-hidden text-[#6b21a8] text-[10px] tracking-[0.5em] opacity-80"><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span><span>•</span></div><div class="flex flex-wrap items-center justify-center gap-x-3 gap-y-4 text-center text-[#4b5563]"><div class="flex items-center space-x-4 mr-2"><a href="https://github.com" target="_blank" rel="noreferrer" class="hover:text-foreground transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-github w-4 h-4" aria-hidden="true"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a><span class="opacity-50">|</span><a href="https://twitter.com" target="_blank" rel="noreferrer" class="hover:text-foreground transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-twitter w-4 h-4" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a><span class="opacity-50">|</span><a href="https://instagram.com" target="_blank" rel="noreferrer" class="hover:text-foreground transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-instagram w-4 h-4" aria-hidden="true"><rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line></svg></a><span class="opacity-50">|</span><a href="#" class="hover:text-foreground transition-colors"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-music w-4 h-4" aria-hidden="true"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg></a></div><span class="hidden sm:inline opacity-50">|</span><span class="w-full sm:w-auto">2025 © Harsh Chauhan</span><span class="hidden sm:inline opacity-50">|</span><a class="hover:text-foreground transition-colors border-b-2 border-[#166534] pb-0.5" href="/contact/">Contact</a><span class="hidden sm:inline opacity-50">|</span><span class="w-full sm:w-auto">This page visit emitted <span class="border-b-2 border-[#166534] pb-0.5">0.04g of CO2</span> :)</span></div></footer><script src="/_next/static/chunks/webpack-4725fc7c016e949d.js" id="_R_" async=""></script><script>(self.__next_f=self.__next_f||[]).push([0])</script><script>self.__next_f.push([1,"1:\"$Sreact.fragment\"\n2:I[20522,[\"2619\",\"static/chunks/2619-04bc32f026a0d946.js\",\"760\",\"static/chunks/760-c78e84cfc696fc42.js\",\"119\",\"static/chunks/119-278ffde9ad5ee685.js\",\"7177\",\"static/chunks/app/layout-183ff81b9a1c27b1.js\"],\"AnimatedBackground\"]\n3:I[44352,[\"2619\",\"static/chunks/2619-04bc32f026a0d946.js\",\"760\",\"static/chunks/760-c78e84cfc696fc42.js\",\"119\",\"static/chunks/119-278ffde9ad5ee685.js\",\"7177\",\"static/chunks/app/layout-183ff81b9a1c27b1.js\"],\"Navigation\"]\n4:I[9766,[],\"\"]\n5:I[98924,[],\"\"]\n18:I[57150,[],\"\"]\n:HL[\"/_next/static/css/7c7dcc5da74f563b.css\",\"style\"]\n"])</script><script>self.__next_f.push([1,"0:{\"P\":null,\"b\":\"HGoUdIk8EXHBpT284nT1q\",\"p\":\"\",\"c\":[\"\",\"projects\",\"ll-stack\",\"llm-stack-5-layer-map\",\"\"],\"i\":false,\"f\":[[[\"\",{\"children\":[\"projects\",{\"children\":[[\"project\",\"ll-stack\",\"d\"],{\"children\":[[\"subpage\",\"llm-stack-5-layer-map\",\"d\"],{\"children\":[\"__PAGE__\",{}]}]}]}]},\"$undefined\",\"$undefined\",true],[\"\",[\"$\",\"$1\",\"c\",{\"children\":[[[\"$\",\"link\",\"0\",{\"rel\":\"stylesheet\",\"href\":\"/_next/static/css/7c7dcc5da74f563b.css\",\"precedence\":\"next\",\"crossOrigin\":\"$undefined\",\"nonce\":\"$undefined\"}]],[\"$\",\"html\",null,{\"lang\":\"en\",\"children\":[\"$\",\"body\",null,{\"className\":\"antialiased min-h-screen flex flex-col selection:bg-primary selection:text-primary-foreground\",\"suppressHydrationWarning\":true,\"children\":[[\"$\",\"$L2\",null,{}],[\"$\",\"$L3\",null,{}],[\"$\",\"main\",null,{\"className\":\"flex-1 pt-32 pb-16 px-4 sm:px-6 md:px-12 max-w-3xl mx-auto w-full\",\"children\":[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":[[[\"$\",\"title\",null,{\"children\":\"404: This page could not be found.\"}],[\"$\",\"div\",null,{\"style\":{\"fontFamily\":\"system-ui,\\\"Segoe UI\\\",Roboto,Helvetica,Arial,sans-serif,\\\"Apple Color Emoji\\\",\\\"Segoe UI Emoji\\\"\",\"height\":\"100vh\",\"textAlign\":\"center\",\"display\":\"flex\",\"flexDirection\":\"column\",\"alignItems\":\"center\",\"justifyContent\":\"center\"},\"children\":[\"$\",\"div\",null,{\"children\":[[\"$\",\"style\",null,{\"dangerouslySetInnerHTML\":{\"__html\":\"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}\"}}],[\"$\",\"h1\",null,{\"className\":\"next-error-h1\",\"style\":{\"display\":\"inline-block\",\"margin\":\"0 20px 0 0\",\"padding\":\"0 23px 0 0\",\"fontSize\":24,\"fontWeight\":500,\"verticalAlign\":\"top\",\"lineHeight\":\"49px\"},\"children\":404}],[\"$\",\"div\",null,{\"style\":{\"display\":\"inline-block\"},\"children\":[\"$\",\"h2\",null,{\"style\":{\"fontSize\":14,\"fontWeight\":400,\"lineHeight\":\"49px\",\"margin\":0},\"children\":\"This page could not be found.\"}]}]]}]}]],[]],\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]}],[\"$\",\"footer\",null,{\"className\":\"w-full max-w-4xl mx-auto py-12 px-6 md:px-12 text-sm text-muted-foreground flex flex-col items-center space-y-8\",\"children\":[[\"$\",\"div\",null,{\"className\":\"w-full flex justify-center overflow-hidden text-[#6b21a8] text-[10px] tracking-[0.5em] opacity-80\",\"children\":[[\"$\",\"span\",\"0\",{\"children\":\"•\"}],[\"$\",\"span\",\"1\",{\"children\":\"•\"}],[\"$\",\"span\",\"2\",{\"children\":\"•\"}],[\"$\",\"span\",\"3\",{\"children\":\"•\"}],[\"$\",\"span\",\"4\",{\"children\":\"•\"}],[\"$\",\"span\",\"5\",{\"children\":\"•\"}],[\"$\",\"span\",\"6\",{\"children\":\"•\"}],[\"$\",\"span\",\"7\",{\"children\":\"•\"}],[\"$\",\"span\",\"8\",{\"children\":\"•\"}],[\"$\",\"span\",\"9\",{\"children\":\"•\"}],[\"$\",\"span\",\"10\",{\"children\":\"•\"}],[\"$\",\"span\",\"11\",{\"children\":\"•\"}],[\"$\",\"span\",\"12\",{\"children\":\"•\"}],[\"$\",\"span\",\"13\",{\"children\":\"•\"}],[\"$\",\"span\",\"14\",{\"children\":\"•\"}],[\"$\",\"span\",\"15\",{\"children\":\"•\"}],[\"$\",\"span\",\"16\",{\"children\":\"•\"}],[\"$\",\"span\",\"17\",{\"children\":\"•\"}],[\"$\",\"span\",\"18\",{\"children\":\"•\"}],[\"$\",\"span\",\"19\",{\"children\":\"•\"}],[\"$\",\"span\",\"20\",{\"children\":\"•\"}],[\"$\",\"span\",\"21\",{\"children\":\"•\"}],[\"$\",\"span\",\"22\",{\"children\":\"•\"}],[\"$\",\"span\",\"23\",{\"children\":\"•\"}],[\"$\",\"span\",\"24\",{\"children\":\"•\"}],[\"$\",\"span\",\"25\",{\"children\":\"•\"}],[\"$\",\"span\",\"26\",{\"children\":\"•\"}],[\"$\",\"span\",\"27\",{\"children\":\"•\"}],[\"$\",\"span\",\"28\",{\"children\":\"•\"}],[\"$\",\"span\",\"29\",{\"children\":\"•\"}],[\"$\",\"span\",\"30\",{\"children\":\"•\"}],[\"$\",\"span\",\"31\",{\"children\":\"•\"}],[\"$\",\"span\",\"32\",{\"children\":\"•\"}],[\"$\",\"span\",\"33\",{\"children\":\"•\"}],[\"$\",\"span\",\"34\",{\"children\":\"•\"}],[\"$\",\"span\",\"35\",{\"children\":\"•\"}],[\"$\",\"span\",\"36\",{\"children\":\"•\"}],[\"$\",\"span\",\"37\",{\"children\":\"•\"}],[\"$\",\"span\",\"38\",{\"children\":\"•\"}],[\"$\",\"span\",\"39\",{\"children\":\"•\"}],[\"$\",\"span\",\"40\",{\"children\":\"•\"}],[\"$\",\"span\",\"41\",{\"children\":\"•\"}],[\"$\",\"span\",\"42\",{\"children\":\"•\"}],[\"$\",\"span\",\"43\",{\"children\":\"•\"}],[\"$\",\"span\",\"44\",{\"children\":\"•\"}],[\"$\",\"span\",\"45\",{\"children\":\"•\"}],[\"$\",\"span\",\"46\",{\"children\":\"•\"}],[\"$\",\"span\",\"47\",{\"children\":\"•\"}],[\"$\",\"span\",\"48\",{\"children\":\"•\"}],[\"$\",\"span\",\"49\",{\"children\":\"•\"}],[\"$\",\"span\",\"50\",{\"children\":\"•\"}],[\"$\",\"span\",\"51\",{\"children\":\"•\"}],[\"$\",\"span\",\"52\",{\"children\":\"•\"}],[\"$\",\"span\",\"53\",{\"children\":\"•\"}],[\"$\",\"span\",\"54\",{\"children\":\"•\"}],[\"$\",\"span\",\"55\",{\"children\":\"•\"}],[\"$\",\"span\",\"56\",{\"children\":\"•\"}],[\"$\",\"span\",\"57\",{\"children\":\"•\"}],[\"$\",\"span\",\"58\",{\"children\":\"•\"}],[\"$\",\"span\",\"59\",{\"children\":\"•\"}]]}],[\"$\",\"div\",null,{\"className\":\"flex flex-wrap items-center justify-center gap-x-3 gap-y-4 text-center text-[#4b5563]\",\"children\":[[\"$\",\"div\",null,{\"className\":\"flex items-center space-x-4 mr-2\",\"children\":[[\"$\",\"a\",null,{\"href\":\"https://github.com\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"className\":\"hover:text-foreground transition-colors\",\"children\":\"$L6\"}],\"$L7\",\"$L8\",\"$L9\",\"$La\",\"$Lb\",\"$Lc\"]}],\"$Ld\",\"$Le\",\"$Lf\",\"$L10\",\"$L11\",\"$L12\"]}]]}]]}]}]]}],{\"children\":[\"projects\",\"$L13\",{\"children\":[[\"project\",\"ll-stack\",\"d\"],\"$L14\",{\"children\":[[\"subpage\",\"llm-stack-5-layer-map\",\"d\"],\"$L15\",{\"children\":[\"__PAGE__\",\"$L16\",{},null,false]},null,false]},null,false]},null,false]},null,false],\"$L17\",false]],\"m\":\"$undefined\",\"G\":[\"$18\",[]],\"s\":false,\"S\":true}\n"])</script><script>self.__next_f.push([1,"19:I[52619,[\"590\",\"static/chunks/0dbeb660-9e82e99813552576.js\",\"2619\",\"static/chunks/2619-04bc32f026a0d946.js\",\"1663\",\"static/chunks/1663-eef6a54c38da0554.js\",\"1356\",\"static/chunks/1356-ffb62d74256664de.js\",\"7555\",\"static/chunks/app/projects/%5Bproject%5D/page-4eb2ff21eb168189.js\"],\"\"]\n1b:I[24431,[],\"OutletBoundary\"]\n1d:I[15278,[],\"AsyncMetadataOutlet\"]\n1f:I[24431,[],\"ViewportBoundary\"]\n21:I[24431,[],\"MetadataBoundary\"]\n22:\"$Sreact.suspense\"\n6:[\"$\",\"svg\",null,{\"ref\":\"$undefined\",\"xmlns\":\"http://www.w3.org/2000/svg\",\"width\":24,\"height\":24,\"viewBox\":\"0 0 24 24\",\"fill\":\"none\",\"stroke\":\"currentColor\",\"strokeWidth\":2,\"strokeLinecap\":\"round\",\"strokeLinejoin\":\"round\",\"className\":\"lucide lucide-github w-4 h-4\",\"aria-hidden\":\"true\",\"children\":[[\"$\",\"path\",\"tonef\",{\"d\":\"M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4\"}],[\"$\",\"path\",\"9comsn\",{\"d\":\"M9 18c-4.51 2-5-2-7-2\"}],\"$undefined\"]}]\n7:[\"$\",\"span\",null,{\"className\":\"opacity-50\",\"children\":\"|\"}]\n8:[\"$\",\"a\",null,{\"href\":\"https://twitter.com\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"className\":\"hover:text-foreground transition-colors\",\"children\":[\"$\",\"svg\",null,{\"ref\":\"$undefined\",\"xmlns\":\"http://www.w3.org/2000/svg\",\"width\":24,\"height\":24,\"viewBox\":\"0 0 24 24\",\"fill\":\"none\",\"stroke\":\"currentColor\",\"strokeWidth\":2,\"strokeLinecap\":\"round\",\"strokeLinejoin\":\"round\",\"className\":\"lucide lucide-twitter w-4 h-4\",\"aria-hidden\":\"true\",\"children\":[[\"$\",\"path\",\"pff0z6\",{\"d\":\"M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z\"}],\"$undefined\"]}]}]\n9:[\"$\",\"span\",null,{\"className\":\"opacity-50\",\"children\":\"|\"}]\n"])</script><script>self.__next_f.push([1,"a:[\"$\",\"a\",null,{\"href\":\"https://instagram.com\",\"target\":\"_blank\",\"rel\":\"noreferrer\",\"className\":\"hover:text-foreground transition-colors\",\"children\":[\"$\",\"svg\",null,{\"ref\":\"$undefined\",\"xmlns\":\"http://www.w3.org/2000/svg\",\"width\":24,\"height\":24,\"viewBox\":\"0 0 24 24\",\"fill\":\"none\",\"stroke\":\"currentColor\",\"strokeWidth\":2,\"strokeLinecap\":\"round\",\"strokeLinejoin\":\"round\",\"className\":\"lucide lucide-instagram w-4 h-4\",\"aria-hidden\":\"true\",\"children\":[[\"$\",\"rect\",\"2e1cvw\",{\"width\":\"20\",\"height\":\"20\",\"x\":\"2\",\"y\":\"2\",\"rx\":\"5\",\"ry\":\"5\"}],[\"$\",\"path\",\"9exkf1\",{\"d\":\"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z\"}],[\"$\",\"line\",\"r4j83e\",{\"x1\":\"17.5\",\"x2\":\"17.51\",\"y1\":\"6.5\",\"y2\":\"6.5\"}],\"$undefined\"]}]}]\n"])</script><script>self.__next_f.push([1,"b:[\"$\",\"span\",null,{\"className\":\"opacity-50\",\"children\":\"|\"}]\nc:[\"$\",\"a\",null,{\"href\":\"#\",\"className\":\"hover:text-foreground transition-colors\",\"children\":[\"$\",\"svg\",null,{\"ref\":\"$undefined\",\"xmlns\":\"http://www.w3.org/2000/svg\",\"width\":24,\"height\":24,\"viewBox\":\"0 0 24 24\",\"fill\":\"none\",\"stroke\":\"currentColor\",\"strokeWidth\":2,\"strokeLinecap\":\"round\",\"strokeLinejoin\":\"round\",\"className\":\"lucide lucide-music w-4 h-4\",\"aria-hidden\":\"true\",\"children\":[[\"$\",\"path\",\"1jmyc2\",{\"d\":\"M9 18V5l12-2v13\"}],[\"$\",\"circle\",\"fqmcym\",{\"cx\":\"6\",\"cy\":\"18\",\"r\":\"3\"}],[\"$\",\"circle\",\"1hluhg\",{\"cx\":\"18\",\"cy\":\"16\",\"r\":\"3\"}],\"$undefined\"]}]}]\nd:[\"$\",\"span\",null,{\"className\":\"hidden sm:inline opacity-50\",\"children\":\"|\"}]\ne:[\"$\",\"span\",null,{\"className\":\"w-full sm:w-auto\",\"children\":\"2025 © Harsh Chauhan\"}]\nf:[\"$\",\"span\",null,{\"className\":\"hidden sm:inline opacity-50\",\"children\":\"|\"}]\n10:[\"$\",\"$L19\",null,{\"href\":\"/contact\",\"className\":\"hover:text-foreground transition-colors border-b-2 border-[#166534] pb-0.5\",\"children\":\"Contact\"}]\n11:[\"$\",\"span\",null,{\"className\":\"hidden sm:inline opacity-50\",\"children\":\"|\"}]\n12:[\"$\",\"span\",null,{\"className\":\"w-full sm:w-auto\",\"children\":[\"This page visit emitted \",[\"$\",\"span\",null,{\"className\":\"border-b-2 border-[#166534] pb-0.5\",\"children\":\"0.04g of CO2\"}],\" :)\"]}]\n13:[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}]\n14:[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"error\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}]\n15:[\"$\",\"$1\",\"c\",{\"children\":[null,[\"$\",\"$L4\",null,{\"parallelRouterKey\":\"children\",\"erro"])</script><script>self.__next_f.push([1,"r\":\"$undefined\",\"errorStyles\":\"$undefined\",\"errorScripts\":\"$undefined\",\"template\":[\"$\",\"$L5\",null,{}],\"templateStyles\":\"$undefined\",\"templateScripts\":\"$undefined\",\"notFound\":\"$undefined\",\"forbidden\":\"$undefined\",\"unauthorized\":\"$undefined\"}]]}]\n16:[\"$\",\"$1\",\"c\",{\"children\":[\"$L1a\",null,[\"$\",\"$L1b\",null,{\"children\":[\"$L1c\",[\"$\",\"$L1d\",null,{\"promise\":\"$@1e\"}]]}]]}]\n17:[\"$\",\"$1\",\"h\",{\"children\":[null,[[\"$\",\"$L1f\",null,{\"children\":\"$L20\"}],null],[\"$\",\"$L21\",null,{\"children\":[\"$\",\"div\",null,{\"hidden\":true,\"children\":[\"$\",\"$22\",null,{\"fallback\":null,\"children\":\"$L23\"}]}]}]]}]\n"])</script><script>self.__next_f.push([1,"24:I[94032,[\"590\",\"static/chunks/0dbeb660-9e82e99813552576.js\",\"2619\",\"static/chunks/2619-04bc32f026a0d946.js\",\"1663\",\"static/chunks/1663-eef6a54c38da0554.js\",\"3757\",\"static/chunks/app/projects/%5Bproject%5D/%5Bsubpage%5D/page-41304f4461fd411f.js\"],\"BackNavLink\"]\n"])</script><script>self.__next_f.push([1,"1a:[\"$\",\"article\",null,{\"className\":\"max-w-3xl mx-auto space-y-12\",\"children\":[[\"$\",\"div\",null,{\"className\":\"space-y-8 border-b border-border pb-8\",\"children\":[[\"$\",\"$L24\",null,{\"href\":\"/projects/ll-stack\",\"label\":\"Back to LL Stack\"}],[\"$\",\"div\",null,{\"className\":\"space-y-4\",\"children\":[[\"$\",\"h1\",null,{\"className\":\"text-3xl md:text-5xl font-semibold tracking-tight\",\"children\":\"LLM Stack: A Practical 5-Layer Map\"}],[\"$\",\"p\",null,{\"className\":\"text-xl text-muted-foreground\",\"children\":\"A practical framework for understanding AI systems across infrastructure, models, data, orchestration, and product.\"}]]}]]}],[\"$\",\"div\",null,{\"className\":\"markdown-body\",\"children\":[[\"$\",\"h1\",\"h1-0\",{\"children\":\"LLM Stack – A Practical 5-Layer Map for Product Managers\"}],\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":[\"This document describes a \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"5-layer mental model\"}],\" for modern LLM systems and a \",[\"$\",\"strong\",\"strong-1\",{\"children\":\"learning flow for PMs\"}],\" who want enough depth to design and ship AI features (not become researchers).\"]}],\"\\n\",[\"$\",\"p\",\"p-1\",{\"children\":\"The five layers are:\"}],\"\\n\",[\"$\",\"table\",\"table-0\",{\"children\":[[\"$\",\"thead\",\"thead-0\",{\"children\":[\"$\",\"tr\",\"tr-0\",{\"children\":[[\"$\",\"th\",\"th-0\",{\"children\":\"#\"}],[\"$\",\"th\",\"th-1\",{\"children\":\"Layer Name\"}],[\"$\",\"th\",\"th-2\",{\"children\":\"What it covers\"}],[\"$\",\"th\",\"th-3\",{\"children\":\"Sub-layers\"}]]}]}],[\"$\",\"tbody\",\"tbody-0\",{\"children\":[[\"$\",\"tr\",\"tr-0\",{\"children\":[[\"$\",\"td\",\"td-0\",{\"children\":\"1\"}],[\"$\",\"td\",\"td-1\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Infra\"}]}],[\"$\",\"td\",\"td-2\",{\"children\":\"Physical and cloud infrastructure needed to train and run LLMs\"}],[\"$\",\"td\",\"td-3\",{\"children\":\"Hardware \u0026 Infra (1)\"}]]}],[\"$\",\"tr\",\"tr-1\",{\"children\":[[\"$\",\"td\",\"td-0\",{\"children\":\"2\"}],[\"$\",\"td\",\"td-1\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Models\"}]}],[\"$\",\"td\",\"td-2\",{\"children\":\"How LLMs are built and aligned before being used in products\"}],[\"$\",\"td\",\"td-3\",{\"children\":\"Data \u0026 Pretraining (2), Transformer Architecture (3), Training \u0026 Alignment (4)\"}]]}],[\"$\",\"tr\",\"tr-2\",{\"children\":[[\"$\",\"td\",\"td-0\",{\"children\":\"3\"}],[\"$\",\"td\",\"td-1\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Data \u0026 Knowledge\"}]}],[\"$\",\"td\",\"td-2\",{\"children\":\"How models are adapted to a product and connected to data (prompts, RAG, tools, APIs, DBs)\"}],[\"$\",\"td\",\"td-3\",{\"children\":\"Adaptation via Prompts \u0026 Fine-tuning (5), Knowledge \u0026 Tools / RAG (6)\"}]]}],[\"$\",\"tr\",\"tr-3\",{\"children\":[[\"$\",\"td\",\"td-0\",{\"children\":\"4\"}],[\"$\",\"td\",\"td-1\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Orchestration\"}]}],[\"$\",\"td\",\"td-2\",{\"children\":\"How all components run together in production, including workflows, agents, evals, and safety\"}],[\"$\",\"td\",\"td-3\",{\"children\":\"Workflows/Chains (7), Single \u0026 Multi-Agent Systems (8, 9), Evals \u0026 Safety \u0026 Governance (10)\"}]]}],[\"$\",\"tr\",\"tr-4\",{\"children\":[[\"$\",\"td\",\"td-0\",{\"children\":\"5\"}],[\"$\",\"td\",\"td-1\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"App / Product\"}]}],[\"$\",\"td\",\"td-2\",{\"children\":\"The actual product: UX, JTBD, interaction patterns, pricing, adoption, and feedback loops\"}],[\"$\",\"td\",\"td-3\",{\"children\":\"Product Layer – UX \u0026 Business (11)\"}]]}]]}]]}],\"\\n\",[\"$\",\"hr\",\"hr-0\",{}],\"\\n\",[\"$\",\"h2\",\"h2-0\",{\"children\":\"How a PM Should Learn This Stack (High-Level Flow)\"}],\"\\n\",[\"$\",\"p\",\"p-2\",{\"children\":[\"A product manager does \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"not\"}],\" need equal depth in every layer.\"]}],\"\\n\",[\"$\",\"p\",\"p-3\",{\"children\":\"A sensible learning sequence:\"}],\"\\n\",[\"$\",\"ol\",\"ol-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Start with Models (Layer 2)\"}]}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Understand transformers, tokens, context windows, and why different models behave differently.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"This gives the mental foundation for everything else.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Move quickly to Data \u0026 Knowledge (Layer 3)\"}]}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"This is the core of practical PM work: prompting, RAG, embeddings, tools, connecting the model to product data.\"}],\"\\n\",\"$L25\",\"\\n\"]}],\"\\n\"]}],\"\\n\",\"$L26\",\"\\n\",\"$L27\",\"\\n\",\"$L28\",\"\\n\"]}],\"\\n\",\"$L29\",\"\\n\",\"$L2a\",\"\\n\",\"$L2b\",\"\\n\",\"$L2c\",\"\\n\",\"$L2d\",\"\\n\",\"$L2e\",\"\\n\",\"$L2f\",\"\\n\",\"$L30\",\"\\n\",\"$L31\",\"\\n\",\"$L32\",\"\\n\",\"$L33\",\"\\n\",\"$L34\",\"\\n\",\"$L35\",\"\\n\",\"$L36\",\"\\n\",\"$L37\",\"\\n\",\"$L38\",\"\\n\",\"$L39\",\"\\n\",\"$L3a\",\"\\n\",\"$L3b\",\"\\n\",\"$L3c\",\"\\n\",\"$L3d\",\"\\n\",\"$L3e\",\"\\n\",\"$L3f\",\"\\n\",\"$L40\",\"\\n\",\"$L41\",\"\\n\",\"$L42\",\"\\n\",\"$L43\",\"\\n\",\"$L44\",\"\\n\",\"$L45\",\"\\n\",\"$L46\",\"\\n\",\"$L47\",\"\\n\",\"$L48\",\"\\n\",\"$L49\",\"\\n\",\"$L4a\",\"\\n\",\"$L4b\",\"\\n\",\"$L4c\",\"\\n\",\"$L4d\",\"\\n\",\"$L4e\",\"\\n\",\"$L4f\",\"\\n\",\"$L50\",\"\\n\",\"$L51\",\"\\n\",\"$L52\",\"\\n\",\"$L53\",\"\\n\",\"$L54\",\"\\n\",\"$L55\",\"\\n\",\"$L56\",\"\\n\",\"$L57\",\"\\n\",\"$L58\",\"\\n\",\"$L59\",\"\\n\",\"$L5a\",\"\\n\",\"$L5b\",\"\\n\",\"$L5c\",\"\\n\",\"$L5d\",\"\\n\",\"$L5e\",\"\\n\",\"$L5f\",\"\\n\",\"$L60\",\"\\n\",\"$L61\",\"\\n\",\"$L62\",\"\\n\",\"$L63\",\"\\n\",\"$L64\",\"\\n\",\"$L65\",\"\\n\",\"$L66\",\"\\n\",\"$L67\",\"\\n\",\"$L68\",\"\\n\",\"$L69\",\"\\n\",\"$L6a\",\"\\n\",\"$L6b\",\"\\n\",\"$L6c\",\"\\n\",\"$L6d\",\"\\n\",\"$L6e\",\"\\n\",\"$L6f\",\"\\n\",\"$L70\",\"\\n\",\"$L71\",\"\\n\",\"$L72\",\"\\n\",\"$L73\",\"\\n\",\"$L74\",\"\\n\",\"$L75\",\"\\n\",\"$L76\",\"\\n\",\"$L77\",\"\\n\",\"$L78\",\"\\n\",\"$L79\",\"\\n\",\"$L7a\",\"\\n\",\"$L7b\",\"\\n\",\"$L7c\",\"\\n\",\"$L7d\",\"\\n\",\"$L7e\",\"\\n\",\"$L7f\",\"\\n\",\"$L80\",\"\\n\",\"$L81\",\"\\n\",\"$L82\",\"\\n\",\"$L83\",\"\\n\",\"$L84\",\"\\n\",\"$L85\",\"\\n\",\"$L86\",\"\\n\",\"$L87\"]}]]}]\n"])</script><script>self.__next_f.push([1,"25:[\"$\",\"li\",\"li-1\",{\"children\":\"Hands-on project work should primarily live here.\"}]\n26:[\"$\",\"li\",\"li-2\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"In parallel, think about App / Product (Layer 5)\"}]}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Map AI capabilities to real user jobs, UX patterns, and metrics.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Anchor learning in one or two concrete example features or side projects.\"}],\"\\n\"]}],\"\\n\"]}]\n27:[\"$\",\"li\",\"li-3\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Then add Orchestration (Layer 4)\"}]}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Understand how chains and agents fit together, and how evaluation and safety wrap around them.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Use simple flows and a basic eval plan rather than over-engineering.\"}],\"\\n\"]}],\"\\n\"]}]\n28:[\"$\",\"li\",\"li-4\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Keep Infra (Layer 1) as background context\"}]}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Enough to reason about latency, cost, and limits—no need to go deep into GPU details.\"}],\"\\n\"]}],\"\\n\"]}]\n29:[\"$\",\"p\",\"p-4\",{\"children\":[\"The rest of this README describes each layer and suggests \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"what depth a PM needs\"}],\" and \",[\"$\",\"strong\",\"strong-1\",{\"children\":\"what to practice or document\"}],\" at that layer.\"]}]\n2a:[\"$\",\"hr\",\"hr-1\",{}]\n2b:[\"$\",\"h2\",\"h2-1\",{\"children\":\"Layer 1 – Infra\"}]\n2c:[\"$\",\"p\",\"p-5\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Question answered:\"}]}]\n2d:[\"$\",\"blockquote\",\"blockquote-0\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":\"What physical and cloud infrastructure is needed to train and run LLMs, and why does it matter for product decisions?\"}],\"\\n\"]}]\n2e:[\"$\",\"h3\",\"h3-0\",{\"children\":\"What this layer includes\"}]\n2f:[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"GPUs / TPUs and"])</script><script>self.__next_f.push([1," other accelerator hardware\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Clusters and high-speed interconnects\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"Training vs inference workloads\"}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":\"Horizontal vs vertical scaling\"}],\"\\n\",[\"$\",\"li\",\"li-4\",{\"children\":\"Latency, throughput, rate limits\"}],\"\\n\",[\"$\",\"li\",\"li-5\",{\"children\":\"Cost per token / per request\"}],\"\\n\",[\"$\",\"li\",\"li-6\",{\"children\":\"Reliability and SLOs\"}],\"\\n\"]}]\n30:[\"$\",\"h3\",\"h3-1\",{\"children\":\"How deep a PM needs to go\"}]\n31:[\"$\",\"ul\",\"ul-1\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[[\"$\",\"strong\",\"strong-0\",{\"children\":\"Conceptual only.\"}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Understand that large models need specialized hardware and that \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"inference is not free\"}],\".\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Recognize that model choice + context size = latency + cost trade-offs.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n32:[\"$\",\"h3\",\"h3-2\",{\"children\":\"Practical PM questions at this layer\"}]\n33:[\"$\",\"ul\",\"ul-2\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"How fast does the feature need to feel? (sub-second, 2–3 seconds, 10+ seconds is acceptable?)\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"How often will it be called? (per user session, per click, in the background?)\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"Is it okay to call a “big, expensive” model all the time, or should a smaller/cheaper model be used for most cases with fallbacks?\"}],\"\\n\"]}]\n34:[\"$\",\"p\",\"p-6\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Suggested learning artifact\"}]}]\n35:[\"$\",\"ul\",\"ul-3\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"A short note (1–2 pages) explaining:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Training vs inference\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Cost \u0026 latency trade-offs\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"How this affects design of one example feature (e.g., why a small model might be used for “instant suggestions” and a bigg"])</script><script>self.__next_f.push([1,"er model for “full analysis”).\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n36:[\"$\",\"hr\",\"hr-2\",{}]\n37:[\"$\",\"h2\",\"h2-2\",{\"children\":\"Layer 2 – Models\"}]\n38:[\"$\",\"p\",\"p-7\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Question answered:\"}]}]\n39:[\"$\",\"blockquote\",\"blockquote-1\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":\"What actually is an LLM under the hood, and why do different models behave differently?\"}],\"\\n\"]}]\n3a:[\"$\",\"p\",\"p-8\",{\"children\":[\"This is the \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"conceptual backbone\"}],\". Once this is clear, later layers (RAG, prompting, context limits) make intuitive sense.\"]}]\n3b:[\"$\",\"h3\",\"h3-3\",{\"children\":\"2.1 Data \u0026 Pretraining\"}]\n"])</script><script>self.__next_f.push([1,"3c:[\"$\",\"ul\",\"ul-4\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Pretraining corpus:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Web pages, code, books, documentation, etc.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Self-supervised learning:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Model learns to predict the next token from previous tokens.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"Scale laws:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"More data, parameters, and compute generally improve performance, with diminishing returns.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":[\"Training cut-off:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Models only know world events and content up to a certain date.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"3d:[\"$\",\"p\",\"p-9\",{\"children\":[[\"$\",\"strong\",\"strong-0\",{\"children\":\"PM depth:\"}],[\"$\",\"br\",\"br-0\",{}],\"\\n\",\"Enough to explain that:\"]}]\n3e:[\"$\",\"ul\",\"ul-5\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"A base model has \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"general world knowledge\"}],\", not product-specific knowledge.\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"It will not know about \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"recent policies or internal docs\"}],\" unless given context via RAG or fine-tuning.\"]}],\"\\n\"]}]\n3f:[\"$\",\"hr\",\"hr-3\",{}]\n40:[\"$\",\"h3\",\"h3-4\",{\"children\":\"2.2 Transformer Architecture\"}]\n"])</script><script>self.__next_f.push([1,"41:[\"$\",\"ul\",\"ul-6\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Tokens \u0026 tokenization\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Self-attention:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Mechanism for deciding which previous tokens to “focus on”.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"Context window:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Fixed limit on how many tokens the model can see at once (e.g., 8k, 32k, 128k).\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":[\"Parameters:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Number of weights (billions), affecting capacity, quality, and cost.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"42:[\"$\",\"p\",\"p-10\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"PM depth:\"}]}]\n"])</script><script>self.__next_f.push([1,"43:[\"$\",\"ul\",\"ul-7\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Be able to describe, in simple language:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"That input text is broken into tokens.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"The model looks back over previous tokens using attention.\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"The context window is a hard cap: not all data can be stuffed into one prompt.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Use this to reason about:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Why long inputs need summarization or retrieval.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Why context engineering and RAG exist at all.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"44:[\"$\",\"hr\",\"hr-4\",{}]\n45:[\"$\",\"h3\",\"h3-5\",{\"children\":\"2.3 Training \u0026 Alignment\"}]\n"])</script><script>self.__next_f.push([1,"46:[\"$\",\"ul\",\"ul-8\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Base model:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Raw model after pretraining, not user-friendly.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Instruction tuning:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Training on instruction → response examples (“Explain X…”, “Write an email to…”).\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"RLHF / RLAIF:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Reinforcement Learning from Human/AI Feedback to improve helpfulness, safety, tone.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":[\"Different model families:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"General chat, code-focused, smaller on-device, domain-specialized.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"47:[\"$\",\"p\",\"p-11\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"PM depth:\"}]}]\n48:[\"$\",\"ul\",\"ul-9\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Be able to answer:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Why Model A is more “chatty” and Model B is more “code-focused”.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Why different vendors’ models feel different (alignment policies, training data, objectives).\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Use this when selecting a model for a feature (e.g., “support assistant vs code assistant”).\"}],\"\\n\"]}]\n49:[\"$\",\"p\",\"p-12\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Suggested learning artifacts\"}]}]\n4a:[\"$\",\"ul\",\"ul-10\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"A concise markdown note:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"“What is a transformer?” in 8–10 steps.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"What “tokens”, “context window”, and “parameters” mean for product decisions.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"A small table comparing a few model families (OpenAI, Anthropic, Gemini, etc.) and what they’re good at.\"}],\"\\n\"]}]\n4b:[\"$\",\"hr\",\"hr-5\",{}]\n4c:[\"$\",\"h2\",\"h2-3\",{\"children\":\"Layer 3 – Data \u0026 Knowledge\"}]\n4d:[\"$\",\"p\",\"p-13\",{\"children\":[\"$\",\"em\",\"em-0\",{\"children\":\"(Prompts, RAG, Tools)\"}]}]\n4e:[\"$\",\"p\",\"p-14\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Question answered:\"}]}]\n4f:[\"$\",\"blockquote\",\"blockquote-2\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":\"How is a general LLM adapted to a specific product, and how does it see the product’s data?\"}],\"\\n\"]}]\n50:[\"$\",\"p\",\"p-15\",{\"children\":[\"This is the \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"core practical layer\"}],\" for product managers building LLM features.\"]}]\n51:[\"$\",\"h3\",\"h3-6\",{\"children\":\"3.1 Adaptation via Prompts \u0026 Fine-Tuning\"}]\n52:[\"$\",\"p\",\"p-16\",{\"children\":[\"This is where \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"“prompt engineering”\"}],\" and “cont"])</script><script>self.__next_f.push([1,"ext engineering” live.\"]}]\n53:[\"$\",\"h4\",\"h4-0\",{\"children\":\"Concepts\"}]\n"])</script><script>self.__next_f.push([1,"54:[\"$\",\"ul\",\"ul-11\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"System prompts:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Instructions that set role, behavior, and constraints (“You are a cautious recipe assistant…”).\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"User prompts:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"The actual user input or structured request built from UI.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"Few-shot prompting:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Adding examples (“When the user says X, respond like Y”).\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":[\"Structured output:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"JSON, tables, or fixed templates that downstream code can parse reliably.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-4\",{\"children\":[\"Fine-tuning:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Training on labeled examples to specialize behavior for narrow tasks.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-5\",{\"children\":[\"Lightweight tuning:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"LoRA, adapters, parameter-efficient fine-tuning techniques.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"55:[\"$\",\"h4\",\"h4-1\",{\"children\":\"PM depth\"}]\n56:[\"$\",\"ul\",\"ul-12\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Understand that \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"prompting is the first lever\"}],\":\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Many behaviors can be shaped without fine-tuning if prompts are carefully designed.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Know when fine-tuning is worth it:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Narrow tasks, high volume, requirement for consistent style or decisions, enough labeled examples.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n57:[\"$\",\"h4\",\"h4-2\",{\"children\":\"Suggested practice\"}]\n58:[\"$\",\"ul\",\"ul-13\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Design at least one \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"system prompt\"}],\" and iterate with:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Clear role, constraints, and output format.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Document test cases (good, edge, fail).\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Write a short note on when a team might move from “prompt only” to fine-tuning.\"}],\"\\n\"]}]\n59:[\"$\",\"hr\",\"hr-6\",{}]\n5a:[\"$\",\"h3\",\"h3-7\",{\"children\":\"3.2 RAG, Embeddings, and Tools (Connecting to Data \u0026 APIs)\"}]\n5b:[\"$\",\"p\",\"p-17\",{\"children\":[\"This is where the LLM is grounded in \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"product knowledge\"}],\".\"]}]\n5c:[\"$\",\"h4\",\"h4-3\",{\"children\":\"RAG (Retrieval-Augmented Generation)\"}]\n"])</script><script>self.__next_f.push([1,"5d:[\"$\",\"ul\",\"ul-14\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Embeddings:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Numerical vectors representing text; similar meaning = close vectors.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Vector databases:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Specialized or extended DBs (e.g., Supabase + pgvector, Pinecone) that can store embeddings and do similarity search.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"Chunking:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Splitting documents into smaller pieces with overlaps so retrieval is more targeted.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":[\"Classic RAG loop:\",\"\\n\",[\"$\",\"ol\",\"ol-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Index content → store as chunks + embeddings.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"At query time, embed the query.\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"Retrieve top-k similar chunks.\"}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":[\"Inject them into a \",[\"$\",\"code\",\"code-0\",{\"children\":\"Context:\"}],\" section in the prompt.\"]}],\"\\n\",[\"$\",\"li\",\"li-4\",{\"children\":\"Ask the LLM to answer using that context.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"5e:[\"$\",\"h4\",\"h4-4\",{\"children\":\"Tools \u0026 APIs\"}]\n"])</script><script>self.__next_f.push([1,"5f:[\"$\",\"ul\",\"ul-15\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Function calling:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Giving the model structured tools it can request, e.g. \",[\"$\",\"code\",\"code-0\",{\"children\":\"get_user_profile(id)\"}],\", \",[\"$\",\"code\",\"code-1\",{\"children\":\"fetch_orders(userId)\"}],\".\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"External systems:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"SQL databases, analytics stores, search services, other ML models.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"Orchestration around tools:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Passing arguments, validating, handling errors.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"60:[\"$\",\"h4\",\"h4-5\",{\"children\":\"PM depth\"}]\n"])</script><script>self.__next_f.push([1,"61:[\"$\",\"ul\",\"ul-16\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Be able to describe \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"why RAG is used\"}],\":\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"To access \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"private, up-to-date, or opinionated\"}],\" knowledge that is not in the base model.\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Understand design decisions:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"What to store in the KB (policies, patterns, FAQs, logs).\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"How to chunk and tag content.\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"When to combine RAG with tools (e.g., “retrieve docs” + “query DB”).\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"Be ready to discuss:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"How RAG improves \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"groundedness\"}],\", \",[\"$\",\"strong\",\"strong-1\",{\"children\":\"consistency\"}],\", and \",[\"$\",\"strong\",\"strong-2\",{\"children\":\"explainability\"}],\" (“here are the sources used”).\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"62:[\"$\",\"h4\",\"h4-6\",{\"children\":\"Suggested practice\"}]\n63:[\"$\",\"ul\",\"ul-17\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Build or at least design a small RAG-backed feature:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Curated KB in a DB (e.g., Supabase),\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Embeddings + vector search,\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"Prompt that includes a \",[\"$\",\"code\",\"code-0\",{\"children\":\"Context:\"}],\" section from retrieved chunks,\"]}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":\"UI that exposes “Why this answer?” (patterns / sources used).\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Document the RAG architecture in a short diagram or markdown file.\"}],\"\\n\"]}]\n64:[\"$\",\"hr\",\"hr-7\",{}]\n65:[\"$\",\"h2\",\"h2-4\",{\"children\":\"Layer 4 – Orchestration\"}]\n66:[\"$\",\"p\",\"p-18\",{\"children\":[\"$\",\"em\",\"em-0\",{\"children\":\"(Workflows, Agents, Evals, Safety)\"}]}]\n67:[\"$\",\"p\",\"p-19\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Question answered:\"}]}]\n68:[\"$\",\"blockquote\",\"blockquote-3\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":\"How do all the pieces (prompts, RAG, tools, models) run together in production, and how is the system evaluated and governed?\"}],\"\\n\"]}]\n69:[\"$\",\"h3\",\"h3-8\",{\"children\":\"4.1 Workflows / Chains\"}]\n"])</script><script>self.__next_f.push([1,"6a:[\"$\",\"ul\",\"ul-18\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Chains / pipelines:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Multi-step flows like “classify → retrieve → call LLM → post-process → save → respond”.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Routing:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Choosing which model or chain to use based on input type or risk.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"Caching:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Reusing results for repeated queries.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":[\"Fallbacks:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Using simpler or smaller models first, falling back to more capable models when needed.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"6b:[\"$\",\"p\",\"p-20\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"PM depth:\"}]}]\n6c:[\"$\",\"ul\",\"ul-19\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Represent a feature as a simple flow:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Inputs → steps → outputs.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Understand where humans or approvals fit.\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"Know how additional steps impact latency, reliability, and cost.\"}],\"\\n\"]}]\n6d:[\"$\",\"hr\",\"hr-8\",{}]\n6e:[\"$\",\"h3\",\"h3-9\",{\"children\":\"4.2 Agents (Single \u0026 Multi-Agent)\"}]\n"])</script><script>self.__next_f.push([1,"6f:[\"$\",\"ul\",\"ul-20\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Single-agent systems:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"One LLM loop that:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Has a goal,\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Uses tools,\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"Maintains state,\"}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":\"Plans and executes multiple steps.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Multi-agent systems:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Multiple agents with different roles:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Planner, researcher, coder, reviewer, supervisor.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Agents passing messages and tasks between each other.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"Debate / ensemble:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Multiple agents generate alternatives; another selects or merges.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"70:[\"$\",\"p\",\"p-21\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"PM depth:\"}]}]\n71:[\"$\",\"ul\",\"ul-21\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Recognize that an “agent” is not magic; it is an LLM + tools + a loop.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Decide when a \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"simple chain\"}],\" is enough vs when an agent is justified:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Complex, decomposable tasks\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Need for iterative refinement or multiple tool calls\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"Need for multiple “opinions” on critical tasks\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n72:[\"$\",\"p\",\"p-22\",{\"children\":[\"For many MVPs, \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"chains + RAG + a well-designed prompt\"}],\" are sufficient; agents can be future extensions.\"]}]\n73:[\"$\",\"hr\",\"hr-9\",{}]\n74:[\"$\",\"h3\",\"h3-10\",{\"children\":\"4.3 Observability, Evaluation, Safety, Governance\"}]\n"])</script><script>self.__next_f.push([1,"75:[\"$\",\"ul\",\"ul-22\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Offline evaluation:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Test sets of inputs with expected outputs or quality labels.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Online metrics:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Conversion, deflection, time saved, CSAT, error rates.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"Tracing:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Logging prompts, retrieved context, tool calls, and responses for debugging.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":[\"Guardrails:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Input filters (block certain prompts),\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Output filters (PII, toxicity, hallucinations about restricted topics),\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"Policy rules for certain actions.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-4\",{\"children\":[\"Governance:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Who can change prompts, tools, and workflows; change management and approvals.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"76:[\"$\",\"p\",\"p-23\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"PM depth:\"}]}]\n77:[\"$\",\"ul\",\"ul-23\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Define “good enough” behavior for an AI feature.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Design a basic eval plan:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Test cases, success/failure criteria, manual review process.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"Be able to explain how the system would be monitored in production and how regressions would be caught.\"}],\"\\n\"]}]\n78:[\"$\",\"p\",\"p-24\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Suggested practice\"}]}]\n79:[\"$\",\"ul\",\"ul-24\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"For any side project:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Create a small set of test cases and document what a “good” vs “bad” output looks like.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Capture a few traces (prompt + context + response) to reason about failures.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n7a:[\"$\",\"hr\",\"hr-10\",{}]\n7b:[\"$\",\"h2\",\"h2-5\",{\"children\":\"Layer 5 – App / Product\"}]\n7c:[\"$\",\"p\",\"p-25\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Question answered:\"}]}]\n7d:[\"$\",\"blockquote\",\"blockquote-4\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":\"What is the actual product, who is it for, how does the AI show up in UX, and how is success measured?\"}],\"\\n\"]}]\n7e:[\"$\",\"h3\",\"h3-11\",{\"children\":\"What this layer includes\"}]\n"])</script><script>self.__next_f.push([1,"7f:[\"$\",\"ul\",\"ul-25\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Use case \u0026 Jobs-To-Be-Done (JTBD)\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Target personas and workflows\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"Interaction patterns:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Chat, forms, autocomplete, command palettes, background agents, suggestions.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":[\"Human-in-the-loop:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"When the user must review or approve AI output.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-4\",{\"children\":[\"Feedback mechanisms:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Ratings, flags, inline edits used as signals.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-5\",{\"children\":[\"Pricing \u0026 packaging:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Free vs paid features, usage limits, AI add-ons.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-6\",{\"children\":[\"Adoption \u0026 impact metrics:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Usage, retention, time saved, revenue impact, quality.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"80:[\"$\",\"h3\",\"h3-12\",{\"children\":\"PM depth\"}]\n"])</script><script>self.__next_f.push([1,"81:[\"$\",\"ul\",\"ul-26\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":\"Be able to define:\"}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[[\"$\",\"strong\",\"strong-0\",{\"children\":\"Who\"}],\" the AI feature serves (persona).\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[[\"$\",\"strong\",\"strong-0\",{\"children\":\"What job\"}],\" it solves (JTBD).\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[[\"$\",\"strong\",\"strong-0\",{\"children\":\"Why AI\"}],\" is appropriate (flexible reasoning, working with messy input, automation).\"]}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":[[\"$\",\"strong\",\"strong-0\",{\"children\":\"How\"}],\" the interaction should feel (chatty, precise, background helper, etc.).\"]}],\"\\n\",[\"$\",\"li\",\"li-4\",{\"children\":[[\"$\",\"strong\",\"strong-0\",{\"children\":\"What metrics\"}],\" define success (e.g., time saved, reduced manual effort, higher completion rates).\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":\"Tie the underlying layers back to this:\"}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Why prompting and RAG choices support the UX.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Why orchestrations (chains/agents) are structured in a certain way.\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"How evaluation and guardrails protect users and the business.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"82:[\"$\",\"h3\",\"h3-13\",{\"children\":\"Suggested practice\"}]\n"])</script><script>self.__next_f.push([1,"83:[\"$\",\"ul\",\"ul-27\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"For each AI project or side project:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"Write a short “Product Notes” or mini-PRD including:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Problem and JTBD\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Target users\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"AI’s role (assistant, generator, summarizer, decision helper, etc.)\"}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":\"Chosen interaction pattern (form vs chat vs suggestions)\"}],\"\\n\",[\"$\",\"li\",\"li-4\",{\"children\":\"High-level design of how prompts + RAG + tools serve that UX\"}],\"\\n\",[\"$\",\"li\",\"li-5\",{\"children\":\"Success metrics and basic evaluation plan\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"84:[\"$\",\"hr\",\"hr-11\",{}]\n85:[\"$\",\"h2\",\"h2-6\",{\"children\":\"Recommended Learning Flow for PMs (Summary)\"}]\n"])</script><script>self.__next_f.push([1,"86:[\"$\",\"ol\",\"ol-1\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Models (Layer 2)\"}]}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Learn transformers, tokens, context windows, and model families.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Output: short explainer notes + one comparison table of a few model options.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Data \u0026 Knowledge (Layer 3)\"}]}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Go deep on prompting, context engineering, RAG, embeddings, and tools.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":[\"Output: a small working feature or side project (e.g., recipe assistant, support helper) with:\",\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"A designed system prompt,\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"A simple or moderate RAG setup,\"}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":\"Notes on how the KB and prompt are structured.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-2\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"App / Product (Layer 5)\"}]}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Wrap the feature in a clear product story: JTBD, UX, metrics.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Output: a mini-PRD or product notes, plus a simple UI that demonstrates the feature.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-3\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Orchestration (Layer 4)\"}]}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Describe the end-to-end flow as a chain; decide where agents might fit in the future; design a basic eval plan.\"}],\"\\n\",[\"$\",\"li\",\"li-1\",{\"children\":\"Output: a simple diagram / markdown of the flow and a small evaluation checklist.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\",[\"$\",\"li\",\"li-4\",{\"children\":[\"\\n\",[\"$\",\"p\",\"p-0\",{\"children\":[\"$\",\"strong\",\"strong-0\",{\"children\":\"Infra (Layer 1)\"}]}],\"\\n\",[\"$\",\"ul\",\"ul-0\",{\"children\":[\"\\n\",[\"$\",\"li\",\"li-0\",{\"children\":\"Maintain a high-level understanding of cost and latency constraints and how they influence model selection and UX, without needing deep systems knowledge.\"}],\"\\n\"]}],\"\\n\"]}],\"\\n\"]}]\n"])</script><script>self.__next_f.push([1,"87:[\"$\",\"p\",\"p-26\",{\"children\":[\"This 5-layer structure keeps the richness of the original 11-layer view but groups it into \",[\"$\",\"strong\",\"strong-0\",{\"children\":\"manageable “drawers”\"}],\" that align with how PMs actually work: from \",[\"$\",\"strong\",\"strong-1\",{\"children\":\"product\"}],\" down into \",[\"$\",\"strong\",\"strong-2\",{\"children\":\"data/knowledge and models\"}],\", wrapped by \",[\"$\",\"strong\",\"strong-3\",{\"children\":\"orchestration and infra constraints\"}],\".\"]}]\n"])</script><script>self.__next_f.push([1,"20:[[\"$\",\"meta\",\"0\",{\"charSet\":\"utf-8\"}],[\"$\",\"meta\",\"1\",{\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"}]]\n1c:null\n"])</script><script>self.__next_f.push([1,"1e:{\"metadata\":[[\"$\",\"title\",\"0\",{\"children\":\"harshc_ | Product \u0026 Growth\"}],[\"$\",\"meta\",\"1\",{\"name\":\"description\",\"content\":\"Product/Growth enthusiast and an amateur human figuring out both the world and the web.\"}]],\"error\":null,\"digest\":\"$undefined\"}\n"])</script><script>self.__next_f.push([1,"23:\"$1e:metadata\"\n"])</script></body></html>

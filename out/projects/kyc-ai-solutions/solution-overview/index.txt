@@ -1,0 +1,512 @@
+1:"$Sreact.fragment"
+2:I[20522,["2619","static/chunks/2619-04bc32f026a0d946.js","760","static/chunks/760-c78e84cfc696fc42.js","119","static/chunks/119-278ffde9ad5ee685.js","7177","static/chunks/app/layout-183ff81b9a1c27b1.js"],"AnimatedBackground"]
+3:I[44352,["2619","static/chunks/2619-04bc32f026a0d946.js","760","static/chunks/760-c78e84cfc696fc42.js","119","static/chunks/119-278ffde9ad5ee685.js","7177","static/chunks/app/layout-183ff81b9a1c27b1.js"],"Navigation"]
+4:I[9766,[],""]
+5:I[98924,[],""]
+18:I[57150,[],""]
+:HL["/_next/static/css/7c7dcc5da74f563b.css","style"]
+0:{"P":null,"b":"HGoUdIk8EXHBpT284nT1q","p":"","c":["","projects","kyc-ai-solutions","solution-overview",""],"i":false,"f":[[["",{"children":["projects",{"children":[["project","kyc-ai-solutions","d"],{"children":[["subpage","solution-overview","d"],{"children":["__PAGE__",{}]}]}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/7c7dcc5da74f563b.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"antialiased min-h-screen flex flex-col selection:bg-primary selection:text-primary-foreground","suppressHydrationWarning":true,"children":[["$","$L2",null,{}],["$","$L3",null,{}],["$","main",null,{"className":"flex-1 pt-32 pb-16 px-4 sm:px-6 md:px-12 max-w-3xl mx-auto w-full","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"w-full max-w-4xl mx-auto py-12 px-6 md:px-12 text-sm text-muted-foreground flex flex-col items-center space-y-8","children":[["$","div",null,{"className":"w-full flex justify-center overflow-hidden text-[#6b21a8] text-[10px] tracking-[0.5em] opacity-80","children":[["$","span","0",{"children":"•"}],["$","span","1",{"children":"•"}],["$","span","2",{"children":"•"}],["$","span","3",{"children":"•"}],["$","span","4",{"children":"•"}],["$","span","5",{"children":"•"}],["$","span","6",{"children":"•"}],["$","span","7",{"children":"•"}],["$","span","8",{"children":"•"}],["$","span","9",{"children":"•"}],["$","span","10",{"children":"•"}],["$","span","11",{"children":"•"}],["$","span","12",{"children":"•"}],["$","span","13",{"children":"•"}],["$","span","14",{"children":"•"}],["$","span","15",{"children":"•"}],["$","span","16",{"children":"•"}],["$","span","17",{"children":"•"}],["$","span","18",{"children":"•"}],["$","span","19",{"children":"•"}],["$","span","20",{"children":"•"}],["$","span","21",{"children":"•"}],["$","span","22",{"children":"•"}],["$","span","23",{"children":"•"}],["$","span","24",{"children":"•"}],["$","span","25",{"children":"•"}],["$","span","26",{"children":"•"}],["$","span","27",{"children":"•"}],["$","span","28",{"children":"•"}],["$","span","29",{"children":"•"}],["$","span","30",{"children":"•"}],["$","span","31",{"children":"•"}],["$","span","32",{"children":"•"}],["$","span","33",{"children":"•"}],["$","span","34",{"children":"•"}],["$","span","35",{"children":"•"}],["$","span","36",{"children":"•"}],["$","span","37",{"children":"•"}],["$","span","38",{"children":"•"}],["$","span","39",{"children":"•"}],["$","span","40",{"children":"•"}],["$","span","41",{"children":"•"}],["$","span","42",{"children":"•"}],["$","span","43",{"children":"•"}],["$","span","44",{"children":"•"}],["$","span","45",{"children":"•"}],["$","span","46",{"children":"•"}],["$","span","47",{"children":"•"}],["$","span","48",{"children":"•"}],["$","span","49",{"children":"•"}],["$","span","50",{"children":"•"}],["$","span","51",{"children":"•"}],["$","span","52",{"children":"•"}],["$","span","53",{"children":"•"}],["$","span","54",{"children":"•"}],["$","span","55",{"children":"•"}],["$","span","56",{"children":"•"}],["$","span","57",{"children":"•"}],["$","span","58",{"children":"•"}],["$","span","59",{"children":"•"}]]}],["$","div",null,{"className":"flex flex-wrap items-center justify-center gap-x-3 gap-y-4 text-center text-[#4b5563]","children":[["$","div",null,{"className":"flex items-center space-x-4 mr-2","children":[["$","a",null,{"href":"https://github.com","target":"_blank","rel":"noreferrer","className":"hover:text-foreground transition-colors","children":"$L6"}],"$L7","$L8","$L9","$La","$Lb","$Lc"]}],"$Ld","$Le","$Lf","$L10","$L11","$L12"]}]]}]]}]}]]}],{"children":["projects","$L13",{"children":[["project","kyc-ai-solutions","d"],"$L14",{"children":[["subpage","solution-overview","d"],"$L15",{"children":["__PAGE__","$L16",{},null,false]},null,false]},null,false]},null,false]},null,false],"$L17",false]],"m":"$undefined","G":["$18",[]],"s":false,"S":true}
+19:I[52619,["590","static/chunks/0dbeb660-9e82e99813552576.js","2619","static/chunks/2619-04bc32f026a0d946.js","1663","static/chunks/1663-eef6a54c38da0554.js","1356","static/chunks/1356-ffb62d74256664de.js","7555","static/chunks/app/projects/%5Bproject%5D/page-4eb2ff21eb168189.js"],""]
+1b:I[24431,[],"OutletBoundary"]
+1d:I[15278,[],"AsyncMetadataOutlet"]
+1f:I[24431,[],"ViewportBoundary"]
+21:I[24431,[],"MetadataBoundary"]
+22:"$Sreact.suspense"
+6:["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-github w-4 h-4","aria-hidden":"true","children":[["$","path","tonef",{"d":"M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"}],["$","path","9comsn",{"d":"M9 18c-4.51 2-5-2-7-2"}],"$undefined"]}]
+7:["$","span",null,{"className":"opacity-50","children":"|"}]
+8:["$","a",null,{"href":"https://twitter.com","target":"_blank","rel":"noreferrer","className":"hover:text-foreground transition-colors","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-twitter w-4 h-4","aria-hidden":"true","children":[["$","path","pff0z6",{"d":"M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"}],"$undefined"]}]}]
+9:["$","span",null,{"className":"opacity-50","children":"|"}]
+a:["$","a",null,{"href":"https://instagram.com","target":"_blank","rel":"noreferrer","className":"hover:text-foreground transition-colors","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-instagram w-4 h-4","aria-hidden":"true","children":[["$","rect","2e1cvw",{"width":"20","height":"20","x":"2","y":"2","rx":"5","ry":"5"}],["$","path","9exkf1",{"d":"M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"}],["$","line","r4j83e",{"x1":"17.5","x2":"17.51","y1":"6.5","y2":"6.5"}],"$undefined"]}]}]
+b:["$","span",null,{"className":"opacity-50","children":"|"}]
+c:["$","a",null,{"href":"#","className":"hover:text-foreground transition-colors","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-music w-4 h-4","aria-hidden":"true","children":[["$","path","1jmyc2",{"d":"M9 18V5l12-2v13"}],["$","circle","fqmcym",{"cx":"6","cy":"18","r":"3"}],["$","circle","1hluhg",{"cx":"18","cy":"16","r":"3"}],"$undefined"]}]}]
+d:["$","span",null,{"className":"hidden sm:inline opacity-50","children":"|"}]
+e:["$","span",null,{"className":"w-full sm:w-auto","children":"2025 © Harsh Chauhan"}]
+f:["$","span",null,{"className":"hidden sm:inline opacity-50","children":"|"}]
+10:["$","$L19",null,{"href":"/contact","className":"hover:text-foreground transition-colors border-b-2 border-[#166534] pb-0.5","children":"Contact"}]
+11:["$","span",null,{"className":"hidden sm:inline opacity-50","children":"|"}]
+12:["$","span",null,{"className":"w-full sm:w-auto","children":["This page visit emitted ",["$","span",null,{"className":"border-b-2 border-[#166534] pb-0.5","children":"0.04g of CO2"}]," :)"]}]
+13:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+14:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+15:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
+16:["$","$1","c",{"children":["$L1a",null,["$","$L1b",null,{"children":["$L1c",["$","$L1d",null,{"promise":"$@1e"}]]}]]}]
+17:["$","$1","h",{"children":[null,[["$","$L1f",null,{"children":"$L20"}],null],["$","$L21",null,{"children":["$","div",null,{"hidden":true,"children":["$","$22",null,{"fallback":null,"children":"$L23"}]}]}]]}]
+24:I[94032,["590","static/chunks/0dbeb660-9e82e99813552576.js","2619","static/chunks/2619-04bc32f026a0d946.js","1663","static/chunks/1663-eef6a54c38da0554.js","3757","static/chunks/app/projects/%5Bproject%5D/%5Bsubpage%5D/page-41304f4461fd411f.js"],"BackNavLink"]
+25:T91f,┌─────────────────────────────────────────────────────────────────────────────┐
+│                         WEALTHSIMPLE KYC PLATFORM                           │
+│                                                                             │
+│  USER SIDE                              COMPLIANCE SIDE                     │
+│  ┌──────────────────────────┐          ┌──────────────────────────────┐    │
+│  │   💡 KYC COPILOT         │          │  🔍 KYC REVIEW AGENT        │    │
+│  │                          │─────────▶│                              │    │
+│  │  Pre-validates BEFORE    │  Submit  │  Auto-reviews AFTER          │    │
+│  │  submission              │  only    │  submission                  │    │
+│  │                          │  valid   │                              │    │
+│  └──────────────────────────┘  docs    └──────────────────────────────┘    │
+│                                                                             │
+│  SHARED INFRASTRUCTURE                                                      │
+│  ┌───────────────────────────────────────────────────────────────────────┐  │
+│  │  Claude API (Anthropic) │ GCS │ Cloud SQL │ Memorystore │ Pub/Sub    │  │
+│  └───────────────────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────────────────┘
+1a:["$","article",null,{"className":"max-w-3xl mx-auto space-y-12","children":[["$","div",null,{"className":"space-y-8 border-b border-border pb-8","children":[["$","$L24",null,{"href":"/projects/kyc-ai-solutions","label":"Back to KYC AI Solutions"}],["$","div",null,{"className":"space-y-4","children":[["$","h1",null,{"className":"text-3xl md:text-5xl font-semibold tracking-tight","children":"Solution Overview"}],["$","p",null,{"className":"text-xl text-muted-foreground","children":"Full technical design for the two-system KYC solution and implementation plan."}]]}]]}],["$","div",null,{"className":"markdown-body","children":[["$","h1","h1-0",{"children":"KYC AI Solutions — Full Technical Design"}],"\n",["$","p","p-0",{"children":[["$","strong","strong-0",{"children":"Prepared for: Wealthsimple PM Role Application"}],["$","br","br-0",{}],"\n",["$","strong","strong-1",{"children":"Author: Sana Khan"}],["$","br","br-1",{}],"\n",["$","strong","strong-2",{"children":"Date: March 2026"}]]}],"\n",["$","hr","hr-0",{}],"\n",["$","h2","h2-0",{"children":"Background: The Real Problem"}],"\n",["$","p","p-1",{"children":["Between December 2024 and May 2025, I experienced ",["$","strong","strong-0",{"children":"4 KYC rejections"}]," with a Wealthsimple competitor (Questrade), each requiring 2-4 business days of waiting just to receive a rejection notice:"]}],"\n",["$","table","table-0",{"children":[["$","thead","thead-0",{"children":["$","tr","tr-0",{"children":[["$","th","th-0",{"children":"Date"}],["$","th","th-1",{"children":"Document"}],["$","th","th-2",{"children":"Rejection Reason"}]]}]}],["$","tbody","tbody-0",{"children":[["$","tr","tr-0",{"children":[["$","td","td-0",{"children":"Dec 19, 2024"}],["$","td","td-1",{"children":"W-8BEN"}],["$","td","td-2",{"children":"DOB doesn't match profile"}]]}],["$","tr","tr-1",{"children":[["$","td","td-0",{"children":"Jan 1, 2025"}],["$","td","td-1",{"children":"W-8BEN"}],["$","td","td-2",{"children":"Too blurry/unclear"}]]}],["$","tr","tr-2",{"children":[["$","td","td-0",{"children":"Apr 29, 2025"}],["$","td","td-1",{"children":"W-8BEN"}],["$","td","td-2",{"children":"Section 3 address mismatch + Section 9 country missing"}]]}],["$","tr","tr-3",{"children":[["$","td","td-0",{"children":"May 25, 2025"}],["$","td","td-1",{"children":"W-8BEN"}],["$","td","td-2",{"children":"Account number truncated"}]]}]]}]]}],"\n",["$","p","p-2",{"children":[["$","strong","strong-0",{"children":"Total wasted time:"}]," ~20 business days in waiting + multiple upload attempts.",["$","br","br-0",{}],"\n",["$","strong","strong-1",{"children":"Root cause:"}]," No pre-validation. No real-time feedback. No cross-validation with the user's profile.",["$","br","br-1",{}],"\n",["$","strong","strong-2",{"children":"Solution:"}]," Two complementary AI systems that fix this from both sides."]}],"\n",["$","hr","hr-1",{}],"\n",["$","h2","h2-1",{"children":"Solution Architecture Overview"}],"\n",["$","pre","pre-0",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{},"children":[{"type":"text","value":"$25"}],"position":{"start":{"line":27,"column":1,"offset":992},"end":{"line":45,"column":4,"offset":2350}}}],"position":{"start":{"line":27,"column":1,"offset":992},"end":{"line":45,"column":4,"offset":2350}}},"children":"$L26"}],"\n","$L27","\n","$L28","\n","$L29","\n","$L2a","\n","$L2b","\n","$L2c","\n","$L2d","\n","$L2e","\n","$L2f","\n","$L30","\n","$L31","\n","$L32","\n","$L33","\n","$L34","\n","$L35","\n","$L36","\n","$L37","\n","$L38","\n","$L39","\n","$L3a","\n","$L3b","\n","$L3c","\n","$L3d","\n","$L3e","\n","$L3f","\n","$L40","\n","$L41","\n","$L42","\n","$L43","\n","$L44","\n","$L45","\n","$L46","\n","$L47","\n","$L48","\n","$L49","\n","$L4a","\n","$L4b","\n","$L4c","\n","$L4d","\n","$L4e","\n","$L4f","\n","$L50","\n","$L51","\n","$L52","\n","$L53","\n","$L54","\n","$L55","\n","$L56","\n","$L57","\n","$L58","\n","$L59","\n","$L5a","\n","$L5b","\n","$L5c","\n","$L5d","\n","$L5e","\n","$L5f","\n","$L60","\n","$L61","\n","$L62","\n","$L63","\n","$L64","\n","$L65","\n","$L66","\n","$L67","\n","$L68"]}]]}]
+69:T91f,┌─────────────────────────────────────────────────────────────────────────────┐
+│                         WEALTHSIMPLE KYC PLATFORM                           │
+│                                                                             │
+│  USER SIDE                              COMPLIANCE SIDE                     │
+│  ┌──────────────────────────┐          ┌──────────────────────────────┐    │
+│  │   💡 KYC COPILOT         │          │  🔍 KYC REVIEW AGENT        │    │
+│  │                          │─────────▶│                              │    │
+│  │  Pre-validates BEFORE    │  Submit  │  Auto-reviews AFTER          │    │
+│  │  submission              │  only    │  submission                  │    │
+│  │                          │  valid   │                              │    │
+│  └──────────────────────────┘  docs    └──────────────────────────────┘    │
+│                                                                             │
+│  SHARED INFRASTRUCTURE                                                      │
+│  ┌───────────────────────────────────────────────────────────────────────┐  │
+│  │  Claude API (Anthropic) │ GCS │ Cloud SQL │ Memorystore │ Pub/Sub    │  │
+│  └───────────────────────────────────────────────────────────────────────┘  │
+└─────────────────────────────────────────────────────────────────────────────┘
+26:["$","code","code-0",{"children":"$69"}]
+27:["$","hr","hr-2",{}]
+28:["$","h2","h2-2",{"children":"KYC Copilot (User-Facing Validator)"}]
+29:["$","h3","h3-0",{"children":"What It Does"}]
+2a:["$","p","p-3",{"children":"Intercepts the document upload flow and validates documents in real-time before they are submitted to compliance review. The user gets a checklist of issues and specific suggestions — turning a multi-week back-and-forth into a 30-second fix."}]
+2b:["$","h3","h3-1",{"children":"Technical Architecture"}]
+6a:T4b7,User (Web/Mobile)
+      │ Upload document
+      ▼
+Cloud Load Balancer + Cloud Armor (WAF)
+      │
+      ▼
+Cloud Run (KYC Copilot API — fully managed, auto-scales to zero)
+      │
+      ├──▶ Image Quality Checker (OpenCV)
+      │      • Blur detection (Laplacian variance)
+      │      • Resolution check (≥800×600)
+      │      • File size check (>50KB)
+      │
+      └──▶ Claude Vision Analyzer
+             Document Type Handlers:
+             • W-8BEN Analyzer
+             • W-8BEN Tax Form Analyzer
+             • Financial Doc Analyzer
+             • Proof of Address
+
+             For each doc type:
+             1. OCR field extraction
+             2. Profile cross-validation
+             3. Completeness check
+             4. Regulatory compliance
+                    │
+                    ▼
+             ValidationResult
+             • passed: bool
+             • issues: [ValidationIssue]
+             • confidence_score: float
+             • extracted_fields: dict
+                    │
+                    ▼
+             User Checklist Report
+             ✅ OR ❌ + specific fixes
+             with suggestions per issue
+6b:T4b7,User (Web/Mobile)
+      │ Upload document
+      ▼
+Cloud Load Balancer + Cloud Armor (WAF)
+      │
+      ▼
+Cloud Run (KYC Copilot API — fully managed, auto-scales to zero)
+      │
+      ├──▶ Image Quality Checker (OpenCV)
+      │      • Blur detection (Laplacian variance)
+      │      • Resolution check (≥800×600)
+      │      • File size check (>50KB)
+      │
+      └──▶ Claude Vision Analyzer
+             Document Type Handlers:
+             • W-8BEN Analyzer
+             • W-8BEN Tax Form Analyzer
+             • Financial Doc Analyzer
+             • Proof of Address
+
+             For each doc type:
+             1. OCR field extraction
+             2. Profile cross-validation
+             3. Completeness check
+             4. Regulatory compliance
+                    │
+                    ▼
+             ValidationResult
+             • passed: bool
+             • issues: [ValidationIssue]
+             • confidence_score: float
+             • extracted_fields: dict
+                    │
+                    ▼
+             User Checklist Report
+             ✅ OR ❌ + specific fixes
+             with suggestions per issue
+2c:["$","pre","pre-1",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{},"children":[{"type":"text","value":"$6a"}],"position":{"start":{"line":56,"column":1,"offset":2685},"end":{"line":94,"column":4,"offset":3826}}}],"position":{"start":{"line":56,"column":1,"offset":2685},"end":{"line":94,"column":4,"offset":3826}}},"children":["$","code","code-0",{"children":"$6b"}]}]
+2d:["$","h3","h3-2",{"children":"Validation Pipeline (per document type)"}]
+2e:["$","h4","h4-0",{"children":"W-8BEN"}]
+2f:["$","pre","pre-2",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{},"children":[{"type":"text","value":"Step 1: OpenCV blur check (Laplacian variance > 100)\nStep 2: Resolution check (≥ 800×600 pixels)\nStep 3: Claude Vision → extract {name, DOB, address, expiry}\nStep 4: Cross-validate against user profile:\n        - Name match (fuzzy, handles \"Khan, Sana\" vs \"Sana Khan\")\n        - DOB exact match\n        - Address match (normalized)\nStep 5: Expiry date check (must be valid)\nStep 6: Return ValidationResult with specific flags\n"}],"position":{"start":{"line":99,"column":1,"offset":3885},"end":{"line":109,"column":4,"offset":4318}}}],"position":{"start":{"line":99,"column":1,"offset":3885},"end":{"line":109,"column":4,"offset":4318}}},"children":["$","code","code-0",{"children":"Step 1: OpenCV blur check (Laplacian variance > 100)\nStep 2: Resolution check (≥ 800×600 pixels)\nStep 3: Claude Vision → extract {name, DOB, address, expiry}\nStep 4: Cross-validate against user profile:\n        - Name match (fuzzy, handles \"Khan, Sana\" vs \"Sana Khan\")\n        - DOB exact match\n        - Address match (normalized)\nStep 5: Expiry date check (must be valid)\nStep 6: Return ValidationResult with specific flags\n"}]}]
+30:["$","h4","h4-1",{"children":"W-8BEN Tax Form"}]
+31:["$","pre","pre-3",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{},"children":[{"type":"text","value":"Step 1: Claude Vision → extract all Part I fields\nStep 2: Required field checklist:\n        - Section 1: Name ✓\n        - Section 2: Country of citizenship ✓\n        - Section 3: Permanent residence (NOT P.O. box) ✓\n        - Section 3: Address matches profile address ✓\n        - Section 6a/6b: FTIN or checkbox ✓\n        - Section 9 (Part II): Country of residence ✓\n        - Part III: Signature + date ✓\nStep 3: Flag all missing/mismatched fields\nStep 4: Return specific field-level errors with suggestions\n"}],"position":{"start":{"line":112,"column":1,"offset":4341},"end":{"line":124,"column":4,"offset":4859}}}],"position":{"start":{"line":112,"column":1,"offset":4341},"end":{"line":124,"column":4,"offset":4859}}},"children":["$","code","code-0",{"children":"Step 1: Claude Vision → extract all Part I fields\nStep 2: Required field checklist:\n        - Section 1: Name ✓\n        - Section 2: Country of citizenship ✓\n        - Section 3: Permanent residence (NOT P.O. box) ✓\n        - Section 3: Address matches profile address ✓\n        - Section 6a/6b: FTIN or checkbox ✓\n        - Section 9 (Part II): Country of residence ✓\n        - Part III: Signature + date ✓\nStep 3: Flag all missing/mismatched fields\nStep 4: Return specific field-level errors with suggestions\n"}]}]
+32:["$","h4","h4-2",{"children":"Bank Statement"}]
+33:["$","pre","pre-4",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{},"children":[{"type":"text","value":"Step 1: Claude Vision → extract {account_holder, account_number, bank, date, address}\nStep 2: Truncation check — is account number complete?\nStep 3: Date recency check — within 90 days?\nStep 4: Name and address match vs profile\nStep 5: Return flags with specific fix suggestions\n"}],"position":{"start":{"line":127,"column":1,"offset":4881},"end":{"line":133,"column":4,"offset":5167}}}],"position":{"start":{"line":127,"column":1,"offset":4881},"end":{"line":133,"column":4,"offset":5167}}},"children":["$","code","code-0",{"children":"Step 1: Claude Vision → extract {account_holder, account_number, bank, date, address}\nStep 2: Truncation check — is account number complete?\nStep 3: Date recency check — within 90 days?\nStep 4: Name and address match vs profile\nStep 5: Return flags with specific fix suggestions\n"}]}]
+34:["$","h3","h3-3",{"children":"Technology Stack"}]
+35:["$","table","table-1",{"children":[["$","thead","thead-0",{"children":["$","tr","tr-0",{"children":[["$","th","th-0",{"children":"Component"}],["$","th","th-1",{"children":"Technology"}],["$","th","th-2",{"children":"Why"}]]}]}],["$","tbody","tbody-0",{"children":[["$","tr","tr-0",{"children":[["$","td","td-0",{"children":"API Framework"}],["$","td","td-1",{"children":"FastAPI (Python) on Cloud Run"}],["$","td","td-2",{"children":"Serverless, auto-scaling, no cluster management"}]]}],["$","tr","tr-1",{"children":[["$","td","td-0",{"children":"AI/Vision"}],["$","td","td-1",{"children":"Claude claude-opus-4-5 Vision API"}],["$","td","td-2",{"children":"Best-in-class document understanding"}]]}],["$","tr","tr-2",{"children":[["$","td","td-0",{"children":"Image Processing"}],["$","td","td-1",{"children":"OpenCV (headless)"}],["$","td","td-2",{"children":"Fast local blur/resolution checks"}]]}],["$","tr","tr-3",{"children":[["$","td","td-0",{"children":"Cache"}],["$","td","td-1",{"children":"Memorystore for Redis"}],["$","td","td-2",{"children":"Managed Redis — cache repeat validations by file hash"}]]}],["$","tr","tr-4",{"children":[["$","td","td-0",{"children":"Storage"}],["$","td","td-1",{"children":"GCS (24h auto-delete lifecycle rule)"}],["$","td","td-2",{"children":"Temp storage, encrypted at rest"}]]}],["$","tr","tr-5",{"children":[["$","td","td-0",{"children":"Container"}],["$","td","td-1",{"children":"Cloud Run (fully managed)"}],["$","td","td-2",{"children":"Serverless scaling; no cluster overhead"}]]}],["$","tr","tr-6",{"children":[["$","td","td-0",{"children":"CDN"}],["$","td","td-1",{"children":"Cloud CDN"}],["$","td","td-2",{"children":"Fast uploads from anywhere"}]]}],["$","tr","tr-7",{"children":[["$","td","td-0",{"children":"Monitoring"}],["$","td","td-1",{"children":"Cloud Monitoring + Cloud Logging"}],["$","td","td-2",{"children":"Real-time error alerting"}]]}]]}]]}]
+36:["$","h3","h3-4",{"children":"API Endpoints"}]
+37:["$","pre","pre-5",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{},"children":[{"type":"text","value":"POST /validate\n  - multipart/form-data: file + document_type + user profile fields\n  - Returns: ValidationResult JSON + user_report string\n\nGET  /validation/{id}\n  - Returns: stored validation result\n\nGET  /analytics/summary\n  - Returns: most common pre-submission errors (product insights)\n\nGET  /document-types\n  - Returns: requirements per document type (for UI help text)\n"}],"position":{"start":{"line":150,"column":1,"offset":5927},"end":{"line":163,"column":4,"offset":6310}}}],"position":{"start":{"line":150,"column":1,"offset":5927},"end":{"line":163,"column":4,"offset":6310}}},"children":["$","code","code-0",{"children":"POST /validate\n  - multipart/form-data: file + document_type + user profile fields\n  - Returns: ValidationResult JSON + user_report string\n\nGET  /validation/{id}\n  - Returns: stored validation result\n\nGET  /analytics/summary\n  - Returns: most common pre-submission errors (product insights)\n\nGET  /document-types\n  - Returns: requirements per document type (for UI help text)\n"}]}]
+38:["$","h3","h3-5",{"children":"Data Flow Diagram"}]
+39:["$","pre","pre-6",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{},"children":[{"type":"text","value":"Browser/Mobile App\n       │\n       │ HTTPS POST multipart\n       ▼\nCloud Load Balancer + Cloud Armor (WAF)\n       │\n       ▼\nCloud Run (KYC Copilot API)\n       │\n       ├──▶ GCS: Upload temp file (encrypted, lifecycle TTL=24h, prefix: temp/)\n       │\n       ├──▶ Memorystore Redis: Check cache by SHA256(file) — return cached result if found\n       │\n       ├──▶ OpenCV: Local blur/resolution check (< 10ms)\n       │\n       └──▶ Anthropic API: Claude Vision analysis (2-8 seconds)\n                  │\n                  ▼\n           ValidationResult\n                  │\n                  ├──▶ Memorystore Redis: Cache result (TTL=1h)\n                  │\n                  └──▶ Response to client\n"}],"position":{"start":{"line":167,"column":1,"offset":6335},"end":{"line":191,"column":4,"offset":7037}}}],"position":{"start":{"line":167,"column":1,"offset":6335},"end":{"line":191,"column":4,"offset":7037}}},"children":["$","code","code-0",{"children":"Browser/Mobile App\n       │\n       │ HTTPS POST multipart\n       ▼\nCloud Load Balancer + Cloud Armor (WAF)\n       │\n       ▼\nCloud Run (KYC Copilot API)\n       │\n       ├──▶ GCS: Upload temp file (encrypted, lifecycle TTL=24h, prefix: temp/)\n       │\n       ├──▶ Memorystore Redis: Check cache by SHA256(file) — return cached result if found\n       │\n       ├──▶ OpenCV: Local blur/resolution check (< 10ms)\n       │\n       └──▶ Anthropic API: Claude Vision analysis (2-8 seconds)\n                  │\n                  ▼\n           ValidationResult\n                  │\n                  ├──▶ Memorystore Redis: Cache result (TTL=1h)\n                  │\n                  └──▶ Response to client\n"}]}]
+3a:["$","hr","hr-3",{}]
+3b:["$","h2","h2-3",{"children":"KYC Review Agent (Compliance Copilot)"}]
+3c:["$","h3","h3-6",{"children":"What It Does"}]
+3d:["$","p","p-4",{"children":"An internal AI tool for compliance teams. Every submitted document is automatically pre-reviewed by Claude before a human agent sees it. The agent receives a pre-filled packet: AI decision, confidence score, specific flag evidence, regulatory citations, and a draft rejection email. What took 12 minutes manually now takes 8 seconds."}]
+3e:["$","h3","h3-7",{"children":"Technical Architecture"}]
+6c:T11b1,Document Submission (from user or intake)
+           │
+           ▼
+    Cloud Pub/Sub Topic (decoupled intake)
+           │
+           ▼
+┌──────────────────────────────────────────────────────────────────┐
+│                     KYC Review Agent (Cloud Run)                 │
+│                                                                  │
+│  ┌────────────────────────────────────────────────────────── ┐   │
+│  │                   Claude Vision Review                    │   │
+│  │                                                           │   │
+│  │  Multi-criteria scoring:                                  │   │
+│  │  1. Image quality assessment                              │   │
+│  │  2. Data accuracy vs profile (name, DOB, address)         │   │
+│  │  3. Form completeness (per doc type)                      │   │
+│  │  4. Document validity (expiry, institution, date)         │   │
+│  │  5. Fraud indicator detection                             │   │
+│  │                                                           │   │
+│  │  Output: {decision, confidence, flags[], extracted_data}  │   │
+│  └─────────────────────────┬─────────────────────────────────┘   │
+│                             │                                    │
+│  ┌──────────────────────────▼────────────────────────────────┐  │
+│  │              Business Rule Engine                          │  │
+│  │                                                           │  │
+│  │  IF fraud_indicator AND confidence > 0.7:                 │  │
+│  │      → FRAUD_FLAG (Pub/Sub alert to compliance + legal)   │  │
+│  │  ELIF overall_confidence > 0.95 AND no_flags:             │  │
+│  │      → AUTO_APPROVE                                       │  │
+│  │  ELIF overall_confidence 0.70–0.95:                       │  │
+│  │      → RECOMMEND_APPROVE or RECOMMEND_REJECT              │  │
+│  │  ELIF overall_confidence < 0.50:                          │  │
+│  │      → ESCALATE (senior agent)                            │  │
+│  └─────────────────────────┬──────────────────────────────────┘  │
+│                             │                                    │
+│  ┌──────────────────────────▼────────────────────────────────┐  │
+│  │              ReviewPacket Assembly                         │  │
+│  │                                                           │  │
+│  │  • AI decision + confidence                               │  │
+│  │  • Per-flag: description, evidence, regulatory citation   │  │
+│  │  • Draft rejection email (agent reviews before sending)   │  │
+│  │  • Draft approval note                                    │  │
+│  │  • Extracted fields                                       │  │
+│  └─────────────────────────┬──────────────────────────────────┘  │
+└─────────────────────────────┼────────────────────────────────────┘
+                              │
+           ┌──────────────────┼──────────────────┐
+           ▼                  ▼                   ▼
+    Cloud SQL             Memorystore         Compliance
+    (audit trail)         WebSocket           Dashboard
+                          (real-time          (React)
+                           updates)
+3f:["$","pre","pre-7",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{},"children":[{"type":"text","value":"$6c"}],"position":{"start":{"line":202,"column":1,"offset":7466},"end":{"line":255,"column":4,"offset":10622}}}],"position":{"start":{"line":202,"column":1,"offset":7466},"end":{"line":255,"column":4,"offset":10622}}},"children":"$L6d"}]
+40:["$","h3","h3-8",{"children":"Decision Framework Detail"}]
+6e:T6fb,                     ┌──────────────────────────────┐
+                     │     AI Review Result          │
+                     └──────────────┬───────────────┘
+                                    │
+                    ┌───────────────▼──────────────────┐
+                    │  Any fraud_indicator flag         │
+                    │  with confidence > 70%?           │
+                    └──┬────────────────────────────────┘
+                       │ YES                   │ NO
+                       ▼                       ▼
+               FRAUD_FLAG              ┌───────────────────┐
+            (Pub/Sub alert             │ Confidence score? │
+             to legal)                 └──┬──────────────┬─┘
+                                          │              │
+                              < 50%       │              │ 50-70%
+                                ▼         │              ▼
+                           ESCALATE       │       RECOMMEND_REJECT
+                         (senior review)  │       (if error flags)
+                                          │
+                                        70-95%    > 95%
+                                          │         │
+                                          ▼         ▼
+                                RECOMMEND_APPROVE  AUTO_APPROVE
+                                (agent confirms)   (no human needed)
+6f:T6fb,                     ┌──────────────────────────────┐
+                     │     AI Review Result          │
+                     └──────────────┬───────────────┘
+                                    │
+                    ┌───────────────▼──────────────────┐
+                    │  Any fraud_indicator flag         │
+                    │  with confidence > 70%?           │
+                    └──┬────────────────────────────────┘
+                       │ YES                   │ NO
+                       ▼                       ▼
+               FRAUD_FLAG              ┌───────────────────┐
+            (Pub/Sub alert             │ Confidence score? │
+             to legal)                 └──┬──────────────┬─┘
+                                          │              │
+                              < 50%       │              │ 50-70%
+                                ▼         │              ▼
+                           ESCALATE       │       RECOMMEND_REJECT
+                         (senior review)  │       (if error flags)
+                                          │
+                                        70-95%    > 95%
+                                          │         │
+                                          ▼         ▼
+                                RECOMMEND_APPROVE  AUTO_APPROVE
+                                (agent confirms)   (no human needed)
+41:["$","pre","pre-8",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{},"children":[{"type":"text","value":"$6e"}],"position":{"start":{"line":259,"column":1,"offset":10655},"end":{"line":284,"column":4,"offset":12037}}}],"position":{"start":{"line":259,"column":1,"offset":10655},"end":{"line":284,"column":4,"offset":12037}}},"children":["$","code","code-0",{"children":"$6f"}]}]
+42:["$","h3","h3-9",{"children":"Compliance Agent Dashboard"}]
+43:["$","pre","pre-9",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{},"children":[{"type":"text","value":"┌─────────────────────────────────────────────────────────────────────┐\n│  KYC Review Queue                               [Filter ▾] [Export] │\n├──────┬─────────────┬──────────────┬────────┬────────────┬───────────┤\n│  ID  │ Applicant   │ Document     │ AI Dec │ Confidence │ Flags     │\n├──────┼─────────────┼──────────────┼────────┼────────────┼───────────┤\n│ 001  │ John Smith  │ W-8BEN       │ 🟠 REJ │ 88%        │ 2 errors  │\n│ 002  │ Jane Doe    │ W-8BEN       │ 🟢 APP │ 97%        │ 0         │\n│ 003  │ Bob Lee     │ W-8BEN       │ 🔴 ESC │ 42%        │ 3 errors  │\n│ 004  │ Sara K      │ W-8BEN       │ 🔴 FRD │ 91%        │ 1 fraud   │\n├──────┴─────────────┴──────────────┴────────┴────────────┴───────────┤\n│                                                                     │\n│  [Click row to expand: flags detail + draft email + approve/reject] │\n└─────────────────────────────────────────────────────────────────────┘\n"}],"position":{"start":{"line":288,"column":1,"offset":12071},"end":{"line":302,"column":4,"offset":13014}}}],"position":{"start":{"line":288,"column":1,"offset":12071},"end":{"line":302,"column":4,"offset":13014}}},"children":["$","code","code-0",{"children":"┌─────────────────────────────────────────────────────────────────────┐\n│  KYC Review Queue                               [Filter ▾] [Export] │\n├──────┬─────────────┬──────────────┬────────┬────────────┬───────────┤\n│  ID  │ Applicant   │ Document     │ AI Dec │ Confidence │ Flags     │\n├──────┼─────────────┼──────────────┼────────┼────────────┼───────────┤\n│ 001  │ John Smith  │ W-8BEN       │ 🟠 REJ │ 88%        │ 2 errors  │\n│ 002  │ Jane Doe    │ W-8BEN       │ 🟢 APP │ 97%        │ 0         │\n│ 003  │ Bob Lee     │ W-8BEN       │ 🔴 ESC │ 42%        │ 3 errors  │\n│ 004  │ Sara K      │ W-8BEN       │ 🔴 FRD │ 91%        │ 1 fraud   │\n├──────┴─────────────┴──────────────┴────────┴────────────┴───────────┤\n│                                                                     │\n│  [Click row to expand: flags detail + draft email + approve/reject] │\n└─────────────────────────────────────────────────────────────────────┘\n"}]}]
+44:["$","h3","h3-10",{"children":"Technology Stack"}]
+45:["$","table","table-2",{"children":[["$","thead","thead-0",{"children":["$","tr","tr-0",{"children":[["$","th","th-0",{"children":"Component"}],["$","th","th-1",{"children":"Technology"}],["$","th","th-2",{"children":"Why"}]]}]}],["$","tbody","tbody-0",{"children":[["$","tr","tr-0",{"children":[["$","td","td-0",{"children":"AI/Vision"}],["$","td","td-1",{"children":"Claude claude-opus-4-5 Vision API"}],["$","td","td-2",{"children":"Best document analysis + long context"}]]}],["$","tr","tr-1",{"children":[["$","td","td-0",{"children":"Queue"}],["$","td","td-1",{"children":"Google Cloud Pub/Sub"}],["$","td","td-2",{"children":"Decoupled async review at scale; built-in DLQ"}]]}],["$","tr","tr-2",{"children":[["$","td","td-0",{"children":"Database"}],["$","td","td-1",{"children":"Cloud SQL for PostgreSQL"}],["$","td","td-2",{"children":"Managed audit trail; automated backups"}]]}],["$","tr","tr-3",{"children":[["$","td","td-0",{"children":"Cache/Realtime"}],["$","td","td-1",{"children":"Memorystore Redis + WebSocket"}],["$","td","td-2",{"children":"Live dashboard updates"}]]}],["$","tr","tr-4",{"children":[["$","td","td-0",{"children":"Alerts"}],["$","td","td-1",{"children":"Pub/Sub + Cloud Functions"}],["$","td","td-2",{"children":"Fraud alerts to legal/compliance"}]]}],["$","tr","tr-5",{"children":[["$","td","td-0",{"children":"Dashboard"}],["$","td","td-1",{"children":"React + shadcn/ui on Cloud Run"}],["$","td","td-2",{"children":"Internal compliance agent UI"}]]}],["$","tr","tr-6",{"children":[["$","td","td-0",{"children":"Storage"}],["$","td","td-1",{"children":"GCS (90-day retention policy)"}],["$","td","td-2",{"children":"Document archive per regulation"}]]}],["$","tr","tr-7",{"children":[["$","td","td-0",{"children":"Monitoring"}],["$","td","td-1",{"children":"Cloud Monitoring + PagerDuty"}],["$","td","td-2",{"children":"SLA alerting"}]]}]]}]]}]
+46:["$","hr","hr-4",{}]
+47:["$","h2","h2-4",{"children":"Infrastructure — GCP Architecture"}]
+70:T86c,                          ┌──────────────────────────────────────────┐
+                          │           Google Cloud Project            │
+                          │                                          │
+           Users ────────▶│  Cloud Load Balancer + Cloud Armor (WAF)│
+                          │       │                                  │
+                          │  Cloud Endpoints / API Gateway           │
+                          │    ├── /validate ──▶ Cloud Run           │
+                          │    │               (KYC Copilot)         │
+                          │    └── /review ───▶ Pub/Sub ──▶ Cloud Run│
+                          │                            (Review Agent)│
+                          │                                          │
+                          │  Shared Services:                        │
+                          │    ├── GCS (document storage)            │
+                          │    ├── Memorystore Redis                 │
+                          │    ├── Cloud SQL (PostgreSQL)            │
+                          │    ├── Pub/Sub (fraud alerts)            │
+                          │    ├── Cloud Monitoring + Logging        │
+                          │    └── Secret Manager (API keys)         │
+                          │                                          │
+                          │  Security:                               │
+                          │    ├── VPC + Private Service Connect     │
+                          │    ├── CMEK encryption at rest (Cloud KMS│
+                          │    ├── TLS 1.3 in transit               │
+                          │    └── IAM roles (least privilege)       │
+                          └──────────────────────────────────────────┘
+71:T86c,                          ┌──────────────────────────────────────────┐
+                          │           Google Cloud Project            │
+                          │                                          │
+           Users ────────▶│  Cloud Load Balancer + Cloud Armor (WAF)│
+                          │       │                                  │
+                          │  Cloud Endpoints / API Gateway           │
+                          │    ├── /validate ──▶ Cloud Run           │
+                          │    │               (KYC Copilot)         │
+                          │    └── /review ───▶ Pub/Sub ──▶ Cloud Run│
+                          │                            (Review Agent)│
+                          │                                          │
+                          │  Shared Services:                        │
+                          │    ├── GCS (document storage)            │
+                          │    ├── Memorystore Redis                 │
+                          │    ├── Cloud SQL (PostgreSQL)            │
+                          │    ├── Pub/Sub (fraud alerts)            │
+                          │    ├── Cloud Monitoring + Logging        │
+                          │    └── Secret Manager (API keys)         │
+                          │                                          │
+                          │  Security:                               │
+                          │    ├── VPC + Private Service Connect     │
+                          │    ├── CMEK encryption at rest (Cloud KMS│
+                          │    ├── TLS 1.3 in transit               │
+                          │    └── IAM roles (least privilege)       │
+                          └──────────────────────────────────────────┘
+48:["$","pre","pre-10",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{},"children":[{"type":"text","value":"$70"}],"position":{"start":{"line":321,"column":1,"offset":13766},"end":{"line":347,"column":4,"offset":15547}}}],"position":{"start":{"line":321,"column":1,"offset":13766},"end":{"line":347,"column":4,"offset":15547}}},"children":["$","code","code-0",{"children":"$71"}]}]
+49:["$","h2","h2-5",{"children":"Terraform Infrastructure (Key Resources)"}]
+72:T5d0,# Cloud Run service for KYC Copilot
+resource "google_cloud_run_v2_service" "kyc_copilot" {
+  name     = "kyc-copilot"
+  location = "northamerica-northeast1"  # Toronto region
+
+  template {
+    containers {
+      image = "northamerica-northeast1-docker.pkg.dev/${var.project}/kyc/copilot:latest"
+      resources { limits = { cpu = "1", memory = "2Gi" } }
+      env { name = "REDIS_HOST" value = google_redis_instance.cache.host }
+      env {
+        name = "ANTHROPIC_API_KEY"
+        value_source {
+          secret_key_ref {
+            secret  = google_secret_manager_secret.anthropic.secret_id
+            version = "latest"
+          }
+        }
+      }
+    }
+    scaling { min_instance_count = 0  max_instance_count = 10 }
+  }
+}
+
+# GCS with lifecycle policy (auto-delete temp documents after 24h)
+resource "google_storage_bucket" "kyc_documents" {
+  name     = "${var.project}-kyc-docs"
+  location = "northamerica-northeast1"
+
+  lifecycle_rule {
+    condition { age = 1  matches_prefix = ["temp/"] }
+    action    { type = "Delete" }
+  }
+  lifecycle_rule {
+    condition { age = 90  matches_prefix = ["reviewed/"] }
+    action    { type = "Delete" }  # FINTRAC requires 5-year retention in production
+  }
+
+  encryption { default_kms_key_name = google_kms_crypto_key.kyc.id }
+}
+
+# Memorystore (managed Redis)
+resource "google_redis_instance" "cache" {
+  name           = "kyc-cache"
+  tier           = "STANDARD_HA"
+  memory_size_gb = 1
+  region         = "northamerica-northeast1"
+}
+73:T5d0,# Cloud Run service for KYC Copilot
+resource "google_cloud_run_v2_service" "kyc_copilot" {
+  name     = "kyc-copilot"
+  location = "northamerica-northeast1"  # Toronto region
+
+  template {
+    containers {
+      image = "northamerica-northeast1-docker.pkg.dev/${var.project}/kyc/copilot:latest"
+      resources { limits = { cpu = "1", memory = "2Gi" } }
+      env { name = "REDIS_HOST" value = google_redis_instance.cache.host }
+      env {
+        name = "ANTHROPIC_API_KEY"
+        value_source {
+          secret_key_ref {
+            secret  = google_secret_manager_secret.anthropic.secret_id
+            version = "latest"
+          }
+        }
+      }
+    }
+    scaling { min_instance_count = 0  max_instance_count = 10 }
+  }
+}
+
+# GCS with lifecycle policy (auto-delete temp documents after 24h)
+resource "google_storage_bucket" "kyc_documents" {
+  name     = "${var.project}-kyc-docs"
+  location = "northamerica-northeast1"
+
+  lifecycle_rule {
+    condition { age = 1  matches_prefix = ["temp/"] }
+    action    { type = "Delete" }
+  }
+  lifecycle_rule {
+    condition { age = 90  matches_prefix = ["reviewed/"] }
+    action    { type = "Delete" }  # FINTRAC requires 5-year retention in production
+  }
+
+  encryption { default_kms_key_name = google_kms_crypto_key.kyc.id }
+}
+
+# Memorystore (managed Redis)
+resource "google_redis_instance" "cache" {
+  name           = "kyc-cache"
+  tier           = "STANDARD_HA"
+  memory_size_gb = 1
+  region         = "northamerica-northeast1"
+}
+4a:["$","pre","pre-11",{"node":{"type":"element","tagName":"pre","properties":{},"children":[{"type":"element","tagName":"code","properties":{"className":["language-hcl"]},"children":[{"type":"text","value":"$72"}],"position":{"start":{"line":351,"column":1,"offset":15594},"end":{"line":400,"column":4,"offset":17092}}}],"position":{"start":{"line":351,"column":1,"offset":15594},"end":{"line":400,"column":4,"offset":17092}}},"children":["$","code","code-0",{"className":"language-hcl","children":"$73"}]}]
+4b:["$","hr","hr-5",{}]
+4c:["$","h2","h2-6",{"children":"Cost Analysis"}]
+4d:["$","h3","h3-11",{"children":"KYC Copilot — Monthly GCP Costs"}]
+4e:["$","h4","h4-3",{"children":"Tier 1: Startup (10K validations/month)"}]
+4f:["$","table","table-3",{"children":[["$","thead","thead-0",{"children":["$","tr","tr-0",{"children":[["$","th","th-0",{"children":"Service"}],["$","th","th-1",{"children":"Config"}],["$","th","th-2",{"children":"Monthly Cost"}]]}]}],["$","tbody","tbody-0",{"children":[["$","tr","tr-0",{"children":[["$","td","td-0",{"children":"Cloud Run"}],["$","td","td-1",{"children":"1 vCPU, 2GB, ~10K requests (pay-per-use)"}],["$","td","td-2",{"children":"$$8.20"}]]}],["$","tr","tr-1",{"children":[["$","td","td-0",{"children":"Claude API"}],["$","td","td-1",{"children":"claude-opus-4-5, ~1.5K tokens/call × 10K"}],["$","td","td-2",{"children":"$$150.00"}]]}],["$","tr","tr-2",{"children":[["$","td","td-0",{"children":"GCS (temp storage, 24h TTL)"}],["$","td","td-1",{"children":"~5GB average"}],["$","td","td-2",{"children":"$$0.10"}]]}],["$","tr","tr-3",{"children":[["$","td","td-0",{"children":"Memorystore Redis"}],["$","td","td-1",{"children":"BASIC tier, 1GB"}],["$","td","td-2",{"children":"$$29.20"}]]}],["$","tr","tr-4",{"children":[["$","td","td-0",{"children":"Cloud Load Balancer"}],["$","td","td-1",{"children":"Minimal forwarding rules"}],["$","td","td-2",{"children":"$$18.00"}]]}],["$","tr","tr-5",{"children":[["$","td","td-0",{"children":"Cloud Monitoring"}],["$","td","td-1",{"children":"Basic logs and metrics"}],["$","td","td-2",{"children":"$$2.50"}]]}],["$","tr","tr-6",{"children":[["$","td","td-0",{"children":"Network Egress"}],["$","td","td-1",{"children":"~50GB out"}],["$","td","td-2",{"children":"$$5.00"}]]}],["$","tr","tr-7",{"children":[["$","td","td-0",{"children":["$","strong","strong-0",{"children":"Total"}]}],["$","td","td-1",{}],["$","td","td-2",{"children":["$","strong","strong-0",{"children":"~$213/month"}]}]]}],["$","tr","tr-8",{"children":[["$","td","td-0",{"children":["$","strong","strong-0",{"children":"Cost per validation"}]}],["$","td","td-1",{}],["$","td","td-2",{"children":["$","strong","strong-0",{"children":"$$0.021"}]}]]}]]}]]}]
+50:["$","h4","h4-4",{"children":"Tier 2: Scale (100K validations/month)"}]
+51:["$","table","table-4",{"children":[["$","thead","thead-0",{"children":["$","tr","tr-0",{"children":[["$","th","th-0",{"children":"Service"}],["$","th","th-1",{"children":"Config"}],["$","th","th-2",{"children":"Monthly Cost"}]]}]}],["$","tbody","tbody-0",{"children":[["$","tr","tr-0",{"children":[["$","td","td-0",{"children":"Cloud Run"}],["$","td","td-1",{"children":"Auto-scales; ~100K requests"}],["$","td","td-2",{"children":"$$45.00"}]]}],["$","tr","tr-1",{"children":[["$","td","td-0",{"children":"Claude API"}],["$","td","td-1",{"children":"claude-opus-4-5, ~1.5K tokens/call × 100K"}],["$","td","td-2",{"children":"$$1,500.00"}]]}],["$","tr","tr-2",{"children":[["$","td","td-0",{"children":"GCS"}],["$","td","td-1",{"children":"~50GB average"}],["$","td","td-2",{"children":"$$1.00"}]]}],["$","tr","tr-3",{"children":[["$","td","td-0",{"children":"Memorystore Redis"}],["$","td","td-1",{"children":"STANDARD_HA, 2GB"}],["$","td","td-2",{"children":"$$87.60"}]]}],["$","tr","tr-4",{"children":[["$","td","td-0",{"children":"Cloud Load Balancer"}],["$","td","td-1",{"children":"Production config"}],["$","td","td-2",{"children":"$$18.00"}]]}],["$","tr","tr-5",{"children":[["$","td","td-0",{"children":"Cloud Monitoring + Logging"}],["$","td","td-1",{"children":"Enhanced observability"}],["$","td","td-2",{"children":"$$40.00"}]]}],["$","tr","tr-6",{"children":[["$","td","td-0",{"children":"Network Egress"}],["$","td","td-1",{"children":"~500GB out"}],["$","td","td-2",{"children":"$$50.00"}]]}],["$","tr","tr-7",{"children":[["$","td","td-0",{"children":["$","strong","strong-0",{"children":"Total"}]}],["$","td","td-1",{}],["$","td","td-2",{"children":["$","strong","strong-0",{"children":"~$1,742/month"}]}]]}],["$","tr","tr-8",{"children":[["$","td","td-0",{"children":["$","strong","strong-0",{"children":"Cost per validation"}]}],["$","td","td-1",{}],["$","td","td-2",{"children":["$","strong","strong-0",{"children":"$$0.017"}]}]]}]]}]]}]
+52:["$","p","p-5",{"children":[["$","strong","strong-0",{"children":"Cost optimization:"}]," Use claude-haiku-4-5 for image quality pre-screening ($0.25/M tokens vs $15/M), only escalate to claude-opus-4-5 if image passes basic checks. Estimated ",["$","strong","strong-1",{"children":"40% cost reduction"}]," at scale."]}]
+53:["$","hr","hr-6",{}]
+54:["$","h3","h3-12",{"children":"KYC Review Agent — Monthly GCP Costs"}]
+55:["$","h4","h4-5",{"children":"Tier 1: Small Team (5K reviews/month)"}]
+56:["$","table","table-5",{"children":[["$","thead","thead-0",{"children":["$","tr","tr-0",{"children":[["$","th","th-0",{"children":"Service"}],["$","th","th-1",{"children":"Config"}],["$","th","th-2",{"children":"Monthly Cost"}]]}]}],["$","tbody","tbody-0",{"children":[["$","tr","tr-0",{"children":[["$","td","td-0",{"children":"Cloud Run"}],["$","td","td-1",{"children":"2 vCPU, 4GB, ~5K requests"}],["$","td","td-2",{"children":"$$14.00"}]]}],["$","tr","tr-1",{"children":[["$","td","td-0",{"children":"Claude API"}],["$","td","td-1",{"children":"claude-opus-4-5, ~2K tokens/review × 5K"}],["$","td","td-2",{"children":"$$375.00"}]]}],["$","tr","tr-2",{"children":[["$","td","td-0",{"children":"Cloud SQL (PostgreSQL)"}],["$","td","td-1",{"children":"db-f1-micro (audit trail)"}],["$","td","td-2",{"children":"$$9.37"}]]}],["$","tr","tr-3",{"children":[["$","td","td-0",{"children":"Memorystore Redis"}],["$","td","td-1",{"children":"BASIC, 1GB"}],["$","td","td-2",{"children":"$$29.20"}]]}],["$","tr","tr-4",{"children":[["$","td","td-0",{"children":"Pub/Sub"}],["$","td","td-1",{"children":"5K messages"}],["$","td","td-2",{"children":"$$0.01"}]]}],["$","tr","tr-5",{"children":[["$","td","td-0",{"children":"Cloud Functions (alerts)"}],["$","td","td-1",{"children":"5K invocations"}],["$","td","td-2",{"children":"$$0.01"}]]}],["$","tr","tr-6",{"children":[["$","td","td-0",{"children":"GCS (90-day doc archive)"}],["$","td","td-1",{"children":"~25GB"}],["$","td","td-2",{"children":"$$0.50"}]]}],["$","tr","tr-7",{"children":[["$","td","td-0",{"children":"Cloud Monitoring"}],["$","td","td-1",{"children":"Basic"}],["$","td","td-2",{"children":"$$5.00"}]]}],["$","tr","tr-8",{"children":[["$","td","td-0",{"children":["$","strong","strong-0",{"children":"Total"}]}],["$","td","td-1",{}],["$","td","td-2",{"children":["$","strong","strong-0",{"children":"~$433/month"}]}]]}],["$","tr","tr-9",{"children":[["$","td","td-0",{"children":["$","strong","strong-0",{"children":"Cost per review"}]}],["$","td","td-1",{}],["$","td","td-2",{"children":["$","strong","strong-0",{"children":"$$0.087"}]}]]}],["$","tr","tr-10",{"children":[["$","td","td-0",{"children":[["$","strong","strong-0",{"children":"vs Manual"}]," (~$4/review, 12 min @ $20/hr)"]}],["$","td","td-1",{}],["$","td","td-2",{"children":["$","strong","strong-0",{"children":"97.8% cheaper"}]}]]}]]}]]}]
+57:["$","h4","h4-6",{"children":"Tier 2: Enterprise (50K reviews/month)"}]
+58:["$","table","table-6",{"children":[["$","thead","thead-0",{"children":["$","tr","tr-0",{"children":[["$","th","th-0",{"children":"Service"}],["$","th","th-1",{"children":"Config"}],["$","th","th-2",{"children":"Monthly Cost"}]]}]}],["$","tbody","tbody-0",{"children":[["$","tr","tr-0",{"children":[["$","td","td-0",{"children":"Cloud Run"}],["$","td","td-1",{"children":"4 vCPU, 8GB, ~50K requests (auto-scale)"}],["$","td","td-2",{"children":"$$180.00"}]]}],["$","tr","tr-1",{"children":[["$","td","td-0",{"children":"Claude API"}],["$","td","td-1",{"children":"claude-opus-4-5, ~2K tokens × 50K"}],["$","td","td-2",{"children":"$$3,750.00"}]]}],["$","tr","tr-2",{"children":[["$","td","td-0",{"children":"Cloud SQL (PostgreSQL)"}],["$","td","td-1",{"children":"db-n1-standard-2 (HA, Multi-zone)"}],["$","td","td-2",{"children":"$$150.00"}]]}],["$","tr","tr-3",{"children":[["$","td","td-0",{"children":"Memorystore Redis"}],["$","td","td-1",{"children":"STANDARD_HA, 4GB"}],["$","td","td-2",{"children":"$$175.00"}]]}],["$","tr","tr-4",{"children":[["$","td","td-0",{"children":"Pub/Sub + DLQ"}],["$","td","td-1",{"children":"50K messages"}],["$","td","td-2",{"children":"$$0.03"}]]}],["$","tr","tr-5",{"children":[["$","td","td-0",{"children":"Cloud Functions"}],["$","td","td-1",{"children":"Fraud alert fan-out"}],["$","td","td-2",{"children":"$$0.10"}]]}],["$","tr","tr-6",{"children":[["$","td","td-0",{"children":"GCS"}],["$","td","td-1",{"children":"~250GB"}],["$","td","td-2",{"children":"$$5.00"}]]}],["$","tr","tr-7",{"children":[["$","td","td-0",{"children":"Cloud Monitoring + PagerDuty"}],["$","td","td-1",{"children":"Production monitoring"}],["$","td","td-2",{"children":"$$60.00"}]]}],["$","tr","tr-8",{"children":[["$","td","td-0",{"children":["$","strong","strong-0",{"children":"Total"}]}],["$","td","td-1",{}],["$","td","td-2",{"children":["$","strong","strong-0",{"children":"~$4,320/month"}]}]]}],["$","tr","tr-9",{"children":[["$","td","td-0",{"children":["$","strong","strong-0",{"children":"Cost per review"}]}],["$","td","td-1",{}],["$","td","td-2",{"children":["$","strong","strong-0",{"children":"$$0.086"}]}]]}],["$","tr","tr-10",{"children":[["$","td","td-0",{"children":[["$","strong","strong-0",{"children":"Manual cost"}]," (50K × $4)"]}],["$","td","td-1",{}],["$","td","td-2",{"children":["$","strong","strong-0",{"children":"$$200,000/month"}]}]]}],["$","tr","tr-11",{"children":[["$","td","td-0",{"children":["$","strong","strong-0",{"children":"Annual savings"}]}],["$","td","td-1",{}],["$","td","td-2",{"children":["$","strong","strong-0",{"children":"$$2.35M/year"}]}]]}]]}]]}]
+59:["$","hr","hr-7",{}]
+5a:["$","h2","h2-7",{"children":"Human-in-the-Loop Design"}]
+5b:["$","p","p-6",{"children":"Both systems are designed with clear human oversight boundaries — critical for regulated financial services:"}]
+5c:["$","h3","h3-13",{"children":"KYC Copilot (User-facing)"}]
+5d:["$","ul","ul-0",{"children":["\n",["$","li","li-0",{"children":[["$","strong","strong-0",{"children":"AI decides:"}]," Whether issues exist and what they are"]}],"\n",["$","li","li-1",{"children":[["$","strong","strong-0",{"children":"Human decides:"}]," Whether to resubmit or proceed"]}],"\n",["$","li","li-2",{"children":[["$","strong","strong-0",{"children":"Hard rule:"}]," Never blocks submission — user always has final say"]}],"\n",["$","li","li-3",{"children":[["$","strong","strong-0",{"children":"Escalation:"}]," Low-confidence detections show \"advisory\" warnings, not hard blocks"]}],"\n"]}]
+5e:["$","h3","h3-14",{"children":"KYC Review Agent (Compliance-facing)"}]
+5f:["$","ul","ul-1",{"children":["\n",["$","li","li-0",{"children":[["$","strong","strong-0",{"children":"AI decides:"}]," Pre-assessment, confidence score, flag evidence"]}],"\n",["$","li","li-1",{"children":[["$","strong","strong-0",{"children":"Human decides:"}]," Final approval/rejection (except AUTO_APPROVE < 5% of cases)"]}],"\n",["$","li","li-2",{"children":[["$","strong","strong-0",{"children":"Hard rules:"}],"\n",["$","ul","ul-0",{"children":["\n",["$","li","li-0",{"children":"Fraud flags always require human + legal review"}],"\n",["$","li","li-1",{"children":"Auto-approve only at >95% confidence with zero flags"}],"\n",["$","li","li-2",{"children":"All AI decisions are logged with model version, confidence, and evidence"}],"\n",["$","li","li-3",{"children":"Human can override any AI decision"}],"\n",["$","li","li-4",{"children":"Appeals always go to human senior agent"}],"\n"]}],"\n"]}],"\n"]}]
+60:["$","h3","h3-15",{"children":"What Could Break at Scale"}]
+61:["$","table","table-7",{"children":[["$","thead","thead-0",{"children":["$","tr","tr-0",{"children":[["$","th","th-0",{"children":"Risk"}],["$","th","th-1",{"children":"Mitigation"}]]}]}],["$","tbody","tbody-0",{"children":[["$","tr","tr-0",{"children":[["$","td","td-0",{"children":"Model drift (new ID formats)"}],["$","td","td-1",{"children":"Monthly evals against rejection ground truth"}]]}],["$","tr","tr-1",{"children":[["$","td","td-0",{"children":"Adversarial document fraud"}],["$","td","td-1",{"children":"Separate fraud detection layer + human escalation"}]]}],["$","tr","tr-2",{"children":[["$","td","td-0",{"children":"Regulatory changes (FINTRAC/OSC)"}],["$","td","td-1",{"children":"Compliance team reviews rules quarterly, prompts updated"}]]}],["$","tr","tr-3",{"children":[["$","td","td-0",{"children":"API latency spikes"}],["$","td","td-1",{"children":"Async Pub/Sub queue buffers load; Memorystore cache reduces repeat calls"}]]}],["$","tr","tr-4",{"children":[["$","td","td-0",{"children":"False positives (rejecting valid docs)"}],["$","td","td-1",{"children":"Confidence thresholds tuned; human override always available"}]]}],["$","tr","tr-5",{"children":[["$","td","td-0",{"children":"Data privacy (PII in documents)"}],["$","td","td-1",{"children":"No PII stored beyond 24h; all data encrypted with Cloud KMS; audit logs"}]]}]]}]]}]
+62:["$","hr","hr-8",{}]
+63:["$","h2","h2-8",{"children":"Regulatory & Compliance Considerations"}]
+64:["$","ul","ul-2",{"children":["\n",["$","li","li-0",{"children":[["$","strong","strong-0",{"children":"FINTRAC PCMLTFR:"}]," KYC documents must be verified for Canadian AML compliance"]}],"\n",["$","li","li-1",{"children":[["$","strong","strong-0",{"children":"OSC regulations:"}]," Margin account verification requirements"]}],"\n",["$","li","li-2",{"children":[["$","strong","strong-0",{"children":"PIPEDA/Bill C-27:"}]," Canadian privacy law — documents stored encrypted, deleted per GCS lifecycle policy"]}],"\n",["$","li","li-3",{"children":[["$","strong","strong-0",{"children":"FATCA/IRS W-8BEN:"}]," Cross-border tax compliance for non-US persons"]}],"\n",["$","li","li-4",{"children":[["$","strong","strong-0",{"children":"Audit trail:"}]," All AI decisions logged immutably in Cloud SQL with model version, timestamp, confidence"]}],"\n",["$","li","li-5",{"children":[["$","strong","strong-0",{"children":"Right to human review:"}]," Regulatory obligation ensures all auto-decisions are reviewable"]}],"\n"]}]
+65:["$","hr","hr-9",{}]
+66:["$","h2","h2-9",{"children":"Implementation Timeline"}]
+67:["$","table","table-8",{"children":[["$","thead","thead-0",{"children":["$","tr","tr-0",{"children":[["$","th","th-0",{"children":"Phase"}],["$","th","th-1",{"children":"Duration"}],["$","th","th-2",{"children":"Deliverable"}]]}]}],["$","tbody","tbody-0",{"children":[["$","tr","tr-0",{"children":[["$","td","td-0",{"children":"Phase 1: MVP"}],["$","td","td-1",{"children":"Weeks 1–6"}],["$","td","td-2",{"children":"Working demo of both systems with real test cases"}]]}],["$","tr","tr-1",{"children":[["$","td","td-0",{"children":"Phase 2: Production"}],["$","td","td-1",{"children":"Weeks 7–14"}],["$","td","td-2",{"children":"GCP deployment, auth integration, compliance review"}]]}],["$","tr","tr-2",{"children":[["$","td","td-0",{"children":"Phase 3: Scale"}],["$","td","td-1",{"children":"Weeks 15–22"}],["$","td","td-2",{"children":"Performance optimization, feedback loops, mobile"}]]}],["$","tr","tr-3",{"children":[["$","td","td-0",{"children":"Phase 4: Enterprise"}],["$","td","td-1",{"children":"Weeks 23–30"}],["$","td","td-2",{"children":"Multi-jurisdiction, full regulatory sign-off"}]]}]]}]]}]
+68:["$","p","p-7",{"children":[["$","strong","strong-0",{"children":"MVP focus for application demo:"}]," Weeks 1–6 deliverables only — this is sufficient to demonstrate the full concept with real validation against the actual rejection emails."]}]
+74:T11b1,Document Submission (from user or intake)
+           │
+           ▼
+    Cloud Pub/Sub Topic (decoupled intake)
+           │
+           ▼
+┌──────────────────────────────────────────────────────────────────┐
+│                     KYC Review Agent (Cloud Run)                 │
+│                                                                  │
+│  ┌────────────────────────────────────────────────────────── ┐   │
+│  │                   Claude Vision Review                    │   │
+│  │                                                           │   │
+│  │  Multi-criteria scoring:                                  │   │
+│  │  1. Image quality assessment                              │   │
+│  │  2. Data accuracy vs profile (name, DOB, address)         │   │
+│  │  3. Form completeness (per doc type)                      │   │
+│  │  4. Document validity (expiry, institution, date)         │   │
+│  │  5. Fraud indicator detection                             │   │
+│  │                                                           │   │
+│  │  Output: {decision, confidence, flags[], extracted_data}  │   │
+│  └─────────────────────────┬─────────────────────────────────┘   │
+│                             │                                    │
+│  ┌──────────────────────────▼────────────────────────────────┐  │
+│  │              Business Rule Engine                          │  │
+│  │                                                           │  │
+│  │  IF fraud_indicator AND confidence > 0.7:                 │  │
+│  │      → FRAUD_FLAG (Pub/Sub alert to compliance + legal)   │  │
+│  │  ELIF overall_confidence > 0.95 AND no_flags:             │  │
+│  │      → AUTO_APPROVE                                       │  │
+│  │  ELIF overall_confidence 0.70–0.95:                       │  │
+│  │      → RECOMMEND_APPROVE or RECOMMEND_REJECT              │  │
+│  │  ELIF overall_confidence < 0.50:                          │  │
+│  │      → ESCALATE (senior agent)                            │  │
+│  └─────────────────────────┬──────────────────────────────────┘  │
+│                             │                                    │
+│  ┌──────────────────────────▼────────────────────────────────┐  │
+│  │              ReviewPacket Assembly                         │  │
+│  │                                                           │  │
+│  │  • AI decision + confidence                               │  │
+│  │  • Per-flag: description, evidence, regulatory citation   │  │
+│  │  • Draft rejection email (agent reviews before sending)   │  │
+│  │  • Draft approval note                                    │  │
+│  │  • Extracted fields                                       │  │
+│  └─────────────────────────┬──────────────────────────────────┘  │
+└─────────────────────────────┼────────────────────────────────────┘
+                              │
+           ┌──────────────────┼──────────────────┐
+           ▼                  ▼                   ▼
+    Cloud SQL             Memorystore         Compliance
+    (audit trail)         WebSocket           Dashboard
+                          (real-time          (React)
+                           updates)
+6d:["$","code","code-0",{"children":"$74"}]
+20:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+1c:null
+1e:{"metadata":[["$","title","0",{"children":"harshc_ | Product & Growth"}],["$","meta","1",{"name":"description","content":"Product/Growth enthusiast and an amateur human figuring out both the world and the web."}]],"error":null,"digest":"$undefined"}
+23:"$1e:metadata"
