@@ -1,4 +1,4 @@
-﻿---
+﻿﻿---
 title: "Building MCP Server and Client"
 date: "2026-03-02"
 description: "Hands-on MCP projects covering theory, a terminal server, and a React plus Electron client stack."
@@ -264,7 +264,7 @@ It's beautifully simple when you break it down
 Think of it like this:
 > Claude is a smart assistant, but by default, it can only *talk*. An MCP server gives Claude *hands* -> the ability to actually **do things** on your computer, like running terminal commands.
 
-![image](public/images/Articles/MCP-Server/557773906-61e7585e-5009-4c1Articles7-8afe-e37dc2014cdc.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626945/new-website/images/Articles/MCP-Server/557773906-61e7585e-5009-4c1Articles7-8afe-e37dc2014cdc.png)
 
 
 ## Some popular MCP Clients are:
@@ -287,8 +287,6 @@ To make it even clearer, here is a breakdown of the steps involved.
 6. Executes tools using the server's tools/call endpoint
 7. Returns tool results to the LLM for continued conversation
 
-![image](public/images/Articles/MCP-Server/557774767-d0a9d47f-3b61-4e86-97e1-18396aa570f7.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626945/new-website/images/Articles/MCP-Server/557774767-d0a9d47f-3b61-4e86-97e1-18396aa570f7.png)
 
 Now that we have a basic idea of what an MCP client is, let us build one step by step. Once we put it into practice, the concepts will make a lot more sense and feel less abstract.
-
-
