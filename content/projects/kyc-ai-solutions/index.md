@@ -48,5 +48,5 @@ A single missing page or unreadable document can delay onboarding by days. Compl
 
 This is where AI agents can provide leverage.
 
-The result is a system that is not only more efficient but also easier for customers and analysts to trust.
+The result is a system that is not only more efficient but also easier for customers and analysts to trust. :)
 
