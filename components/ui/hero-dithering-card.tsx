@@ -87,7 +87,7 @@ export function CTASection() {
                   Welcome to my little corner of the web! I am a Product enthusiast and an
                   amateur human figuring out both the world and the web.
                 </p>
-                <p className="italic [font-family:ui-cursive,cursive]">
+                <p className="text-[0.94rem] italic [font-family:ui-cursive,cursive] md:text-[0.98rem]">
                   I dream of making a TON of money with computers, and then... maybe never touching
                   one again <p> (just kidding... or am I? 🤨)
                   </p>
