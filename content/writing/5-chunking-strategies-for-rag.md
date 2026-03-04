@@ -153,3 +153,4 @@ There is no universally superior chunking strategy. The correct choice depends o
 We instrument early. We adapt by document class and intent. We layer sophistication only when metrics justify it. In mature RAG systems, chunking is not static preprocessing. It is an active lever that shapes retrieval quality, cost profile, and ultimately user trust.
 
 
+
