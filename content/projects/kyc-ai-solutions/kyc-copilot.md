@@ -15,11 +15,11 @@ KYC Copilot is an AI-powered validation system that checks documents **before** 
 
 | Rejection | Root Cause | KYC Copilot Prevention |
 |-----------|-----------|------------------------|
-| Photo ID — too blurry | Image quality check skipped | OpenCV blur detection pre-upload |
-| Photo ID — DOB mismatch | No cross-validation with profile | Claude Vision OCR + profile comparison |
-| W-8BEN — Section 3 address mismatch | User filled wrong address | AI field extraction + address matching |
-| W-8BEN — Section 9 country missing | Incomplete form | Required field checklist validation |
-| Bank statement — truncated account | Screenshot cut off number | Full document visibility check |
+| Photo ID - too blurry | Image quality check skipped | OpenCV blur detection pre-upload |
+| Photo ID - DOB mismatch | No cross-validation with profile | Claude Vision OCR + profile comparison |
+| W-8BEN - Section 3 address mismatch | User filled wrong address | AI field extraction + address matching |
+| W-8BEN - Section 9 country missing | Incomplete form | Required field checklist validation |
+| Bank statement - truncated account | Screenshot cut off number | Full document visibility check |
 
 ## Architecture
 
