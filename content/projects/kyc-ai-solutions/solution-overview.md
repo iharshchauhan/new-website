@@ -4,9 +4,6 @@ date: "2026-03-02"
 description: "Full technical design for the two-system KYC solution and implementation plan."
 ---
 # KYC AI Solutions: Full Technical Design
-**Prepared for: Fintech PM Role Application**  
-**Author: Harsh Chauhan**  
-**Date: January 2026**
 
 ---
 
