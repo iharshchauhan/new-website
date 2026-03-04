@@ -1,9 +1,9 @@
 ---
----
 title: "AI MVP vs Traditional MVP: My Production Playbook for B2B SaaS"
-date: "2026-03-05"
+date: "2025-06-05"
 description: "A systems-first guide for designing, shipping, and governing AI MVPs with clear tradeoffs across UX, cost, reliability, and business outcomes."
 tags: ["AI MVP", "B2B SaaS", "Product Strategy", "Agents", "RAG", "Evaluation"]
+category: "Logbook"
 ---
 
 # AI MVP vs Traditional MVP: My Production Playbook for B2B SaaS
