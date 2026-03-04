@@ -1,5 +1,5 @@
 ﻿---
-title: "KYC AI Solutions"
+title: "How to build a KYC Solution using AI"
 date: "2026-03-02"
 description: "Dual-agent KYC architecture combining pre-submission validation and AI-assisted compliance review."
 category: "Proof of work"

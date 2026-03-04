@@ -128,8 +128,8 @@ Step 4: Return specific field-level errors with suggestions
 #### Bank Statement
 ```
 Step 1: Claude Vision → extract {account_holder, account_number, bank, date, address}
-Step 2: Truncation check — is the account number complete?
-Step 3: Date recency check — within 90 days?
+Step 2: Truncation check : is the account number complete?
+Step 3: Date recency check - within 90 days?
 Step 4: Name and address match vs profile
 Step 5: Return flags with specific fix suggestions
 ```
@@ -141,7 +141,7 @@ Step 5: Return flags with specific fix suggestions
 | API Framework | FastAPI (Python) on Cloud Run | Serverless, auto-scaling, no cluster management |
 | AI/Vision | Claude claude-opus-4-5 Vision API | Best-in-class document understanding |
 | Image Processing | OpenCV (headless) | Fast local blur/resolution checks |
-| Cache | Memorystore for Redis | Managed Redis — cache repeat validations by file hash |
+| Cache | Memorystore for Redis | Managed Redis - cache repeat validations by file hash |
 | Storage | GCS (24h auto-delete lifecycle rule) | Temp storage, encrypted at rest |
 | Container | Cloud Run (fully managed) | Serverless scaling; no cluster overhead |
 | CDN | Cloud CDN | Fast uploads from anywhere |
@@ -178,7 +178,7 @@ Cloud Run (KYC Copilot API)
        │
        ├──▶ GCS: Upload temp file (encrypted, lifecycle TTL=24h, prefix: temp/)
        │
-       ├──▶ Memorystore Redis: Check cache by SHA256(file) — return cached result if found
+       ├──▶ Memorystore Redis: Check cache by SHA256(file) - return cached result if found
        │
        ├──▶ OpenCV: Local blur/resolution check (< 10ms)
        │
@@ -318,7 +318,7 @@ Document Submission (from user or intake)
 
 ---
 
-## Infrastructure — GCP Architecture
+## Infrastructure : GCP Architecture
 
 ```
                           ┌──────────────────────────────────────────┐
@@ -424,12 +424,12 @@ Document Submission (from user or intake)
 
 ## Human-in-the-Loop Design
 
-Both systems are designed with clear human oversight boundaries — critical for regulated financial services:
+Both systems are designed with clear human oversight boundaries, critical for regulated financial services:
 
 ### KYC Copilot (User-facing)
 - **AI decides:** Whether issues exist and what they are
 - **Human decides:** Whether to resubmit or proceed
-- **Hard rule:** Never blocks submission — user always has final say
+- **Hard rule:** Never blocks submission ; user always has final say
 - **Escalation:** Low-confidence detections show "advisory" warnings, not hard blocks
 
 ### KYC Review Agent (Compliance-facing)
@@ -459,7 +459,7 @@ Both systems are designed with clear human oversight boundaries — critical for
 
 - **FINTRAC PCMLTFR:** KYC documents must be verified for Canadian AML compliance
 - **OSC regulations:** Margin account verification requirements
-- **PIPEDA/Bill C-27:** Canadian privacy law — documents stored encrypted, deleted per GCS lifecycle policy
+- **PIPEDA/Bill C-27:** Canadian privacy law ; documents stored encrypted, deleted per GCS lifecycle policy
 - **FATCA/IRS W-8BEN:** Cross-border tax compliance for non-US persons
 - **Audit trail:** All AI decisions logged immutably in Cloud SQL with model version, timestamp, confidence
 - **Right to human review:** Regulatory obligation ensures all auto-decisions are reviewable
