@@ -1,94 +1,264 @@
 ﻿---
 title: "Layer 5: App and Product Strategy"
 date: "2026-02-25"
-description: "A product framework for mapping AI capabilities to user jobs, UX patterns, and outcomes."
+description: "A product framework for mapping AI capabilities to user jobs, UX patterns, system constraints, and business outcomes."
 category: "Frameworks"
 tags: ["Framework", "Product", "UX"]
 ---
 
-# Layer 5 – App / Product
+# Layer 5: App / Product Strategy
 
-**Question answered:**  
-> What is the actual product, who is it for, how does the AI show up in UX, and how is success measured?
+**Core question**
+What is the actual product, who is it for, how does AI manifest in the interface, and how do I tie technical architecture to measurable business outcomes?
 
-Layer 5 is where everything becomes visible to the user. It connects the technical stack to **real problems, workflows, and outcomes**.
+If Layers 1 to 4 define capability and reliability, Layer 5 defines value capture.
 
-It corresponds to the original:
+This is where I translate infra, models, RAG, tools, and orchestration into:
 
-- **Layer 11 – Product Layer (UX, Jobs-To-Be-Done, Business)**
+* Clear user value
+* Opinionated UX
+* Sustainable economics
+* Strategic defensibility
 
----
-
-## 5.1 What this layer includes
-
-- **Use case & Jobs-To-Be-Done (JTBD):**
-  - The underlying job the user is trying to get done.  
-- **Personas & workflows:**
-  - Who is using this and in what context.  
-- **Interaction patterns:**
-  - Chat interface, structured form, autocomplete, command palette, background assistant, etc.  
-- **Human-in-the-loop:**
-  - When the user must review, edit, or approve AI output.  
-- **Feedback mechanisms:**
-  - Ratings, flags, inline edits, comments—used as quality signals or training data.  
-- **Pricing & packaging:**
-  - What is free vs paid, metering, usage quotas, premium AI features.  
-- **Impact & adoption metrics:**
-  - Usage, retention, time saved, productivity, error reduction, revenue impact.
+AI is not the product. The workflow transformation is.
 
 ---
 
-## 5.2 PM perspective
+# 5.1 From Capability to Job-To-Be-Done
 
-At this layer, AI is a **means**, not the goal. The key questions are:
+I start with the job, not the model.
 
-- Who is the user?  
-- What job are they hiring this AI feature to do?  
-- Why is AI a better approach than a static workflow, search, or simple rules?  
-- What should the interaction feel like?
-  - Quick suggestions vs deep analysis vs ongoing assistant.  
-- How is success measured?
-  - Time saved, reduction in manual effort, better decisions, higher throughput, improved satisfaction.
+## Capability -> Job Mapping Framework
 
-A product manager should be able to:
+| AI Capability         | User Job                        | Non-AI Alternative        | Why AI Wins                 |
+| --------------------- | ------------------------------- | ------------------------- | --------------------------- |
+| Summarization         | Understand long content quickly | Manual reading            | Time compression            |
+| Generation            | Draft first version             | Blank page writing        | Cognitive acceleration      |
+| Classification        | Route or tag items              | Rules engine              | Higher recall on edge cases |
+| Retrieval + reasoning | Answer grounded questions       | Search + manual synthesis | Reduced context switching   |
+| Tool execution        | Complete multi-step task        | Manual workflows          | Automation at scale         |
 
-- Tell a clear **product story** for each AI-powered feature.  
-- Connect decisions in lower layers (prompting, RAG, agents, infra) back to:
-  - UX, reliability, and business goals.
+I explicitly document why AI is necessary. If a deterministic rule solves it cheaper and more reliably, I use rules.
 
 ---
 
-## 5.3 Example considerations
+# 5.2 Persona, Workflow, and Context Modeling
 
-- Should the assistant be:
-  - A chat-style interface,  
-  - A side panel suggestion engine,  
-  - A “one-click transform” button,  
-  - Or a background agent acting on a schedule?  
-- How often should the user see:
-  - Explanations (“Why this answer?”),  
-  - Source citations,  
-  - Confidence indicators?  
-- What happens when the AI is wrong?
-  - Can the user undo actions?  
-  - How are corrections captured and used?  
-- How are users onboarded and educated?
-  - Expectations about capabilities and limits.  
+AI performance is deeply contextual. I model:
+
+* User expertise level
+* Frequency of task
+* Risk sensitivity
+* Latency tolerance
+* Trust requirements
+
+## Workflow Decomposition Example
+
+Instead of saying "Build an AI assistant," I break it into:
+
+```
+Trigger Event
+    |
+Context Gathering
+    |
+AI Processing
+    |
+User Review
+    |
+Action or Save
+```
+
+For each step, I decide:
+
+* Is AI visible or invisible?
+* Is output editable?
+* Is confirmation required?
+* Is the action reversible?
 
 ---
 
-## 5.4 Suggested artifacts for Layer 5
+# 5.3 Interaction Pattern Architecture
 
-For each AI feature or side project, it is useful to have:
+The UX pattern determines cognitive load, perceived intelligence, and trust.
 
-- A short **Product Notes** or mini-PRD including:
-  - Problem statement and JTBD.  
-  - Target persona(s) and usage context.  
-  - Role of AI (assistant, generator, summarizer, reviewer, decision helper).  
-  - Chosen interaction pattern and rationale.  
-  - High-level mapping to lower layers:
-    - How prompting, RAG, and tools support the UX.  
-  - Success metrics and basic evaluation approach.
+## AI Interaction Pattern Matrix
 
-This keeps the emphasis on **outcomes and experience**, while still linking back to the technical stack underneath.
+| Pattern              | Control Level     | Best For                  | Risk Level |
+| -------------------- | ----------------- | ------------------------- | ---------- |
+| Autocomplete         | High user control | Micro productivity boosts | Low        |
+| Inline suggestion    | Medium            | Draft improvement         | Low-Medium |
+| Side panel assistant | Medium            | Context-aware guidance    | Medium     |
+| Chat interface       | Flexible          | Exploration and Q&A       | Medium     |
+| One-click transform  | Low               | Deterministic rewrite     | Medium     |
+| Background agent     | Very low          | Automation                | High       |
 
+As a PM, I deliberately choose where on the control spectrum I operate.
+
+More autonomy increases leverage but also increases governance burden.
+
+---
+
+# 5.4 Human-in-the-Loop Design
+
+AI systems must expose the right review surfaces.
+
+## Review Architecture
+
+```
+AI Output
+    |
+Editable Layer
+    |
+Approval or Rejection
+    |
+Execution
+```
+
+Key decisions I make:
+
+* Does the user edit raw output or structured fields?
+* Do I show reasoning or just results?
+* Do I show sources and confidence?
+* Is feedback captured implicitly or explicitly?
+
+Trust is a UX system, not a marketing claim.
+
+---
+
+# 5.5 Feedback as a Data Flywheel
+
+Feedback is not decoration. It is model improvement infrastructure.
+
+## Feedback Capture Types
+
+| Type              | Signal Quality | Cost   |
+| ----------------- | -------------- | ------ |
+| Thumbs up/down    | Low            | Low    |
+| Inline edits      | High           | Medium |
+| Structured rating | Medium         | Medium |
+| Outcome tracking  | Very high      | High   |
+
+I prioritize feedback tied to outcomes, not just opinions.
+
+For example:
+
+* Did the suggested draft get sent?
+* Was the generated ticket resolved faster?
+* Did automation reduce manual hours?
+
+Outcome-linked signals create defensibility.
+
+---
+
+# 5.6 System-to-UX Traceability
+
+Every UX decision maps downward into technical layers.
+
+## Example Traceability Table
+
+| UX Requirement             | Technical Dependency              |
+| -------------------------- | --------------------------------- |
+| Show citations             | RAG with source metadata          |
+| Real-time suggestions      | Low-latency inference + streaming |
+| Action automation          | Tool calling + policy layer       |
+| Editable structured output | Schema-constrained decoding       |
+| Fast perceived response    | Caching + partial rendering       |
+
+I ensure this traceability is documented. Otherwise UX promises exceed system capacity.
+
+---
+
+# 5.7 Unit Economics and Packaging
+
+AI features introduce variable cost at inference time. I design pricing with this in mind.
+
+## Cost Stack Awareness
+
+```
+User Action
+    |
+Model Tokens (Cost Driver)
+    |
+Retrieval Queries
+    |
+Tool Calls
+    |
+Infra Overhead
+```
+
+I calculate:
+
+* Cost per successful outcome
+* Margin at different usage tiers
+* Break-even usage thresholds
+
+## Packaging Strategies
+
+| Strategy             | Rationale                    |
+| -------------------- | ---------------------------- |
+| Usage-based metering | Align cost with heavy users  |
+| Feature gating       | Monetize advanced workflows  |
+| Credit systems       | Encourage experimentation    |
+| Tiered model access  | Smaller model for basic tier |
+
+A technical AI PM must understand token economics as deeply as feature UX.
+
+---
+
+# 5.8 Adoption and Impact Metrics
+
+I measure success at four levels.
+
+## Metric Stack
+
+| Layer      | Metric Type     | Examples                    |
+| ---------- | --------------- | --------------------------- |
+| Activation | Initial usage   | % users who try AI feature  |
+| Engagement | Repeated usage  | Weekly active AI users      |
+| Outcome    | Workflow impact | Time saved, throughput gain |
+| Business   | Revenue impact  | ARPU lift, retention delta  |
+
+AI novelty metrics are not enough. I care about workflow displacement.
+
+If users revert to manual behavior, the feature failed.
+
+---
+
+# 5.9 Strategic Defensibility
+
+The final question I ask myself:
+
+What makes this AI product hard to replicate?
+
+Possible moats include:
+
+* Proprietary data pipelines
+* Unique workflow embedding
+* Outcome-linked feedback loops
+* Deep tool integrations
+* Cost-optimized orchestration
+
+Models commoditize. Workflow depth compounds.
+
+---
+
+# What I Produce at Layer 5
+
+For every serious AI feature, I create:
+
+1. A mini-PRD with explicit JTBD mapping
+2. Workflow diagram with AI insertion points
+3. UX pattern rationale
+4. System traceability table
+5. Unit economics estimate
+6. Metric definition sheet
+
+Layer 5 is where intelligence meets intention.
+
+```
+Infra -> possibility
+Models -> capability
+Data -> relevance
+Orchestration -> reliability
+Product strategy -> value
+```

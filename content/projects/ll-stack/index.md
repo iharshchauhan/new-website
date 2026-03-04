@@ -1,30 +1,73 @@
-﻿---
-title: "LL Stack"
-date: "2026-02-26"
-description: "A multi-page framework project covering the full LLM systems stack from infra to product."
-coverImage: "https://picsum.photos/seed/ll-stack/800/400"
+---
+title: "LLM Stack: A Practical 5-Layer Map"
+date: "2026-02-20"
+description: "A practical framework for understanding AI systems across infrastructure, models, data, orchestration, and product."
 category: "Frameworks"
-tags: ["Framework", "LLM", "Systems"]
+tags: ["Framework", "LLM", "AI Systems"]
 ---
 
-# LL Stack
+# LLM Stack - A Practical 5-Layer Map for Product Managers
 
-This project organizes the LLM systems stack into focused, linked pages so each layer can be explored independently.
+When I build AI products, I do not think in terms of hype or model names. I think in layers. Over time, I have found that most LLM systems can be understood through five practical layers. This structure helps me decide where to go deep, where to stay conceptual, and how to connect technical decisions back to product outcomes.
 
-## What it covers
+This page is a short map. Each layer has its own subpage where I go deeper.
 
-- A practical 5-layer map
-- Infra constraints and tradeoffs
-- Model fundamentals
-- Data, retrieval, and tools
-- Orchestration and evaluation
-- Product and UX strategy
+---
 
-## Deep Dives
+## Layer 1: Infra
 
-- [LLM Stack: A Practical 5-Layer Map](/projects/ll-stack/llm-stack-5-layer-map)
-- [Layer 1: Infra for LLM Products](/projects/ll-stack/layer-1-infra-for-llm-products)
-- [Layer 2: Models and How They Differ](/projects/ll-stack/layer-2-models-and-how-they-differ)
-- [Layer 3: Data, Knowledge, and RAG](/projects/ll-stack/layer-3-data-knowledge-and-rag)
-- [Layer 4: Orchestration, Agents, and Evaluation](/projects/ll-stack/layer-4-orchestration-agents-and-evaluation)
-- [Layer 5: App and Product Strategy](/projects/ll-stack/layer-5-app-and-product-strategy)
+This layer answers a simple question: what does it cost to run this intelligence?
+
+Here I think about GPUs, inference vs training, latency, throughput, and cost per request. As a PM, I do not need to understand CUDA kernels, but I do need to reason about trade-offs. If I increase context size, latency increases. If I call the largest model for every interaction, margin disappears.
+
+Infra shapes product constraints. It determines whether a feature feels instant or slow, cheap or premium, scalable or fragile.
+
+---
+
+## Layer 2: Models
+
+This is the conceptual backbone.
+
+I make sure I understand tokens, context windows, transformers, alignment, and why different model families behave differently. A base model has general knowledge, not my product knowledge. Alignment tuning explains tone and safety behavior. Context windows explain why I cannot just "paste everything" into a prompt.
+
+When I choose a model, I am choosing trade-offs between quality, cost, latency, and control.
+
+---
+
+## Layer 3: Data & Knowledge
+
+This is where real product differentiation happens.
+
+Here I design prompts, define structured outputs, connect RAG pipelines, and wire tools to APIs or databases. This is how a generic LLM becomes my product's assistant. I decide what knowledge is injected, how documents are chunked, how embeddings are stored, and how retrieval works.
+
+If the product needs to reason over internal policies, user data, or recent events, this layer is the bridge. In my experience, most practical AI work for PMs lives here.
+
+---
+
+## Layer 4: Orchestration
+
+This layer is about how everything runs together in production.
+
+I define workflows such as classify -> retrieve -> generate -> validate -> respond. I decide when a simple chain is enough and when an agent loop is justified. I also think about evaluation, logging, safety filters, and fallback paths.
+
+Orchestration turns isolated prompts into reliable systems. Without it, AI features feel impressive in demos but brittle in production.
+
+---
+
+## Layer 5: App / Product
+
+This is the layer users actually see.
+
+Here I define the job to be done, the persona, the interaction pattern, and the success metrics. Is the AI a chat assistant, a background copilot, a structured form enhancer, or a decision helper? Where does the human review output? How do we measure value created?
+
+Every lower layer should justify itself through this one. If infra, models, data, and orchestration choices do not clearly improve user outcomes, they are over-engineering.
+
+---
+
+## How I Use This Stack
+
+I usually learn and design in this order:
+
+I build a strong intuition for models. I go deep on data and RAG because that is where product leverage lives. I wrap it in a clear product story with defined metrics. Then I add orchestration and evaluation to make it production ready. Infra stays as a constraint lens throughout.
+
+This five-layer map keeps AI systems grounded for me. It helps me move from curiosity to shipping, without getting lost in unnecessary depth.

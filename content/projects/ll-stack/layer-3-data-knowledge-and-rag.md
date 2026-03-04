@@ -6,113 +6,180 @@ category: "Frameworks"
 tags: ["Framework", "RAG", "Prompting"]
 ---
 
-# Layer 3 – Data & Knowledge (Prompts, RAG, Tools)
+# Layer 3: Data & Knowledge (Prompts, RAG, Tools)
 
-**Question answered:**  
-> How is a general LLM adapted to a specific product, and how does it see the product’s data?
+**Core question**
+How do I adapt a general LLM to my specific product, and how does it safely access real data?
 
-Layer 3 is the **core practical layer** for PMs building LLM-powered features.
+If Layer 2 explains how models work, Layer 3 is where I make them useful.
 
-It corresponds to the original:
+This is the practical core of AI product work. It is where a general-purpose model becomes my assistant, my compliance co-pilot, my support helper, or my internal analyst.
 
-- **Layer 5 – Adaptation to Your Use Case (Prompts & Fine-tuning)**  
-- **Layer 6 – Knowledge & Tools (RAG, Search, APIs, DBs)**
+I break this layer into three system components:
 
----
-
-## 3.1 Adaptation via Prompts & Fine-Tuning
-
-### What this sub-layer covers
-
-- **System prompts:**
-  - Global instructions that set role, behavior, and constraints.  
-  - Example: “You are a cautious recipe assistant. You only suggest recipes that can be made with the ingredients provided and basic pantry staples.”  
-- **User prompts:**
-  - The user’s input or a structured representation of it (e.g., from a form or UI).  
-- **Few-shot prompting:**
-  - Adding a small number of example pairs to demonstrate style or logic.  
-- **Structured output:**
-  - Asking the model to produce JSON, tables, or fixed templates that downstream code can reliably parse.  
-- **Fine-tuning:**
-  - Additional training with labeled examples to specialize behavior.  
-- **Parameter-efficient tuning:**
-  - LoRA, adapters, and other techniques that update fewer parameters.
-
-### PM perspective
-
-- Prompting is the **first and cheapest lever** to shape behavior.  
-- Fine-tuning becomes attractive when:
-  - The task is narrow and repeated often.  
-  - High consistency is required.  
-  - Enough labeled examples exist (or can be collected).
-
-A PM should be comfortable:
-
-- Designing a clear system prompt.  
-- Defining the desired output format.  
-- Creating and maintaining **test cases** to validate prompt behavior.  
-- Knowing when to propose fine-tuning as a next step.
+1. Prompt Architecture
+2. Retrieval and Knowledge (RAG)
+3. Tools and External Systems
 
 ---
 
-## 3.2 RAG, Embeddings, and Tools
+# 3.1 Prompt Architecture and Fine-Tuning
 
-### RAG (Retrieval-Augmented Generation)
+## System View
 
-#### What this covers
+At minimum, every LLM feature looks like this:
 
-- Embeddings:
-  - Numeric vectors representing text such that similar meanings are close in vector space.  
-- Vector databases:
-  - Stores embeddings + metadata and supports similarity search (e.g., Supabase + pgvector, Pinecone, Weaviate).  
-- Chunking:
-  - Splitting documents into manageable segments (e.g., 200–800 tokens) with some overlap.  
-- Classic RAG pipeline:
-  1. **Indexing time:**  
-     - Take docs → chunk them → compute embeddings → store in vector DB with metadata.  
-  2. **Query time:**  
-     - Embed the user’s query → find top-k similar chunks → build a `Context:` section → call the LLM with context + question.  
+```
+System Prompt
+      |
+User Input (Raw or Structured)
+      |
+Optional Context Injection
+      |
+LLM -> Structured Output
+```
 
-### Tools & External Systems
+## Core Building Blocks
 
-#### What this covers
+| Component         | What It Does                        | Why It Matters                  |
+| ----------------- | ----------------------------------- | ------------------------------- |
+| System prompt     | Sets role, tone, constraints        | Defines behavioral boundaries   |
+| User prompt       | Captures user intent                | Translates UI into model input  |
+| Few-shot examples | Demonstrates logic or style         | Improves consistency            |
+| Structured output | JSON, schema, templates             | Makes output machine-readable   |
+| Fine-tuning       | Updates model behavior via training | Improves repeatability at scale |
 
-- Function calling / tool use:
-  - The model is given a catalog of tools with schemas; it decides when and how to call them.  
-- Databases & APIs:
-  - SQL queries, internal services, search indices, analytics systems.  
-- Other ML models:
-  - Recommenders, classifiers, ranking models used alongside the LLM.
+## How I Approach Prompt Design
 
-### PM perspective
+Prompting is my first and cheapest lever. Before proposing fine-tuning, I:
 
-- RAG is used when the product needs to access:
+* Define the exact role of the model
+* Specify constraints explicitly
+* Enforce structured outputs
+* Create test cases that represent happy paths and edge cases
 
-  - Private data (internal docs, customer configs).  
-  - Frequently changing data (policies, inventories).  
-  - Long or detailed content that cannot fit into the context window at once.
+Only when the task is narrow, repeated at high volume, and requires strict consistency do I consider fine-tuning. Even then, I treat it as an optimization step, not the starting point.
 
-- RAG design choices include:
+## Decision Framework: Prompt vs Fine-Tune
 
-  - What content to index.  
-  - How to chunk it.  
-  - What metadata (tags, permissions, timestamps) to store.  
-  - How many chunks to inject and how to format the `Context:`.
+| Scenario                                  | Best First Step |
+| ----------------------------------------- | --------------- |
+| Exploratory feature                       | Prompting       |
+| Rapid iteration                           | Prompting       |
+| Narrow repetitive classification          | Fine-tuning     |
+| Brand-consistent tone at scale            | Fine-tuning     |
+| Complex reasoning with external knowledge | RAG + Prompting |
 
-- Tools are used when:
-
-  - The LLM must **perform actions** (e.g., create a ticket, fetch a record, send an email).  
-  - The system needs accurate numbers or state from a DB instead of model “guesses”.
+As a PM, I ensure we do not jump to training when design can solve the problem.
 
 ---
 
-## Suggested artifacts for Layer 3
+# 3.2 Retrieval-Augmented Generation (RAG)
 
-- A well-documented **system prompt** and user prompt structure for a specific feature.  
-- A small **RAG design**:
-  - Schema of the knowledge base,  
-  - Chunking strategy,  
-  - Retrieval approach,  
-  - Example `Context:` section.  
-- A short explanation of when RAG vs fine-tuning vs tool calling is appropriate for that feature.
+RAG is how I ground the model in product-specific knowledge.
 
+## High-Level Architecture
+
+```
+            +----------------------+
+            |   Knowledge Base     |
+            | (Docs, Policies, KB) |
+            +----------------------+
+                       |
+                Chunk + Embed
+                       |
+                Vector Database
+                       ^
+User Query -> Embed Query -> Similarity Search
+                       |
+               Retrieved Chunks
+                       |
+          Inject into Prompt as Context
+                       |
+                     LLM
+```
+
+## Core Components
+
+| Component          | Function                      | Product Impact                       |
+| ------------------ | ----------------------------- | ------------------------------------ |
+| Embeddings         | Convert text to vectors       | Enables semantic search              |
+| Chunking           | Split docs into segments      | Improves retrieval precision         |
+| Metadata           | Tags, permissions, timestamps | Enables filtering and access control |
+| Top-k retrieval    | Select most relevant chunks   | Controls cost and noise              |
+| Context formatting | Structured injection          | Improves groundedness                |
+
+## Design Decisions I Make
+
+1. What content should be indexed?
+2. How large should chunks be?
+3. What metadata is necessary for filtering?
+4. How many chunks are injected per query?
+5. How do I expose sources to users for trust?
+
+RAG is not just retrieval. It is knowledge architecture.
+
+---
+
+# 3.3 Tools and External Systems
+
+RAG gives the model knowledge. Tools give it action.
+
+## Tool-Enabled Architecture
+
+```
+User Query
+    |
+LLM (Tool-Aware)
+    |
+Tool Call (Structured Arguments)
+    |
+External System (DB / API)
+    |
+Tool Response
+    |
+LLM Final Response
+```
+
+## What Tools Enable
+
+| Tool Type        | Example           | Why It Matters             |
+| ---------------- | ----------------- | -------------------------- |
+| Database queries | Fetch user record | Accurate state retrieval   |
+| Workflow actions | Create ticket     | Operational automation     |
+| Analytics        | Fetch metrics     | Reliable numbers           |
+| External APIs    | CRM, payments     | Cross-system orchestration |
+
+I use tools when the system must retrieve precise numbers, mutate state, or trigger actions. Models are good at reasoning. Databases are good at facts. Tools connect the two.
+
+---
+
+# RAG vs Tools vs Fine-Tuning
+
+I use this mental model to decide the right adaptation mechanism:
+
+| Need                                      | Best Approach |
+| ----------------------------------------- | ------------- |
+| Access private knowledge                  | RAG           |
+| Access live structured data               | Tools         |
+| Perform actions                           | Tools         |
+| Improve tone or repetitive classification | Fine-tuning   |
+| Rapid iteration and experimentation       | Prompting     |
+
+Layer 3 is about choosing the right lever.
+
+---
+
+# Artifact I Produce for Layer 3
+
+For any serious AI feature, I document:
+
+1. Full system prompt and output schema
+2. RAG architecture diagram and chunking strategy
+3. Knowledge base schema with metadata fields
+4. Tool definitions and access boundaries
+5. A short note explaining why I chose RAG, tools, or fine-tuning
+
+This documentation ensures the system is explainable, scalable, and evolvable.
+
+Layer 3 is where differentiation happens. Infra and models set capability. Data and knowledge design determine whether the product feels generic or deeply integrated into real workflows.

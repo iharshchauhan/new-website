@@ -1,116 +1,141 @@
-﻿---
+---
 title: "Layer 2: Models and How They Differ"
 date: "2026-02-22"
 description: "A framework for understanding model behavior through pretraining, transformers, and alignment."
 category: "Frameworks"
 tags: ["Framework", "Models", "Transformers"]
 ---
-# Layer 2 – Models
 
-**Question answered:**  
-> What is an LLM under the hood, and why do different models behave differently?
+# Layer 2: Models
 
-Layer 2 is the **conceptual backbone**. Once this is clear, later layers (RAG, prompting, context limits) make intuitive sense.
+**Core question**
+What is an LLM under the hood, and why do different models behave differently?
 
-It corresponds to the original:
+Layer 2 is the conceptual backbone of every AI product I build. If I understand how models are trained, structured, and aligned, I can reason clearly about RAG, prompting, context limits, cost, and capability trade-offs.
 
-- **Layer 2 – Data & Pretraining**  
-- **Layer 3 – Model Architecture (Transformers)**  
-- **Layer 4 – Base Training & Alignment**
+I break this layer into three architectural components: Pretraining, Transformer Architecture, and Alignment.
 
 ---
 
-## 2.1 Data & Pretraining
+# 2.1 Data & Pretraining
 
-### What this sub-layer covers
+## Mental Model
 
-- Pretraining corpus:
-  - Web pages, code, books, documentation, and other large-scale text sources.  
-- Self-supervised learning:
-  - The model learns to predict the **next token** given previous tokens.  
-- Scale laws:
-  - More data, more parameters, and more compute generally improve performance (with diminishing returns).  
-- Training cut-off date:
-  - The model’s world knowledge is limited to what existed before this date.
+At its core, a large language model is trained to predict the next token given previous tokens.
 
-### PM perspective
+```
+Massive Text Corpus -> Tokenization -> Next-Token Prediction Training -> Base Model
+```
 
-- A **base model** has broad, general world knowledge but **does not know**:
-  - Company-specific data, internal docs, customer configs, or latest policies.  
-- Fresh/ private / internal knowledge must be added later via:
-  - **RAG** (retrieval),  
-  - **Fine-tuning**, or  
-  - Direct **tool/DB integration**.
+## What Shapes the Base Model
 
----
+| Factor                   | What It Means               | Why It Matters to Me as a PM                   |
+| ------------------------ | --------------------------- | ---------------------------------------------- |
+| Pretraining corpus       | Web, books, code, docs      | Defines general knowledge and blind spots      |
+| Self-supervised learning | Predict next token          | Explains why models autocomplete intelligently |
+| Scale                    | Data + parameters + compute | Larger scale usually improves reasoning        |
+| Training cut-off         | Knowledge frozen at date    | Model does not know recent or private info     |
 
-## 2.2 Transformer Architecture
+## Product Implication
 
-### What this sub-layer covers
+A base model has broad world knowledge. It does not know my company's policies, my users' data, or yesterday's events.
 
-- Tokens & tokenization:
-  - Text is split into tokens; prices, context, and limits are expressed in tokens.  
-- Self-attention:
-  - Mechanism that lets the model “look back” at previous tokens and decide which ones matter.  
-- Multi-head attention:
-  - Multiple attention “heads” capture different patterns or relations in the sequence.  
-- Context window:
-  - Hard limit on how many tokens the model can see at once (e.g., 8k, 32k, 128k tokens).  
-- Parameters:
-  - Number of weights (billions), affecting capacity, quality, and cost.
-
-### PM perspective
-
-A product manager should be able to explain in simple terms that:
-
-- The model sees text as **tokens**, not characters or words directly.  
-- The context window is a **hard cap**:
-  - Long documents or many messages cannot simply be “dumped” into the model; summarization or retrieval are needed.  
-- Larger models and longer context windows typically mean:
-  - Better capabilities but **slower and more expensive** calls.
-
-This understanding is critical when designing:
-
-- How much context to send in each request.  
-- Whether to use RAG instead of passing entire documents.  
-- When to choose smaller vs larger model variants.
+If my feature depends on fresh or private information, I must add it via RAG, fine-tuning, or tool integrations. Pretraining alone is never enough for product specificity.
 
 ---
 
-## 2.3 Training & Alignment
+# 2.2 Transformer Architecture
 
-### What this sub-layer covers
+This is where capability and constraints become concrete.
 
-- Base model:
-  - Raw model after pretraining; powerful but not yet polite or safe.  
-- Instruction tuning:
-  - Additional training on (instruction → response) pairs to make the model follow instructions.  
-- RLHF / RLAIF:
-  - Reinforcement Learning from Human/AI Feedback to adjust behavior (helpfulness, tone, safety).  
-- Model families:
-  - General-purpose chat models, code-focused models, small on-device models, domain-specific models.
+## Simplified Architecture View
 
-### PM perspective
+```
+Input Text -> Tokenization -> Transformer Layers (Self-Attention) -> Output Tokens
+```
 
-Different models behave differently because of:
+## Key Concepts I Must Understand
 
-- **Training data** (what they saw).  
-- **Objectives** (what they were optimized for).  
-- **Alignment policies** (how aggressive or conservative they are).
+| Concept              | What It Is                        | Product Impact                     |
+| -------------------- | --------------------------------- | ---------------------------------- |
+| Tokens               | Units of text the model processes | Pricing and limits are token-based |
+| Self-attention       | Mechanism to weigh prior tokens   | Enables reasoning across context   |
+| Multi-head attention | Parallel attention patterns       | Captures different relationships   |
+| Context window       | Max tokens model can see          | Hard cap on prompt size            |
+| Parameters           | Model size in billions            | Influences quality, cost, latency  |
 
-A PM should be able to:
+## How This Shapes My Decisions
 
-- Explain why one model feels better for code, another for general chat.  
-- Choose a model that matches the feature:
-  - For example, a support assistant vs a code review assistant vs a device-local summarizer.
+The context window is a hard constraint. I cannot dump entire documents into the prompt indefinitely. If I exceed limits, I must summarize or retrieve selectively.
+
+Bigger models and longer context windows usually mean better reasoning but slower and more expensive inference. When I select a model, I am choosing a point on this curve:
+
+| Smaller Model                     | Larger Model               |
+| --------------------------------- | -------------------------- |
+| Lower cost                        | Higher cost                |
+| Lower latency                     | Higher latency             |
+| Adequate reasoning                | Stronger reasoning         |
+| Suitable for high-frequency tasks | Suitable for complex tasks |
+
+Understanding this lets me design features that are economically viable and technically grounded.
 
 ---
 
-## Suggested artifacts for Layer 2
+# 2.3 Training & Alignment
 
-- A concise markdown note:
-  - “What is a transformer?” in 8–10 steps.  
-  - Definitions of tokens, context window, parameters, and why they matter.  
-- A small comparison of available model families:
-  - Capabilities, context size, typical use cases, cost/latency tier.
+After pretraining, models are not yet product ready.
 
+## Training Pipeline View
+
+```
+Base Model -> Instruction Tuning -> Human or AI Feedback -> Aligned Model
+```
+
+## Components
+
+| Stage                | Purpose                             | Product Impact                    |
+| -------------------- | ----------------------------------- | --------------------------------- |
+| Base model           | Raw next-token predictor            | Powerful but unpredictable tone   |
+| Instruction tuning   | Learn to follow instructions        | Improves usefulness               |
+| RLHF or RLAIF        | Optimize for helpfulness and safety | Shapes personality and guardrails |
+| Model specialization | Code, chat, small-device, domain    | Determines feature fit            |
+
+## Why Models Feel Different
+
+Models differ because of:
+
+* The data they were trained on
+* The objectives used during training
+* The aggressiveness of alignment policies
+
+As a PM, this explains why one model feels cautious, another creative, another strong at code, and another optimized for speed.
+
+When I choose a model for a feature, I match alignment style to product intent. A support assistant may need conservative safety behavior. A coding assistant may prioritize precision. A lightweight summarizer may prioritize speed.
+
+---
+
+# Model Selection Framework I Use
+
+Before committing to a model, I evaluate it across four dimensions:
+
+| Dimension  | Questions I Ask                                                      |
+| ---------- | -------------------------------------------------------------------- |
+| Capability | Does it handle our task complexity?                                  |
+| Context    | Is the window sufficient for our workflows?                          |
+| Cost       | Is it viable at projected usage scale?                               |
+| Alignment  | Does its tone and safety profile match our brand and risk tolerance? |
+
+This structured evaluation prevents model choice from being hype-driven.
+
+---
+
+# Artifact I Produce for Layer 2
+
+For serious AI features, I document:
+
+1. A short explanation of tokens, context window, and parameters
+2. A comparison table of 2 to 4 candidate models
+3. The reasoning behind final model selection
+4. Known limitations tied to training cut-off and alignment
+
+Layer 2 gives me mechanical sympathy for LLM systems. Once I understand how models are built and shaped, every other layer in the stack becomes easier to reason about and design responsibly.
