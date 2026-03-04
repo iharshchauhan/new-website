@@ -1,0 +1,56 @@
+name: Sync Cloudinary Images
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - public/images/**
+      - public/support/images/**
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-cloudinary:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Upload images and regenerate manifest
+        run: npm run cloudinary:upload
+        env:
+          CLOUDINARY_CLOUD_NAME: ${{ secrets.CLOUDINARY_CLOUD_NAME }}
+          CLOUDINARY_API_KEY: ${{ secrets.CLOUDINARY_API_KEY }}
+          CLOUDINARY_API_SECRET: ${{ secrets.CLOUDINARY_API_SECRET }}
+          CLOUDINARY_FOLDER: ${{ secrets.CLOUDINARY_FOLDER }}
+
+      - name: Rewrite markdown image URLs to Cloudinary
+        run: npm run cloudinary:rewrite
+
+      - name: Commit updated manifest and markdown
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add lib/cloudinary-manifest.json content
+
+          if git diff --cached --quiet; then
+            echo "No Cloudinary sync changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore: sync Cloudinary image URLs"
+          git push

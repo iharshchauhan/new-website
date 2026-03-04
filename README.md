@@ -28,10 +28,29 @@ If local markdown images break on GitHub Pages/static export, use Cloudinary URL
 2. Optional: set `CLOUDINARY_FOLDER` (defaults to `new-website`).
 3. Upload local site images and generate a manifest:
    `npm run cloudinary:upload`
-4. Build/run:
+4. Convert local markdown image paths to Cloudinary links:
+   `npm run cloudinary:rewrite`
+5. Run both in sequence:
+   `npm run cloudinary:sync`
+6. Build/run:
    `npm run build` or `npm run dev`
 
 How it works:
 - Upload script pushes images from `public/images` and `public/support/images`.
 - A mapping file is generated at `lib/cloudinary-manifest.json`.
 - Markdown `<img>` rendering in `components/mdx-content.tsx` uses Cloudinary URL when a local path exists in this mapping.
+- A rewrite script updates markdown content in `content/**` from local image paths (for example `public/images/...`) to Cloudinary URLs.
+
+### GitHub automation
+
+`.github/workflows/cloudinary-sync.yml` runs automatically on pushes to `main` that modify:
+- `public/images/**`
+- `public/support/images/**`
+
+It uploads images to Cloudinary, regenerates the manifest, rewrites local markdown image links, and commits updates back to `main`.
+
+Required GitHub repository secrets:
+- `CLOUDINARY_CLOUD_NAME`
+- `CLOUDINARY_API_KEY`
+- `CLOUDINARY_API_SECRET`
+- Optional: `CLOUDINARY_FOLDER`

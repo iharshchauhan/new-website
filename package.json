@@ -9,7 +9,9 @@
     "start": "next start",
     "lint": "eslint .",
     "clean": "next clean",
-    "cloudinary:upload": "node scripts/upload-to-cloudinary.mjs"
+    "cloudinary:upload": "node scripts/upload-to-cloudinary.mjs",
+    "cloudinary:rewrite": "node scripts/replace-image-urls-with-cloudinary.mjs",
+    "cloudinary:sync": "npm run cloudinary:upload && npm run cloudinary:rewrite"
   },
   "dependencies": {
     "@google/genai": "^1.17.0",
