@@ -123,4 +123,30 @@
     color: hsl(var(--foreground)) !important;
     opacity: 1 !important;
   }
+
+  .markdown-body .mermaid-svg {
+    margin: 1.5rem 0;
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.75rem;
+    background: #fff;
+    padding: 1rem;
+    overflow-x: auto;
+  }
+
+  .markdown-body .mermaid-svg svg {
+    display: block;
+    width: max-content;
+    min-width: 42rem;
+    height: auto;
+  }
+
+  .markdown-body .mermaid-fallback {
+    margin: 1.5rem 0;
+    border: 1px solid hsl(var(--border));
+    border-radius: 0.75rem;
+    background-color: hsl(var(--muted));
+    color: hsl(var(--foreground));
+    padding: 1rem;
+    overflow-x: auto;
+  }
 }

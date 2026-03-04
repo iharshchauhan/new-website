@@ -1,6 +1,8 @@
+import React from "react";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import cloudinaryManifest from "@/lib/cloudinary-manifest.json";
+import Mermaid from "@/components/Mermaid";
 
 function normalizeImageSrc(rawSrc: string): string {
   let normalizedSrc = rawSrc.trim();
@@ -27,6 +29,22 @@ export function MDXContent({ content }: { content: string }) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
+          pre: ({ children, ...props }) => {
+            const firstChild = Array.isArray(children) ? children[0] : children;
+
+            if (React.isValidElement(firstChild)) {
+              const className = typeof firstChild.props.className === "string" ? firstChild.props.className : "";
+              if (className.includes("language-mermaid")) {
+                const rawChart = firstChild.props.children;
+                const chart = Array.isArray(rawChart)
+                  ? rawChart.join("")
+                  : String(rawChart ?? "");
+                return <Mermaid chart={chart} />;
+              }
+            }
+
+            return <pre {...props}>{children}</pre>;
+          },
           img: (props) => {
             const rawSrc = typeof props.src === "string" ? props.src : "";
             const normalizedSrc = normalizeImageSrc(rawSrc);
