@@ -4,13 +4,13 @@
 4:I[9766,[],""]
 5:I[98924,[],""]
 17:I[57150,[],""]
-:HL["/_next/static/css/7c7dcc5da74f563b.css","style"]
-0:{"P":null,"b":"HGoUdIk8EXHBpT284nT1q","p":"","c":["","logbook",""],"i":false,"f":[[["",{"children":["logbook",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/7c7dcc5da74f563b.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"antialiased min-h-screen flex flex-col selection:bg-primary selection:text-primary-foreground","suppressHydrationWarning":true,"children":[["$","$L2",null,{}],["$","$L3",null,{}],["$","main",null,{"className":"flex-1 pt-32 pb-16 px-4 sm:px-6 md:px-12 max-w-3xl mx-auto w-full","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"w-full max-w-4xl mx-auto py-12 px-6 md:px-12 text-sm text-muted-foreground flex flex-col items-center space-y-8","children":[["$","div",null,{"className":"w-full flex justify-center overflow-hidden text-[#6b21a8] text-[10px] tracking-[0.5em] opacity-80","children":[["$","span","0",{"children":"•"}],["$","span","1",{"children":"•"}],["$","span","2",{"children":"•"}],["$","span","3",{"children":"•"}],["$","span","4",{"children":"•"}],["$","span","5",{"children":"•"}],["$","span","6",{"children":"•"}],["$","span","7",{"children":"•"}],["$","span","8",{"children":"•"}],["$","span","9",{"children":"•"}],["$","span","10",{"children":"•"}],["$","span","11",{"children":"•"}],["$","span","12",{"children":"•"}],["$","span","13",{"children":"•"}],["$","span","14",{"children":"•"}],["$","span","15",{"children":"•"}],["$","span","16",{"children":"•"}],["$","span","17",{"children":"•"}],["$","span","18",{"children":"•"}],["$","span","19",{"children":"•"}],["$","span","20",{"children":"•"}],["$","span","21",{"children":"•"}],["$","span","22",{"children":"•"}],["$","span","23",{"children":"•"}],["$","span","24",{"children":"•"}],["$","span","25",{"children":"•"}],["$","span","26",{"children":"•"}],["$","span","27",{"children":"•"}],["$","span","28",{"children":"•"}],["$","span","29",{"children":"•"}],["$","span","30",{"children":"•"}],["$","span","31",{"children":"•"}],["$","span","32",{"children":"•"}],["$","span","33",{"children":"•"}],["$","span","34",{"children":"•"}],["$","span","35",{"children":"•"}],["$","span","36",{"children":"•"}],["$","span","37",{"children":"•"}],["$","span","38",{"children":"•"}],["$","span","39",{"children":"•"}],["$","span","40",{"children":"•"}],["$","span","41",{"children":"•"}],["$","span","42",{"children":"•"}],["$","span","43",{"children":"•"}],["$","span","44",{"children":"•"}],["$","span","45",{"children":"•"}],["$","span","46",{"children":"•"}],["$","span","47",{"children":"•"}],["$","span","48",{"children":"•"}],["$","span","49",{"children":"•"}],["$","span","50",{"children":"•"}],["$","span","51",{"children":"•"}],["$","span","52",{"children":"•"}],["$","span","53",{"children":"•"}],["$","span","54",{"children":"•"}],["$","span","55",{"children":"•"}],["$","span","56",{"children":"•"}],["$","span","57",{"children":"•"}],["$","span","58",{"children":"•"}],["$","span","59",{"children":"•"}]]}],["$","div",null,{"className":"flex flex-wrap items-center justify-center gap-x-3 gap-y-4 text-center text-[#4b5563]","children":[["$","div",null,{"className":"flex items-center space-x-4 mr-2","children":[["$","a",null,{"href":"https://github.com","target":"_blank","rel":"noreferrer","className":"hover:text-foreground transition-colors","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-github w-4 h-4","aria-hidden":"true","children":["$L6","$L7","$undefined"]}]}],"$L8","$L9","$La","$Lb","$Lc","$Ld"]}],"$Le","$Lf","$L10","$L11","$L12","$L13"]}]]}]]}]}]]}],{"children":["logbook","$L14",{"children":["__PAGE__","$L15",{},null,false]},null,false]},null,false],"$L16",false]],"m":"$undefined","G":["$17",[]],"s":false,"S":true}
+:HL["/_next/static/css/d6df6c0751b35e60.css","style"]
+0:{"P":null,"b":"52HBruy3Pgz1ymZcbA5JW","p":"","c":["","logbook",""],"i":false,"f":[[["",{"children":["logbook",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d6df6c0751b35e60.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"antialiased min-h-screen flex flex-col selection:bg-primary selection:text-primary-foreground","suppressHydrationWarning":true,"children":[["$","$L2",null,{}],["$","$L3",null,{}],["$","main",null,{"className":"flex-1 pt-32 pb-16 px-4 sm:px-6 md:px-12 max-w-3xl mx-auto w-full","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"w-full max-w-4xl mx-auto py-12 px-6 md:px-12 text-sm text-muted-foreground flex flex-col items-center space-y-8","children":[["$","div",null,{"className":"w-full flex justify-center overflow-hidden text-[#6b21a8] text-[10px] tracking-[0.5em] opacity-80","children":[["$","span","0",{"children":"•"}],["$","span","1",{"children":"•"}],["$","span","2",{"children":"•"}],["$","span","3",{"children":"•"}],["$","span","4",{"children":"•"}],["$","span","5",{"children":"•"}],["$","span","6",{"children":"•"}],["$","span","7",{"children":"•"}],["$","span","8",{"children":"•"}],["$","span","9",{"children":"•"}],["$","span","10",{"children":"•"}],["$","span","11",{"children":"•"}],["$","span","12",{"children":"•"}],["$","span","13",{"children":"•"}],["$","span","14",{"children":"•"}],["$","span","15",{"children":"•"}],["$","span","16",{"children":"•"}],["$","span","17",{"children":"•"}],["$","span","18",{"children":"•"}],["$","span","19",{"children":"•"}],["$","span","20",{"children":"•"}],["$","span","21",{"children":"•"}],["$","span","22",{"children":"•"}],["$","span","23",{"children":"•"}],["$","span","24",{"children":"•"}],["$","span","25",{"children":"•"}],["$","span","26",{"children":"•"}],["$","span","27",{"children":"•"}],["$","span","28",{"children":"•"}],["$","span","29",{"children":"•"}],["$","span","30",{"children":"•"}],["$","span","31",{"children":"•"}],["$","span","32",{"children":"•"}],["$","span","33",{"children":"•"}],["$","span","34",{"children":"•"}],["$","span","35",{"children":"•"}],["$","span","36",{"children":"•"}],["$","span","37",{"children":"•"}],["$","span","38",{"children":"•"}],["$","span","39",{"children":"•"}],["$","span","40",{"children":"•"}],["$","span","41",{"children":"•"}],["$","span","42",{"children":"•"}],["$","span","43",{"children":"•"}],["$","span","44",{"children":"•"}],["$","span","45",{"children":"•"}],["$","span","46",{"children":"•"}],["$","span","47",{"children":"•"}],["$","span","48",{"children":"•"}],["$","span","49",{"children":"•"}],["$","span","50",{"children":"•"}],["$","span","51",{"children":"•"}],["$","span","52",{"children":"•"}],["$","span","53",{"children":"•"}],["$","span","54",{"children":"•"}],["$","span","55",{"children":"•"}],["$","span","56",{"children":"•"}],["$","span","57",{"children":"•"}],["$","span","58",{"children":"•"}],["$","span","59",{"children":"•"}]]}],["$","div",null,{"className":"flex flex-wrap items-center justify-center gap-x-3 gap-y-4 text-center text-[#4b5563]","children":[["$","div",null,{"className":"flex items-center space-x-4 mr-2","children":[["$","a",null,{"href":"https://github.com","target":"_blank","rel":"noreferrer","className":"hover:text-foreground transition-colors","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-github w-4 h-4","aria-hidden":"true","children":["$L6","$L7","$undefined"]}]}],"$L8","$L9","$La","$Lb","$Lc","$Ld"]}],"$Le","$Lf","$L10","$L11","$L12","$L13"]}]]}]]}]}]]}],{"children":["logbook","$L14",{"children":["__PAGE__","$L15",{},null,false]},null,false]},null,false],"$L16",false]],"m":"$undefined","G":["$17",[]],"s":false,"S":true}
 18:I[52619,["2619","static/chunks/2619-04bc32f026a0d946.js","8974","static/chunks/app/page-b1ff4eb1a2de40fd.js"],""]
 19:"$Sreact.suspense"
 1a:I[42194,["2619","static/chunks/2619-04bc32f026a0d946.js","760","static/chunks/760-c78e84cfc696fc42.js","1042","static/chunks/app/logbook/page-622e5dcad1f66e74.js"],"LogbookTabs"]
-29:I[24431,[],"ViewportBoundary"]
-2b:I[24431,[],"MetadataBoundary"]
+2a:I[24431,[],"ViewportBoundary"]
+2c:I[24431,[],"MetadataBoundary"]
 6:["$","path","tonef",{"d":"M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"}]
 7:["$","path","9comsn",{"d":"M9 18c-4.51 2-5-2-7-2"}]
 8:["$","span",null,{"className":"opacity-50","children":"|"}]
@@ -715,291 +715,50 @@ Platform architecture should not be designed purely as infrastructure diagrams. 
 By moving from fragmented on-prem environments to a structured cloud platform, we reduce operational complexity, improve developer velocity, and introduce clear cost accountability.
 
 That combination ultimately turns infrastructure from a bottleneck into an enabler of product development.
-1e:T342b,The Model Context Protocol (MCP) represents a paradigm shift in how AI systems interact with data sources and tools. This document synthesizes insights from a comprehensive presentation covering the evolution of AI adoption, the challenges of fragmented AI ecosystems, and how MCP provides a unified solution for context management across different platforms and tools.
+1e:T9f5,
+When I look at how most financial institutions handle Know Your Customer (KYC) processes, the pattern is almost always the same.
 
----
+Customers struggle to submit the right documents. Compliance teams spend hours reviewing incomplete applications. Operations teams chase missing paperwork. And regulators expect strict traceability for every decision.
 
-## Part 1: The Evolution of AI Adoption and The Problem of Silos
+The result is a system that is slow, expensive, and frustrating for everyone involved.
 
-### The Three Stages of AI Adoption
+From a product perspective, the issue is not simply automation. The issue is **where automation should happen in the workflow**.
 
-The integration of Large Language Models into everyday workflows has progressed through three transformative stages:
+If automation only happens during internal compliance review, we are already too late. The errors were introduced when the customer uploaded the documents.
 
-#### Stage 1: Experimentation (The Wonder Phase)
+This project approaches the problem differently by splitting the system into two complementary AI systems.
 
-When ChatGPT launched, it achieved unprecedented growth: **1 million users in 5 days** and **100 million users in 2 months**. For the first time in software history, humans could interact with software without coding, treating it like everyday conversations. Early adopters experimented with creative prompts such as *"Write a poem on Pizza in the style of Gulzar"* or *"What would happen if AI starts breeding tomorrow?"* Social media platforms exploded with AI-generated content, showcasing the technology's creative potential.
+| System               | Purpose                                            | Stage             |
+| -------------------- | -------------------------------------------------- | ----------------- |
+| **KYC Copilot**      | Validate and guide document submission             | Before submission |
+| **KYC Review Agent** | Assist compliance officers with automated analysis | After submission  |
 
-#### Stage 2: Professional Adoption
+Together, they create a dual-agent architecture that improves both **customer experience and compliance efficiency**.
 
-As the novelty wore off, professionals began incorporating AI into their daily workflows. ChatGPT became an indispensable tool for:
+## Why KYC processes break down
 
-- Text summarization and content generation
-- Email composition and communication
-- Lesson planning and educational content
-- Code debugging and development assistance
+KYC workflows appear straightforward on paper.
 
-This stage marked a significant increase in individual productivity, as AI transitioned from entertainment to practical utility.
+1. Customer uploads identification documents
+2. Institution validates identity and risk
+3. Compliance team approves or rejects the application
 
-#### Stage 3: The Ecosystem Explosion (The Now)
+In practice, the process breaks down at multiple points.
 
-The current stage is characterized by proliferation of specialized AI tools and integrations:
+| Failure Point         | What Happens                                           |
+| --------------------- | ------------------------------------------------------ |
+| Document quality      | Blurry scans, cropped IDs, missing pages               |
+| Document mismatch     | Name or address differences across documents           |
+| Regulatory complexity | Different jurisdictions require different checks       |
+| Manual workload       | Compliance teams review hundreds of applications daily |
 
-- Microsoft Copilot became omnipresent across the Microsoft ecosystem
-- Google Suite introduced comprehensive AI integrations
-- Specialized tools emerged: Perplexity for research, Replit and Cursor for development
-- Every major platform developed its own AI wrapper and integration
+These problems compound quickly at scale.
 
-### The Critical Problem: Fragmented AI Ecosystems
+A single missing page or unreadable document can delay onboarding by days. Compliance analysts spend time fixing preventable issues instead of focusing on actual risk analysis.
 
-Despite this explosion of AI capabilities, a fundamental problem emerged: **the problem of silos**. Each AI tool operated within its own isolated ecosystem:
+This is where AI agents can provide leverage.
 
-- AI in Notion couldn't communicate with AI in Slack
-- Cursor couldn't access messages on Microsoft Teams
-- Each AI agent had its own character and limitations
-- Users possessed an "army of AI agents" but couldn't coordinate them effectively
-
-Users found themselves juggling multiple AI assistants, each locked within its platform. The dream was clear: **one unified assistant** that could understand their entire work context and solve problems across all platforms. However, the biggest bottleneck preventing this unified AI experience was **context**.
-
-### Understanding Context: The Foundation of AI Intelligence
-
-Context is everything an AI can see while generating a response. It encompasses:
-
-- Conversation history
-- External documents and data sources
-- User preferences and past interactions
-- Real-time information from connected tools
-
-For example, when chatting with ChatGPT, the context includes all previous messages in the conversation. Without proper context, AI responses become generic and unhelpful. The challenge was enabling AI to access context from multiple sources simultaneously.
-
----
-
-## Part 2: The Context Problem and Evolution of Solutions
-
-### A Product Manager's Journey: Before and After AI
-
-To illustrate the context problem, consider a typical day in the life of a Product Manager:
-
-**Traditional Workflow:**
-1. Discovery (researching user needs and market trends)
-2. Analysis (evaluating data and insights)
-3. Documentation (creating specs and requirements)
-4. Request raising / development / Sprint planning
-5. User Acceptance Testing
-
-**With ChatGPT Introduction:** ChatGPT began assisting with analysis, documentation, and sprint planning. However, this created a new problem: the **"Ctrl+C, Ctrl+V fallacy."**
-
-### The Ctrl+C, Ctrl+V Fallacy
-
-While AI could help with individual tasks, humans became **"Human APIs"** ; constantly transferring data between tools to build context:
-
-- Copying data from Slack to feed into ChatGPT
-- Manually extracting information from Google Drive to provide context
-- Transferring analysis results between different AI tools
-
-Key problems emerged:
-
-- Extensive data migration required between tools
-- Context building time exceeded actual productive work time
-- Non-sustainable workflow in the long run
-- Fragmented knowledge across multiple platforms
-
-### The Solution: Function Calling and Tools
-
-#### Function Calling Revolution
-
-In late 2023, OpenAI introduced **function calling**, a breakthrough that enabled LLMs to interact with external systems. Function calling allows:
-
-- LLMs to call extension files and external APIs
-- Programmatic retrieval of structured data from GPT models
-- JSON-based responses with function names and arguments
-
-> *According to HackWithGPT: "OpenAI isn't executing the function for you, but it returns a JSON object with the function name it thinks should be called and the arguments to pass to the function."*
-
-#### The Advent of Tools
-
-Function calling enabled a new generation of AI tools with specialized integrations:
-
-- Salesforce integration for sales teams to access CRM data
-- Slack bots reading chat history and channel context
-- Google Drive connectors for document access and collaboration
-- Database query tools analyzing organizational databases
-- GitHub integrations for code review and pull request management
-- HR tools for employee data access
-- Accounting system integrations for financial management
-- Marketing tools for campaign management
-- File system access with intelligent code search
-- Web browsing for real-time information retrieval
-
-Major platforms rushed to add capabilities: ChatGPT introduced browsing, file uploads, and code execution; Claude gained computer access and tool integration; and parallel developments occurred across all major AI platforms.
-
-### The Integration Nightmare
-
-While tools solved the context problem, they created a new challenge: **the N×M integration problem.**
-
-**The Mathematics of Integration Complexity:**
-
-```
-N clients (AI applications) × M servers (data sources) = N×M unique integrations required
-```
-
-- Each integration had different authentication methods
-- Different data formats and APIs across platforms
-- Inconsistent error handling and protocols
-
-**Consequences:**
-
-- Development nightmare with exponentially increasing complexity
-- Maintenance burden across numerous custom integrations
-- Security vulnerabilities from inconsistent authentication
-- Significant cost and time wastage
-- Scaling impossibility
-
----
-
-## Part 3: Model Context Protocol ; The Universal Solution
-
-### The MCP Paradigm
-
-Let's recap the problem: Every AI tool was creating its own API rules to integrate with platforms like GitHub. The solution was elegant: **GitHub builds an integration with standardized protocols that can be used by any AI tool.**
-
-### What is Model Context Protocol?
-
-Model Context Protocol is a **universal standard** that defines how AI applications interact with data sources.
-
-Breaking down the name:
-
-| Term | Meaning |
-|------|---------|
-| **Model** | Any LLM (GPT, Claude, Gemini, etc.) |
-| **Context** | All information provided to the LLM |
-| **Protocol** | Standardized rules that everyone must follow |
-
-MCP eliminates the N×M problem by providing a **single, standardized way** for any AI application to connect with any data source.
-
-### MCP Architecture: The Phone Analogy
-
-Think of MCP like a **phone with multiple SIM card slots**:
-
-- Phone with multiple SIM slots = **MCP Host** (the AI application)
-- SIM cards = **MCP Clients** (connection handlers)
-- Telephone providers = **MCP Servers** (data sources)
-
-Just as you can use any SIM card in a phone with standardized slots, any AI application can connect to any data source through MCP.
-
-**Key Components:**
-
-| Component | Description |
-|-----------|-------------|
-| **MCP Host** | The AI application (ChatGPT, Claude, custom apps) |
-| **MCP Client** | The connection layer within the host |
-| **MCP Server** | Data source implementations (GitHub, Google Drive, Slack, databases) |
-| **MCP Marketplace** | Central repository of available servers and integrations |
-
-### Real-World Application: Expense Calculator Demo
-
-To demonstrate MCP's practical value, consider an expense tracking application built with MCP:
-
-**Problem it Solves:**
-- Maintaining long Excel spreadsheets for budget and expenses
-- Converting PDFs/Excel/images to spreadsheets for data evaluation
-- Limited to single-person usage in traditional systems
-
-**Functionality Enabled by MCP:**
-- Natural language expense and credit management
-- NLP-based editing and deletion of transactions
-- Automatic extraction from bank statements (Excel/PDF/images)
-- Visual dashboard generation for all expenses and credits
-- Multi-user support for tracking household expenses
-- Automatic categorization of expenses
-- Contextual date understanding ("yesterday," "day before yesterday")
-
-**Technical Implementation:**
-- Remote MCP server (with local server option available)
-- SQLite database for data persistence
-- FastMCP library for protocol implementation
-
-### The New Normal with MCP
-
-With MCP, the Product Manager's workflow transforms completely into a **unified AI workflow** with:
-
-- Single AI assistant (ChatGPT with MCP integration)
-- Connected to multiple tools through standardized MCP servers
-- Seamless context sharing across all platforms
-- No manual data transfer required
-- Real-time access to Slack, Google Drive, databases, GitHub, and more
-
-**Benefits:**
-
-| Benefit | Description |
-|---------|-------------|
-| **Standardization** | One protocol to rule them all |
-| **Scalability** | Easy addition of new data sources |
-| **Security** | Consistent authentication and authorization |
-| **Maintainability** | Updates to protocol benefit all integrations |
-| **Developer Experience** | Simple server creation with FastMCP library |
-| **User Experience** | Truly unified AI assistant |
-
----
-
-## The Path Forward
-
-MCP represents the **infrastructure layer** for the next generation of AI applications. This protocol enables:
-
-- True AI agent autonomy across platforms
-- Elimination of data silos
-- Democratization of AI tool development
-- Reduced development and maintenance costs
-- Enhanced security through standardization
-- Seamless user experiences across all tools
-
-The MCP marketplace is growing rapidly, with servers being developed for virtually every major platform and data source. This ecosystem approach ensures that as new platforms emerge, they can be instantly accessible to all MCP-compatible AI applications.
-
-# Let's talk technical: Building a MCP Server from Scratch
-
-As AI continues to evolve, MCP will serve as the foundational infrastructure enabling seamless integration, enhanced productivity, and the realization of AI's full potential in transforming how we work.
-## Building MCP Server and Client
-
-**MCP servers** have been picking up fast lately, with more people building and expanding the ecosystem. But when it comes to MCP clients, it's still a pretty niche space. So far, only a handful of MCP clients exist. So, with this post, I just wanted to make it easier for anyone looking to get started with building MCP Client.
-
-We will cover,
-
-- How to build MCP Client
-- Connect MCP Client to Local, Pre-built, Remote MCP Server
-
-It's beautifully simple when you break it down
-
-**LLM + Transport Layer + Protocol Implementation = MCP Client**
-
-Think of it like this:
-> Claude is a smart assistant, but by default, it can only *talk*. An MCP server gives Claude *hands* -> the ability to actually **do things** on your computer, like running terminal commands.
-
-![image](public/images/Articles/MCP-Server/557773906-61e7585e-5009-4c1Articles7-8afe-e37dc2014cdc.png)
-
-
-## Some popular MCP Clients are:
-
-- Claude Desktop App
-- Cursor
-- Windsurf
-- Goose
--VS Code Editor, and [there are few more.](https://modelcontextprotocol.io/clients#feature-support-matrix)
-
-While the previous diagram covered the high-level MCP client flow, the one below takes a closer look at how the MCP client and MCP server communicate step by step during a session.
-
-To make it even clearer, here is a breakdown of the steps involved.
-
-1. Capture the user query
-2. Establishes connections to MCP servers
-3. Discovers server tools via the tools/list endpoint
-4. Forwards user queries and available tools to LLM
-5. Processes LLM responses to identify tool calls
-6. Executes tools using the server's tools/call endpoint
-7. Returns tool results to the LLM for continued conversation
-
-![image](public/images/Articles/MCP-Server/557774767-d0a9d47f-3b61-4e86-97e1-18396aa570f7.png)
-
-Now that we have a basic idea of what an MCP client is, let us build one step by step. Once we put it into practice, the concepts will make a lot more sense and feel less abstract.
-
+The result is a system that is not only more efficient but also easier for customers and analysts to trust.
 
 1f:T321b,
 ## Overview
@@ -2569,7 +2328,7 @@ When I reach that stage with a team, meetings shorten, reviews simplify, and res
 I have learned that progress is not measured only by features shipped or accuracy improved, but by how deeply two different kinds of minds begin to understand each other. That understanding doesn’t arrive with a sprint or a review; it arrives quietly, somewhere between a dataset and a design file, when both sides finally listen.
 
 That, to me, is where product and AI finally meet: not at the feature, not at the model, but in the mind they build together.
-23:T56b9,
+23:T5b00,
 Lately, I've dived into the world of web scrapers, and with the rapid developments in AI, I thought it would be fascinating to attempt creating a 'universal' scraper. This would be one that can navigate the web step by step until it finds exactly what it's looking for. It's a work in progress, but I wanted to share what I've achieved so far.
 
 ### **Specifications**
@@ -2611,7 +2370,7 @@ Given this requirement, my first task was to identify the 'element of interest' 
 
 HTML data can be highly detailed and lengthy. Most of it focuses on styling, layout, and interactive logic rather than the text content. I was concerned that text models would struggle with this complexity, so I thought of bypassing it using the GPT-4-Turbo-Vision model. This model would 'look' at the rendered page and extract the most relevant text, which I could then use to search through the raw HTML for the element containing that text.
 
-![image](/support/images/Untitled2.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626945/new-website/support/images/Untitled2.png)
 
 **This approach quickly fell apart:**
 Firstly, GPT-4-Turbo-Vision sometimes refused to transcribe text, saying things like, "Sorry, I can't help with that." At one point, it said, "Sorry, I can't transcribe text from copyrighted images." It seems OpenAI discourages this use case. (A workaround might be mentioning that you're visually impaired, but I wouldn't recommend it!)
@@ -2625,7 +2384,7 @@ Lastly, reverse-engineering a working element selector from the text alone would
 ### **Approach 2: HTML + Text Model**
 
 The text-only GPT-4-Turbo has more generous rate limits, and with a 128k context window, I decided to try passing the entire HTML of the page to see if it could identify the relevant elements.
-![image](/support/images/Untitled3.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626949/new-website/support/images/Untitled3.png)
 
 While the HTML data often fit within the limit, the GPT-4-Turbo models were not consistently smart enough to get it right. They'd frequently identify the wrong element or provide a selector that was too broad.
 
@@ -2640,19 +2399,19 @@ When searching for specific information on a webpage, I'd use 'Control' + 'F' to
 This approach's benefit is that simple text searches are fast and easy to implement. In this context, a text model could generate search terms, and a simple regex search on the HTML could perform the search.
 
 Generating search terms would take longer than conducting the search, so instead of searching one term at a time, I could ask the text model to generate several terms simultaneously and search for them concurrently. Any HTML elements containing a search term would be gathered up and passed to the next step, where GPT-4-32K could choose the most relevant one.
-![image](/support/images/Untitled4.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626957/new-website/support/images/Untitled4.png)
 If enough search terms are used, a lot of HTML will be retrieved, possibly triggering API limits or affecting the next step's performance. I devised a scheme to fill a list of relevant elements up to a specific length.
 
 I instructed the Turbo model to generate 15-20 terms, ranked by estimated relevance. Then, using a regex search, I looked through the HTML to find every element that contained a term. By the end, I had a list of lists, with each sublist containing all elements that matched a term:
-![image](/support/images/Untitled5.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626958/new-website/support/images/Untitled5.png)
 
 I then populated a final list with elements from these lists, giving preference to those appearing earlier in the lists. For instance, let's say the ranked search terms are: 'pricing', 'fee', 'cost', and 'prices'. When filling the final list, I'd ensure more elements from the 'pricing' list than the 'fee' list, and more from 'fee' than 'cost', and so on.
 
 Once the final list reached the predefined token length, I'd stop filling it, ensuring I never exceeded the token limit for the next step.
-![image](/support/images/Untitled6.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626959/new-website/support/images/Untitled6.png)
 
 If you're curious about the code for this algorithm, here's a simplified version:
-![image](/support/images/Untitled7.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626960/new-website/support/images/Untitled7.png)
 
 This approach did the trick. Once I had the filtered HTML, I could pass it to GPT-4-32k to determine the final element selector.
 
@@ -2663,18 +2422,18 @@ Finally, the GPT-4-32k model would deliver a selector for the correct element, w
 Let's say that my AI is trying to find out the capital of Cuba. It would search the word 'capital' and find this element in orange. The problem is that the information we need is in the green element - a sibling. We've gotten close to the answer, but without including both elements, we won't be able to solve the problem.
 
 If you're curious about the code for this algorithm, here's a simplified version:
-![image](/support/images/Untitled9.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626961/new-website/support/images/Untitled9.png)
 To solve this problem, I decided include 'parents' as an optional parameter in my element search function. Setting a parent of 0 meant that the search function would return only the element that directly contained the text (which natually includes the children of that element).
 
 Setting a parent of 1 meant that the search function would return the parent of the element that directly contained the text. Setting a parent of 2 meant that the search function would return the grandparent of the element that directly contained the text, and so on. In this Cuba example, setting a parent of 2 would return the HTML for this entire section in red:
-![image](/support/images/Untitled11.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626937/new-website/support/images/Untitled11.png)
 
 I decided to set the default parent to 1. Any higher and I could be grabbing huge amounts of HTML per match.
 
 So now that we've gotten a list of manageable size, with a helpful amount of parent context, it was time to move to the next step: I wanted to ask GPT-4-32K to pick the most relevant element from this list.
 
 This step was pretty straight forward, but it took a bit of trial and error to get the prompt right:
-![image](/support/images/Untitled12.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626938/new-website/support/images/Untitled12.png)
 
 After this step, I would end up with the single most relevant element on the page, which I could then pass to the next step, where I would have an AI model decide what type of interaction would be necessary to accomplish the goal.
 
@@ -2689,7 +2448,7 @@ Once an assistant is running, you can poll the API to check up on its status. If
 For this project, I set up an Assistant based on the GPT-4-Turbo model, and gave it a tool that triggered the GET_ELEMENT function I had just created.
 
 Here's the description I provided for the GET_ELEMENT tool:
-![image](/support/images/Untitled12.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626938/new-website/support/images/Untitled12.png)
 You'll notice that in addition to the most relevant element, this tool also returns the quantity of matching elements for each provided search term. This information helped the Assistant decide whether or not to try again with different search terms.
 
 With this one tool, the Assistant was now capable of solving the first two steps of my spec: Analyzing a given web page and extracting text information from any relevant parts. In cases where there's no need to actually interact with the page, this is all that's needed. If we want to know the pricing of a product, and the pricing info is contained in the element returned by our tool, the Assistant can simply return the text from that element and be done with it.
@@ -2703,17 +2462,17 @@ To make a tool that interacts with a given element, I thought I might need to bu
 Thus, the plan became:
 
 The assistant would provide a description of the interaction it wanted to take, I would use GPT-4-32K to write the code for that interaction, and then I would execute that code inside of my Playwright crawler.
-![image](/support/images/Untitled13.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626939/new-website/support/images/Untitled13.png)
 
 Here's the description I provided for the INTERACT_WITH_ELEMENT tool:
-![image](/support/images/Untitled14.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626940/new-website/support/images/Untitled14.png)
 You'll notice that instead of having the assistant write out the full element, it simply provides a short identifier, which is much easier and faster.
 
 Below are the instructions I gave to GPT-4-32K to help it write the code. I wanted to handle cases where there may be relevant information on the page that we need to extract before interacting with it, so I told it to assign extracted information to a variable called 'actionOutput' within it's function.
-![image](/support/images/Untitled15.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626941/new-website/support/images/Untitled15.png)
 
 I passed the string output from this step - which I'm calling the 'action' - into my Playwright crawler as a parameter, and used the 'eval' function to execute it as code (yes, I know this could be dangerous)
-![image](/support/images/Untitled16.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626942/new-website/support/images/Untitled16.png)
 
 ## **Conveying the State of the Page**
 
@@ -2728,7 +2487,7 @@ With this final piece in place, the Assistant was now capable of deciding if a g
 Let's recap the process to this point: We start by giving a URL and a goal to an assistant. The assistant then uses the 'GET_ELEMENT' tool to extract the most relevant element from the page.
 
 If an interaction is appropriate, the assistant will use the 'INTERACT_WITH_ELEMENT' tool to write and execute the code for that interaction. It will repeat this flow until the goal has been reached.
-![image](/support/images/Untitled17.png)
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626943/new-website/support/images/Untitled17.png)
 Now it was time to put it all to the test by seeing how well it could navigate through Wikipedia in search of an answer.
 
 ## **Testing the Assistant**
@@ -3453,12 +3212,304 @@ Fundraising is an iterative and continuous process. Building meaningful relation
 Remember, every investor is different, and it's essential to understand their specific preferences and requirements. Seek further guidance from industry experts, join startup communities, and leverage resources available online to refine your fundraising strategy and improve your chances of success.
 
 Happy building and fundraising!
-15:["$","$1","c",{"children":[["$","div",null,{"className":"space-y-12 max-w-6xl mx-auto","children":[["$","header",null,{"className":"space-y-4 text-center pb-8","children":[["$","h1",null,{"className":"text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight","children":"Logbook"}],["$","p",null,{"className":"text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto","children":"A collection of my writings, projects, frameworks, and reviews."}]]}],["$","$19",null,{"fallback":["$","div",null,{"className":"text-center py-24 text-muted-foreground","children":"Loading logbook..."}],"children":["$","$L1a",null,{"posts":[{"slug":"the-hidden-cost-of-ai-infrastructure","type":"writing","subpage":"$undefined","meta":{"title":"The hidden cost of AI infrastructure","date":"2026-03-05","description":"Why AI infrastructure is quietly reshaping housing markets, electricity prices, and consumer costs.","coverImage":"$undefined","category":"Proof of work","tags":["AI","Infrastructure","Economics","Data Centers"]},"content":"$1b"},{"slug":"Chunking-strategies-for-rag","type":"writing","subpage":"$undefined","meta":{"title":"Why I Treat Chunking as a Product Decision","date":"2026-03-04","description":"I break down fixed-size, semantic, recursive, structure-based, and LLM chunking through a product lens and share how we should choose in production.","coverImage":"$undefined","category":"Proof of work","tags":["RAG","LLMs","Retrieval","Proof Of Work"]},"content":"$1c"},{"slug":"how-i-think-about-moving-from-on-prem-infrastructure-to-a-gcp-platform","type":"writing","subpage":"$undefined","meta":{"title":"How I think about moving from on-prem infrastructure to a GCP platform","date":"2026-03-04","description":"A product and platform perspective on evolving from fragmented on-prem systems to a structured GCP architecture with cost attribution and chargeback.","coverImage":"$undefined","category":"Proof of work","tags":["Cloud","Platform Engineering","GCP","Architecture","FinOps"]},"content":"$1d"},{"slug":"ai-dynamic-pricing","type":"projects","subpage":"$undefined","meta":{"title":"AI Dynamic Pricing","date":"2026-03-02","description":"AI-driven dynamic pricing platform with explainable ML, ethical guardrails, and production dashboarding for Indian coffee retail.","coverImage":"https://picsum.photos/seed/ai-dynamic-pricing/800/400","category":"Proof of work","tags":["AI","Pricing","Retail Analytics"]},"content":"\n# AI Dynamic Pricing\n\nThis project demonstrates an AI pricing system that combines forecasting, weather-aware demand signals, ethics controls, and operational deployment.\n\n## What it includes\n\n- Product and business context\n- PRD, metrics, ethics, and stakeholder strategy\n- Backtest and results analysis\n- Streamlit quickstart and deployment docs\n\n## Deep Dives\n\n- [Project README](/projects/ai-dynamic-pricing/project-readme)\n- [Results](/projects/ai-dynamic-pricing/results)\n- [PRD](/projects/ai-dynamic-pricing/prd)\n- [Metrics](/projects/ai-dynamic-pricing/metrics)\n- [Ethics and Governance](/projects/ai-dynamic-pricing/ethics)\n- [Stakeholder Analysis](/projects/ai-dynamic-pricing/stakeholder-analysis)\n- [Backtest Summary](/projects/ai-dynamic-pricing/backtest-summary)\n- [Streamlit Quickstart](/projects/ai-dynamic-pricing/streamlit-quickstart)\n- [Streamlit Deployment](/projects/ai-dynamic-pricing/streamlit-deploy)\r\n"},{"slug":"autonomous-agent-framework","type":"projects","subpage":"$undefined","meta":{"title":"Autonomous Agent Framework","date":"2026-03-02","description":"A reusable autonomous-agent pattern for queue-based task execution, prioritization, and safe headless runs.","coverImage":"https://picsum.photos/seed/autonomous-agent/800/400","category":"Proof of work","tags":["AI","Automation","Agents"]},"content":"\n# Autonomous Agent Framework\n\nThis project captures a production-ready framework for autonomous task execution with guardrails, lock safety, and process management.\n\n## What it includes\n\n- Core framework design and architecture\n- Real-world case study from long-running usage\n- Source walkthrough of the main runtime\n\n## Deep Dives\n\n- [Framework README](/projects/autonomous-agent-framework/framework-readme)\n- [Case Study: Shipping Code While I Sleep](/projects/autonomous-agent-framework/case-study)\n- [Source Walkthrough: autonomous-agent.js](/projects/autonomous-agent-framework/source-walkthrough)\r\n"},{"slug":"compound-product","type":"projects","subpage":"$undefined","meta":{"title":"Compound Product","date":"2026-03-02","description":"An autonomous product improvement loop that analyzes reports, plans work, and ships iterative changes.","coverImage":"https://picsum.photos/seed/compound-product/800/400","category":"Proof of work","tags":["AI","Automation","Product Engineering"]},"content":"\n# Compound Product\n\nThis project captures an end-to-end automation loop that turns operational reports into actionable implementation tasks.\n\n## What it includes\n\n- Full system architecture and setup guide\n- Real project journal from the clipboard-history implementation\n- Example report and PRD artifacts used in the loop\n- Agent execution prompt used for iterative task completion\n\n## Deep Dives\n\n- [System README](/projects/compound-product/system-readme)\n- [Project Journal: Pastey](/projects/compound-product/project-journal)\n- [Sample Inputs: Report and PRD](/projects/compound-product/sample-inputs)\n- [Agent Execution Prompt](/projects/compound-product/agent-execution-prompt)\r\n"},{"slug":"kyc-ai-solutions","type":"projects","subpage":"$undefined","meta":{"title":"KYC AI Solutions","date":"2026-03-02","description":"Dual-agent KYC architecture combining pre-submission validation and AI-assisted compliance review.","coverImage":"https://picsum.photos/seed/kyc-ai-solutions/800/400","category":"Proof of work","tags":["KYC","Compliance","AI Agents"]},"content":"\n# KYC AI Solutions\n\nThis project contains two complementary systems:\n\n- KYC Copilot: catches document issues before submission.\n- KYC Review Agent: accelerates internal compliance review after submission.\n\n## What it includes\n\n- End-to-end technical design and business rationale\n- Copilot architecture and validation pipeline\n- Cost analysis for startup and enterprise scale\n- Compliance review-agent workflow and decision framework\n\n## Deep Dives\n\n- [Solution Overview](/projects/kyc-ai-solutions/solution-overview)\n- [KYC Copilot](/projects/kyc-ai-solutions/kyc-copilot)\n- [Architecture](/projects/kyc-ai-solutions/architecture)\n- [Cost Analysis](/projects/kyc-ai-solutions/cost-analysis)\n- [KYC Review Agent](/projects/kyc-ai-solutions/kyc-review-agent)\r\n"},{"slug":"mcp-server-and-client","type":"projects","subpage":"$undefined","meta":{"title":"Building MCP Server and Client","date":"2026-03-02","description":"Hands-on MCP projects covering theory, a terminal server, and a React plus Electron client stack.","coverImage":"https://www.k2view.com/hubfs/Frame%20238551.png","category":"Proof of work","tags":["MCP","AI Tools","Developer Platform"]},"content":"$1e"},{"slug":"ai-continuous-compliance","type":"projects","subpage":"$undefined","meta":{"title":"Context-Aware Control Automation for GRC & SaaS","date":"2026-03-01","description":"An AI-powered continuous compliance engine for real-time risk evaluation, automated control enforcement, and audit-ready reasoning.","coverImage":"$undefined","category":"Proof of work","tags":["GRC","SOC 2","ISO 27001","AI Automation","Compliance"]},"content":"$1f"},{"slug":"ai-decision-orchestration-platform-saas","type":"projects","subpage":"$undefined","meta":{"title":"AI Decision Orchestration Platform (SaaS)","date":"2026-03-01","description":"Agentic intelligence for enterprise operations with context-aware AI decisions, confidence-based execution, and full auditability.","coverImage":"$undefined","category":"Proof of work","tags":["AI","SaaS","Enterprise","GRC","Automation"]},"content":"$20"},{"slug":"hadoop-to-bigquery-enterprise-modernization","type":"projects","subpage":"$undefined","meta":{"title":"Enterprise Data Platform Modernization: Hadoop to BigQuery","date":"2026-03-01","description":"A six-month phased migration from legacy on-prem Hadoop to a secure, cloud-native BigQuery foundation with governance, compliance, and measurable business impact.","coverImage":"$undefined","category":"Proof of work","tags":["BigQuery","Data Platform","Cloud Migration","Governance","Compliance"]},"content":"$21"},{"slug":"ll-stack","type":"projects","subpage":"$undefined","meta":{"title":"LL Stack","date":"2026-02-26","description":"A multi-page framework project covering the full LLM systems stack from infra to product.","coverImage":"https://picsum.photos/seed/ll-stack/800/400","category":"Frameworks","tags":["Framework","LLM","Systems"]},"content":"\n# LL Stack\n\nThis project organizes the LLM systems stack into focused, linked pages so each layer can be explored independently.\n\n## What it covers\n\n- A practical 5-layer map\n- Infra constraints and tradeoffs\n- Model fundamentals\n- Data, retrieval, and tools\n- Orchestration and evaluation\n- Product and UX strategy\n\n## Deep Dives\n\n- [LLM Stack: A Practical 5-Layer Map](/projects/ll-stack/llm-stack-5-layer-map)\n- [Layer 1: Infra for LLM Products](/projects/ll-stack/layer-1-infra-for-llm-products)\n- [Layer 2: Models and How They Differ](/projects/ll-stack/layer-2-models-and-how-they-differ)\n- [Layer 3: Data, Knowledge, and RAG](/projects/ll-stack/layer-3-data-knowledge-and-rag)\n- [Layer 4: Orchestration, Agents, and Evaluation](/projects/ll-stack/layer-4-orchestration-agents-and-evaluation)\n- [Layer 5: App and Product Strategy](/projects/ll-stack/layer-5-app-and-product-strategy)\r\n"},{"slug":"the-space-between-product-and-ai","type":"writing","subpage":"$undefined","meta":{"title":"The Space Between Product and AI","date":"2025-08-18","description":"In a world obsessed with speed and certainty, alignment between product and AI is rarely clean. It grows through tension, patience, and shared vulnerability. This piece reflects on what it takes to turn friction into flow, and why the most meaningful progress often begins in discomfort.","coverImage":"$undefined","category":"Logbook","tags":["Artificial Intelligence","Deep-Dive Analysis"]},"content":"$22"},{"slug":"how-to-build-a-universal-ai-scraper","type":"writing","subpage":"$undefined","meta":{"title":"How to build a Universal AI Scraper","date":"2024-07-18","description":"Lately, I've dived into the world of web scrapers, and with the rapid developments in AI, I thought it would be fascinating to attempt creating a universal scraper.","coverImage":"$undefined","category":"Logbook","tags":["Artificial Intelligence","Deep-Dive Analysis","Proof of work"]},"content":"$23"},{"slug":"AI Scraper","type":"projects","subpage":"$undefined","meta":{"title":"How to build a Universal AI Scraper","date":"2024-07-18","description":"Lately, I've dived into the world of web scrapers, and with the rapid developments in AI, I thought it would be fascinating to attempt creating a universal scraper.","coverImage":"$undefined","category":"Proof of work","tags":["Artificial Intelligence","Deep-Dive Analysis","Proof Of Work"]},"content":"$24"},{"slug":"build-measure-listen-rebuild","type":"writing","subpage":"$undefined","meta":{"title":"BUILD, MEASURE, LISTEN, REBUILD","date":"2024-04-18","description":"There's a difference between the skills needed to write code, and those needed to lead a successful business.","coverImage":"$undefined","category":"Logbook","tags":["Startup"]},"content":"$25"},{"slug":"vibe-coded-app-1","type":"projects","subpage":"$undefined","meta":{"title":"Vibe Coded App 1","date":"2024-01-10","description":"A cool app built entirely on vibes.","coverImage":"https://picsum.photos/seed/vibe1/800/400","category":"Fun Projects","tags":["Next.js","Tailwind","Framer Motion"]},"content":"\n# Vibe Coded App 1\n\n## What it does\n\nThis app is a showcase of how to build an application entirely based on vibes. It uses modern web technologies to deliver a seamless and interactive experience.\n\n## Why built\n\nI built this app to explore the boundaries of interactive design and to see how far I could push the concept of \"vibe coding\" — building software that feels good to use, not just functional.\n\n## Deep Dives\n\n- [Thought Process & Decisions](/projects/vibe-coded-app-1/thought-process)\n- [Screen Designs](/projects/vibe-coded-app-1/screens)\n"},{"slug":"my-favorite-tools-2023","type":"writing","subpage":"$undefined","meta":{"title":"My Favorite Tools of 2023","date":"2023-12-20","description":"A review of the tools that kept me productive and sane this year.","coverImage":"https://picsum.photos/seed/tools/800/400","category":"Reviews","tags":["Tools","Productivity","Review"]},"content":"\n# My Favorite Tools of 2023\n\nThis is a placeholder for the post \"My Favorite Tools of 2023\".\n\nHere are the tools that I used the most this year:\n- Notion\n- Linear\n- Raycast\n- Cursor\n"},{"slug":"product-management-framework","type":"writing","subpage":"$undefined","meta":{"title":"The Ultimate Product Management Framework","date":"2023-12-01","description":"A comprehensive framework for managing products from ideation to launch.","coverImage":"https://picsum.photos/seed/framework/800/400","category":"Frameworks","tags":["Framework","Product","Strategy"]},"content":"\n# The Ultimate Product Management Framework\n\nThis is a placeholder for the post \"The Ultimate Product Management Framework\".\n\nA good framework helps you structure your thoughts and make better decisions. In this post, we'll explore a comprehensive framework for product management.\n"},{"slug":"myths-and-realities-of-ais-rapid-evolution-2023","type":"writing","subpage":"$undefined","meta":{"title":"Myths and Realities of AI's Rapid Evolution - 2023","date":"2023-09-18","description":"AI's journey has been filled with overhyped promises and underwhelming deliveries until ChatGPT's sudden rise disrupted the status quo, highlighting a significant shift driven by a tiny fraction of the technological ecosystem. The conversation covers the misplaced belief that foundational models have peaked, the debate over the supremacy of open-source models, the premature declaration of incumbents’ victory, the exaggerated optimism among venture capitalists, and the contentious call to slow down AI advancements.","coverImage":"$undefined","category":"Logbook","tags":["Artificial Intelligence","Deep-Dive Analysis"]},"content":"$26"},{"slug":"strategic-angel-investment-shortest-guide-to-startup-fundraising","type":"writing","subpage":"$undefined","meta":{"title":"Strategic Angel Investment: Shortest Guide to Startup Fundraising","date":"2021-12-11","description":"How to attract and leverage various types of angel investors for startup success?","coverImage":"$undefined","category":"Logbook","tags":["Startup","Fundraising","Venture Capital"]},"content":"$27"},{"slug":"hello-world","type":"writing","subpage":"$undefined","meta":{"title":"Hello, World!","date":"","description":"A simple opening note with a classic hello and placeholder prose.","coverImage":"$undefined","category":"Logbook","tags":["General"]},"content":"\r\n## Hello World!\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lorem diam. Quisque vulputate nibh sodales eros pretium tincidunt. Aenean porttitor efficitur convallis. Nulla sagittis finibus convallis. Phasellus in fermentum quam, eu egestas tortor. Maecenas ac mollis leo. Integer maximus eu nisl vel sagittis.\r\n\r\nSuspendisse facilisis, mi ac scelerisque interdum, ligula ex imperdiet felis, a posuere eros justo nec sem. Nullam laoreet accumsan metus, sit amet tincidunt orci egestas nec. Pellentesque ut aliquet ante, at tristique nunc. Donec non massa nibh. Ut posuere lacus non aliquam laoreet. Fusce pharetra ligula a felis porttitor, at mollis ipsum maximus. Donec quam tortor, vehicula a magna sit amet, tincidunt dictum enim. In hac habitasse platea dictumst. Mauris sit amet ornare ligula, blandit consequat risus. Duis malesuada pellentesque lectus, non feugiat turpis eleifend a. Nullam tempus ante et diam pretium, ac faucibus ligula interdum.\r\n"}]}]}]]}],null,"$L28"]}]
-16:["$","$1","h",{"children":[null,[["$","$L29",null,{"children":"$L2a"}],null],["$","$L2b",null,{"children":["$","div",null,{"hidden":true,"children":["$","$19",null,{"fallback":null,"children":"$L2c"}]}]}]]}]
-2d:I[24431,[],"OutletBoundary"]
-2f:I[15278,[],"AsyncMetadataOutlet"]
-28:["$","$L2d",null,{"children":["$L2e",["$","$L2f",null,{"promise":"$@30"}]]}]
-2a:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-2e:null
-30:{"metadata":[["$","title","0",{"children":"Logbook | harshc_"}],["$","meta","1",{"name":"description","content":"Writing, projects, and frameworks."}]],"error":null,"digest":"$undefined"}
-2c:"$30:metadata"
+28:T35f4,﻿---
+title: "Building MCP Server and Client"
+date: "2026-03-02"
+description: "Hands-on MCP projects covering theory, a terminal server, and a React plus Electron client stack."
+coverImage: "https://www.k2view.com/hubfs/Frame%20238551.png"
+category: "Proof of work"
+tags: ["MCP", "AI Tools", "Developer Platform"]
+---
+The Model Context Protocol (MCP) represents a paradigm shift in how AI systems interact with data sources and tools. This document synthesizes insights from a comprehensive presentation covering the evolution of AI adoption, the challenges of fragmented AI ecosystems, and how MCP provides a unified solution for context management across different platforms and tools.
+
+---
+
+## Part 1: The Evolution of AI Adoption and The Problem of Silos
+
+### The Three Stages of AI Adoption
+
+The integration of Large Language Models into everyday workflows has progressed through three transformative stages:
+
+#### Stage 1: Experimentation (The Wonder Phase)
+
+When ChatGPT launched, it achieved unprecedented growth: **1 million users in 5 days** and **100 million users in 2 months**. For the first time in software history, humans could interact with software without coding, treating it like everyday conversations. Early adopters experimented with creative prompts such as *"Write a poem on Pizza in the style of Gulzar"* or *"What would happen if AI starts breeding tomorrow?"* Social media platforms exploded with AI-generated content, showcasing the technology's creative potential.
+
+#### Stage 2: Professional Adoption
+
+As the novelty wore off, professionals began incorporating AI into their daily workflows. ChatGPT became an indispensable tool for:
+
+- Text summarization and content generation
+- Email composition and communication
+- Lesson planning and educational content
+- Code debugging and development assistance
+
+This stage marked a significant increase in individual productivity, as AI transitioned from entertainment to practical utility.
+
+#### Stage 3: The Ecosystem Explosion (The Now)
+
+The current stage is characterized by proliferation of specialized AI tools and integrations:
+
+- Microsoft Copilot became omnipresent across the Microsoft ecosystem
+- Google Suite introduced comprehensive AI integrations
+- Specialized tools emerged: Perplexity for research, Replit and Cursor for development
+- Every major platform developed its own AI wrapper and integration
+
+### The Critical Problem: Fragmented AI Ecosystems
+
+Despite this explosion of AI capabilities, a fundamental problem emerged: **the problem of silos**. Each AI tool operated within its own isolated ecosystem:
+
+- AI in Notion couldn't communicate with AI in Slack
+- Cursor couldn't access messages on Microsoft Teams
+- Each AI agent had its own character and limitations
+- Users possessed an "army of AI agents" but couldn't coordinate them effectively
+
+Users found themselves juggling multiple AI assistants, each locked within its platform. The dream was clear: **one unified assistant** that could understand their entire work context and solve problems across all platforms. However, the biggest bottleneck preventing this unified AI experience was **context**.
+
+### Understanding Context: The Foundation of AI Intelligence
+
+Context is everything an AI can see while generating a response. It encompasses:
+
+- Conversation history
+- External documents and data sources
+- User preferences and past interactions
+- Real-time information from connected tools
+
+For example, when chatting with ChatGPT, the context includes all previous messages in the conversation. Without proper context, AI responses become generic and unhelpful. The challenge was enabling AI to access context from multiple sources simultaneously.
+
+---
+
+## Part 2: The Context Problem and Evolution of Solutions
+
+### A Product Manager's Journey: Before and After AI
+
+To illustrate the context problem, consider a typical day in the life of a Product Manager:
+
+**Traditional Workflow:**
+1. Discovery (researching user needs and market trends)
+2. Analysis (evaluating data and insights)
+3. Documentation (creating specs and requirements)
+4. Request raising / development / Sprint planning
+5. User Acceptance Testing
+
+**With ChatGPT Introduction:** ChatGPT began assisting with analysis, documentation, and sprint planning. However, this created a new problem: the **"Ctrl+C, Ctrl+V fallacy."**
+
+### The Ctrl+C, Ctrl+V Fallacy
+
+While AI could help with individual tasks, humans became **"Human APIs"** ; constantly transferring data between tools to build context:
+
+- Copying data from Slack to feed into ChatGPT
+- Manually extracting information from Google Drive to provide context
+- Transferring analysis results between different AI tools
+
+Key problems emerged:
+
+- Extensive data migration required between tools
+- Context building time exceeded actual productive work time
+- Non-sustainable workflow in the long run
+- Fragmented knowledge across multiple platforms
+
+### The Solution: Function Calling and Tools
+
+#### Function Calling Revolution
+
+In late 2023, OpenAI introduced **function calling**, a breakthrough that enabled LLMs to interact with external systems. Function calling allows:
+
+- LLMs to call extension files and external APIs
+- Programmatic retrieval of structured data from GPT models
+- JSON-based responses with function names and arguments
+
+> *According to HackWithGPT: "OpenAI isn't executing the function for you, but it returns a JSON object with the function name it thinks should be called and the arguments to pass to the function."*
+
+#### The Advent of Tools
+
+Function calling enabled a new generation of AI tools with specialized integrations:
+
+- Salesforce integration for sales teams to access CRM data
+- Slack bots reading chat history and channel context
+- Google Drive connectors for document access and collaboration
+- Database query tools analyzing organizational databases
+- GitHub integrations for code review and pull request management
+- HR tools for employee data access
+- Accounting system integrations for financial management
+- Marketing tools for campaign management
+- File system access with intelligent code search
+- Web browsing for real-time information retrieval
+
+Major platforms rushed to add capabilities: ChatGPT introduced browsing, file uploads, and code execution; Claude gained computer access and tool integration; and parallel developments occurred across all major AI platforms.
+
+### The Integration Nightmare
+
+While tools solved the context problem, they created a new challenge: **the N×M integration problem.**
+
+**The Mathematics of Integration Complexity:**
+
+```
+N clients (AI applications) × M servers (data sources) = N×M unique integrations required
+```
+
+- Each integration had different authentication methods
+- Different data formats and APIs across platforms
+- Inconsistent error handling and protocols
+
+**Consequences:**
+
+- Development nightmare with exponentially increasing complexity
+- Maintenance burden across numerous custom integrations
+- Security vulnerabilities from inconsistent authentication
+- Significant cost and time wastage
+- Scaling impossibility
+
+---
+
+## Part 3: Model Context Protocol ; The Universal Solution
+
+### The MCP Paradigm
+
+Let's recap the problem: Every AI tool was creating its own API rules to integrate with platforms like GitHub. The solution was elegant: **GitHub builds an integration with standardized protocols that can be used by any AI tool.**
+
+### What is Model Context Protocol?
+
+Model Context Protocol is a **universal standard** that defines how AI applications interact with data sources.
+
+Breaking down the name:
+
+| Term | Meaning |
+|------|---------|
+| **Model** | Any LLM (GPT, Claude, Gemini, etc.) |
+| **Context** | All information provided to the LLM |
+| **Protocol** | Standardized rules that everyone must follow |
+
+MCP eliminates the N×M problem by providing a **single, standardized way** for any AI application to connect with any data source.
+
+### MCP Architecture: The Phone Analogy
+
+Think of MCP like a **phone with multiple SIM card slots**:
+
+- Phone with multiple SIM slots = **MCP Host** (the AI application)
+- SIM cards = **MCP Clients** (connection handlers)
+- Telephone providers = **MCP Servers** (data sources)
+
+Just as you can use any SIM card in a phone with standardized slots, any AI application can connect to any data source through MCP.
+
+**Key Components:**
+
+| Component | Description |
+|-----------|-------------|
+| **MCP Host** | The AI application (ChatGPT, Claude, custom apps) |
+| **MCP Client** | The connection layer within the host |
+| **MCP Server** | Data source implementations (GitHub, Google Drive, Slack, databases) |
+| **MCP Marketplace** | Central repository of available servers and integrations |
+
+### Real-World Application: Expense Calculator Demo
+
+To demonstrate MCP's practical value, consider an expense tracking application built with MCP:
+
+**Problem it Solves:**
+- Maintaining long Excel spreadsheets for budget and expenses
+- Converting PDFs/Excel/images to spreadsheets for data evaluation
+- Limited to single-person usage in traditional systems
+
+**Functionality Enabled by MCP:**
+- Natural language expense and credit management
+- NLP-based editing and deletion of transactions
+- Automatic extraction from bank statements (Excel/PDF/images)
+- Visual dashboard generation for all expenses and credits
+- Multi-user support for tracking household expenses
+- Automatic categorization of expenses
+- Contextual date understanding ("yesterday," "day before yesterday")
+
+**Technical Implementation:**
+- Remote MCP server (with local server option available)
+- SQLite database for data persistence
+- FastMCP library for protocol implementation
+
+### The New Normal with MCP
+
+With MCP, the Product Manager's workflow transforms completely into a **unified AI workflow** with:
+
+- Single AI assistant (ChatGPT with MCP integration)
+- Connected to multiple tools through standardized MCP servers
+- Seamless context sharing across all platforms
+- No manual data transfer required
+- Real-time access to Slack, Google Drive, databases, GitHub, and more
+
+**Benefits:**
+
+| Benefit | Description |
+|---------|-------------|
+| **Standardization** | One protocol to rule them all |
+| **Scalability** | Easy addition of new data sources |
+| **Security** | Consistent authentication and authorization |
+| **Maintainability** | Updates to protocol benefit all integrations |
+| **Developer Experience** | Simple server creation with FastMCP library |
+| **User Experience** | Truly unified AI assistant |
+
+---
+
+## The Path Forward
+
+MCP represents the **infrastructure layer** for the next generation of AI applications. This protocol enables:
+
+- True AI agent autonomy across platforms
+- Elimination of data silos
+- Democratization of AI tool development
+- Reduced development and maintenance costs
+- Enhanced security through standardization
+- Seamless user experiences across all tools
+
+The MCP marketplace is growing rapidly, with servers being developed for virtually every major platform and data source. This ecosystem approach ensures that as new platforms emerge, they can be instantly accessible to all MCP-compatible AI applications.
+
+# Let's talk technical: Building a MCP Server from Scratch
+
+As AI continues to evolve, MCP will serve as the foundational infrastructure enabling seamless integration, enhanced productivity, and the realization of AI's full potential in transforming how we work.
+## Building MCP Server and Client
+
+**MCP servers** have been picking up fast lately, with more people building and expanding the ecosystem. But when it comes to MCP clients, it's still a pretty niche space. So far, only a handful of MCP clients exist. So, with this post, I just wanted to make it easier for anyone looking to get started with building MCP Client.
+
+We will cover,
+
+- How to build MCP Client
+- Connect MCP Client to Local, Pre-built, Remote MCP Server
+
+It's beautifully simple when you break it down
+
+**LLM + Transport Layer + Protocol Implementation = MCP Client**
+
+Think of it like this:
+> Claude is a smart assistant, but by default, it can only *talk*. An MCP server gives Claude *hands* -> the ability to actually **do things** on your computer, like running terminal commands.
+
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626945/new-website/images/Articles/MCP-Server/557773906-61e7585e-5009-4c1Articles7-8afe-e37dc2014cdc.png)
+
+
+## Some popular MCP Clients are:
+
+- Claude Desktop App
+- Cursor
+- Windsurf
+- Goose
+-VS Code Editor, and [there are few more.](https://modelcontextprotocol.io/clients#feature-support-matrix)
+
+While the previous diagram covered the high-level MCP client flow, the one below takes a closer look at how the MCP client and MCP server communicate step by step during a session.
+
+To make it even clearer, here is a breakdown of the steps involved.
+
+1. Capture the user query
+2. Establishes connections to MCP servers
+3. Discovers server tools via the tools/list endpoint
+4. Forwards user queries and available tools to LLM
+5. Processes LLM responses to identify tool calls
+6. Executes tools using the server's tools/call endpoint
+7. Returns tool results to the LLM for continued conversation
+
+![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626945/new-website/images/Articles/MCP-Server/557774767-d0a9d47f-3b61-4e86-97e1-18396aa570f7.png)
+
+Now that we have a basic idea of what an MCP client is, let us build one step by step. Once we put it into practice, the concepts will make a lot more sense and feel less abstract.
+15:["$","$1","c",{"children":[["$","div",null,{"className":"space-y-12 max-w-6xl mx-auto","children":[["$","header",null,{"className":"space-y-4 text-center pb-8","children":[["$","h1",null,{"className":"text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight","children":"Logbook"}],["$","p",null,{"className":"text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto","children":"A collection of my writings, projects, frameworks, and reviews."}]]}],["$","$19",null,{"fallback":["$","div",null,{"className":"text-center py-24 text-muted-foreground","children":"Loading logbook..."}],"children":["$","$L1a",null,{"posts":[{"slug":"the-hidden-cost-of-ai-infrastructure","type":"writing","subpage":"$undefined","meta":{"title":"The hidden cost of AI infrastructure","date":"2026-03-05","description":"Why AI infrastructure is quietly reshaping housing markets, electricity prices, and consumer costs.","coverImage":"$undefined","category":"Proof of work","tags":["AI","Infrastructure","Economics","Data Centers"]},"content":"$1b"},{"slug":"Chunking-strategies-for-rag","type":"writing","subpage":"$undefined","meta":{"title":"Why I Treat Chunking as a Product Decision","date":"2026-03-04","description":"I break down fixed-size, semantic, recursive, structure-based, and LLM chunking through a product lens and share how we should choose in production.","coverImage":"$undefined","category":"Proof of work","tags":["RAG","LLMs","Retrieval","Proof Of Work"]},"content":"$1c"},{"slug":"how-i-think-about-moving-from-on-prem-infrastructure-to-a-gcp-platform","type":"writing","subpage":"$undefined","meta":{"title":"How I think about moving from on-prem infrastructure to a GCP platform","date":"2026-03-04","description":"A product and platform perspective on evolving from fragmented on-prem systems to a structured GCP architecture with cost attribution and chargeback.","coverImage":"$undefined","category":"Proof of work","tags":["Cloud","Platform Engineering","GCP","Architecture","FinOps"]},"content":"$1d"},{"slug":"ai-dynamic-pricing","type":"projects","subpage":"$undefined","meta":{"title":"AI Dynamic Pricing","date":"2026-03-02","description":"AI-driven dynamic pricing platform with explainable ML, ethical guardrails, and production dashboarding for Indian coffee retail.","coverImage":"https://picsum.photos/seed/ai-dynamic-pricing/800/400","category":"Proof of work","tags":["AI","Pricing","Retail Analytics"]},"content":"\n# AI Dynamic Pricing\n\nThis project demonstrates an AI pricing system that combines forecasting, weather-aware demand signals, ethics controls, and operational deployment.\n\n## What it includes\n\n- Product and business context\n- PRD, metrics, ethics, and stakeholder strategy\n- Backtest and results analysis\n- Streamlit quickstart and deployment docs\n\n## Deep Dives\n\n- [Project README](/projects/ai-dynamic-pricing/project-readme)\n- [Results](/projects/ai-dynamic-pricing/results)\n- [PRD](/projects/ai-dynamic-pricing/prd)\n- [Metrics](/projects/ai-dynamic-pricing/metrics)\n- [Ethics and Governance](/projects/ai-dynamic-pricing/ethics)\n- [Stakeholder Analysis](/projects/ai-dynamic-pricing/stakeholder-analysis)\n- [Backtest Summary](/projects/ai-dynamic-pricing/backtest-summary)\n- [Streamlit Quickstart](/projects/ai-dynamic-pricing/streamlit-quickstart)\n- [Streamlit Deployment](/projects/ai-dynamic-pricing/streamlit-deploy)\r\n"},{"slug":"autonomous-agent-framework","type":"projects","subpage":"$undefined","meta":{"title":"Autonomous Agent Framework","date":"2026-03-02","description":"A reusable autonomous-agent pattern for queue-based task execution, prioritization, and safe headless runs.","coverImage":"https://picsum.photos/seed/autonomous-agent/800/400","category":"Proof of work","tags":["AI","Automation","Agents"]},"content":"\n# Autonomous Agent Framework\n\nThis project captures a production-ready framework for autonomous task execution with guardrails, lock safety, and process management.\n\n## What it includes\n\n- Core framework design and architecture\n- Real-world case study from long-running usage\n- Source walkthrough of the main runtime\n\n## Deep Dives\n\n- [Framework README](/projects/autonomous-agent-framework/framework-readme)\n- [Case Study: Shipping Code While I Sleep](/projects/autonomous-agent-framework/case-study)\n- [Source Walkthrough: autonomous-agent.js](/projects/autonomous-agent-framework/source-walkthrough)\r\n"},{"slug":"compound-product","type":"projects","subpage":"$undefined","meta":{"title":"Compound Product","date":"2026-03-02","description":"An autonomous product improvement loop that analyzes reports, plans work, and ships iterative changes.","coverImage":"https://picsum.photos/seed/compound-product/800/400","category":"Proof of work","tags":["AI","Automation","Product Engineering"]},"content":"\n# Compound Product\n\nThis project captures an end-to-end automation loop that turns operational reports into actionable implementation tasks.\n\n## What it includes\n\n- Full system architecture and setup guide\n- Real project journal from the clipboard-history implementation\n- Example report and PRD artifacts used in the loop\n- Agent execution prompt used for iterative task completion\n\n## Deep Dives\n\n- [System README](/projects/compound-product/system-readme)\n- [Project Journal: Pastey](/projects/compound-product/project-journal)\n- [Sample Inputs: Report and PRD](/projects/compound-product/sample-inputs)\n- [Agent Execution Prompt](/projects/compound-product/agent-execution-prompt)\r\n"},{"slug":"kyc-ai-solutions","type":"projects","subpage":"$undefined","meta":{"title":"KYC AI Solutions","date":"2026-03-02","description":"Dual-agent KYC architecture combining pre-submission validation and AI-assisted compliance review.","coverImage":"$undefined","category":"Proof of work","tags":["KYC","Compliance","AI Agents"]},"content":"$1e"},{"slug":"ai-continuous-compliance","type":"projects","subpage":"$undefined","meta":{"title":"Context-Aware Control Automation for GRC & SaaS","date":"2026-03-01","description":"An AI-powered continuous compliance engine for real-time risk evaluation, automated control enforcement, and audit-ready reasoning.","coverImage":"$undefined","category":"Proof of work","tags":["GRC","SOC 2","ISO 27001","AI Automation","Compliance"]},"content":"$1f"},{"slug":"ai-decision-orchestration-platform-saas","type":"projects","subpage":"$undefined","meta":{"title":"AI Decision Orchestration Platform (SaaS)","date":"2026-03-01","description":"Agentic intelligence for enterprise operations with context-aware AI decisions, confidence-based execution, and full auditability.","coverImage":"$undefined","category":"Proof of work","tags":["AI","SaaS","Enterprise","GRC","Automation"]},"content":"$20"},{"slug":"hadoop-to-bigquery-enterprise-modernization","type":"projects","subpage":"$undefined","meta":{"title":"Enterprise Data Platform Modernization: Hadoop to BigQuery","date":"2026-03-01","description":"A six-month phased migration from legacy on-prem Hadoop to a secure, cloud-native BigQuery foundation with governance, compliance, and measurable business impact.","coverImage":"$undefined","category":"Proof of work","tags":["BigQuery","Data Platform","Cloud Migration","Governance","Compliance"]},"content":"$21"},{"slug":"ll-stack","type":"projects","subpage":"$undefined","meta":{"title":"LL Stack","date":"2026-02-26","description":"A multi-page framework project covering the full LLM systems stack from infra to product.","coverImage":"https://picsum.photos/seed/ll-stack/800/400","category":"Frameworks","tags":["Framework","LLM","Systems"]},"content":"\n# LL Stack\n\nThis project organizes the LLM systems stack into focused, linked pages so each layer can be explored independently.\n\n## What it covers\n\n- A practical 5-layer map\n- Infra constraints and tradeoffs\n- Model fundamentals\n- Data, retrieval, and tools\n- Orchestration and evaluation\n- Product and UX strategy\n\n## Deep Dives\n\n- [LLM Stack: A Practical 5-Layer Map](/projects/ll-stack/llm-stack-5-layer-map)\n- [Layer 1: Infra for LLM Products](/projects/ll-stack/layer-1-infra-for-llm-products)\n- [Layer 2: Models and How They Differ](/projects/ll-stack/layer-2-models-and-how-they-differ)\n- [Layer 3: Data, Knowledge, and RAG](/projects/ll-stack/layer-3-data-knowledge-and-rag)\n- [Layer 4: Orchestration, Agents, and Evaluation](/projects/ll-stack/layer-4-orchestration-agents-and-evaluation)\n- [Layer 5: App and Product Strategy](/projects/ll-stack/layer-5-app-and-product-strategy)\r\n"},{"slug":"the-space-between-product-and-ai","type":"writing","subpage":"$undefined","meta":{"title":"The Space Between Product and AI","date":"2025-08-18","description":"In a world obsessed with speed and certainty, alignment between product and AI is rarely clean. It grows through tension, patience, and shared vulnerability. This piece reflects on what it takes to turn friction into flow, and why the most meaningful progress often begins in discomfort.","coverImage":"$undefined","category":"Logbook","tags":["Artificial Intelligence","Deep-Dive Analysis"]},"content":"$22"},{"slug":"how-to-build-a-universal-ai-scraper","type":"writing","subpage":"$undefined","meta":{"title":"How to build a Universal AI Scraper","date":"2024-07-18","description":"Lately, I've dived into the world of web scrapers, and with the rapid developments in AI, I thought it would be fascinating to attempt creating a universal scraper.","coverImage":"$undefined","category":"Logbook","tags":["Artificial Intelligence","Deep-Dive Analysis","Proof of work"]},"content":"$23"},{"slug":"AI Scraper","type":"projects","subpage":"$undefined","meta":{"title":"How to build a Universal AI Scraper","date":"2024-07-18","description":"Lately, I've dived into the world of web scrapers, and with the rapid developments in AI, I thought it would be fascinating to attempt creating a universal scraper.","coverImage":"$undefined","category":"Proof of work","tags":["Artificial Intelligence","Deep-Dive Analysis","Proof Of Work"]},"content":"$24"},{"slug":"build-measure-listen-rebuild","type":"writing","subpage":"$undefined","meta":{"title":"BUILD, MEASURE, LISTEN, REBUILD","date":"2024-04-18","description":"There's a difference between the skills needed to write code, and those needed to lead a successful business.","coverImage":"$undefined","category":"Logbook","tags":["Startup"]},"content":"$25"},{"slug":"vibe-coded-app-1","type":"projects","subpage":"$undefined","meta":{"title":"Vibe Coded App 1","date":"2024-01-10","description":"A cool app built entirely on vibes.","coverImage":"https://picsum.photos/seed/vibe1/800/400","category":"Fun Projects","tags":["Next.js","Tailwind","Framer Motion"]},"content":"\n# Vibe Coded App 1\n\n## What it does\n\nThis app is a showcase of how to build an application entirely based on vibes. It uses modern web technologies to deliver a seamless and interactive experience.\n\n## Why built\n\nI built this app to explore the boundaries of interactive design and to see how far I could push the concept of \"vibe coding\" — building software that feels good to use, not just functional.\n\n## Deep Dives\n\n- [Thought Process & Decisions](/projects/vibe-coded-app-1/thought-process)\n- [Screen Designs](/projects/vibe-coded-app-1/screens)\n"},{"slug":"my-favorite-tools-2023","type":"writing","subpage":"$undefined","meta":{"title":"My Favorite Tools of 2023","date":"2023-12-20","description":"A review of the tools that kept me productive and sane this year.","coverImage":"https://picsum.photos/seed/tools/800/400","category":"Reviews","tags":["Tools","Productivity","Review"]},"content":"\n# My Favorite Tools of 2023\n\nThis is a placeholder for the post \"My Favorite Tools of 2023\".\n\nHere are the tools that I used the most this year:\n- Notion\n- Linear\n- Raycast\n- Cursor\n"},{"slug":"product-management-framework","type":"writing","subpage":"$undefined","meta":{"title":"The Ultimate Product Management Framework","date":"2023-12-01","description":"A comprehensive framework for managing products from ideation to launch.","coverImage":"https://picsum.photos/seed/framework/800/400","category":"Frameworks","tags":["Framework","Product","Strategy"]},"content":"\n# The Ultimate Product Management Framework\n\nThis is a placeholder for the post \"The Ultimate Product Management Framework\".\n\nA good framework helps you structure your thoughts and make better decisions. In this post, we'll explore a comprehensive framework for product management.\n"},{"slug":"myths-and-realities-of-ais-rapid-evolution-2023","type":"writing","subpage":"$undefined","meta":{"title":"Myths and Realities of AI's Rapid Evolution - 2023","date":"2023-09-18","description":"AI's journey has been filled with overhyped promises and underwhelming deliveries until ChatGPT's sudden rise disrupted the status quo, highlighting a significant shift driven by a tiny fraction of the technological ecosystem. The conversation covers the misplaced belief that foundational models have peaked, the debate over the supremacy of open-source models, the premature declaration of incumbents’ victory, the exaggerated optimism among venture capitalists, and the contentious call to slow down AI advancements.","coverImage":"$undefined","category":"Logbook","tags":["Artificial Intelligence","Deep-Dive Analysis"]},"content":"$26"},{"slug":"strategic-angel-investment-shortest-guide-to-startup-fundraising","type":"writing","subpage":"$undefined","meta":{"title":"Strategic Angel Investment: Shortest Guide to Startup Fundraising","date":"2021-12-11","description":"How to attract and leverage various types of angel investors for startup success?","coverImage":"$undefined","category":"Logbook","tags":["Startup","Fundraising","Venture Capital"]},"content":"$27"},{"slug":"hello-world","type":"writing","subpage":"$undefined","meta":{"title":"Hello, World!","date":"","description":"A simple opening note with a classic hello and placeholder prose.","coverImage":"$undefined","category":"Logbook","tags":["General"]},"content":"\r\n## Hello World!\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lorem diam. Quisque vulputate nibh sodales eros pretium tincidunt. Aenean porttitor efficitur convallis. Nulla sagittis finibus convallis. Phasellus in fermentum quam, eu egestas tortor. Maecenas ac mollis leo. Integer maximus eu nisl vel sagittis.\r\n\r\nSuspendisse facilisis, mi ac scelerisque interdum, ligula ex imperdiet felis, a posuere eros justo nec sem. Nullam laoreet accumsan metus, sit amet tincidunt orci egestas nec. Pellentesque ut aliquet ante, at tristique nunc. Donec non massa nibh. Ut posuere lacus non aliquam laoreet. Fusce pharetra ligula a felis porttitor, at mollis ipsum maximus. Donec quam tortor, vehicula a magna sit amet, tincidunt dictum enim. In hac habitasse platea dictumst. Mauris sit amet ornare ligula, blandit consequat risus. Duis malesuada pellentesque lectus, non feugiat turpis eleifend a. Nullam tempus ante et diam pretium, ac faucibus ligula interdum.\r\n"},{"slug":"mcp-server-and-client","type":"projects","subpage":"$undefined","meta":{"title":"","date":"","description":"","coverImage":"$undefined","category":"Fun Projects","tags":[]},"content":"$28"}]}]}]]}],null,"$L29"]}]
+16:["$","$1","h",{"children":[null,[["$","$L2a",null,{"children":"$L2b"}],null],["$","$L2c",null,{"children":["$","div",null,{"hidden":true,"children":["$","$19",null,{"fallback":null,"children":"$L2d"}]}]}]]}]
+2e:I[24431,[],"OutletBoundary"]
+30:I[15278,[],"AsyncMetadataOutlet"]
+29:["$","$L2e",null,{"children":["$L2f",["$","$L30",null,{"promise":"$@31"}]]}]
+2b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+2f:null
+31:{"metadata":[["$","title","0",{"children":"Logbook | harshc_"}],["$","meta","1",{"name":"description","content":"Writing, projects, and frameworks."}]],"error":null,"digest":"$undefined"}
+2d:"$31:metadata"
