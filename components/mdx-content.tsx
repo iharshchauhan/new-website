@@ -38,22 +38,29 @@ export function MDXContent({ content }: { content: string }) {
         remarkPlugins={[remarkGfm]}
         components={{
           pre: ({ children, ...props }) => {
-            const firstChild = Array.isArray(children) ? children[0] : children;
+            const codeChild = React.Children.toArray(children).find((child) => {
+              if (
+                !React.isValidElement<{
+                  className?: string;
+                }>(child)
+              ) {
+                return false;
+              }
+
+              const className = typeof child.props.className === "string" ? child.props.className : "";
+              return className.includes("language-mermaid");
+            });
 
             if (
               React.isValidElement<{
-                className?: string;
                 children?: React.ReactNode;
-              }>(firstChild)
+              }>(codeChild)
             ) {
-              const className = typeof firstChild.props.className === "string" ? firstChild.props.className : "";
-              if (className.includes("language-mermaid")) {
-                const rawChart = firstChild.props.children;
-                const chart = Array.isArray(rawChart)
-                  ? rawChart.join("")
-                  : String(rawChart ?? "");
-                return <Mermaid chart={chart} />;
-              }
+              const rawChart = codeChild.props.children;
+              const chart = Array.isArray(rawChart)
+                ? rawChart.join("")
+                : String(rawChart ?? "");
+              return <Mermaid chart={chart} />;
             }
 
             return <pre {...props}>{children}</pre>;
