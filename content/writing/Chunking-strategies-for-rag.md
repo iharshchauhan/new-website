@@ -1,5 +1,5 @@
 ﻿---
-title: "Why I treat chunking as a product decision"
+title: "Why I Treat Chunking as a Product Decision"
 date: "2026-03-04"
 description: "I break down fixed-size, semantic, recursive, structure-based, and LLM chunking through a product lens and share how we should choose in production."
 category: "Proof of work"
