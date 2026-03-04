@@ -6,11 +6,23 @@ category: "Frameworks"
 tags: ["Framework", "LLM", "AI Systems"]
 ---
 
-# LLM Stack - A Practical 5-Layer Map for Product Managers
+# LLM Stack: A Practical 5-Layer Map for Product Managers
 
 When I build AI products, I do not think in terms of hype or model names. I think in layers. Over time, I have found that most LLM systems can be understood through five practical layers. This structure helps me decide where to go deep, where to stay conceptual, and how to connect technical decisions back to product outcomes.
 
 This page is a short map. Each layer has its own subpage where I go deeper.
+
+The five layers are:
+
+| # | Layer Name           | What it covers                                                                                      | Sub-layers                                                                                  |
+|---|----------------------|-----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| 1 | **Infra**            | Physical and cloud infrastructure needed to train and run LLMs                                      | Hardware & Infra (1)                                                  |
+| 2 | **Models**           | How LLMs are built and aligned before being used in products                                        | Data & Pretraining (2), Transformer Architecture (3), Training & Alignment (4) |
+| 3 | **Data & Knowledge** | How models are adapted to a product and connected to data (prompts, RAG, tools, APIs, DBs)          | Adaptation via Prompts & Fine-tuning (5), Knowledge & Tools / RAG (6) |
+| 4 | **Orchestration**    | How all components run together in production, including workflows, agents, evals, and safety       | Workflows/Chains (7), Single & Multi-Agent Systems (8, 9), Evals & Safety & Governance (10) |
+| 5 | **App / Product**    | The actual product: UX, JTBD, interaction patterns, pricing, adoption, and feedback loops           | Product Layer – UX & Business (11)                                    |
+
+---
 
 ---
 
