@@ -1,124 +1,214 @@
 ---
-title: "Cloud Cost Optimization and Data Platform Modernization"
+title: "How I think about moving from on-prem infrastructure to a GCP platform"
 date: "2026-03-04"
-description: "How I led a FinOps-driven migration from fragmented on-prem stacks to a unified GCP data platform, delivering ~$2M annual savings with stronger governance and faster analytics."
+description: "A product and platform perspective on evolving from fragmented on-prem systems to a structured GCP architecture with cost attribution and chargeback."
 category: "Proof of work"
-tags: ["FinOps", "Cloud Migration", "BigQuery", "GCP", "Data Platform"]
+tags: ["Cloud", "Platform Engineering", "GCP", "Architecture", "FinOps"]
 ---
 
-## Executive Summary
+My goal with architecture discussions is always the same. I want the platform to scale without constant intervention from infrastructure teams. I want engineers to ship services quickly while still maintaining governance, cost visibility, and security. When organizations move from traditional on-prem environments to cloud platforms, architecture decisions become product decisions.
 
-I led this program as a business-critical platform transformation, not just an infrastructure migration. We moved from a fragmented on-prem model across VMware, OpenShift bare metal, OpenStack, and Hadoop toward a unified GCP operating model designed for cost transparency, product velocity, and governance at scale.
+The diagrams below reflect how I typically frame that journey. I start by understanding the current state deeply. Then I define a target platform architecture that removes operational friction while introducing strong platform guardrails. Finally, I design a cost attribution and chargeback model so teams understand how their infrastructure usage translates into spend.
 
-The outcome was material. We reduced annual platform cost from approximately $3.07M to $1.06M, which is about $2.1M in savings. At the same time, we improved utilization from around 35% to 75%, cut provisioning cycles from weeks to minutes, and enabled near real-time analytics access for 1200+ enterprise users.
+## Project context and vision
 
-## Business Context
+This platform transformation usually begins with a clear business goal. In this case the objective is to evolve a fragmented on-prem infrastructure into a unified cloud data platform that supports self service analytics, real time insights, and scalable product development.
 
-The legacy platform was not failing from a pure reliability perspective. It was failing economically and operationally. Capacity was over-provisioned, ownership boundaries were unclear, and teams were spending too much time managing infrastructure instead of shipping outcomes.
+The current environment reflects a typical enterprise pattern. Infrastructure has grown over time through multiple platforms, manual operational processes, and isolated data environments across many departments. As a result, infrastructure cost increases while developer productivity and data accessibility decline.
 
-From a product lens, this created three compounding issues. First, cost was opaque and hard to control. Second, data access was slow, which delayed decisions. Third, governance was uneven, which increased compliance and trust risk as usage scaled.
+| Current Challenge | Impact |
+| --- | --- |
+| Infrastructure cost exceeding $2M annually | High operational overhead and inefficient capacity usage |
+| Average compute utilization around 35% | Significant idle infrastructure capacity |
+| Software licensing consuming ~25% of IT budget | Vendor lock-in and high fixed costs |
+| Data silos across 15+ departments | Limited cross-functional insights |
 
-I framed the transformation around one core question: how do we improve decision velocity and data trust per dollar spent?
+Beyond cost, operational complexity also becomes a limiting factor. Environment provisioning can take multiple weeks, infrastructure scaling requires manual intervention, and platform operations depend on a small infrastructure team.
 
-## Baseline and Outcome Data
+| Operational Constraint | Typical Outcome |
+| --- | --- |
+| 9 FTEs managing infrastructure | High operational burden |
+| 2-4 weeks environment provisioning | Slower product delivery |
+| Manual scaling and backups | Increased operational risk |
 
-| Metric | Before | After | Improvement |
-| --- | --- | --- | --- |
-| Annual platform cost | $3.07M | $1.06M | $2.1M saved (~76%) |
-| Average utilization | ~35% | ~75% | ~114% efficiency lift |
-| Provisioning time | 2 to 4 weeks | 5 to 15 minutes | ~99% faster |
-| Data freshness | 24-hour batch | Near real-time | Operationally immediate |
-| Platform operations staffing | 9 FTE | 3 FTE | ~67% reduction |
-| Served users | Fragmented access | 1200+ users | Enterprise-scale self-service |
+These issues create the foundation for the platform redesign.
 
-These metrics came from the project artifacts in the supplied `Cloud-cost-optimization-master` package and were used as steering KPIs during execution.
+## The current state: fragmented infrastructure layers
 
-## Product Strategy I Used
+Most enterprises I work with operate a hybrid on-prem environment that grew organically over time. Different teams adopt different infrastructure stacks depending on their needs.
 
-I ran this as a phased product rollout with explicit risk controls and value checkpoints. The sequence was intentional.
+| Platform Layer | Technologies | Operational Reality |
+| --- | --- | --- |
+| Virtualization | VMware (vCenter, ESXi hosts) | Traditional VM workloads and legacy services |
+| Container Platform | OpenShift bare metal clusters | Modern containerized services |
+| Private Cloud | OpenStack | Internal IaaS workloads |
 
-Phase 0 focused on assessment, stakeholder alignment, and cost baselining. We mapped workloads, usage patterns, dependencies, and compliance requirements.
+Each of these platforms solves a real problem, but they introduce fragmentation. Networking models differ. Provisioning workflows differ. Cost visibility is limited. Infrastructure teams spend significant time integrating systems rather than enabling developers.
 
-Phase 1 focused on quick wins and FinOps controls. We targeted obvious over-provisioning and introduced spend visibility, tagging discipline, and cost ownership by domain.
+This environment usually produces several systemic inefficiencies which become visible once we analyze the infrastructure platform by platform.
 
-Phase 2 handled core workload migration into managed services, with automated validation and rollback paths.
+### Cross-platform infrastructure utilization
 
-Phase 3 delivered advanced capabilities including near real-time pipelines, broader self-service, and a stronger governance layer.
+A detailed assessment across VMware, OpenShift bare metal, and OpenStack environments typically reveals similar patterns of over-provisioning and inefficient resource usage.
 
-Phase 4 moved into continuous optimization with monthly KPI reviews and roadmap reprioritization based on actual usage.
+| Platform | Typical Observation |
+| --- | --- |
+| VMware | Large number of underutilized virtual machines |
+| OpenShift | Containers requesting more CPU and memory than they use |
+| OpenStack | Instance flavors larger than required for workloads |
 
-This sequencing helped us protect business continuity while proving value early enough to maintain executive support.
+The result is consistent across environments. CPU utilization remains low, memory is frequently over-allocated, and infrastructure capacity remains idle while still generating cost.
 
-## Target Architecture
+### Infrastructure platform fragmentation
 
-The target state balanced four priorities: cost elasticity, secure scale, data accessibility, and operational simplicity.
+| Platform | Primary Role | Operational Characteristics |
+| --- | --- | --- |
+| VMware | Legacy virtualization workloads | Traditional VM lifecycle management |
+| OpenShift | Containerized application platform | Bare metal cluster operations |
+| OpenStack | Internal private cloud | Self-managed infrastructure services |
 
-```text
-                    +-------------------------------------------+
-                    |         Google Cloud Platform             |
-                    |                                           |
-                    |  Networking and Security                  |
-                    |  - VPC hub-spoke                         |
-                    |  - IAM and org policies                  |
-                    |  - VPN / Interconnect                    |
-                    |  - WAF / perimeter controls              |
-                    |                                           |
-                    |  Compute and Runtime                      |
-                    |  - GKE Autopilot                         |
-                    |  - Compute Engine (right-sized)          |
-                    |  - Cloud Run for burst/serverless paths  |
-                    |  - Preemptible VMs for batch economics   |
-                    |                                           |
-                    |  Data Platform                            |
-                    |  - Cloud Storage (landing + tiering)     |
-                    |  - Pub/Sub (event ingestion)             |
-                    |  - Dataflow (stream + batch transforms)  |
-                    |  - Composer (orchestration)              |
-                    |  - BigQuery (curated enterprise marts)   |
-                    |                                           |
-                    |  Consumption                              |
-                    |  - Looker dashboards                     |
-                    |  - API products                           |
-                    |  - ML workloads on curated datasets      |
-                    +----------------------+--------------------+
-                                           |
-                             1200+ enterprise consumers
-```
+Operating multiple infrastructure control planes increases operational complexity significantly. Each platform requires separate expertise, monitoring tools, provisioning workflows, and capacity planning processes.
 
-## Data Product Scope
+From a platform engineering perspective, the organization is effectively maintaining three separate infrastructure platforms instead of one unified cloud platform.
 
-We centered the delivery on five high-value enterprise datasets, including customer 360, billing events, network logs, IoT telemetry, and network performance domains. The goal was not only to migrate data, but to make it consumable through governed, reliable interfaces for analytics and product teams.
+These architectural conditions lead to three common symptoms.
 
-This was important because cost optimization alone does not create business value. Value came from combining cost efficiency with faster and safer data access.
+| Symptom | What I observe |
+| --- | --- |
+| Slow environment provisioning | Teams wait days or weeks for infrastructure requests |
+| Limited cost visibility | Costs exist but are difficult to attribute to teams or services |
+| Platform duplication | Similar capabilities implemented multiple times |
 
-## FinOps Operating Model
+From a product perspective, the platform itself becomes difficult to operate and difficult to evolve.
 
-I implemented a chargeback-oriented operating model so cost became actionable at team and product level. Each domain had tagged ownership, budget guardrails, and monthly variance reviews tied to utilization and business demand.
+## The target state: a structured GCP platform
 
-This shifted the organization from reactive cost cutting to proactive cost-product planning. Teams could now decide tradeoffs with shared visibility into spend, performance, and customer impact.
+The goal of the target architecture is not simply cloud migration. The goal is to establish a clear platform model that developers can rely on.
 
-## Risks and Mitigations
+At the infrastructure level, Google Cloud becomes the control plane for networking, compute, identity, and security.
 
-The highest risk was uncontrolled complexity during migration across multiple legacy stacks. I reduced that risk by sequencing migrations by business criticality and by defining a validation gate for every phase.
+| Platform Layer | Key Components | Platform Outcome |
+| --- | --- | --- |
+| Networking and Security | VPC hub-spoke architecture, Cloud Armor, IAM, Org Policies | Centralized network and policy control |
+| Compute and Containers | GKE clusters and managed compute | Standardized runtime for applications |
+| Data and Storage | Cloud SQL, BigQuery, object storage | Managed data infrastructure |
 
-The second risk was adoption failure. We addressed this by onboarding users in waves and measuring active usage, query success, and delivery lead time instead of treating migration completion as success by itself.
+This structure gives us several advantages immediately.
 
-The third risk was governance drift. We addressed this by codifying policy controls in platform workflows rather than relying on manual process.
+First, networking becomes predictable. The hub-spoke VPC model creates a centralized networking layer where shared services such as security inspection, connectivity, and logging can be managed once instead of repeatedly.
 
-## Business Impact
+Second, identity and policy enforcement become consistent across the platform. IAM and organization policies allow governance to be expressed as platform rules rather than operational processes.
 
-The transformation improved three executive-level outcomes.
+Third, infrastructure becomes programmable. Developers interact with the platform through infrastructure as code and automated pipelines instead of ticket-based workflows.
 
-Cost became predictable and materially lower.
+## Designing the platform around developer experience
 
-Decision latency improved because data products became faster and fresher.
+When I design a cloud platform, I treat the developer workflow as the primary interface.
 
-Platform trust improved because governance and accountability were built into the operating model.
+| Developer Need | Platform Capability |
+| --- | --- |
+| Fast environment creation | Automated project and namespace provisioning |
+| Secure service deployment | Preconfigured networking and identity policies |
+| Reliable runtime | Managed Kubernetes clusters and autoscaling |
 
-For leadership, this changed the conversation from "how do we keep the platform running?" to "which business capabilities do we fund next on this platform?"
+The goal is not simply to run workloads in the cloud. The goal is to create a platform where teams can build and operate services without needing to understand every infrastructure layer underneath.
 
-## What I Would Do Next
+## Cost attribution and chargeback
 
-My next step would be to mature this into a continuous value engine with three tracks: streaming-first data products for priority domains, automated anomaly detection for unit economics, and ML-assisted optimization recommendations across compute, storage, and query patterns.
+Once infrastructure moves into the cloud, cost transparency becomes essential. Without a clear cost model, cloud adoption quickly leads to uncontrolled spending and difficult conversations with finance teams.
 
-That would preserve the gains already achieved while compounding value through better product and financial decisions each quarter.
+The foundation of the model starts with GCP billing exports.
+
+| Step | Description |
+| --- | --- |
+| Billing export | Raw usage data exported from GCP billing |
+| Cost attribution engine | Logic that maps resource usage to services, teams, or environments |
+| Chargeback reporting | Internal dashboards showing team level cost consumption |
+
+The cost attribution layer becomes the bridge between infrastructure usage and financial accountability.
+
+Instead of treating cloud costs as a single operational expense, we distribute costs based on actual usage patterns.
+
+| Cost Dimension | Example Attribution |
+| --- | --- |
+| Project | Application or product team |
+| Environment | Production, staging, development |
+| Service | Individual microservice or platform capability |
+
+This model enables internal chargeback or showback depending on the organization's financial maturity.
+
+## Product delivery model
+
+Large platform transformations require a clear product delivery structure. Instead of treating this purely as an infrastructure migration, I structure the initiative as a platform product with defined stakeholders and delivery teams.
+
+### Stakeholder model
+
+| Stakeholder | Responsibility |
+| --- | --- |
+| CFO | Financial oversight and ROI validation |
+| VP Engineering | Execution ownership and delivery alignment |
+| Product Owner | Strategy, prioritization, and roadmap management |
+| Cloud Architect | Architecture design and migration patterns |
+| Data Engineers | Data pipelines and modeling |
+| FinOps Lead | Cost attribution and optimization |
+| SRE / DevOps | Platform reliability and automation |
+
+The platform ultimately supports more than a thousand internal users across multiple business functions including network operations, finance, marketing, and product teams.
+
+## Product roadmap and epics
+
+Once the architecture direction is defined, the work is broken into epics and features across infrastructure, data platform, governance, and developer enablement tracks.
+
+| Epic Category | Example Capabilities |
+| --- | --- |
+| Cloud foundation | Organization structure, networking, IAM |
+| Platform services | Kubernetes platform, CI/CD, observability |
+| Data platform | Data pipelines, warehouse, governance |
+| FinOps | Cost attribution, chargeback dashboards |
+| Developer experience | Self-service environments and automation |
+
+## Implementation roadmap
+
+The delivery roadmap typically progresses through multiple maturity stages as the platform capabilities expand.
+
+| Phase | Objective | Key Deliverables |
+| --- | --- | --- |
+| Phase 1 | Cloud foundation | Networking, IAM, project structure |
+| Phase 2 | Platform compute layer | GKE clusters and workload migration |
+| Phase 3 | Data platform | Analytics infrastructure and pipelines |
+| Phase 4 | FinOps and governance | Cost attribution and chargeback |
+| Phase 5 | Platform maturity | Self-service platform capabilities |
+
+## How I roll this out
+
+Large platform transformations rarely succeed if we try to redesign everything at once. I approach the rollout in structured phases.
+
+| Phase | Objective | Platform Focus |
+| --- | --- | --- |
+| Phase 1 | Establish cloud foundation | Networking, IAM, and project structure |
+| Phase 2 | Standardize compute platform | GKE clusters and workload migration |
+| Phase 3 | Introduce cost attribution | Billing export and attribution engine |
+| Phase 4 | Platform maturity | Automation, developer self-service, governance |
+
+Each phase delivers immediate value while setting up the next layer of the platform.
+
+## What I measure
+
+Architecture only matters if it improves how the platform operates. I evaluate success through operational metrics rather than architectural diagrams.
+
+| Metric | Why it matters |
+| --- | --- |
+| Environment provisioning time | Measures developer productivity |
+| Infrastructure utilization | Indicates platform efficiency |
+| Cost visibility by team | Ensures financial accountability |
+| Deployment frequency | Signals platform usability |
+
+If those metrics improve, the architecture is working.
+
+## Closing
+
+Platform architecture should not be designed purely as infrastructure diagrams. It should be designed as an operational product that developers rely on every day.
+
+By moving from fragmented on-prem environments to a structured cloud platform, we reduce operational complexity, improve developer velocity, and introduce clear cost accountability.
+
+That combination ultimately turns infrastructure from a bottleneck into an enabler of product development.
