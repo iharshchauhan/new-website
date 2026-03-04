@@ -76,9 +76,6 @@ The misalignment dilemma is not a failure of process, but of perception. And per
 
 ---
 
-![Cross functional product and AI collaboration around a shared table](https://images.unsplash.com/photo-1558403194-611308249627?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDQ2NzN8MHwxfHNlYXJjaHwyMHx8dGVhbXxlbnwwfDB8fHwxNzYxNjQ3NjYwfDA&ixlib=rb-4.1.0&q=80&w=1080)
-*Photo by [Marvin Meyer](https://unsplash.com/@marvelous) on [Unsplash](https://unsplash.com/photos/a-group-of-people-sitting-around-a-table-with-laptops-P0vL2VRxK9A).*
-
 ## Traditional Product Development Lifecycle
 
 Every product team, no matter how modern the tech stack or how ambitious the goals, still dances to the same underlying rhythm: discovery, design, development, testing, launch, and iteration. It is a ritual that gives shape to chaos, a shared language that lets designers, engineers, and product managers move together toward something visible, something measurable. In Indian product teams especially, where time zones stretch across continents and deliverables hang like deadlines on a notice board, this lifecycle becomes not just a process, it becomes the team’s heartbeat.
@@ -158,9 +155,6 @@ The most powerful outcome of the traditional lifecycle is not the product; it is
 This self-organisation is not magic, it is the cumulative trust built through predictable rituals. Everyone knows when feedback will come, how success is measured, and where they stand. The group matures into a system where control is distributed, not imposed.
 
 ---
-
-![Product planning and requirements work at a desk](https://images.unsplash.com/photo-1588072432836-e10032774350?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDQ2NzN8MHwxfHNlYXJjaHw3fHxjb2xsYWJvcmF0aW9ufGVufDB8MHx8fDE3NjIzNDU4ODV8MA&ixlib=rb-4.1.0&q=80&w=1080)
-*Photo by [Mimi Thian](https://unsplash.com/@mimithian) on [Unsplash](https://unsplash.com/photos/man-writing-on-white-paper-laptop-computer-and-white-ceramic-mug-on-table--lZmhtGQJzM).*
 
 ## Traditional AI, ML, GenAI Lifecycles
 
@@ -372,9 +366,6 @@ When metrics evolve from scoring tools to reflection mirrors, stress turns into 
 
 ---
 
-![AI themed keyboard with neon lighting](https://images.unsplash.com/photo-1677442136019-21780ecad995?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDQ2NzN8MHwxfHNlYXJjaHwyfHxBSSUyMGtleWJvYXJkfGVufDB8fHx8MTc2MjM0NTY5M3ww&ixlib=rb-4.1.0&q=80&w=1080)
-*Photo by [BoliviaInteligente](https://unsplash.com/@boliviainteligente) on [Unsplash](https://unsplash.com/photos/a-computer-keyboard-with-a-purple-light-above-it-txuF_irzke8).*
-
 # Practical First Steps for Teams
 
 Alignment does not begin with frameworks or org charts. It starts with one humble experiment that works. Teams that bridge the AI and Product divide rarely start with moonshots. They prove that they can think together before they build together.
@@ -521,17 +512,11 @@ When these habits normalize, conflict becomes creative, not corrosive.
 
 ---
 
-![Engineering workspace with code and deployment context](https://images.unsplash.com/photo-1517180102446-f3ece451e9d8?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDQ2NzN8MHwxfHNlYXJjaHw2fHxkZXZlbG9wbWVudCUyMHdvcmtzcGFjZXxlbnwwfHx8fDE3NjIzNDU4NjN8MA&ixlib=rb-4.1.0&q=80&w=1080)
-*Photo by [Kevin Ku](https://unsplash.com/@ikukevk) on [Unsplash](https://unsplash.com/photos/computer-monitor-showing-codes--6MOrbRG_mg).*
-
 ## The Long Game: From Coordination to Cognition
 
 True alignment feels like collective intuition. Over time, roles blur further until no one remembers who suggested what, only that it worked. The AI lead references user empathy; the PM cites a loss function; the designer questions model ethics. At that point, it is not collaboration, it is cognition.
 
 That is the long game. To move from project management to shared thought. To replace transactional handoffs with coevolution. To make every iteration a little wiser than the last.
-
-![A seedling in hand representing long term growth and shared stewardship](https://images.unsplash.com/photo-1464226184884-fa280b87c399?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3MDQ2NzN8MHwxfHNlYXJjaHw0fHxncm93dGh8ZW58MHwxfHx8MTc2MjM0NTg4NXww&ixlib=rb-4.1.0&q=80&w=1080)
-*Photo by [Jeremy Bishop](https://unsplash.com/@jeremybishop) on [Unsplash](https://unsplash.com/photos/person-holding-green-plant-8izd8xJPuE0).*
 
 When I reach that stage with a team, meetings shorten, reviews simplify, and results compound. We stop chasing productivity and start experiencing flow, not as individuals, but as a network of understanding.
 
