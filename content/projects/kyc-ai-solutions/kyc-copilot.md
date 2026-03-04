@@ -3,13 +3,13 @@ title: "KYC Copilot"
 date: "2026-03-02"
 description: "AI pre-submission validation service for document quality, field extraction, and profile cross-checks."
 ---
-# 🤖 KYC Copilot — AI Pre-Submission Document Validator
+# 🤖 KYC Copilot:  AI Pre-Submission Document Validator
 
 > Inspired by 4 real KYC rejections at Questrade over 5 months. Built to make sure that never happens again.
 
 ## What It Does
 
-KYC Copilot is an AI-powered validation system that checks documents **before** submission, catching every issue that would cause a compliance rejection — instantly, instead of waiting 2-4 business days.
+KYC Copilot is an AI-powered validation system that checks documents **before** submission, catching every issue that would cause a compliance rejection; instantly, instead of waiting 2-4 business days.
 
 ### Problems It Solves (from real rejection emails)
 
@@ -47,35 +47,6 @@ User Upload
 React Frontend (User sees issues BEFORE submitting)
 ```
 
-## Quick Start
-
-```bash
-# 1. Clone
-git clone https://github.com/your-org/kyc-copilot
-cd kyc-copilot
-
-# 2. Configure
-cp .env.example .env
-# Add your ANTHROPIC_API_KEY to .env
-
-# 3. Run with Docker
-docker-compose up
-
-# OR run locally
-pip install -r requirements.txt
-uvicorn src.api.main:app --reload
-
-# 4. Test it
-curl -X POST "http://localhost:8000/validate" \
-  -F "document_type=photo_id" \
-  -F "file=@your_id.jpg" \
-  -F "full_name=Sana Khan" \
-  -F "date_of_birth=1990-05-15" \
-  -F "address=123 Main St" \
-  -F "city=Toronto" \
-  -F "province=ON" \
-  -F "postal_code=M5V1A1"
-```
 
 ## API Reference
 
@@ -87,12 +58,6 @@ curl -X POST "http://localhost:8000/validate" \
 | `/document-types` | GET | List supported doc types |
 | `/health` | GET | Health check |
 
-## Running Tests
-
-```bash
-pip install pytest pytest-asyncio httpx opencv-python-headless
-pytest tests/ -v
-```
 
 ## Infrastructure (AWS)
 
@@ -114,7 +79,4 @@ API Gateway → Lambda (or ECS Fargate) → KYC Copilot API
 | API Gateway | ~$3.50 |
 | CloudWatch | ~$5 |
 | **Total** | **~$205/month** |
-
-## License
-MIT
 
