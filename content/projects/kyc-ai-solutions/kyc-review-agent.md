@@ -87,7 +87,7 @@ curl -X POST "http://localhost:8001/review" \
   -F "document_type=photo_id" \
   -F "file=@applicant_id.jpg" \
   -F "full_name=John Doe" \
-  -F "date_of_birth=1985-06-15" \
+  -F "date_of_birth=1999-06-15" \
   -F "address=456 Oak Ave" \
   -F "city=Vancouver" \
   -F "province=BC" \
@@ -132,7 +132,7 @@ SQS Queue → Lambda Trigger → ECS Task (Review Agent)
                            → SNS → Email (fraud alerts)
 ```
 
-## Cost Estimate (AWS, 50K reviews/month — enterprise scale)
+## Cost Estimate (AWS, 50K reviews/month - enterprise scale)
 
 | Service | Monthly Cost |
 |---------|-------------|
