@@ -17,7 +17,7 @@ description: "Infrastructure and model cost breakdown with ROI analysis for both
 | AWS region | ca-central-1 (Canada) |
 | GPT-4o pricing | $0.005/1K input tokens, $0.015/1K output tokens |
 | Claude 3.5 Sonnet pricing | $0.003/1K input tokens, $0.015/1K output tokens |
-| AWS Textract | $0.015 per page (Analyze Document API) |
+| AWS Textract | $0.015 per page (Analyse Document API) |
 | Compliance officer salary | $75,000/year = $6,250/month |
 | Hours saved per review | 10 min → 2 min = 8 min/review |
 
