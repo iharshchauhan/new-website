@@ -92,13 +92,13 @@ export function CTASection() {
                   This site is basically my logbook; a place where I document ideas, experiments,
                   frameworks, and whatever interesting problem I&apos;m currently obsessed with.
                 </p>
-                <p className="italic [font-family:ui-cursive,cursive]">
+                <p className="text-[0.96rem] italic md:text-[1rem]">
                   My long-term plan is simple:
                 </p>
-                <p className="italic [font-family:ui-cursive,cursive]">
+                <p className="text-[0.96rem] italic md:text-[1rem]">
                   make a TON of money with computers... and then maybe stop using them entirely.
                 </p>
-                <p className="text-[0.94rem] italic [font-family:ui-cursive,cursive] md:text-[0.98rem]">
+                <p className="text-[0.9rem] italic md:text-[0.94rem]">
                   (just kidding... probably.)
                 </p>
                 <p>
