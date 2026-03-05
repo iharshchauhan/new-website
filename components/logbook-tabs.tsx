@@ -7,12 +7,22 @@ import { BookOpen, Briefcase, LayoutTemplate, Star, ArrowRight, Sparkles } from 
 import { Post } from '@/lib/mdx';
 import { cn } from '@/lib/utils';
 
+const LEGACY_TAB_MAP: Record<string, string> = {
+  Logbook: 'Thoughts',
+  Articles: 'Thoughts',
+  'Fun Projects': 'Experiments',
+  'Proof of work': 'Systems',
+  'Proof of Work': 'Systems',
+  Frameworks: 'Playbooks',
+  Reviews: 'Notes',
+};
+
 const TABS = [
-  { id: 'Logbook', label: 'Articles', icon: BookOpen },
-  { id: 'Fun Projects', label: 'Fun Projects', icon: Sparkles },
-  { id: 'Proof of work', label: 'Proof of Work', icon: Briefcase },
-  { id: 'Frameworks', label: 'Frameworks', icon: LayoutTemplate },
-  { id: 'Reviews', label: 'Reviews', icon: Star },
+  { id: 'Thoughts', label: 'Thoughts', icon: BookOpen },
+  { id: 'Experiments', label: 'Experiments', icon: Sparkles },
+  { id: 'Systems', label: 'Systems', icon: Briefcase },
+  { id: 'Playbooks', label: 'Playbooks', icon: LayoutTemplate },
+  { id: 'Notes', label: 'Notes', icon: Star },
 ];
 
 export function LogbookTabs({ posts }: { posts: Post[] }) {
@@ -20,9 +30,10 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  const tabFromUrl = searchParams.get('tab');
+  const rawTabFromUrl = searchParams.get('tab');
+  const tabFromUrl = rawTabFromUrl ? (LEGACY_TAB_MAP[rawTabFromUrl] || rawTabFromUrl) : null;
   const validTabIds = useMemo(() => new Set(TABS.map((tab) => tab.id)), []);
-  const [activeTabState, setActiveTabState] = useState('Logbook');
+  const [activeTabState, setActiveTabState] = useState('Thoughts');
   const activeTab = tabFromUrl && validTabIds.has(tabFromUrl) ? tabFromUrl : activeTabState;
 
   const handleTabChange = (tabId: string) => {
@@ -60,7 +71,7 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
       {/* List */}
       <div className="flex flex-col gap-6">
         {filteredPosts.map(post => {
-          const isProject = post.meta.category === 'Fun Projects';
+          const isProject = post.meta.category === 'Experiments';
           
           return (
             <Link 
