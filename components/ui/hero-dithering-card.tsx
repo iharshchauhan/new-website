@@ -92,8 +92,10 @@ export function CTASection() {
                   This site is basically my logbook; a place where I document ideas, experiments,
                   frameworks, and whatever interesting problem I&apos;m currently obsessed with.
                 </p>
-                <p>My long-term plan is simple:</p>
-                <p>
+                <p className="italic [font-family:ui-cursive,cursive]">
+                  My long-term plan is simple:
+                </p>
+                <p className="italic [font-family:ui-cursive,cursive]">
                   make a TON of money with computers... and then maybe stop using them entirely.
                 </p>
                 <p className="text-[0.94rem] italic [font-family:ui-cursive,cursive] md:text-[0.98rem]">
