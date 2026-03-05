@@ -39,7 +39,7 @@ export default function AboutPage() {
           admired your work. My reading list keeps expanding like a black hole, and I am always ready to add more.
         </p>
 
-        <p>
+        <p className="italic [font-family:ui-cursive,cursive]">
           <em>
             I dream of making a lot of money with computers and then maybe never touching one again.
             Just kidding. Or maybe not. I enjoy cold days, hot coffee, and music on repeat. When I am not
