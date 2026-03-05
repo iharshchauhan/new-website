@@ -79,22 +79,29 @@ export function CTASection() {
               </div>
 
               <h2 className="max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
-                Hey, Stranger! 👋
+                Hey, Stranger! {"\u{1F44B}"}
               </h2>
 
               <div className="max-w-4xl space-y-3 text-[1.04rem] leading-relaxed text-slate-700 md:text-[1.08rem]">
+                <p>Welcome to my little corner of the web.</p>
                 <p>
-                  Welcome to my little corner of the web! I am a Product enthusiast and an
-                  amateur human figuring out both the world and the web.
+                  I spend most of my time thinking about products, AI systems, and how software
+                  actually works behind the scenes.
+                </p>
+                <p>
+                  This site is basically my logbook; a place where I document ideas, experiments,
+                  frameworks, and whatever interesting problem I&apos;m currently obsessed with.
+                </p>
+                <p>My long-term plan is simple:</p>
+                <p>
+                  make a TON of money with computers... and then maybe stop using them entirely.
                 </p>
                 <p className="text-[0.94rem] italic [font-family:ui-cursive,cursive] md:text-[0.98rem]">
-                  I dream of making a TON of money with computers, and then... maybe never touching
-                  one again <p> (just kidding... or am I? 🤨)
-                  </p>
+                  (just kidding... probably.)
                 </p>
                 <p>
-                  Stick around as I document cool stuff and try to create content that&apos;s as
-                  engaging as my playlist.
+                  Stick around if you like product thinking, system design, and the occasional
+                  weird experiment.
                 </p>
               </div>
             </div>
