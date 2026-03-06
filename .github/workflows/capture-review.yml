@@ -1,0 +1,104 @@
+name: Capture Review Draft
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "Article URL"
+        required: true
+        type: string
+      title:
+        description: "Optional title override"
+        required: false
+        type: string
+      summary_text:
+        description: "Optional pre-written summary markdown"
+        required: false
+        type: string
+      provider:
+        description: "AI provider (ignored when summary_text is provided)"
+        required: false
+        default: "gemini"
+        type: choice
+        options:
+          - gemini
+          - grok
+          - none
+      model:
+        description: "Optional model override"
+        required: false
+        type: string
+      tags:
+        description: "Comma-separated extra tags"
+        required: false
+        default: "Review,Notes"
+        type: string
+      source:
+        description: "Capture source label (ios-shortcut, android-tasker, etc.)"
+        required: false
+        default: "phone-capture"
+        type: string
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  capture-review:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Write .env for capture script
+        shell: bash
+        run: |
+          cat <<'EOF' > .env
+          GEMINI_API_KEY=${{ secrets.GEMINI_API_KEY }}
+          GROK_API_KEY=${{ secrets.GROK_API_KEY }}
+          EOF
+
+      - name: Generate review draft file
+        id: generate
+        run: node scripts/capture-review.mjs
+        env:
+          ARTICLE_URL: ${{ inputs.url }}
+          ARTICLE_TITLE: ${{ inputs.title }}
+          SUMMARY_TEXT: ${{ inputs.summary_text }}
+          AI_PROVIDER: ${{ inputs.provider }}
+          AI_MODEL: ${{ inputs.model }}
+          ARTICLE_TAGS: ${{ inputs.tags }}
+          CAPTURE_SOURCE: ${{ inputs.source }}
+
+      - name: Create draft PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: capture-review/${{ github.run_id }}-${{ github.run_attempt }}
+          base: main
+          delete-branch: true
+          draft: true
+          add-paths: |
+            ${{ steps.generate.outputs.review_file }}
+          commit-message: "feat: add review draft for ${{ steps.generate.outputs.review_title }}"
+          title: "draft: review - ${{ steps.generate.outputs.review_title }}"
+          body: |
+            Auto-generated review draft from mobile capture.
+
+            Source URL: ${{ inputs.url }}
+            Provider: ${{ inputs.provider }}
+            Model: ${{ steps.generate.outputs.review_model }}
+            Source label: ${{ inputs.source }}
+
+            Generated file:
+            - `${{ steps.generate.outputs.review_file }}`

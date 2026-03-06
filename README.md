@@ -54,3 +54,19 @@ Required GitHub repository secrets:
 - `CLOUDINARY_API_KEY`
 - `CLOUDINARY_API_SECRET`
 - Optional: `CLOUDINARY_FOLDER`
+
+## Mobile capture to review drafts
+
+You can trigger `.github/workflows/capture-review.yml` from your phone to create:
+
+- a new review markdown file in `content/writing`
+- a draft PR ready for your PC review/merge
+
+This supports:
+
+- `provider=gemini` (uses `GEMINI_API_KEY`)
+- `provider=grok` (uses `GROK_API_KEY`)
+- `summary_text` input (skip model API call)
+- API keys are loaded from `.env` / `.env.local` (see `.env.example`)
+
+Setup and Shortcut/API details: `docs/mobile-capture-reviews.md`
