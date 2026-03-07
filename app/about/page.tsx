@@ -6,20 +6,60 @@ export const metadata: Metadata = {
 };
 
 const companies = [
-  { name: 'QuillAudits', href: 'https://www.quillaudits.com/smart-contract-audit', domain: 'quillaudits.com' },
-  { name: 'Ximi Vogue', href: 'https://ximivogueretail.com/', domain: 'ximivogueretail.com' },
-  { name: 'Airtel', href: 'https://airtel.in', domain: 'airtel.in' },
-  { name: 'Harman & Kardon', href: 'https://in.harmankardon.com/', domain: 'harmankardon.com' },
-  { name: 'Edelman', href: 'https://www.edelman.com/', domain: 'edelman.com' },
-  { name: 'Midea', href: 'https://www.midea.com/in', domain: 'midea.com' },
-  { name: 'Instoried', href: 'https://instoried.com/', domain: 'instoried.com' },
-  { name: 'Indiefolio', href: 'https://indiefolio.com/', domain: 'indiefolio.com' },
-  { name: 'Tegro', href: 'https://tegro.com/', domain: 'tegro.com' },
-  { name: 'Jovian', href: 'https://jovian.com/', domain: 'jovian.com' },
-  { name: 'Bezit', href: 'https://bezit.co/', domain: 'bezit.co' },
-  { name: 'PierSight', href: 'https://piersight.space/', domain: 'piersight.space' },
-  { name: 'Atlas', href: 'https://atlas.so/', domain: 'atlas.so' },
-  { name: 'Scrut Automation', href: 'https://scrut.io/', domain: 'scrut.io' },
+  {
+    name: 'QuillAudits',
+    href: 'https://www.quillaudits.com/smart-contract-audit',
+    logoSrc: '/company-logos/quillaudits.jpg',
+  },
+  {
+    name: 'Ximi Vogue',
+    href: 'https://ximivogueretail.com/',
+    logoSrc: '/company-logos/ximi-vogue.jpg',
+  },
+  {
+    name: 'Airtel',
+    href: 'https://airtel.in',
+    logoSrc: '/company-logos/airtel.png',
+  },
+  {
+    name: 'Harman & Kardon',
+    href: 'https://in.harmankardon.com/',
+    logoSrc: '/company-logos/harman-kardon.webp',
+  },
+  { name: 'Edelman', href: 'https://www.edelman.com/', logoSrc: '/company-logos/edelman.jpg' },
+  {
+    name: 'Midea',
+    href: 'https://www.midea.com/in',
+    logoSrc: '/company-logos/midea.png',
+  },
+  {
+    name: 'Instoried',
+    href: 'https://yourstory.com/herstory/2022/04/funding-instoried-200-million-gem-content-startup-ipo',
+    logoSrc: '/company-logos/instoried.avif',
+  },
+  { name: 'Indiefolio', href: 'https://indiefolio.com/', logoSrc: '/company-logos/indiefolio.jpg' },
+  { name: 'Tegro', href: 'https://tegro.com/', logoSrc: '/company-logos/tegro.jpg' },
+  { name: 'Jovian', href: 'https://jovian.com/', logoSrc: '/company-logos/jovian.jpg' },
+  {
+    name: 'Bezit',
+    href: 'https://bezit.co/',
+    logoSrc: '/company-logos/bezit.png',
+  },
+  {
+    name: 'PierSight',
+    href: 'https://piersight.space/',
+    logoSrc: '/company-logos/piersight.jpg',
+  },
+  {
+    name: 'Atlas',
+    href: 'https://atlas.so/',
+    logoSrc: '/company-logos/atlas.png',
+  },
+  {
+    name: 'Scrut Automation',
+    href: 'https://scrut.io/',
+    logoSrc: '/company-logos/scrut.webp',
+  },
 ] as const;
 
 export default function AboutPage() {
@@ -75,7 +115,6 @@ export default function AboutPage() {
                 .slice(0, 2)
                 .map((part) => part[0]?.toUpperCase() ?? '')
                 .join('');
-              const logoSrc = `https://logo.clearbit.com/${company.domain}?size=128`;
 
               return (
                 <a
@@ -86,13 +125,16 @@ export default function AboutPage() {
                   className="group flex items-start gap-4 rounded-2xl border border-border/60 bg-background/60 p-4 no-underline transition-colors hover:border-foreground/20 hover:bg-muted/40"
                 >
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-muted text-sm font-semibold tracking-[-0.02em] text-foreground">
-                    <img
-                      src={logoSrc}
-                      alt={`${company.name} logo`}
-                      className="h-10 w-10 rounded-lg object-contain"
-                      loading="lazy"
-                    />
-                    <span className="sr-only">{badge}</span>
+                    {company.logoSrc ? (
+                      <img
+                        src={company.logoSrc}
+                        alt={`${company.name} logo`}
+                        className="h-10 w-10 rounded-lg object-contain"
+                        loading="lazy"
+                      />
+                    ) : (
+                      <span aria-hidden="true">{badge}</span>
+                    )}
                   </div>
 
                   <div className="min-w-0 pt-1">
