@@ -1,8 +1,21 @@
 import type { Metadata } from "next";
+import { Cormorant_Garamond, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
 import { AnimatedBackground } from "@/components/animated-background";
 import { Footer } from "@/components/footer";
+
+const nunitoSans = Nunito_Sans({
+  variable: "--font-sans",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+const cormorantGaramond = Cormorant_Garamond({
+  variable: "--font-serif",
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "harshc_ | Product & Growth",
@@ -18,12 +31,12 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className="antialiased min-h-screen flex flex-col selection:bg-primary selection:text-primary-foreground"
+        className={`${nunitoSans.variable} ${cormorantGaramond.variable} antialiased min-h-screen flex flex-col selection:bg-primary selection:text-primary-foreground`}
         suppressHydrationWarning
       >
         <AnimatedBackground />
         <Navigation />
-        <main className="flex-1 pt-32 pb-16 px-4 sm:px-6 md:px-12 max-w-3xl mx-auto w-full">
+        <main className="flex-1 pt-28 pb-20 px-4 sm:px-6 md:px-10 max-w-6xl mx-auto w-full">
           {children}
         </main>
         <Footer />

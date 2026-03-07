@@ -3,7 +3,7 @@ import { getAllPosts } from '@/lib/mdx';
 import { LogbookTabs } from '@/components/logbook-tabs';
 
 export const metadata = {
-  title: 'Logbook | harshc_',
+  title: 'Notes | harshc_',
   description: 'Thoughts, experiments, systems, playbooks, and notes.',
 };
 
@@ -16,11 +16,13 @@ export default function LogbookPage() {
   );
 
   return (
-    <div className="space-y-12 max-w-6xl mx-auto">
-      <header className="space-y-4 text-center pb-8">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight">Logbook</h1>
-        <p className="text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto">
-          A collection of thoughts, experiments, systems, playbooks, and notes.
+    <div className="space-y-14 max-w-5xl mx-auto">
+      <header className="space-y-6 text-center pt-8 pb-12">
+        <h1 className="text-6xl sm:text-7xl md:text-8xl font-semibold leading-none tracking-tight text-[#055f57]">
+          Notes.
+        </h1>
+        <p className="text-lg sm:text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
+          Some thoughts, reflections, and notes on design, product, and work in progress.
         </p>
       </header>
       

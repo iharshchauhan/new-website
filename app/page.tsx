@@ -15,25 +15,25 @@ export default function Home() {
     <div className="space-y-24">
       <CTASection />
 
-      <div className="space-y-16">
+      <div className="space-y-16 max-w-4xl mx-auto w-full">
         <section className="space-y-8">
-          <div className="flex items-center justify-between border-b border-border pb-4">
-            <h2 className="text-xl font-medium">Recent from Logbook</h2>
+          <div className="flex items-center justify-between border-b border-border/80 pb-4">
+            <h2 className="text-2xl font-semibold tracking-tight">Recent notes</h2>
             <Link
               href="/logbook"
               className="text-sm text-muted-foreground hover:text-foreground flex items-center transition-colors"
             >
-              View all <ArrowRight className="w-4 h-4 ml-1" />
+              Browse all <ArrowRight className="w-4 h-4 ml-1" />
             </Link>
           </div>
-          <div className="space-y-8">
+          <div className="space-y-5">
             {recentPosts.map((post) => (
               <Link
                 key={post.slug}
                 href={`/${post.type}/${post.slug}`}
                 className="block group"
               >
-                <article className="space-y-2">
+                <article className="space-y-2 rounded-3xl border border-transparent hover:border-border/70 hover:bg-white/45 px-5 py-5 transition-all">
                   <div className="flex items-baseline justify-between">
                     <h3 className="text-lg font-medium group-hover:text-primary transition-colors underline-offset-4 group-hover:underline flex items-center gap-3">
                       {post.meta.title}
