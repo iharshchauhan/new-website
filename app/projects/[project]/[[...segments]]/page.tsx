@@ -56,7 +56,7 @@ export default async function ProjectSubpage({
       : null;
 
   return (
-    <article className="max-w-6xl mx-auto space-y-10">
+    <article className="max-w-[88rem] mx-auto space-y-10">
       <div className="space-y-6">
         <BackNavLink href={`/projects/${project}`} label={`Back to ${parentProject.meta.title}`} />
 
@@ -88,9 +88,9 @@ export default async function ProjectSubpage({
         </div>
       </div>
 
-      <div className="grid lg:grid-cols-[minmax(0,1fr)_350px] gap-10 items-start">
+      <div className="grid lg:grid-cols-[minmax(0,1.28fr)_320px] gap-10 items-start">
         <div className="space-y-7">
-          <div className="rounded-2xl border border-white/60 bg-[#f6f4ea]/85 px-5 sm:px-8 py-8">
+          <div className="rounded-2xl border border-white/60 bg-[#f6f4ea]/85 px-6 sm:px-10 py-8">
             <MDXContent content={post.content} />
           </div>
 
@@ -134,7 +134,7 @@ export default async function ProjectSubpage({
             projectSlug={project}
             items={topicItems}
             currentSubpage={subpage}
-            className="lg:sticky lg:top-24"
+            className="lg:sticky lg:top-20 lg:-mt-4"
           />
         )}
       </div>

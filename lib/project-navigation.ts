@@ -43,7 +43,7 @@ function inferGroup(slug: string, title: string) {
   const slugLayerMatch = slug.match(/layer-(\d+)/i);
   if (slugLayerMatch) return "Layers";
 
-  return "Deep Dives";
+  return "Topics";
 }
 
 function inferOrder(slug: string, title: string) {

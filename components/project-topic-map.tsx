@@ -45,9 +45,11 @@ export function ProjectTopicMap({
       <div className="space-y-5">
         {groupedTopics.map(({ group, topics }) => (
           <section key={group} className="space-y-2.5">
-            <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
-              {group}
-            </h3>
+            {group !== "Topics" && (
+              <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                {group}
+              </h3>
+            )}
             <div className="space-y-2">
               {topics.map((item) => {
                 const isActive = currentSubpage === item.slug;
