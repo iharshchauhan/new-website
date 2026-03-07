@@ -1,6 +1,6 @@
 ﻿---
 title: "Why I Treat Chunking as a Product Decision"
-date: "2026-03-04"
+date: "2025-07-21"
 description: "I break down fixed-size, semantic, recursive, structure-based, and LLM chunking through a product lens and share how we should choose in production."
 category: "Proof of work"
 tags: ["RAG", "LLMs", "Retrieval", "Proof Of Work"]
