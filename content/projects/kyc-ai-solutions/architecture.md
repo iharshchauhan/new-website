@@ -2,6 +2,7 @@
 title: "System overview"
 date: "2026-03-02"
 description: "Detailed architecture for KYC Copilot and KYC Compliance Agent with data and security flows."
+order: 2
 ---
 # Architecture Documentation
 ## KYC Copilot + KYC Compliance Agent

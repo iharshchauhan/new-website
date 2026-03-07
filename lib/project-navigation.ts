@@ -60,23 +60,30 @@ export function getProjectTopicItems(projectSlug: string): ProjectTopicItem[] {
   const subpages = getProjectSubpages(projectSlug);
 
   return subpages
-    .map((subpage) => {
+    .map((subpage, index) => {
       const subpageData = getPostBySlug(projectSlug, "projects", subpage);
       if (!subpageData) return null;
+
+      const manualOrder = subpageData.meta.order;
+      const inferredOrder = inferOrder(subpage, subpageData.meta.title);
+      const finalOrder =
+        typeof manualOrder === "number" ? manualOrder : inferredOrder;
 
       return {
         slug: subpage,
         title: subpageData.meta.title,
         description: subpageData.meta.description,
         group: inferGroup(subpage, subpageData.meta.title),
-        order: inferOrder(subpage, subpageData.meta.title),
+        order: finalOrder,
+        sourceIndex: index,
       };
     })
-    .filter((item): item is ProjectTopicItem => item !== null)
+    .filter(
+      (item): item is ProjectTopicItem & { sourceIndex: number } => item !== null,
+    )
     .sort((a, b) => {
-      if (a.group !== b.group) return a.group.localeCompare(b.group);
       if (a.order !== b.order) return a.order - b.order;
-      return a.title.localeCompare(b.title);
+      return a.sourceIndex - b.sourceIndex;
     });
 }
 

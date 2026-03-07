@@ -2,6 +2,7 @@
 title: "Solution Overview"
 date: "2026-03-02"
 description: "Full technical design for the two-system KYC solution and implementation plan."
+order: 1
 ---
 # KYC AI Solutions: Full Technical Design
 

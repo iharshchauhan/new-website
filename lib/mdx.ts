@@ -8,6 +8,7 @@ export type PostMeta = {
   title: string;
   date: string;
   description: string;
+  order?: number;
   coverImage?: string;
   category: string;
   tags: string[];
@@ -114,6 +115,7 @@ export function getPostBySlug(
       title: data.title || "",
       date: data.date || "",
       description: data.description || "",
+      order: typeof data.order === "number" ? data.order : undefined,
       coverImage: data.coverImage || undefined,
       category,
       tags: normalizedTags,
