@@ -16,9 +16,3 @@ This project captures a production-ready framework for autonomous task execution
 - Core framework design and architecture
 - Real-world case study from long-running usage
 - Source walkthrough of the main runtime
-
-## Deep Dives
-
-- [Framework README](/projects/autonomous-agent-framework/framework-readme)
-- [Case Study: Shipping Code While I Sleep](/projects/autonomous-agent-framework/case-study)
-- [Source Walkthrough: autonomous-agent.js](/projects/autonomous-agent-framework/source-walkthrough)
