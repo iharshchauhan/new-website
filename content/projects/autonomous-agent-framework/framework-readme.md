@@ -392,22 +392,3 @@ This framework was extracted from a personal automation system I built to proces
 After running this for six months and processing 50+ tasks autonomously, I extracted the patterns into this reusable framework.
 
 The key insight: **autonomous agents need structure**. The research/implementation distinction, process management, and lock file handling aren't optional—they're what makes the difference between a useful tool and a runaway process.
-
-## Case Study
-
-**"How I Built an AI Agent That Ships Code While I Sleep"**
-
-See `docs/case-study.md` for a detailed writeup of the original system, including:
-- 6 months of usage data
-- Types of tasks that work well (and don't work well) for autonomous processing
-- Lessons learned about prompt design for autonomous agents
-- Integration patterns with existing workflows
-
-## Contributing
-
-Contributions welcome. Please open an issue first to discuss proposed changes.
-
-## License
-
-MIT
-
