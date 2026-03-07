@@ -37,6 +37,21 @@ export function MDXContent({ content }: { content: string }) {
       <ReactMarkdown
         remarkPlugins={[remarkGfm]}
         components={{
+          a: ({ href, children, ...props }) => {
+            const rawHref = typeof href === "string" ? href.trim() : "";
+            const isInternalAbsolute =
+              rawHref.startsWith("/") &&
+              !rawHref.startsWith("//") &&
+              !rawHref.startsWith("/#");
+
+            const resolvedHref = isInternalAbsolute ? `${basePath}${rawHref}` : rawHref;
+
+            return (
+              <a href={resolvedHref} {...props}>
+                {children}
+              </a>
+            );
+          },
           pre: ({ children, ...props }) => {
             const codeChild = React.Children.toArray(children).find((child) => {
               if (
