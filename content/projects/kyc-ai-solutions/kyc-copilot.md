@@ -2,6 +2,7 @@
 title: "KYC Copilot"
 date: "2026-03-02"
 description: "AI pre-submission validation service for document quality, field extraction, and profile cross-checks."
+order: 3
 ---
 # KYC Copilot: AI Pre-Submission Document Validator
 

@@ -2,6 +2,7 @@
 title: "KYC Review Agent: assisting compliance teams"
 date: "2026-03-02"
 description: "AI-assisted compliance review workflow with confidence scoring, queueing, and draft decisions."
+order: 4
 ---
 # KYC Review Agent: AI Compliance Review Copilot
 
