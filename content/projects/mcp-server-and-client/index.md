@@ -1,6 +1,6 @@
 ﻿﻿---
 title: "Building MCP Server and Client"
-date: "2026-03-02"
+date: "2025-11-02"
 description: "Hands-on MCP projects covering theory, a terminal server, and a React plus Electron client stack."
 category: "Proof of work"
 tags: ["MCP", "AI Tools", "Developer Platform"]
