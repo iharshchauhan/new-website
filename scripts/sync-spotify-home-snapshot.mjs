@@ -7,7 +7,15 @@ dotenv.config({ path: ".env.local" });
 const CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
-const PLAYLIST_ID = "6rhg71awO0tB2GIunqOxAg";
+const FEATURED_PLAYLIST_ID = "6rhg71awO0tB2GIunqOxAg";
+const PROFILE_URL = "https://open.spotify.com/user/harshpratapchauhan";
+const PLAYLIST_IDS = [
+  FEATURED_PLAYLIST_ID,
+  "1XoiWZo7JKCsSg0libZLwe",
+  "7sP1QRH16monjfrPiLfXf2",
+  "5z9RE0beJ1hbfX9LMr27AA",
+  "1ZbcTBBsSTNiUOmqNSUE2B",
+];
 const OUTPUT_PATH = path.join(process.cwd(), "lib", "spotify-home-snapshot.json");
 
 function ensureEnv() {
@@ -67,7 +75,7 @@ function mapArtist(artist) {
   return {
     id: artist.id,
     title: artist.name,
-    subtitle: artist.genres?.slice(0, 2).join(" • ") || "Artist",
+    subtitle: artist.genres?.slice(0, 2).join(" | ") || "Artist",
     href: artist.external_urls?.spotify || "https://open.spotify.com/",
     image: pickImage(artist.images),
     meta: artist.genres?.[0],
@@ -75,9 +83,14 @@ function mapArtist(artist) {
 }
 
 function mapTrack(track) {
+  const title = (track.name || "").trim();
+  if (!title) {
+    return null;
+  }
+
   return {
     id: track.id,
-    title: track.name,
+    title,
     subtitle: track.artists?.map((artist) => artist.name).join(", ") || "Track",
     href: track.external_urls?.spotify || "https://open.spotify.com/",
     image: pickImage(track.album?.images),
@@ -85,33 +98,44 @@ function mapTrack(track) {
   };
 }
 
+function mapPlaylist(playlist, id) {
+  return {
+    id,
+    name: playlist.name || "Spotify playlist",
+    description:
+      playlist.description?.replace(/<[^>]+>/g, "") ||
+      "Open the playlist on Spotify.",
+    href:
+      playlist.external_urls?.spotify ||
+      `https://open.spotify.com/playlist/${id}`,
+    owner: playlist.owner?.display_name || "Spotify",
+    trackCount: playlist.tracks?.total,
+    image: pickImage(playlist.images),
+  };
+}
+
 async function main() {
   ensureEnv();
 
   const accessToken = await getUserAccessToken();
-  const [artistsShort, artistsLong, tracksShort, tracksLong, playlist] =
+  const [artistsShort, artistsLong, tracksShort, tracksLong, ...playlistsRaw] =
     await Promise.all([
       spotifyGet("/me/top/artists?limit=6&time_range=short_term", accessToken),
       spotifyGet("/me/top/artists?limit=6&time_range=long_term", accessToken),
       spotifyGet("/me/top/tracks?limit=6&time_range=short_term", accessToken),
       spotifyGet("/me/top/tracks?limit=6&time_range=long_term", accessToken),
-      spotifyGet(`/playlists/${PLAYLIST_ID}`, accessToken),
+      ...PLAYLIST_IDS.map((id) => spotifyGet(`/playlists/${id}`, accessToken)),
     ]);
+
+  const playlists = playlistsRaw.map((playlist, index) =>
+    mapPlaylist(playlist, PLAYLIST_IDS[index]),
+  );
 
   const snapshot = {
     personalizedDataAvailable: true,
-    playlist: {
-      name: playlist.name || "Featured playlist",
-      description:
-        playlist.description?.replace(/<[^>]+>/g, "") ||
-        "Open the playlist on Spotify.",
-      href:
-        playlist.external_urls?.spotify ||
-        `https://open.spotify.com/playlist/${PLAYLIST_ID}`,
-      owner: playlist.owner?.display_name || "Spotify",
-      trackCount: playlist.tracks?.total,
-      image: pickImage(playlist.images),
-    },
+    profileUrl: PROFILE_URL,
+    playlist: playlists[0],
+    playlists,
     filters: [
       {
         id: "artists-short",
@@ -129,13 +153,13 @@ async function main() {
         id: "tracks-short",
         label: "Top tracks",
         eyebrow: "This month",
-        items: (tracksShort.items || []).map(mapTrack),
+        items: (tracksShort.items || []).map(mapTrack).filter(Boolean),
       },
       {
         id: "tracks-long",
         label: "Top tracks",
         eyebrow: "This year",
-        items: (tracksLong.items || []).map(mapTrack),
+        items: (tracksLong.items || []).map(mapTrack).filter(Boolean),
       },
     ],
   };

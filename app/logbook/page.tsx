@@ -6,10 +6,14 @@ export const metadata = {
   description: 'A running log of ideas, experiments, systems, and notes from my product + AI journey.',
 };
 
-export default function LogbookPage() {
+export default async function LogbookPage({
+  searchParams,
+}: {
+  searchParams?: Promise<{ tab?: string; page?: string }>;
+}) {
   const writingPosts = getAllPosts('writing');
   const projectPosts = getAllPosts('projects');
-  
+  const resolvedSearchParams = await searchParams;
   const allPosts = [...writingPosts, ...projectPosts].sort((a, b) => 
     a.meta.date > b.meta.date ? -1 : 1
   );
@@ -25,7 +29,11 @@ export default function LogbookPage() {
         </p>
       </header>
       
-      <LogbookTabs posts={allPosts} />
+      <LogbookTabs
+        posts={allPosts}
+        rawTab={resolvedSearchParams?.tab}
+        rawPage={resolvedSearchParams?.page}
+      />
     </div>
   );
 }

@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   description: 'About Harsh Chauhan',
 };
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+
 const companies = [
   {
     name: 'QuillAudits',
@@ -127,7 +129,7 @@ export default function AboutPage() {
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-muted text-sm font-semibold tracking-[-0.02em] text-foreground">
                     {company.logoSrc ? (
                       <img
-                        src={company.logoSrc}
+                        src={`${basePath}${company.logoSrc}`}
                         alt={`${company.name} logo`}
                         className="h-10 w-10 rounded-lg object-contain"
                         loading="lazy"
