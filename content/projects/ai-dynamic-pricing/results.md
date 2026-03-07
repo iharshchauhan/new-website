@@ -207,7 +207,3 @@ Backtest Validation (388 days)
 
 **Differentiator:** Not just "built a model" — proved business value with backtest, addressed ethics concerns, and made it explainable for stakeholder adoption.
 
----
-
-*Built as an AI Product Manager portfolio project demonstrating end-to-end ML product development from problem definition to production-ready system.*
-
