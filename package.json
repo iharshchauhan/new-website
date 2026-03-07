@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "node -e \"const fs=require('fs');fs.mkdirSync('out',{recursive:true});fs.closeSync(fs.openSync('out/.nojekyll','w'));\"",
+    "postbuild": "node -e \"const fs=require('fs');fs.mkdirSync('out',{recursive:true});fs.closeSync(fs.openSync('out/.nojekyll','w'));\" && node scripts/sync-interactive-framework-routes.mjs",
     "start": "next start",
     "lint": "eslint .",
     "clean": "next clean",
