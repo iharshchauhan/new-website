@@ -1,6 +1,6 @@
 ---
 title: "How I think about moving from on-prem infrastructure to a GCP platform"
-date: "2026-03-04"
+date: "2025-08-24"
 description: "A product and platform perspective on evolving from fragmented on-prem systems to a structured GCP architecture with cost attribution and chargeback."
 category: "Proof of work"
 tags: ["Cloud", "Platform Engineering", "GCP", "Architecture", "FinOps"]
