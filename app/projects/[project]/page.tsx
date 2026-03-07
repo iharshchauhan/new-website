@@ -1,11 +1,11 @@
-import { getPostBySlug, getPostSlugs, getProjectSubpages } from '@/lib/mdx';
+import { getPostBySlug, getPostSlugs } from '@/lib/mdx';
 import { MDXContent } from '@/components/mdx-content';
 import { notFound } from 'next/navigation';
-import Link from 'next/link';
 import { BackNavLink } from '@/components/back-nav-link';
-import { ArrowRight, FileText } from 'lucide-react';
 import Image from 'next/image';
 import { InteractiveExplainerHub } from '@/components/interactive-explainer-hub';
+import { getProjectTopicItems } from '@/lib/project-navigation';
+import { ProjectTopicMap } from '@/components/project-topic-map';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs('projects');
@@ -20,18 +20,18 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
     notFound();
   }
 
-  const subpages = getProjectSubpages(project);
+  const topicItems = getProjectTopicItems(project);
   const showInteractiveHub = project === 'interactive-explainers-framework';
 
   return (
-    <article className="max-w-4xl mx-auto space-y-16">
+    <article className="max-w-6xl mx-auto space-y-12">
       <div className="space-y-8">
         <BackNavLink href="/logbook" label="Back to Logbook" />
-        <div className="space-y-6">
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight">
+        <div className="space-y-6 max-w-4xl">
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-[#055f57]">
             {post.meta.title}
           </h1>
-          <p className="text-xl text-muted-foreground max-w-2xl">
+          <p className="text-xl text-foreground/80 max-w-3xl">
             {post.meta.description}
           </p>
         </div>
@@ -49,37 +49,20 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
         </div>
       )}
 
-      <div className="grid md:grid-cols-[1fr_300px] gap-12">
+      <div className="grid lg:grid-cols-[minmax(0,1fr)_350px] gap-10 items-start">
         <div className="space-y-12">
           {showInteractiveHub && <InteractiveExplainerHub />}
-          <MDXContent content={post.content} />
+          <div className="rounded-2xl border border-white/60 bg-[#f6f4ea]/85 px-5 sm:px-8 py-8">
+            <MDXContent content={post.content} />
+          </div>
         </div>
 
-        {subpages.length > 0 && (
-          <aside className="space-y-6">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">
-              Deep Dives
-            </h3>
-            <div className="flex flex-col space-y-2">
-              {subpages.map((subpage) => {
-                const subpageData = getPostBySlug(project, 'projects', subpage);
-                if (!subpageData) return null;
-                return (
-                  <Link
-                    key={subpage}
-                    href={`/projects/${project}/${subpage}`}
-                    className="group bg-muted/50 p-4 rounded-xl hover:bg-muted transition-colors flex items-center justify-between border border-transparent hover:border-border"
-                  >
-                    <div className="flex items-center space-x-3">
-                      <FileText className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
-                      <span className="font-medium">{subpageData.meta.title}</span>
-                    </div>
-                    <ArrowRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors group-hover:translate-x-1" />
-                  </Link>
-                );
-              })}
-            </div>
-          </aside>
+        {topicItems.length > 0 && (
+          <ProjectTopicMap
+            projectSlug={project}
+            items={topicItems}
+            className="lg:sticky lg:top-24"
+          />
         )}
       </div>
     </article>
