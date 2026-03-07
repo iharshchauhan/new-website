@@ -2,7 +2,6 @@
 title: "AI Dynamic Pricing"
 date: "2025-10-22"
 description: "AI-driven dynamic pricing platform with explainable ML, ethical guardrails, and production dashboarding for Indian coffee retail."
-coverImage: "https://picsum.photos/seed/ai-dynamic-pricing/800/400"
 category: "Proof of work"
 tags: ["AI", "Pricing", "Retail Analytics"]
 ---
