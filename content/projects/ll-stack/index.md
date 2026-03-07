@@ -1,6 +1,6 @@
 ---
 title: "LLM Stack: A Practical 5-Layer Map"
-date: "2026-02-20"
+date: "2025-04-29"
 description: "A practical framework for understanding AI systems across infrastructure, models, data, orchestration, and product."
 category: "Frameworks"
 tags: ["Framework", "LLM", "AI Systems"]

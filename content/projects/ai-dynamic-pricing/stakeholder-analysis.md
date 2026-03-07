@@ -444,10 +444,3 @@ description: "Stakeholder mapping, narratives, and adoption strategy."
 - Self-service onboarding (less Ops Manager burden)
 - Publish annual transparency report (Legal/Customer trust)
 
----
-
-**Document Owner:** Harsh Chauhan
-**Last Updated:** November 26, 2025  
-**Review Cycle:** Quarterly  
-**Next Stakeholder Survey:** January 2026
-

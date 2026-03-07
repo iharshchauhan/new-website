@@ -187,27 +187,9 @@ Backtest Validation (388 days)
 
 ---
 
-## 📧 Questions?
-
-**For technical details:** See [GitHub Repository](https://github.com/yourusername/ai-dynamic-pricing)  
-**For business case:** See [Full Case Study](https://your-portfolio-site.com/projects/ai-dynamic-pricing)  
-**For collaboration:** Contact [your.email@example.com](mailto:your.email@example.com)
-
----
-
-**Last Updated:** November 2025  
-**Project Status:** Phase 2 Complete, Phase 3 In Progress  
-**Total Development Time:** 6 weeks (part-time)
-
----
-
 ## 🎯 TL;DR (30-Second Version)
 
 > Built an AI pricing system for India coffee shops that **proves 16% margin lift** (₹17,959 annually) through historical validation. Model achieves R² = 0.997 accuracy while maintaining ethics guardrails. Integrated real Bengaluru weather data (388 days) and SHAP explainability. Validated across all conditions with 92% monthly success rate.
 
 **Differentiator:** Not just "built a model" — proved business value with backtest, addressed ethics concerns, and made it explainable for stakeholder adoption.
-
----
-
-*Built as an AI Product Manager portfolio project demonstrating end-to-end ML product development from problem definition to production-ready system.*
 

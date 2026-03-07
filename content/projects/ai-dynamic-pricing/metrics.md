@@ -389,10 +389,3 @@ CSAT = Average rating (1-5 scale) from post-transaction surveys
 NPS = % Promoters (9-10) - % Detractors (0-6)
 ```
 
----
-
-**Document Owner:** Harsh Chauhan  
-**Last Updated:** November 26, 2025  
-**Review Cycle:** Quarterly  
-**Next Review:** February 2026
-

@@ -1,5 +1,5 @@
 ﻿---
-title: "Project README"
+title: "Project Patterns"
 date: "2026-03-02"
 description: "End-to-end AI dynamic pricing system overview and outcomes."
 ---

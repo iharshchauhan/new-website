@@ -6,9 +6,7 @@ description: "PRD for dynamic pricing solution including personas and rollout."
 # Product Requirements Document (PRD)
 ## AI Dynamic Pricing for India Coffee Shops
 
-**Author:** Harsh Chauhan  
-**Date:** November 2025  
-**Status:** Portfolio Project → Production-Ready Concept  
+**Status:** Side Project → Production-Ready Concept  
 **Target Market:** Indian Independent Coffee Shops (500-5,000 transactions/month)
 
 ---
@@ -288,11 +286,4 @@ An AI pricing engine that runs in the background, recommending optimal prices ba
 - `ETHICS.md` - Responsible AI audit
 - `BACKTEST_METHODOLOGY.md` - How we validated 8-12% revenue lift
 - `SHAP_EXPLAINABILITY_GUIDE.md` - For technical stakeholders
-
----
-
-**Document Owner:** Harsh Chauhan  
-**Last Updated:** November 26, 2025  
-**Review Cycle:** Monthly (or as product evolves)  
-**Stakeholders:** Product, Engineering, Finance, Legal, Customer Success
 

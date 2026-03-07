@@ -1,6 +1,6 @@
 ---
 title: "BUILD, MEASURE, LISTEN, REBUILD"
-date: "2024-04-18"
+date: "2021-04-18"
 description: "There's a difference between the skills needed to write code, and those needed to lead a successful business."
 tags: ["Startup"]
 ---

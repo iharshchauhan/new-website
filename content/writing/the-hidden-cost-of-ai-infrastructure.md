@@ -1,6 +1,6 @@
 ---
 title: "The hidden cost of AI infrastructure"
-date: "2026-03-05"
+date: "2025-03-23"
 description: "Why AI infrastructure is quietly reshaping housing markets, electricity prices, and consumer costs."
 category: "Proof of work"
 tags: ["AI", "Infrastructure", "Economics", "Data Centers"]
@@ -259,7 +259,7 @@ As production shifts toward high margin AI hardware, the supply of components us
 
 Consumers may experience this as higher prices for memory, storage, and laptops even when device performance improves only slightly.
 
-## What I watch as a product leader
+## What I watch as a product person
 
 Because AI now intersects with physical infrastructure, I increasingly track signals that extend beyond software metrics.
 
@@ -276,12 +276,6 @@ These signals reveal how demand created by AI systems propagates through multipl
 
 Artificial intelligence is often described as a purely digital revolution.
 
-In practice it behaves more like the rise of heavy industry.
+In practice it behaves more like the rise of heavy industry. It requires land. It requires electricity. It requires water. It requires vast manufacturing supply chains.
 
-It requires land. It requires electricity. It requires water. It requires vast manufacturing supply chains.
-
-The software lives in the cloud.
-
-But the consequences are firmly rooted in the physical world.
-
-Understanding that connection is essential if we want to understand the true economic impact of AI.
+The software lives in the cloud. But the consequences are firmly rooted in the physical world. Understanding that connection is essential if we want to understand the true economic impact of AI.

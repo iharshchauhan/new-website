@@ -1,7 +1,7 @@
 ---
 
 title: "Context-Aware Control Automation for GRC & SaaS"
-date: "2026-03-01"
+date: "2025-05-01"
 description: "An AI-powered continuous compliance engine for real-time risk evaluation, automated control enforcement, and audit-ready reasoning."
 category: "Proof of work"
 tags: ["GRC", "SOC 2", "ISO 27001", "AI Automation", "Compliance"]
