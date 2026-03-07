@@ -78,7 +78,7 @@ export function CTASection() {
                 Bengaluru, India
               </div>
 
-              <h2 className="max-w-3xl text-2xl font-semibold leading-tight tracking-tight text-slate-950 sm:text-4xl md:text-5xl">
+              <h2 className="max-w-3xl text-4xl font-semibold leading-[0.95] tracking-[-0.03em] text-primary sm:text-5xl md:text-6xl">
                 Hey, Stranger! {"\u{1F44B}"}
               </h2>
 
