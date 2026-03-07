@@ -2,6 +2,7 @@
 title: "Cost Analysis"
 date: "2026-03-02"
 description: "Infrastructure and model cost breakdown with ROI analysis for both KYC systems."
+order: 5
 ---
 # Cost Analysis: KYC Copilot + KYC Compliance Agent
 
