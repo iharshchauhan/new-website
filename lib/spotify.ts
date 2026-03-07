@@ -1,3 +1,6 @@
+import fs from "fs";
+import path from "path";
+
 const SPOTIFY_CLIENT_ID = process.env.SPOTIFY_CLIENT_ID;
 const SPOTIFY_CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const SPOTIFY_REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
@@ -5,6 +8,11 @@ const SPOTIFY_REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
 const PLAYLIST_ID = "6rhg71awO0tB2GIunqOxAg";
 const SPOTIFY_API_BASE = "https://api.spotify.com/v1";
 const SPOTIFY_ACCOUNTS_BASE = "https://accounts.spotify.com/api";
+const SPOTIFY_SNAPSHOT_PATH = path.join(
+  process.cwd(),
+  "lib",
+  "spotify-home-snapshot.json",
+);
 
 type SpotifyImage = {
   url: string;
@@ -92,6 +100,19 @@ export type SpotifyHomeData = {
   personalizedDataAvailable: boolean;
 };
 
+function readSpotifySnapshot() {
+  if (!fs.existsSync(SPOTIFY_SNAPSHOT_PATH)) {
+    return null;
+  }
+
+  try {
+    const raw = fs.readFileSync(SPOTIFY_SNAPSHOT_PATH, "utf8");
+    return JSON.parse(raw) as SpotifyHomeData;
+  } catch {
+    return null;
+  }
+}
+
 function hasClientCredentials() {
   return Boolean(SPOTIFY_CLIENT_ID && SPOTIFY_CLIENT_SECRET);
 }
@@ -153,15 +174,15 @@ async function getUserAccessToken() {
   return data.access_token || null;
 }
 
-async function spotifyGet<T>(path: string, accessToken: string) {
-  const response = await fetch(`${SPOTIFY_API_BASE}${path}`, {
+async function spotifyGet<T>(urlPath: string, accessToken: string) {
+  const response = await fetch(`${SPOTIFY_API_BASE}${urlPath}`, {
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
   });
 
   if (!response.ok) {
-    throw new Error(`Spotify request failed for ${path}: ${response.status}`);
+    throw new Error(`Spotify request failed for ${urlPath}: ${response.status}`);
   }
 
   return (await response.json()) as T;
@@ -183,7 +204,9 @@ function mapArtist(artist: SpotifyArtist): ListeningCard {
 }
 
 function mapTrack(track: SpotifyTrack): ListeningCard {
-  const artistNames = track.artists?.map((artist) => artist.name).join(", ") || "Track";
+  const artistNames =
+    track.artists?.map((artist) => artist.name).join(", ") || "Track";
+
   return {
     id: track.id,
     title: track.name,
@@ -207,6 +230,19 @@ function emptyFilter(
   };
 }
 
+function createEmptyData(playlist: PlaylistSummary): SpotifyHomeData {
+  return {
+    personalizedDataAvailable: false,
+    playlist,
+    filters: [
+      emptyFilter("artists-short", "Top artists", "This month"),
+      emptyFilter("artists-long", "Top artists", "This year"),
+      emptyFilter("tracks-short", "Top tracks", "This month"),
+      emptyFilter("tracks-long", "Top tracks", "This year"),
+    ],
+  };
+}
+
 async function getPlaylistSummary(accessToken: string | null): Promise<PlaylistSummary> {
   const fallbackHref = `https://open.spotify.com/playlist/${PLAYLIST_ID}`;
 
@@ -219,58 +255,69 @@ async function getPlaylistSummary(accessToken: string | null): Promise<PlaylistS
     };
   }
 
-  try {
-    const playlist = await spotifyGet<SpotifyPlaylistResponse>(
-      `/playlists/${PLAYLIST_ID}`,
-      accessToken,
-    );
+  const playlist = await spotifyGet<SpotifyPlaylistResponse>(
+    `/playlists/${PLAYLIST_ID}`,
+    accessToken,
+  );
 
-    return {
-      name: playlist.name || "Featured playlist",
-      description: playlist.description?.replace(/<[^>]+>/g, "") || "Open the playlist on Spotify.",
-      href: playlist.external_urls?.spotify || fallbackHref,
-      owner: playlist.owner?.display_name || "Spotify",
-      trackCount: playlist.tracks?.total,
-      image: pickImage(playlist.images),
-    };
-  } catch {
-    return {
-      name: "Featured playlist",
-      description: "Open the playlist on Spotify.",
-      href: fallbackHref,
-      owner: "Spotify",
-    };
-  }
+  return {
+    name: playlist.name || "Featured playlist",
+    description:
+      playlist.description?.replace(/<[^>]+>/g, "") ||
+      "Open the playlist on Spotify.",
+    href: playlist.external_urls?.spotify || fallbackHref,
+    owner: playlist.owner?.display_name || "Spotify",
+    trackCount: playlist.tracks?.total,
+    image: pickImage(playlist.images),
+  };
+}
+
+function normalizeHomeData(data: SpotifyHomeData): SpotifyHomeData {
+  return {
+    ...data,
+    personalizedDataAvailable: data.filters.some((filter) => filter.items.length > 0),
+  };
 }
 
 export async function getSpotifyHomeData(): Promise<SpotifyHomeData> {
+  const snapshot = readSpotifySnapshot();
   const clientToken = await getClientAccessToken().catch(() => null);
   const userToken = await getUserAccessToken().catch(() => null);
-
-  const playlist = await getPlaylistSummary(clientToken);
+  const playlist =
+    (await getPlaylistSummary(clientToken).catch(() => null)) ||
+    snapshot?.playlist || {
+      name: "Featured playlist",
+      description: "Open the playlist on Spotify.",
+      href: `https://open.spotify.com/playlist/${PLAYLIST_ID}`,
+      owner: "Spotify",
+    };
 
   if (!userToken) {
-    return {
-      personalizedDataAvailable: false,
-      playlist,
-      filters: [
-        emptyFilter("artists-short", "Top artists", "This month"),
-        emptyFilter("artists-long", "Top artists", "This year"),
-        emptyFilter("tracks-short", "Top tracks", "This month"),
-        emptyFilter("tracks-long", "Top tracks", "This year"),
-      ],
-    };
+    return normalizeHomeData(snapshot || createEmptyData(playlist));
   }
 
   try {
-    const [artistsShort, artistsLong, tracksShort, tracksLong] = await Promise.all([
-      spotifyGet<SpotifyTopItemsResponse<SpotifyArtist>>("/me/top/artists?limit=6&time_range=short_term", userToken),
-      spotifyGet<SpotifyTopItemsResponse<SpotifyArtist>>("/me/top/artists?limit=6&time_range=long_term", userToken),
-      spotifyGet<SpotifyTopItemsResponse<SpotifyTrack>>("/me/top/tracks?limit=6&time_range=short_term", userToken),
-      spotifyGet<SpotifyTopItemsResponse<SpotifyTrack>>("/me/top/tracks?limit=6&time_range=long_term", userToken),
-    ]);
+    const [artistsShort, artistsLong, tracksShort, tracksLong] =
+      await Promise.all([
+        spotifyGet<SpotifyTopItemsResponse<SpotifyArtist>>(
+          "/me/top/artists?limit=6&time_range=short_term",
+          userToken,
+        ),
+        spotifyGet<SpotifyTopItemsResponse<SpotifyArtist>>(
+          "/me/top/artists?limit=6&time_range=long_term",
+          userToken,
+        ),
+        spotifyGet<SpotifyTopItemsResponse<SpotifyTrack>>(
+          "/me/top/tracks?limit=6&time_range=short_term",
+          userToken,
+        ),
+        spotifyGet<SpotifyTopItemsResponse<SpotifyTrack>>(
+          "/me/top/tracks?limit=6&time_range=long_term",
+          userToken,
+        ),
+      ]);
 
-    return {
+    return normalizeHomeData({
       personalizedDataAvailable: true,
       playlist,
       filters: [
@@ -299,17 +346,8 @@ export async function getSpotifyHomeData(): Promise<SpotifyHomeData> {
           items: (tracksLong.items || []).map(mapTrack),
         },
       ],
-    };
+    });
   } catch {
-    return {
-      personalizedDataAvailable: false,
-      playlist,
-      filters: [
-        emptyFilter("artists-short", "Top artists", "This month"),
-        emptyFilter("artists-long", "Top artists", "This year"),
-        emptyFilter("tracks-short", "Top tracks", "This month"),
-        emptyFilter("tracks-long", "Top tracks", "This year"),
-      ],
-    };
+    return normalizeHomeData(snapshot || createEmptyData(playlist));
   }
 }

@@ -12,7 +12,8 @@
     "cloudinary:upload": "node scripts/upload-to-cloudinary.mjs",
     "cloudinary:rewrite": "node scripts/replace-image-urls-with-cloudinary.mjs",
     "cloudinary:sync": "npm run cloudinary:upload && npm run cloudinary:rewrite",
-    "spotify:auth": "node scripts/spotify-auth.mjs"
+    "spotify:auth": "node scripts/spotify-auth.mjs",
+    "spotify:snapshot": "node scripts/sync-spotify-home-snapshot.mjs"
   },
   "dependencies": {
     "@google/genai": "^1.17.0",

@@ -1,0 +1,219 @@
+{
+  "personalizedDataAvailable": true,
+  "playlist": {
+    "name": "Hear me out!",
+    "description": "And how often have I loved a thing because you loved it? including me. ",
+    "href": "https://open.spotify.com/playlist/6rhg71awO0tB2GIunqOxAg",
+    "owner": "Harsh Chauhan",
+    "image": "https://image-cdn-ak.spotifycdn.com/image/ab67706c0000da845a438543bd4210ef2af63a3a"
+  },
+  "filters": [
+    {
+      "id": "artists-short",
+      "label": "Top artists",
+      "eyebrow": "This month",
+      "items": [
+        {
+          "id": "4oLeXFyACqeem2VImYeBFe",
+          "title": "Fred again..",
+          "subtitle": "Artist",
+          "href": "https://open.spotify.com/artist/4oLeXFyACqeem2VImYeBFe",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb381c41adc678e4ce864eb274"
+        },
+        {
+          "id": "1wRPtKGflJrBx9BmLsSwlU",
+          "title": "Pritam",
+          "subtitle": "Artist",
+          "href": "https://open.spotify.com/artist/1wRPtKGflJrBx9BmLsSwlU",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebcb6926f44f620555ba444fca"
+        },
+        {
+          "id": "2CkrXQPoBz8jTQ3u0ZeLPh",
+          "title": "Nucleya",
+          "subtitle": "Artist",
+          "href": "https://open.spotify.com/artist/2CkrXQPoBz8jTQ3u0ZeLPh",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebb189e052ae23f2278af3fef6"
+        },
+        {
+          "id": "72beYOeW2sb2yfcS4JsRvb",
+          "title": "Ritviz",
+          "subtitle": "Artist",
+          "href": "https://open.spotify.com/artist/72beYOeW2sb2yfcS4JsRvb",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb72f524707cb78adc359ee6d2"
+        },
+        {
+          "id": "5gTVJRQmuS88nOhhdHqErL",
+          "title": "Jody Wisternoff",
+          "subtitle": "Artist",
+          "href": "https://open.spotify.com/artist/5gTVJRQmuS88nOhhdHqErL",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb117a1b9dc71591e7ba3beeae"
+        },
+        {
+          "id": "4fEkbug6kZzzJ8eYX6Kbbp",
+          "title": "KK",
+          "subtitle": "Artist",
+          "href": "https://open.spotify.com/artist/4fEkbug6kZzzJ8eYX6Kbbp",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebb09a31f853166e721d4d46b2"
+        }
+      ]
+    },
+    {
+      "id": "artists-long",
+      "label": "Top artists",
+      "eyebrow": "This year",
+      "items": [
+        {
+          "id": "1wRPtKGflJrBx9BmLsSwlU",
+          "title": "Pritam",
+          "subtitle": "Artist",
+          "href": "https://open.spotify.com/artist/1wRPtKGflJrBx9BmLsSwlU",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebcb6926f44f620555ba444fca"
+        },
+        {
+          "id": "7HCqGPJcQTyGJ2yqntbuyr",
+          "title": "Amit Trivedi",
+          "subtitle": "Artist",
+          "href": "https://open.spotify.com/artist/7HCqGPJcQTyGJ2yqntbuyr",
+          "image": "https://i.scdn.co/image/ab6761610000e5eba37271f7a4862a6e99ce345f"
+        },
+        {
+          "id": "1mYsTxnqsietFxj1OgoGbG",
+          "title": "A.R. Rahman",
+          "subtitle": "Artist",
+          "href": "https://open.spotify.com/artist/1mYsTxnqsietFxj1OgoGbG",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebb19af0ea736c6228d6eb539c"
+        },
+        {
+          "id": "6Mv8GjQa7LKUGCAqa9qqdb",
+          "title": "Vishal-Shekhar",
+          "subtitle": "Artist",
+          "href": "https://open.spotify.com/artist/6Mv8GjQa7LKUGCAqa9qqdb",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb90b6c3d093f9b02aad628eaf"
+        },
+        {
+          "id": "4fEkbug6kZzzJ8eYX6Kbbp",
+          "title": "KK",
+          "subtitle": "Artist",
+          "href": "https://open.spotify.com/artist/4fEkbug6kZzzJ8eYX6Kbbp",
+          "image": "https://i.scdn.co/image/ab6761610000e5ebb09a31f853166e721d4d46b2"
+        },
+        {
+          "id": "4YRxDV8wJFPHPTeXepOstw",
+          "title": "Arijit Singh",
+          "subtitle": "Artist",
+          "href": "https://open.spotify.com/artist/4YRxDV8wJFPHPTeXepOstw",
+          "image": "https://i.scdn.co/image/ab6761610000e5eb5ba2d75eb08a2d672f9b69b7"
+        }
+      ]
+    },
+    {
+      "id": "tracks-short",
+      "label": "Top tracks",
+      "eyebrow": "This month",
+      "items": [
+        {
+          "id": "2tSP95IyUkPv5Wj83xWh1c",
+          "title": "leavemealone",
+          "subtitle": "Fred again.., Baby Keem",
+          "href": "https://open.spotify.com/track/2tSP95IyUkPv5Wj83xWh1c",
+          "image": "https://i.scdn.co/image/ab67616d0000b2732be7e3160b7f3df91c239e97",
+          "meta": "USB"
+        },
+        {
+          "id": "2E6peXBRbjUmGkkR3dUNGe",
+          "title": "Turn On The Lights again.. (feat. Future)",
+          "subtitle": "Fred again.., Swedish House Mafia, Future",
+          "href": "https://open.spotify.com/track/2E6peXBRbjUmGkkR3dUNGe",
+          "image": "https://i.scdn.co/image/ab67616d0000b2732be7e3160b7f3df91c239e97",
+          "meta": "USB"
+        },
+        {
+          "id": "2kH5fiDaoj2Tn4hBRXSYjQ",
+          "title": "Lights Burn Dimmer",
+          "subtitle": "Fred again.., Jamie T",
+          "href": "https://open.spotify.com/track/2kH5fiDaoj2Tn4hBRXSYjQ",
+          "image": "https://i.scdn.co/image/ab67616d0000b2732be7e3160b7f3df91c239e97",
+          "meta": "USB"
+        },
+        {
+          "id": "3Siv1Zir1h4DHYCcYjHWGs",
+          "title": "Bhanwaray",
+          "subtitle": "Goher Mumtaz",
+          "href": "https://open.spotify.com/track/3Siv1Zir1h4DHYCcYjHWGs",
+          "image": "https://i.scdn.co/image/ab67616d0000b273937799b29d92c152db5fa409",
+          "meta": "Bhanwaray"
+        },
+        {
+          "id": "3UFTL0D8BepiweeFTG9zVe",
+          "title": "",
+          "subtitle": "Track",
+          "href": "https://open.spotify.com/track/3UFTL0D8BepiweeFTG9zVe",
+          "meta": ""
+        },
+        {
+          "id": "3BKkroNdTKfNijLG9oHW7c",
+          "title": "Jungle",
+          "subtitle": "Fred again..",
+          "href": "https://open.spotify.com/track/3BKkroNdTKfNijLG9oHW7c",
+          "image": "https://i.scdn.co/image/ab67616d0000b2732be7e3160b7f3df91c239e97",
+          "meta": "USB"
+        }
+      ]
+    },
+    {
+      "id": "tracks-long",
+      "label": "Top tracks",
+      "eyebrow": "This year",
+      "items": [
+        {
+          "id": "1XrSjpNe49IiygZfzb74pk",
+          "title": "What Once Was",
+          "subtitle": "Her's",
+          "href": "https://open.spotify.com/track/1XrSjpNe49IiygZfzb74pk",
+          "image": "https://i.scdn.co/image/ab67616d0000b273fc1bc1cf80c431c2bdbde601",
+          "meta": "Songs of Her's"
+        },
+        {
+          "id": "3Siv1Zir1h4DHYCcYjHWGs",
+          "title": "Bhanwaray",
+          "subtitle": "Goher Mumtaz",
+          "href": "https://open.spotify.com/track/3Siv1Zir1h4DHYCcYjHWGs",
+          "image": "https://i.scdn.co/image/ab67616d0000b273937799b29d92c152db5fa409",
+          "meta": "Bhanwaray"
+        },
+        {
+          "id": "0WQiDwKJclirSYG9v5tayI",
+          "title": "There Is a Light That Never Goes Out - 2011 Remaster",
+          "subtitle": "The Smiths",
+          "href": "https://open.spotify.com/track/0WQiDwKJclirSYG9v5tayI",
+          "image": "https://i.scdn.co/image/ab67616d0000b273ada101c2e9e97feb8fae37a9",
+          "meta": "The Queen Is Dead"
+        },
+        {
+          "id": "7h8BHbZ29v7Wr0Zhb0v9Y6",
+          "title": "Vadiya",
+          "subtitle": "Amit Trivedi, Shellee",
+          "href": "https://open.spotify.com/track/7h8BHbZ29v7Wr0Zhb0v9Y6",
+          "image": "https://i.scdn.co/image/ab67616d0000b273ae6d60a0e2e11cf61fa5aa57",
+          "meta": "Udta Punjab (Original Motion Picture Soundtrack)"
+        },
+        {
+          "id": "1NjzNt18LlNTuJYErYGvbQ",
+          "title": "She Needs Him",
+          "subtitle": "Her's",
+          "href": "https://open.spotify.com/track/1NjzNt18LlNTuJYErYGvbQ",
+          "image": "https://i.scdn.co/image/ab67616d0000b273280a001e43c93792dd1e27c7",
+          "meta": "Invitation to Her's"
+        },
+        {
+          "id": "1qTh7hzjd361hjuzeaMFWK",
+          "title": "Hey Ya !",
+          "subtitle": "Clinton Cerejo, Shankar Mahadevan, Loy Mendonsa",
+          "href": "https://open.spotify.com/track/1qTh7hzjd361hjuzeaMFWK",
+          "image": "https://i.scdn.co/image/ab67616d0000b2730e0eae488b99b7c7b901f659",
+          "meta": "Karthik Calling Karthik"
+        }
+      ]
+    }
+  ]
+}
