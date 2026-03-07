@@ -33,8 +33,10 @@ export function ProjectTopicMap({
         <Link
           href={`/projects/${projectSlug}`}
           className={cn(
-            "inline-flex items-center gap-2 text-base font-semibold transition-colors",
-            currentSubpage ? "text-muted-foreground hover:text-foreground" : "text-primary",
+            "inline-flex items-center gap-2 rounded-lg border px-3 py-2 text-[1.02rem] font-semibold transition-colors",
+            currentSubpage
+              ? "border-border/60 bg-white/55 text-foreground hover:bg-white/85"
+              : "border-primary/35 bg-primary/10 text-primary",
           )}
         >
           <CircleDot className="h-3.5 w-3.5" />
