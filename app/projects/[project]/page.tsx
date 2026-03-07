@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { BackNavLink } from '@/components/back-nav-link';
 import { ArrowRight, FileText } from 'lucide-react';
 import Image from 'next/image';
+import { InteractiveExplainerHub } from '@/components/interactive-explainer-hub';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs('projects');
@@ -20,6 +21,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
   }
 
   const subpages = getProjectSubpages(project);
+  const showInteractiveHub = project === 'interactive-explainers-framework';
 
   return (
     <article className="max-w-4xl mx-auto space-y-16">
@@ -49,6 +51,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
 
       <div className="grid md:grid-cols-[1fr_300px] gap-12">
         <div className="space-y-12">
+          {showInteractiveHub && <InteractiveExplainerHub />}
           <MDXContent content={post.content} />
         </div>
 

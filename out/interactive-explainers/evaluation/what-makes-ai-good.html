@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>What Makes AI "Good"? — AI for PMs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css?v=8">
+</head>
+<body>
+
+  <header class="article-hero" id="article-hero" style="background: linear-gradient(135deg, #059669 0%, #0891B2 100%);">
+    <canvas class="article-hero__canvas" id="hero-canvas"></canvas>
+    <div class="article-hero__overlay"></div>
+    <div class="article-hero__content">
+      <nav class="breadcrumb breadcrumb--hero">
+        <a href="../index.html">AI for PMs</a> &nbsp;/&nbsp; <a href="index.html">Evaluation &amp; Testing</a> &nbsp;/&nbsp; <span>Part 1</span>
+      </nav>
+      <div class="article-header__meta" style="color: rgba(255,255,255,0.9);">Part 1 of 2 &middot; ~7 min read</div>
+      <h1 style="color: #fff;">What Makes AI &ldquo;Good&rdquo;?</h1>
+      <p class="lead" style="color: rgba(255,255,255,0.85);">You can&rsquo;t unit test creativity. Here&rsquo;s how to think about evaluating AI systems &mdash; and why it&rsquo;s harder than it looks.</p>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc__inner">
+      <div class="toc__title">Contents</div>
+      <ol class="toc__list">
+        <li><span class="toc__numeral">I.</span><a href="#eval-problem">The Evaluation Problem</a></li>
+        <li><span class="toc__numeral">II.</span><a href="#types-of-wrong">Types of &ldquo;Wrong&rdquo;</a></li>
+        <li><span class="toc__numeral">III.</span><a href="#eval-methods">Evaluation Methods</a></li>
+        <li><span class="toc__numeral">IV.</span><a href="#eval-spectrum">The Eval Spectrum</a></li>
+        <li><span class="toc__numeral">V.</span><a href="#whats-next">What&rsquo;s Next</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="epigraph">
+    <p class="epigraph__verse">
+      Can't unit test a vibe, can't assert on taste,<br>
+      Half the answers right, half a different kind of waste.<br>
+      Good enough for who? That's the PM's call —<br>
+      Measure what matters or don't measure at all.
+    </p>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section I: The Evaluation Problem
+         ================================================================ -->
+    <h2 id="eval-problem"><span class="section-number">I</span> The Evaluation Problem</h2>
+
+    <p>Traditional software has clear pass/fail tests. 2+2 returns 4. Valid credentials produce a session token. The expected output is known, the actual output is deterministic, the comparison is binary.</p>
+
+    <p>AI is different. Ask an LLM to &ldquo;write a friendly customer support email about a delayed shipment&rdquo; and you get something that&rsquo;s&hellip; probably fine? Maybe great? Maybe subtly wrong in ways nobody notices until a customer screenshots it for Twitter. There&rsquo;s no single correct answer &mdash; just thousands of acceptable ones and a minefield of bad ones that <em>look</em> perfectly good at first glance.</p>
+
+    <div class="callout callout--analogy">
+      <div class="callout__label">Analogy</div>
+      <div class="callout__body">Grading traditional software is like grading arithmetic homework: right or wrong, no debate. Grading AI output is like grading an essay &mdash; three teachers, three different scores, and everyone&rsquo;s convinced they&rsquo;re the fair one.</div>
+    </div>
+
+    <p>Three properties make AI outputs uniquely hard to evaluate:</p>
+
+    <p><strong>Non-determinism.</strong> Same prompt, different output every time &mdash; sometimes structurally, tonally, and factually different. You can&rsquo;t test once and move on. You need to reason about distributions, not individual results.</p>
+
+    <p><strong>Subjectivity.</strong> &ldquo;Good&rdquo; depends on who&rsquo;s judging. A &ldquo;friendly&rdquo; email reads &ldquo;too casual&rdquo; to one reviewer. A &ldquo;concise&rdquo; summary feels &ldquo;incomplete&rdquo; to another. Inter-rater agreement on open-ended quality hovers around 60&ndash;75% &mdash; a number that should give any PM pause.</p>
+
+    <p><strong>Multi-dimensionality.</strong> AI outputs can be accurate but unhelpful, helpful but unsafe, safe but boring, creative but wrong. Quality isn&rsquo;t a number &mdash; it&rsquo;s a vector. A medical chatbot and a creative writing tool have almost opposite quality criteria.</p>
+
+    <div class="callout callout--insight">
+      <div class="callout__label">Key Insight</div>
+      <div class="callout__body">Traditional QA asks &ldquo;does it work?&rdquo; AI evaluation asks &ldquo;how good is it, according to whom, on which dimensions, and how consistently?&rdquo; You need probabilistic thinking, rubric-based scoring, and a healthy respect for disagreement.</div>
+    </div>
+
+    <!-- ================================================================
+         Section II: Types of "Wrong"
+         ================================================================ -->
+    <h2 id="types-of-wrong"><span class="section-number">II</span> Types of &ldquo;Wrong&rdquo;</h2>
+
+    <p>Not all AI failures are created equal. Before you evaluate anything, you need a taxonomy of how outputs go wrong. Six failure modes every PM should know:</p>
+
+    <p><strong>1. Hallucination</strong> &mdash; the model states fabricated information with total confidence. It invents statistics, cites papers that don&rsquo;t exist, describes features your company has never built. The danger: hallucinated content <em>reads</em> exactly like factual content. No hedging, no uncertainty flags &mdash; just fiction wearing a lab coat.</p>
+
+    <p><strong>2. Tone mismatch</strong> &mdash; correct information, wrong register. A legal compliance response written like a blog post. A customer apology that sounds like it was drafted by a committee of lawyers. The facts are right; the packaging undermines them.</p>
+
+    <p><strong>3. Format errors</strong> &mdash; you asked for a bulleted list and got prose. Asked for JSON, got markdown. Asked for three options, got seven. Seems minor until downstream code tries to parse the output and crashes.</p>
+
+    <p><strong>4. Unsafe outputs</strong> &mdash; harmful, biased, or inappropriate content. Ranges from subtle bias in hiring recommendations to overtly harmful instructions. The highest-stakes failure mode by reputational and legal risk.</p>
+
+    <p><strong>5. Refusals</strong> &mdash; the model declines a perfectly valid request out of excessive caution. A user asks about medication interactions and gets &ldquo;I can&rsquo;t provide medical advice.&rdquo; The mirror image of unsafe outputs &mdash; and equally damaging to user experience.</p>
+
+    <p><strong>6. Partial answers</strong> &mdash; correct but incomplete. Answers two of three questions. Summarizes the first half and trails off. Gives the diagnosis but not the treatment. Technically right in the way that showing up to half your shift is technically showing up.</p>
+
+    <div class="callout callout--pm-tip">
+      <div class="callout__label">PM Tip</div>
+      <div class="callout__body">Each failure type has different severity depending on your use case. A hallucination in a medical app is catastrophic; in a brainstorming tool, it might spark an idea. Your first job: define which types of wrong are deal-breakers, which are tolerable, and which barely matter &mdash; <em>before</em> you start evaluating.</div>
+    </div>
+
+  </article>
+
+  <!-- ================================================================
+       Widget 1: Spot the Better Response
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="spot-widget" style="--widget-bg: var(--accent-eval-light); --widget-border: #A7F3D0;">
+      <div class="widget__label" style="color: var(--accent-eval);">Try It</div>
+      <div class="widget__title">Spot the Better Response</div>
+      <div class="widget__instruction">Read the prompt, then pick which response is better. You might be surprised.</div>
+
+      <div id="spot-content"></div>
+
+      <div class="step-indicator" id="spot-steps">
+        <div class="step-indicator__dot" style="--dot-active: var(--accent-eval);"></div>
+        <div class="step-indicator__dot" style="--dot-active: var(--accent-eval);"></div>
+        <div class="step-indicator__dot" style="--dot-active: var(--accent-eval);"></div>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section III: Evaluation Methods
+         ================================================================ -->
+    <h2 id="eval-methods"><span class="section-number">III</span> Evaluation Methods</h2>
+
+    <p>Four approaches to evaluating AI outputs, each with distinct tradeoffs. Knowing when to use which is one of the most valuable skills a PM can develop.</p>
+
+    <p><strong>1. Human evaluation</strong> &mdash; the gold standard. Raters read outputs and score them against criteria. Humans catch what machines can&rsquo;t: a joke that falls flat, a recommendation that&rsquo;s culturally tone-deaf, a summary that misses the emotional core. The problem: $5&ndash;50 per judgment, inter-rater agreement around 60&ndash;75%, and a pace that makes your release cycle weep.</p>
+
+    <p><strong>2. Automated metrics</strong> &mdash; fast, cheap, and shallow. BLEU and ROUGE measure text overlap against a reference answer. Exact match, regex patterns, and JSON validation handle structural checks. Excellent for &ldquo;did it extract the right date?&rdquo; Nearly useless for &ldquo;is this a good summary?&rdquo; A beautifully written paragraph can score poorly on ROUGE simply for choosing different words. The eval equivalent of judging a novel by its word count.</p>
+
+    <p><strong>3. LLM-as-judge</strong> &mdash; the most exciting recent development. A stronger model evaluates a weaker model&rsquo;s output against a rubric you provide. Sounds circular, works surprisingly well &mdash; 80&ndash;90% agreement with human raters at ~1/100th the cost. The key is rubric precision. &ldquo;Is this good?&rdquo; produces unreliable scores. &ldquo;Does the response contain only verifiable facts? Rate 1&ndash;5&rdquo; produces consistent, actionable ones.</p>
+
+    <p><strong>4. Rubric-based scoring</strong> &mdash; the glue that makes everything else work. Break quality into independently scorable dimensions: accuracy, helpfulness, tone, completeness. Each gets a clear definition and rating scale. Works with human raters, LLM judges, or both. When a score drops, you know <em>which dimension</em> degraded &mdash; not just that &ldquo;quality went down somehow.&rdquo;</p>
+
+    <div class="callout callout--summary">
+      <div class="callout__label">Takeaway</div>
+      <div class="callout__body">Most teams combine methods: automated metrics for structured checks, LLM-as-judge for broad screening, targeted human evaluation for high-stakes decisions. The art is knowing which method to apply where.</div>
+    </div>
+
+  </article>
+
+  <!-- ================================================================
+       Widget 2: Eval Method Explorer
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="eval-explorer-widget" style="--widget-bg: var(--accent-eval-light); --widget-border: #A7F3D0;">
+      <div class="widget__label" style="color: var(--accent-eval);">Explore</div>
+      <div class="widget__title">Eval Method Explorer</div>
+      <div class="widget__instruction">Click each method to see how it works, what it costs, and when to use it.</div>
+
+      <div class="widget__controls" id="eval-method-buttons">
+        <button class="btn btn--secondary" data-method="0">Human Eval</button>
+        <button class="btn btn--secondary" data-method="1">Automated Metrics</button>
+        <button class="btn btn--secondary" data-method="2">LLM-as-Judge</button>
+        <button class="btn btn--secondary" data-method="3">Rubric Scoring</button>
+      </div>
+
+      <div id="eval-method-detail" style="margin-top: var(--space-6);"></div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section IV: The Eval Spectrum
+         ================================================================ -->
+    <h2 id="eval-spectrum"><span class="section-number">IV</span> The Eval Spectrum</h2>
+
+    <p>Most teams start in the same place: vibes. Someone runs a few prompts, reads the outputs, and says &ldquo;looks good to me.&rdquo; Cherry-picked examples get shared in Slack. Everyone nods. The feature ships. This is the evaluation equivalent of checking your parachute by looking at it and thinking &ldquo;yeah, that&rsquo;s probably fine.&rdquo;</p>
+
+    <p>Vibes work for prototypes. They fail at everything else. The problem isn&rsquo;t human judgment &mdash; it&rsquo;s that unstructured, ad-hoc judgment is inconsistent, unscalable, and impossible to reproduce. You can&rsquo;t tell if this week&rsquo;s model is better than last week&rsquo;s when your evaluation was &ldquo;Sarah looked at 10 outputs on Tuesday and felt pretty good about them.&rdquo;</p>
+
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>Level</th>
+          <th>What it looks like</th>
+          <th>When it&rsquo;s enough</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Vibes</td>
+          <td>Informal spot-checking; gut calls on a handful of outputs</td>
+          <td>Hackathons, early exploration</td>
+        </tr>
+        <tr>
+          <td>Structured review</td>
+          <td>Test set of representative prompts, rubric with rating scales, systematic scoring</td>
+          <td>First few weeks of development; comparing model versions</td>
+        </tr>
+        <tr>
+          <td>Automated eval suite</td>
+          <td>Runs on every code change; automated metrics + LLM-as-judge + regression dashboard</td>
+          <td>Any team shipping AI to real users at scale</td>
+        </tr>
+        <tr>
+          <td>Production monitoring</td>
+          <td>Samples real user interactions, scores automatically, triggers alerts on quality dips</td>
+          <td>The gold standard; where most teams aspire to be within year one</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout--insight">
+      <div class="callout__label">Key Insight</div>
+      <div class="callout__body">Your job isn&rsquo;t to implement Level 4 on day one. It&rsquo;s to know where your team is today and push them one level higher &mdash; before a production incident forces the conversation for you.</div>
+    </div>
+
+  </article>
+
+  <!-- ================================================================
+       Widget 3: Rate the Response
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="rate-widget" style="--widget-bg: var(--accent-eval-light); --widget-border: #A7F3D0;">
+      <div class="widget__label" style="color: var(--accent-eval);">Try It</div>
+      <div class="widget__title">Rate the Response</div>
+      <div class="widget__instruction">Score each AI response on 5 dimensions. See how your ratings compare to experts.</div>
+
+      <div id="rate-content"></div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section V: What's Next
+         ================================================================ -->
+    <h2 id="whats-next"><span class="section-number">V</span> What&rsquo;s Next</h2>
+
+    <p>You now have the evaluation mindset: why AI quality is hard to measure, the failure modes to watch for, the methods available, and the maturity spectrum from vibes to production monitoring.</p>
+
+    <p>In <a href="evals-in-practice.html">Part 2: Evals in Practice</a>, we get hands-on &mdash; building test sets that catch regressions, strategies for handling non-determinism, and the framework for making ship-or-hold decisions when your eval results are ambiguous. Because in the real world, they almost always are.</p>
+
+  </article>
+
+  <!-- ================================================================
+       Article Navigation
+       ================================================================ -->
+  <nav class="article-nav">
+    <a href="index.html">&larr; Back to series</a>
+    <a href="evals-in-practice.html">Part 2: Evals in Practice &rarr;</a>
+  </nav>
+
+  <footer class="site-footer">
+    <p><a href="../index.html">&larr; Back to all topics</a></p>
+  </footer>
+
+  <!-- ================================================================
+       Scripts
+       ================================================================ -->
+  <script>
+  // ====================================================================
+  // Hero: Animated network/node background
+  // ====================================================================
+  (function() {
+    var canvas = document.getElementById('hero-canvas');
+    var ctx = canvas.getContext('2d');
+    var hero = document.getElementById('article-hero');
+    var nodes = [];
+    var numNodes = 40;
+    var connectionDist = 140;
+    var dpr = window.devicePixelRatio || 1;
+    var w, h;
+    var running = true;
+
+    function resize() {
+      var rect = hero.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function initNodes() {
+      nodes = [];
+      for (var i = 0; i < numNodes; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.6,
+          vy: (Math.random() - 0.5) * 0.6,
+          r: 2 + Math.random() * 3,
+          pulse: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function draw() {
+      if (!running) return;
+      ctx.clearRect(0, 0, w, h);
+
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x += n.vx * 0.3;
+        n.y += n.vy * 0.3;
+        n.pulse += 0.015;
+        if (n.x < -20) n.x = w + 20;
+        if (n.x > w + 20) n.x = -20;
+        if (n.y < -20) n.y = h + 20;
+        if (n.y > h + 20) n.y = -20;
+      }
+
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var dx = nodes[i].x - nodes[j].x;
+          var dy = nodes[i].y - nodes[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < connectionDist) {
+            var alpha = (1 - dist / connectionDist) * 0.15;
+            ctx.strokeStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        var glow = 0.5 + 0.5 * Math.sin(n.pulse);
+        var r = n.r * (0.8 + 0.4 * glow);
+        ctx.fillStyle = 'rgba(255, 255, 255, ' + (0.3 + 0.2 * glow) + ')';
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+      running = entries[0].isIntersecting;
+      if (running) requestAnimationFrame(draw);
+    }, { threshold: 0 });
+
+    resize();
+    initNodes();
+    observer.observe(hero);
+    requestAnimationFrame(draw);
+
+    window.addEventListener('resize', function() {
+      resize();
+      initNodes();
+    });
+  })();
+
+  // ====================================================================
+  // Widget 1: Spot the Better Response
+  // ====================================================================
+  (function() {
+    var rounds = [
+      {
+        prompt: 'Explain why our premium plan is worth the upgrade.',
+        responseA: 'The Premium Plan includes unlimited API calls (vs. 1,000/month on Free), priority support with a guaranteed 4-hour response time, SSO integration, custom model fine-tuning, and advanced analytics dashboards. Annual billing saves 20% compared to monthly.',
+        responseB: 'Upgrading to Premium means your team stops hitting walls. No more rationing API calls or waiting days for support replies. You get the tools to customize the AI to your specific workflows, and the analytics to prove ROI to your leadership. Most teams see the value within the first week.',
+        labelA: 'Feature-focused, professional',
+        labelB: 'Benefit-focused, conversational',
+        splitA: 55,
+        splitB: 45
+      },
+      {
+        prompt: 'A customer is upset about a delayed order. Write a response.',
+        responseA: 'I completely understand your frustration, and I sincerely apologize for the delay with your order. Waiting longer than expected is never a good experience, especially when you were counting on receiving your items by a certain date. I want you to know that I\'ve looked into your order personally, and I can see it was held up due to an unexpected shipping carrier delay that affected several orders in your region. We take full responsibility for not communicating this proactively. I\'ve escalated your case to our fulfillment team, and I\'ll personally follow up with you within 24 hours with a specific delivery date. In the meantime, please don\'t hesitate to reach out if you have any other concerns.',
+        responseB: 'Sorry about the delay on your order. Here\'s what I can tell you: your package was held up by a carrier issue and is now back in transit. Expected delivery: this Thursday. I\'ve also applied a 15% discount to your next order as an apology. If it doesn\'t arrive by Thursday, reply here and I\'ll expedite a replacement same-day.',
+        labelA: 'Empathetic but long',
+        labelB: 'Concise and action-focused',
+        splitA: 48,
+        splitB: 52
+      },
+      {
+        prompt: 'Summarize this bug report for the engineering team.',
+        responseA: 'Bug Summary: Users on iOS 17.2+ experience a crash when tapping "Save" on the profile edit screen after uploading a new avatar image. The crash occurs in the ImageProcessor module (line 847, null pointer on resized image buffer). Affects ~12% of profile edits. Reproduction: 1) Go to Settings > Profile, 2) Tap "Change Photo", 3) Select any image > 2MB, 4) Tap Save. Crash occurs 100% of the time with images over 2MB. Workaround: resize image before uploading.',
+        responseB: 'P1 crash: Profile save crashes on iOS 17.2+ when avatar image > 2MB. Null pointer in ImageProcessor:847. Affects 12% of profile edits.',
+        labelA: 'Detailed with reproduction steps',
+        labelB: 'Brief one-liner with severity',
+        splitA: 40,
+        splitB: 60
+      }
+    ];
+
+    var currentRound = 0;
+    var userPicks = [];
+    var container = document.getElementById('spot-content');
+    var steps = document.querySelectorAll('#spot-steps .step-indicator__dot');
+
+    function renderRound() {
+      var r = rounds[currentRound];
+      var html = '';
+      html += '<div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-4) var(--space-6); margin-bottom: var(--space-6); font-family: var(--font-sans); font-size: var(--text-sm);">';
+      html += '<strong style="color: var(--color-text-secondary); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.05em;">Prompt</strong>';
+      html += '<p style="margin-top: var(--space-2); color: var(--color-text);">' + r.prompt + '</p>';
+      html += '</div>';
+
+      html += '<div style="display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4);" id="spot-responses">';
+
+      html += '<button class="spot-response-card" data-pick="A" style="all: unset; cursor: pointer; background: var(--color-surface); border: 2px solid var(--color-border); border-radius: 8px; padding: var(--space-4) var(--space-6); font-family: var(--font-sans); font-size: var(--text-sm); line-height: 1.6; transition: border-color 0.15s, box-shadow 0.15s; display: block; text-align: left;">';
+      html += '<strong style="display: block; margin-bottom: var(--space-2); color: var(--accent-eval); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.05em;">Response A</strong>';
+      html += '<span style="font-size: var(--text-xs); color: var(--color-text-secondary); display: block; margin-bottom: var(--space-3);">' + r.labelA + '</span>';
+      html += '<span style="color: var(--color-text);">' + r.responseA + '</span>';
+      html += '</button>';
+
+      html += '<button class="spot-response-card" data-pick="B" style="all: unset; cursor: pointer; background: var(--color-surface); border: 2px solid var(--color-border); border-radius: 8px; padding: var(--space-4) var(--space-6); font-family: var(--font-sans); font-size: var(--text-sm); line-height: 1.6; transition: border-color 0.15s, box-shadow 0.15s; display: block; text-align: left;">';
+      html += '<strong style="display: block; margin-bottom: var(--space-2); color: var(--accent-eval); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.05em;">Response B</strong>';
+      html += '<span style="font-size: var(--text-xs); color: var(--color-text-secondary); display: block; margin-bottom: var(--space-3);">' + r.labelB + '</span>';
+      html += '<span style="color: var(--color-text);">' + r.responseB + '</span>';
+      html += '</button>';
+
+      html += '</div>';
+
+      html += '<div id="spot-result" style="display: none; margin-top: var(--space-6);"></div>';
+
+      container.innerHTML = html;
+      updateSteps();
+      addHoverEffects();
+    }
+
+    function addHoverEffects() {
+      var cards = container.querySelectorAll('.spot-response-card');
+      cards.forEach(function(card) {
+        card.addEventListener('mouseenter', function() {
+          if (!card.dataset.locked) card.style.borderColor = 'var(--accent-eval)';
+        });
+        card.addEventListener('mouseleave', function() {
+          if (!card.dataset.locked) card.style.borderColor = 'var(--color-border)';
+        });
+      });
+    }
+
+    function updateSteps() {
+      steps.forEach(function(dot, i) {
+        dot.className = 'step-indicator__dot';
+        if (i === currentRound) dot.classList.add('step-indicator__dot--active');
+        else if (i < currentRound) dot.classList.add('step-indicator__dot--completed');
+      });
+    }
+
+    function showResult(pick) {
+      var r = rounds[currentRound];
+      var majorityPick = r.splitA >= r.splitB ? 'A' : 'B';
+      var agreedWithMajority = pick === majorityPick;
+      userPicks.push(agreedWithMajority);
+
+      var cards = container.querySelectorAll('.spot-response-card');
+      cards.forEach(function(card) {
+        card.dataset.locked = 'true';
+        card.style.cursor = 'default';
+        if (card.dataset.pick === pick) {
+          card.style.borderColor = 'var(--accent-eval)';
+          card.style.boxShadow = '0 0 0 1px var(--accent-eval)';
+        } else {
+          card.style.opacity = '0.6';
+          card.style.borderColor = 'var(--color-border)';
+        }
+      });
+
+      var resultDiv = document.getElementById('spot-result');
+      var html = '';
+      html += '<div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-4) var(--space-6); font-family: var(--font-sans); font-size: var(--text-sm); animation: messageSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);">';
+
+      html += '<strong style="display: block; margin-bottom: var(--space-3);">Expert panel results:</strong>';
+
+      html += '<div style="display: flex; gap: var(--space-4); align-items: center; margin-bottom: var(--space-2);">';
+      html += '<span style="min-width: 90px; color: var(--color-text-secondary);">Response A:</span>';
+      html += '<div style="flex: 1; background: var(--color-border-light); border-radius: 4px; height: 24px; overflow: hidden; position: relative;">';
+      html += '<div style="width: ' + r.splitA + '%; height: 100%; background: var(--accent-eval); border-radius: 4px; transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);"></div>';
+      html += '</div>';
+      html += '<span style="min-width: 40px; text-align: right; font-weight: 600;">' + r.splitA + '%</span>';
+      html += '</div>';
+
+      html += '<div style="display: flex; gap: var(--space-4); align-items: center; margin-bottom: var(--space-4);">';
+      html += '<span style="min-width: 90px; color: var(--color-text-secondary);">Response B:</span>';
+      html += '<div style="flex: 1; background: var(--color-border-light); border-radius: 4px; height: 24px; overflow: hidden; position: relative;">';
+      html += '<div style="width: ' + r.splitB + '%; height: 100%; background: #0891B2; border-radius: 4px; transition: width 0.5s cubic-bezier(0.16, 1, 0.3, 1);"></div>';
+      html += '</div>';
+      html += '<span style="min-width: 40px; text-align: right; font-weight: 600;">' + r.splitB + '%</span>';
+      html += '</div>';
+
+      html += '<p style="color: var(--color-text-secondary); line-height: 1.5; margin: 0;">';
+      if (agreedWithMajority) {
+        html += 'You picked the majority choice &mdash; but look how close the split is. Experts disagreed significantly.';
+      } else {
+        html += 'You went against the majority &mdash; and you\'re in good company. The split shows how much experts disagreed.';
+      }
+      html += '</p>';
+
+      if (currentRound < rounds.length - 1) {
+        html += '<div style="margin-top: var(--space-4); text-align: right;">';
+        html += '<button class="btn btn--primary" id="spot-next" style="background: var(--accent-eval);">Next Round &rarr;</button>';
+        html += '</div>';
+      }
+
+      html += '</div>';
+      resultDiv.innerHTML = html;
+      resultDiv.style.display = 'block';
+
+      if (currentRound >= rounds.length - 1) {
+        showSpotSummary();
+      }
+    }
+
+    function showSpotSummary() {
+      var agreed = userPicks.filter(function(v) { return v; }).length;
+      var resultDiv = document.getElementById('spot-result');
+      var summaryHtml = '<div style="margin-top: var(--space-4); padding: var(--space-4) var(--space-6); background: #F0FDF4; border: 1px solid #A7F3D0; border-radius: 8px; font-family: var(--font-sans); font-size: var(--text-sm); line-height: 1.6; animation: messageSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);">';
+      summaryHtml += '<strong style="color: #065F46;">You agreed with the majority ' + agreed + '/3 times.</strong> But notice &mdash; experts disagreed significantly on every single prompt. No round had a clear winner. This is exactly why AI evaluation is hard: reasonable, experienced people look at the same output and reach different conclusions. Any evaluation system that ignores this disagreement is lying to you.';
+      summaryHtml += '</div>';
+      resultDiv.innerHTML += summaryHtml;
+    }
+
+    container.addEventListener('click', function(e) {
+      var card = e.target.closest('[data-pick]');
+      if (card && !card.dataset.locked) {
+        showResult(card.dataset.pick);
+        return;
+      }
+      var nextBtn = e.target.closest('#spot-next');
+      if (nextBtn) {
+        currentRound++;
+        renderRound();
+      }
+    });
+
+    renderRound();
+  })();
+
+  // ====================================================================
+  // Widget 2: Eval Method Explorer
+  // ====================================================================
+  (function() {
+    var methods = [
+      {
+        name: 'Human Evaluation',
+        description: 'Trained raters read AI outputs and score them against predefined criteria. The most nuanced form of evaluation — humans can catch subtle tone issues, cultural mismatches, and logical flaws that automated systems miss entirely.',
+        cost: '$$$$',
+        costLabel: 'High',
+        speed: 'Slow',
+        speedPct: 20,
+        reliability: 'High',
+        reliabilityPct: 85,
+        bestFor: ['Nuanced quality assessment', 'User experience evaluation', 'Safety and harm review', 'Establishing ground truth for other methods'],
+        example: '3 raters score each response on a 1-5 scale for accuracy, helpfulness, and tone.\nAverage score >= 4.0 across all dimensions = PASS\nAny single dimension < 3.0 = FAIL (requires review)'
+      },
+      {
+        name: 'Automated Metrics',
+        description: 'Algorithmic comparisons between model output and a reference answer. Fast, deterministic, and cheap to run at scale — but limited to surface-level text similarity. They measure overlap, not meaning.',
+        cost: '$',
+        costLabel: 'Very Low',
+        speed: 'Very Fast',
+        speedPct: 95,
+        reliability: 'Low-Medium',
+        reliabilityPct: 40,
+        bestFor: ['Structured output validation (JSON, dates, numbers)', 'Classification and extraction tasks', 'Format compliance checks', 'Regression detection on deterministic outputs'],
+        example: 'ROUGE-L score >= 0.7 against reference summary = PASS\nexact_match(extracted_date, ground_truth) = True\njson_valid(output) AND has_keys(["name", "email"]) = PASS'
+      },
+      {
+        name: 'LLM-as-Judge',
+        description: 'A stronger model evaluates a weaker model\'s output using a detailed rubric you provide. Achieves 80-90% agreement with human raters at a fraction of the cost. The quality depends heavily on how specific your rubric is.',
+        cost: '$$',
+        costLabel: 'Moderate',
+        speed: 'Fast',
+        speedPct: 80,
+        reliability: 'Medium-High',
+        reliabilityPct: 75,
+        bestFor: ['Open-ended text generation', 'Large-scale quality screening', 'A/B testing model versions', 'Continuous monitoring pipelines'],
+        example: 'System: "Rate this customer support response on accuracy (1-5).\n5 = every claim is verifiable and correct\n3 = mostly correct with minor issues\n1 = contains multiple factual errors"\n\nScore >= 4 on all criteria = PASS'
+      },
+      {
+        name: 'Rubric-Based Scoring',
+        description: 'Break overall quality into specific, independently scorable dimensions with clear definitions and rating scales. Works as a framework that enhances both human and automated evaluation by making criteria explicit and measurable.',
+        cost: '$$',
+        costLabel: 'Moderate (if automated)',
+        speed: 'Medium',
+        speedPct: 60,
+        reliability: 'High',
+        reliabilityPct: 85,
+        bestFor: ['Combining human and automated evaluation', 'Making quality criteria explicit and auditable', 'Tracking specific quality dimensions over time', 'Onboarding new evaluators quickly'],
+        example: 'Dimensions (each 1-5):\n  Accuracy:     Does it contain only verifiable facts?\n  Helpfulness:  Does it address the user\'s actual need?\n  Tone:         Does it match the expected register?\n  Safety:       Is it free from harmful content?\n  Completeness: Does it cover all requested points?\n\nTotal >= 20/25 = PASS | Any dimension = 1 = AUTO-FAIL'
+      }
+    ];
+
+    var activeMethod = -1;
+    var buttonsEl = document.getElementById('eval-method-buttons');
+    var detailEl = document.getElementById('eval-method-detail');
+
+    function renderDetail(idx) {
+      var m = methods[idx];
+      var html = '';
+      html += '<div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-6); animation: messageSlideIn 0.25s cubic-bezier(0.16, 1, 0.3, 1);">';
+
+      html += '<p style="font-family: var(--font-sans); font-size: var(--text-sm); line-height: 1.6; margin-bottom: var(--space-6); color: var(--color-text);">' + m.description + '</p>';
+
+      // Stats row
+      html += '<div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--space-4); margin-bottom: var(--space-6);">';
+
+      // Cost
+      html += '<div>';
+      html += '<div style="font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-2);">Cost</div>';
+      html += '<div style="font-family: var(--font-mono); font-size: var(--text-lg); font-weight: 600; color: var(--accent-eval);">' + m.cost + '</div>';
+      html += '<div style="font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary);">' + m.costLabel + '</div>';
+      html += '</div>';
+
+      // Speed
+      html += '<div>';
+      html += '<div style="font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-2);">Speed</div>';
+      html += '<div style="background: var(--color-border-light); border-radius: 4px; height: 8px; margin-bottom: var(--space-2); overflow: hidden;">';
+      html += '<div style="width: ' + m.speedPct + '%; height: 100%; background: var(--accent-eval); border-radius: 4px; transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);"></div>';
+      html += '</div>';
+      html += '<div style="font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary);">' + m.speed + '</div>';
+      html += '</div>';
+
+      // Reliability
+      html += '<div>';
+      html += '<div style="font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-2);">Reliability</div>';
+      html += '<div style="background: var(--color-border-light); border-radius: 4px; height: 8px; margin-bottom: var(--space-2); overflow: hidden;">';
+      html += '<div style="width: ' + m.reliabilityPct + '%; height: 100%; background: #0891B2; border-radius: 4px; transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);"></div>';
+      html += '</div>';
+      html += '<div style="font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary);">' + m.reliability + '</div>';
+      html += '</div>';
+
+      html += '</div>'; // end stats row
+
+      // Best for
+      html += '<div style="margin-bottom: var(--space-6);">';
+      html += '<div style="font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-3);">Best for</div>';
+      html += '<ul style="list-style: none; padding: 0; margin: 0;">';
+      m.bestFor.forEach(function(item) {
+        html += '<li style="font-family: var(--font-sans); font-size: var(--text-sm); color: var(--color-text); padding: var(--space-1) 0; display: flex; align-items: baseline; gap: var(--space-2);"><span style="color: var(--accent-eval); flex-shrink: 0;">&#8226;</span> ' + item + '</li>';
+      });
+      html += '</ul>';
+      html += '</div>';
+
+      // Example
+      html += '<div>';
+      html += '<div style="font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: var(--space-3);">Example</div>';
+      html += '<pre style="background: #1A1A1A; color: #E5E5E5; font-family: var(--font-mono); font-size: var(--text-xs); padding: var(--space-4); border-radius: 8px; overflow-x: auto; line-height: 1.6; white-space: pre-wrap;">' + m.example + '</pre>';
+      html += '</div>';
+
+      html += '</div>'; // end card
+      detailEl.innerHTML = html;
+    }
+
+    buttonsEl.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-method]');
+      if (!btn) return;
+      var idx = parseInt(btn.dataset.method);
+
+      buttonsEl.querySelectorAll('.btn').forEach(function(b, i) {
+        if (i === idx) {
+          b.className = 'btn btn--active';
+          b.style.background = 'var(--accent-eval)';
+          b.style.borderColor = 'var(--accent-eval)';
+          b.style.color = '#fff';
+        } else {
+          b.className = 'btn btn--secondary';
+          b.style.background = '';
+          b.style.borderColor = '';
+          b.style.color = '';
+        }
+      });
+
+      activeMethod = idx;
+      renderDetail(idx);
+    });
+  })();
+
+  // ====================================================================
+  // Widget 3: Rate the Response
+  // ====================================================================
+  (function() {
+    var promptText = 'A user asks: "What\'s the refund policy for items purchased more than 30 days ago?"';
+
+    var responses = [
+      {
+        label: 'Response 1',
+        text: 'Per our policy section 4.2, items purchased more than 30 days ago are not eligible for refund. Store credit may be issued at management discretion for items in original condition. No exceptions.',
+        tag: 'Accurate but cold'
+      },
+      {
+        label: 'Response 2',
+        text: 'Great question! We totally understand \u2014 sometimes things don\'t work out. While our standard window is 30 days, we always try to find a solution that works for you. Reach out to our team and we\'ll see what we can do!',
+        tag: 'Warm but vague'
+      },
+      {
+        label: 'Response 3',
+        text: 'Our standard refund window is 30 days from purchase. For items bought more than 30 days ago, we can\'t offer a direct refund, but here are your options: (1) store credit if the item is unused, (2) exchange for a different product, or (3) contact support for special circumstances. Would any of these help?',
+        tag: 'Balanced'
+      }
+    ];
+
+    var dimensions = ['Accuracy', 'Helpfulness', 'Safety', 'Tone', 'Completeness'];
+
+    var expertRatings = [
+      { Accuracy: 5, Helpfulness: 3, Safety: 5, Tone: 2, Completeness: 4 },
+      { Accuracy: 2, Helpfulness: 4, Safety: 4, Tone: 5, Completeness: 2 },
+      { Accuracy: 4, Helpfulness: 4, Safety: 5, Tone: 4, Completeness: 4 }
+    ];
+
+    var userRatings = [{}, {}, {}];
+    var activeTab = 0;
+    var compared = false;
+
+    var container = document.getElementById('rate-content');
+
+    function allRated() {
+      for (var i = 0; i < 3; i++) {
+        for (var d = 0; d < dimensions.length; d++) {
+          if (!userRatings[i][dimensions[d]]) return false;
+        }
+      }
+      return true;
+    }
+
+    function currentResponseRated() {
+      for (var d = 0; d < dimensions.length; d++) {
+        if (!userRatings[activeTab][dimensions[d]]) return false;
+      }
+      return true;
+    }
+
+    function render() {
+      var html = '';
+
+      // Prompt
+      html += '<div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-4) var(--space-6); margin-bottom: var(--space-6); font-family: var(--font-sans); font-size: var(--text-sm);">';
+      html += '<strong style="color: var(--color-text-secondary); font-size: var(--text-xs); text-transform: uppercase; letter-spacing: 0.05em;">Prompt</strong>';
+      html += '<p style="margin-top: var(--space-2); color: var(--color-text);">' + promptText + '</p>';
+      html += '</div>';
+
+      // Tabs
+      html += '<div style="display: flex; gap: var(--space-2); margin-bottom: var(--space-4);">';
+      for (var t = 0; t < responses.length; t++) {
+        var isActive = t === activeTab;
+        var tabRated = true;
+        for (var d = 0; d < dimensions.length; d++) {
+          if (!userRatings[t][dimensions[d]]) { tabRated = false; break; }
+        }
+        var bgColor = isActive ? 'var(--accent-eval)' : (tabRated ? '#D1FAE5' : 'var(--color-surface)');
+        var textColor = isActive ? '#fff' : 'var(--color-text)';
+        var borderColor = isActive ? 'var(--accent-eval)' : 'var(--color-border)';
+        html += '<button class="btn" data-tab="' + t + '" style="background: ' + bgColor + '; color: ' + textColor + '; border: 1px solid ' + borderColor + '; flex: 1;">' + responses[t].label;
+        if (tabRated && !isActive) html += ' &#10003;';
+        html += '</button>';
+      }
+      html += '</div>';
+
+      if (!compared) {
+        // Response text
+        var r = responses[activeTab];
+        html += '<div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-4) var(--space-6); margin-bottom: var(--space-6); font-family: var(--font-sans); font-size: var(--text-sm); line-height: 1.6;">';
+        html += '<span style="font-size: var(--text-xs); color: var(--color-text-secondary); font-style: italic;">' + r.tag + '</span>';
+        html += '<p style="margin-top: var(--space-2); color: var(--color-text);">' + r.text + '</p>';
+        html += '</div>';
+
+        // Star ratings
+        html += '<div style="display: flex; flex-direction: column; gap: var(--space-4);">';
+        for (var d = 0; d < dimensions.length; d++) {
+          var dim = dimensions[d];
+          var currentVal = userRatings[activeTab][dim] || 0;
+          html += '<div style="display: flex; align-items: center; gap: var(--space-4);">';
+          html += '<span style="font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 500; min-width: 110px; color: var(--color-text);">' + dim + '</span>';
+          html += '<div class="star-row" data-dimension="' + dim + '" style="display: flex; gap: 4px;">';
+          for (var s = 1; s <= 5; s++) {
+            var filled = s <= currentVal;
+            html += '<button class="star-btn" data-star="' + s + '" data-dimension="' + dim + '" style="all: unset; cursor: pointer; font-size: 1.5rem; line-height: 1; transition: transform 0.1s; color: ' + (filled ? '#059669' : '#D1D5DB') + ';" aria-label="' + s + ' stars for ' + dim + '">&#9733;</button>';
+          }
+          html += '</div>';
+          if (currentVal > 0) {
+            html += '<span style="font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-text-secondary); min-width: 20px;">' + currentVal + '</span>';
+          }
+          html += '</div>';
+        }
+        html += '</div>';
+
+        // Compare button
+        if (allRated()) {
+          html += '<div style="margin-top: var(--space-6); text-align: center;">';
+          html += '<button class="btn btn--primary" id="rate-compare" style="background: var(--accent-eval);">Compare with Experts</button>';
+          html += '</div>';
+        } else {
+          var ratedCount = 0;
+          for (var i = 0; i < 3; i++) {
+            var done = true;
+            for (var dd = 0; dd < dimensions.length; dd++) {
+              if (!userRatings[i][dimensions[dd]]) { done = false; break; }
+            }
+            if (done) ratedCount++;
+          }
+          html += '<div style="margin-top: var(--space-4); text-align: center; font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary);">';
+          html += ratedCount + ' of 3 responses rated. Rate all three to compare with experts.';
+          html += '</div>';
+        }
+      } else {
+        // Comparison view
+        html += renderComparison();
+      }
+
+      container.innerHTML = html;
+    }
+
+    function renderComparison() {
+      var html = '';
+      var r = responses[activeTab];
+      var expert = expertRatings[activeTab];
+      var user = userRatings[activeTab];
+
+      html += '<div style="background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; padding: var(--space-4) var(--space-6); margin-bottom: var(--space-6); font-family: var(--font-sans); font-size: var(--text-sm); line-height: 1.6;">';
+      html += '<span style="font-size: var(--text-xs); color: var(--color-text-secondary); font-style: italic;">' + r.tag + '</span>';
+      html += '<p style="margin-top: var(--space-2); color: var(--color-text);">' + r.text + '</p>';
+      html += '</div>';
+
+      html += '<div style="margin-bottom: var(--space-4);">';
+      html += '<div style="display: flex; gap: var(--space-4); font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary); margin-bottom: var(--space-4);">';
+      html += '<span style="display: flex; align-items: center; gap: var(--space-2);"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background: var(--accent-eval);"></span> Your rating</span>';
+      html += '<span style="display: flex; align-items: center; gap: var(--space-2);"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 3px; background: #9CA3AF;"></span> Expert rating</span>';
+      html += '</div>';
+
+      for (var d = 0; d < dimensions.length; d++) {
+        var dim = dimensions[d];
+        var uVal = user[dim] || 0;
+        var eVal = expert[dim];
+        var diff = uVal - eVal;
+        var diffLabel = '';
+        var diffColor = 'var(--color-text-secondary)';
+        if (diff > 0) { diffLabel = '+' + diff; diffColor = '#059669'; }
+        else if (diff < 0) { diffLabel = '' + diff; diffColor = '#DC2626'; }
+        else { diffLabel = '='; diffColor = 'var(--color-text-secondary)'; }
+
+        html += '<div style="margin-bottom: var(--space-3);">';
+        html += '<div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: var(--space-1);">';
+        html += '<span style="font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 500;">' + dim + '</span>';
+        html += '<span style="font-family: var(--font-mono); font-size: var(--text-xs); color: ' + diffColor + '; font-weight: 600;">' + diffLabel + '</span>';
+        html += '</div>';
+
+        // User bar
+        html += '<div style="display: flex; align-items: center; gap: var(--space-2); margin-bottom: 3px;">';
+        html += '<div style="flex: 1; background: var(--color-border-light); border-radius: 3px; height: 10px; overflow: hidden;">';
+        html += '<div style="width: ' + (uVal * 20) + '%; height: 100%; background: var(--accent-eval); border-radius: 3px; transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);"></div>';
+        html += '</div>';
+        html += '<span style="font-family: var(--font-mono); font-size: var(--text-xs); min-width: 16px; text-align: right; color: var(--accent-eval);">' + uVal + '</span>';
+        html += '</div>';
+
+        // Expert bar
+        html += '<div style="display: flex; align-items: center; gap: var(--space-2);">';
+        html += '<div style="flex: 1; background: var(--color-border-light); border-radius: 3px; height: 10px; overflow: hidden;">';
+        html += '<div style="width: ' + (eVal * 20) + '%; height: 100%; background: #9CA3AF; border-radius: 3px; transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1);"></div>';
+        html += '</div>';
+        html += '<span style="font-family: var(--font-mono); font-size: var(--text-xs); min-width: 16px; text-align: right; color: #9CA3AF;">' + eVal + '</span>';
+        html += '</div>';
+
+        html += '</div>';
+      }
+
+      html += '</div>';
+
+      // Insight
+      var overweighted = [];
+      var underweighted = [];
+      for (var dd = 0; dd < dimensions.length; dd++) {
+        var dm = dimensions[dd];
+        var delta = (user[dm] || 0) - expert[dm];
+        if (delta >= 2) overweighted.push(dm);
+        else if (delta <= -2) underweighted.push(dm);
+      }
+
+      html += '<div style="padding: var(--space-3) var(--space-4); background: #ECFDF5; border: 1px solid #A7F3D0; border-radius: 8px; font-family: var(--font-sans); font-size: var(--text-sm); line-height: 1.5; color: #065F46;">';
+      if (overweighted.length > 0 || underweighted.length > 0) {
+        var insights = [];
+        if (overweighted.length > 0) insights.push('You rated <strong>' + overweighted.join(', ') + '</strong> higher than experts.');
+        if (underweighted.length > 0) insights.push('You rated <strong>' + underweighted.join(', ') + '</strong> lower than experts.');
+        html += insights.join(' ') + ' These differences reveal how evaluation criteria are weighted differently by different people \u2014 which is exactly why rubrics matter.';
+      } else {
+        html += 'Your ratings are close to the expert panel! But try switching between responses \u2014 you may notice bigger differences on others.';
+      }
+      html += '</div>';
+
+      return html;
+    }
+
+    container.addEventListener('click', function(e) {
+      // Tab click
+      var tabBtn = e.target.closest('[data-tab]');
+      if (tabBtn) {
+        activeTab = parseInt(tabBtn.dataset.tab);
+        render();
+        return;
+      }
+
+      // Star click
+      var starBtn = e.target.closest('.star-btn');
+      if (starBtn && !compared) {
+        var dim = starBtn.dataset.dimension;
+        var val = parseInt(starBtn.dataset.star);
+        userRatings[activeTab][dim] = val;
+        render();
+        return;
+      }
+
+      // Compare click
+      var compareBtn = e.target.closest('#rate-compare');
+      if (compareBtn) {
+        compared = true;
+        render();
+        return;
+      }
+    });
+
+    // Star hover effects (delegated)
+    container.addEventListener('mouseover', function(e) {
+      var starBtn = e.target.closest('.star-btn');
+      if (starBtn && !compared) {
+        starBtn.style.transform = 'scale(1.2)';
+      }
+    });
+    container.addEventListener('mouseout', function(e) {
+      var starBtn = e.target.closest('.star-btn');
+      if (starBtn) {
+        starBtn.style.transform = 'scale(1)';
+      }
+    });
+
+    render();
+  })();
+  </script>
+
+</body>
+</html>

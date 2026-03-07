@@ -4,13 +4,13 @@
 4:I[9766,[],""]
 5:I[98924,[],""]
 17:I[57150,[],""]
-:HL["/_next/static/css/d6df6c0751b35e60.css","style"]
-0:{"P":null,"b":"52HBruy3Pgz1ymZcbA5JW","p":"","c":["","logbook",""],"i":false,"f":[[["",{"children":["logbook",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/d6df6c0751b35e60.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"antialiased min-h-screen flex flex-col selection:bg-primary selection:text-primary-foreground","suppressHydrationWarning":true,"children":[["$","$L2",null,{}],["$","$L3",null,{}],["$","main",null,{"className":"flex-1 pt-32 pb-16 px-4 sm:px-6 md:px-12 max-w-3xl mx-auto w-full","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"w-full max-w-4xl mx-auto py-12 px-6 md:px-12 text-sm text-muted-foreground flex flex-col items-center space-y-8","children":[["$","div",null,{"className":"w-full flex justify-center overflow-hidden text-[#6b21a8] text-[10px] tracking-[0.5em] opacity-80","children":[["$","span","0",{"children":"•"}],["$","span","1",{"children":"•"}],["$","span","2",{"children":"•"}],["$","span","3",{"children":"•"}],["$","span","4",{"children":"•"}],["$","span","5",{"children":"•"}],["$","span","6",{"children":"•"}],["$","span","7",{"children":"•"}],["$","span","8",{"children":"•"}],["$","span","9",{"children":"•"}],["$","span","10",{"children":"•"}],["$","span","11",{"children":"•"}],["$","span","12",{"children":"•"}],["$","span","13",{"children":"•"}],["$","span","14",{"children":"•"}],["$","span","15",{"children":"•"}],["$","span","16",{"children":"•"}],["$","span","17",{"children":"•"}],["$","span","18",{"children":"•"}],["$","span","19",{"children":"•"}],["$","span","20",{"children":"•"}],["$","span","21",{"children":"•"}],["$","span","22",{"children":"•"}],["$","span","23",{"children":"•"}],["$","span","24",{"children":"•"}],["$","span","25",{"children":"•"}],["$","span","26",{"children":"•"}],["$","span","27",{"children":"•"}],["$","span","28",{"children":"•"}],["$","span","29",{"children":"•"}],["$","span","30",{"children":"•"}],["$","span","31",{"children":"•"}],["$","span","32",{"children":"•"}],["$","span","33",{"children":"•"}],["$","span","34",{"children":"•"}],["$","span","35",{"children":"•"}],["$","span","36",{"children":"•"}],["$","span","37",{"children":"•"}],["$","span","38",{"children":"•"}],["$","span","39",{"children":"•"}],["$","span","40",{"children":"•"}],["$","span","41",{"children":"•"}],["$","span","42",{"children":"•"}],["$","span","43",{"children":"•"}],["$","span","44",{"children":"•"}],["$","span","45",{"children":"•"}],["$","span","46",{"children":"•"}],["$","span","47",{"children":"•"}],["$","span","48",{"children":"•"}],["$","span","49",{"children":"•"}],["$","span","50",{"children":"•"}],["$","span","51",{"children":"•"}],["$","span","52",{"children":"•"}],["$","span","53",{"children":"•"}],["$","span","54",{"children":"•"}],["$","span","55",{"children":"•"}],["$","span","56",{"children":"•"}],["$","span","57",{"children":"•"}],["$","span","58",{"children":"•"}],["$","span","59",{"children":"•"}]]}],["$","div",null,{"className":"flex flex-wrap items-center justify-center gap-x-3 gap-y-4 text-center text-[#4b5563]","children":[["$","div",null,{"className":"flex items-center space-x-4 mr-2","children":[["$","a",null,{"href":"https://github.com","target":"_blank","rel":"noreferrer","className":"hover:text-foreground transition-colors","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-github w-4 h-4","aria-hidden":"true","children":["$L6","$L7","$undefined"]}]}],"$L8","$L9","$La","$Lb","$Lc","$Ld"]}],"$Le","$Lf","$L10","$L11","$L12","$L13"]}]]}]]}]}]]}],{"children":["logbook","$L14",{"children":["__PAGE__","$L15",{},null,false]},null,false]},null,false],"$L16",false]],"m":"$undefined","G":["$17",[]],"s":false,"S":true}
-18:I[52619,["2619","static/chunks/2619-04bc32f026a0d946.js","8974","static/chunks/app/page-b1ff4eb1a2de40fd.js"],""]
+:HL["/_next/static/css/46b55d6f5ec3e61d.css","style"]
+0:{"P":null,"b":"rZGMJcZca6z7iro3A-qsI","p":"","c":["","logbook",""],"i":false,"f":[[["",{"children":["logbook",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],["",["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/_next/static/css/46b55d6f5ec3e61d.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","children":["$","body",null,{"className":"antialiased min-h-screen flex flex-col selection:bg-primary selection:text-primary-foreground","suppressHydrationWarning":true,"children":[["$","$L2",null,{}],["$","$L3",null,{}],["$","main",null,{"className":"flex-1 pt-32 pb-16 px-4 sm:px-6 md:px-12 max-w-3xl mx-auto w-full","children":["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}],["$","footer",null,{"className":"w-full max-w-4xl mx-auto py-12 px-6 md:px-12 text-sm text-muted-foreground flex flex-col items-center space-y-8","children":[["$","div",null,{"className":"w-full flex justify-center overflow-hidden text-[#6b21a8] text-[10px] tracking-[0.5em] opacity-80","children":[["$","span","0",{"children":"•"}],["$","span","1",{"children":"•"}],["$","span","2",{"children":"•"}],["$","span","3",{"children":"•"}],["$","span","4",{"children":"•"}],["$","span","5",{"children":"•"}],["$","span","6",{"children":"•"}],["$","span","7",{"children":"•"}],["$","span","8",{"children":"•"}],["$","span","9",{"children":"•"}],["$","span","10",{"children":"•"}],["$","span","11",{"children":"•"}],["$","span","12",{"children":"•"}],["$","span","13",{"children":"•"}],["$","span","14",{"children":"•"}],["$","span","15",{"children":"•"}],["$","span","16",{"children":"•"}],["$","span","17",{"children":"•"}],["$","span","18",{"children":"•"}],["$","span","19",{"children":"•"}],["$","span","20",{"children":"•"}],["$","span","21",{"children":"•"}],["$","span","22",{"children":"•"}],["$","span","23",{"children":"•"}],["$","span","24",{"children":"•"}],["$","span","25",{"children":"•"}],["$","span","26",{"children":"•"}],["$","span","27",{"children":"•"}],["$","span","28",{"children":"•"}],["$","span","29",{"children":"•"}],["$","span","30",{"children":"•"}],["$","span","31",{"children":"•"}],["$","span","32",{"children":"•"}],["$","span","33",{"children":"•"}],["$","span","34",{"children":"•"}],["$","span","35",{"children":"•"}],["$","span","36",{"children":"•"}],["$","span","37",{"children":"•"}],["$","span","38",{"children":"•"}],["$","span","39",{"children":"•"}],["$","span","40",{"children":"•"}],["$","span","41",{"children":"•"}],["$","span","42",{"children":"•"}],["$","span","43",{"children":"•"}],["$","span","44",{"children":"•"}],["$","span","45",{"children":"•"}],["$","span","46",{"children":"•"}],["$","span","47",{"children":"•"}],["$","span","48",{"children":"•"}],["$","span","49",{"children":"•"}],["$","span","50",{"children":"•"}],["$","span","51",{"children":"•"}],["$","span","52",{"children":"•"}],["$","span","53",{"children":"•"}],["$","span","54",{"children":"•"}],["$","span","55",{"children":"•"}],["$","span","56",{"children":"•"}],["$","span","57",{"children":"•"}],["$","span","58",{"children":"•"}],["$","span","59",{"children":"•"}]]}],["$","div",null,{"className":"flex flex-wrap items-center justify-center gap-x-3 gap-y-4 text-center text-[#4b5563]","children":[["$","div",null,{"className":"flex items-center space-x-4 mr-2","children":[["$","a",null,{"href":"https://github.com","target":"_blank","rel":"noreferrer","className":"hover:text-foreground transition-colors","children":["$","svg",null,{"ref":"$undefined","xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-github w-4 h-4","aria-hidden":"true","children":["$L6","$L7","$undefined"]}]}],"$L8","$L9","$La","$Lb","$Lc","$Ld"]}],"$Le","$Lf","$L10","$L11","$L12","$L13"]}]]}]]}]}]]}],{"children":["logbook","$L14",{"children":["__PAGE__","$L15",{},null,false]},null,false]},null,false],"$L16",false]],"m":"$undefined","G":["$17",[]],"s":false,"S":true}
+18:I[52619,["2619","static/chunks/2619-04bc32f026a0d946.js","8974","static/chunks/app/page-afc9444d9dee271a.js"],""]
 19:"$Sreact.suspense"
-1a:I[42194,["2619","static/chunks/2619-04bc32f026a0d946.js","760","static/chunks/760-c78e84cfc696fc42.js","1042","static/chunks/app/logbook/page-622e5dcad1f66e74.js"],"LogbookTabs"]
-2a:I[24431,[],"ViewportBoundary"]
-2c:I[24431,[],"MetadataBoundary"]
+1a:I[42194,["2619","static/chunks/2619-04bc32f026a0d946.js","760","static/chunks/760-c78e84cfc696fc42.js","1042","static/chunks/app/logbook/page-16b5dd5c83a81058.js"],"LogbookTabs"]
+2e:I[24431,[],"ViewportBoundary"]
+30:I[24431,[],"MetadataBoundary"]
 6:["$","path","tonef",{"d":"M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"}]
 7:["$","path","9comsn",{"d":"M9 18c-4.51 2-5-2-7-2"}]
 8:["$","span",null,{"className":"opacity-50","children":"|"}]
@@ -26,7 +26,79 @@ f:["$","span",null,{"className":"w-full sm:w-auto","children":"2025 © Harsh Cha
 12:["$","span",null,{"className":"hidden sm:inline opacity-50","children":"|"}]
 13:["$","span",null,{"className":"w-full sm:w-auto","children":["This page visit emitted ",["$","span",null,{"className":"border-b-2 border-[#166534] pb-0.5","children":"0.04g of CO2"}]," :)"]}]
 14:["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}]
-1b:T32c8,
+1b:T509,
+# Interactive AI Product Framework
+
+This framework packages a full set of interactive explainers covering model behavior, memory, cost, grounding, evaluation, agents, UX, and PM-first build workflows.
+
+## Short summary
+
+- Built as a reusable learning framework for AI product decisions.
+- Exported with source CSS design system preserved at `/interactive-explainers/styles/shared.css`.
+- Structured for subpages so each topic can evolve independently.
+
+## Start interactive
+
+- [Launch full interactive library](/interactive-explainers/index.html)
+
+## Framework subpages
+
+- [LLM Fundamentals](/projects/interactive-explainers-framework/llm-fundamentals)
+- [Context Windows and Memory](/projects/interactive-explainers-framework/context-windows-memory)
+- [Cost and Latency Tradeoffs](/projects/interactive-explainers-framework/cost-latency-tradeoffs)
+- [Grounding and Guardrails](/projects/interactive-explainers-framework/grounding-guardrails)
+- [Evaluation and Testing](/projects/interactive-explainers-framework/evaluation-testing)
+- [Agents and Tool Use](/projects/interactive-explainers-framework/agents-tool-use)
+- [AI UX and Human-in-the-Loop](/projects/interactive-explainers-framework/ai-ux-patterns)
+- [Vibe Coding for PMs](/projects/interactive-explainers-framework/vibe-coding)
+1c:T62b,# The Goldmine of Internet
+
+[Readings that changed my worldview](/projects/goldmine-of-internet/readings-that-changed-my-worldview)
+
+[Thinking](/projects/goldmine-of-internet/thinking)
+
+[Writing](/projects/goldmine-of-internet/writing)
+
+[Social psychology](/projects/goldmine-of-internet/social-psychology)
+
+[Entrepreneurship](/projects/goldmine-of-internet/entrepreneurship)
+
+[Marketing](/projects/goldmine-of-internet/marketing)
+
+[Economics](/projects/goldmine-of-internet/economics)
+
+[Sales](/projects/goldmine-of-internet/sales)
+
+[Compilation of Famous Writers](/projects/goldmine-of-internet/compilation-of-famous-writers)
+
+[Creator Economy ](/projects/goldmine-of-internet/creator-economy)
+
+[Global Politics](/projects/goldmine-of-internet/global-politics)
+
+[Cognitive Psychology](/projects/goldmine-of-internet/cognitive-psychology)
+
+[Mental Tools & Decision Making](/projects/goldmine-of-internet/mental-tools-and-decision-making)
+
+[Neuroscience](/projects/goldmine-of-internet/neuroscience)
+
+[Mathematics](/projects/goldmine-of-internet/mathematics)
+
+[Philosophy](/projects/goldmine-of-internet/philosophy)
+
+[Theology](/projects/goldmine-of-internet/theology)
+
+[Search Operators](/projects/goldmine-of-internet/search-operators)
+
+[Applied Psychology](/projects/goldmine-of-internet/applied-psychology)
+
+[Science](/projects/goldmine-of-internet/science)
+
+[Communication](/projects/goldmine-of-internet/communication)
+
+[Literature](/projects/goldmine-of-internet/literature)
+
+[Problem Solving and Creativity](/projects/goldmine-of-internet/problem-solving-and-creativity)
+1d:T32c8,
 When most people think about artificial intelligence, they imagine software.
 
 They imagine chatbots answering questions, copilots writing code, or image models generating artwork. The entire conversation stays inside the digital world.
@@ -306,7 +378,184 @@ The software lives in the cloud.
 But the consequences are firmly rooted in the physical world.
 
 Understanding that connection is essential if we want to understand the true economic impact of AI.
-1c:T3e36,
+1e:T2615,
+## Why I Built This
+
+Over the last several years working in B2B and enterprise product roles, I have repeatedly seen the same operational bottleneck. Smart teams, strong compliance intent, but fragmented knowledge. Policies exist. Controls exist. Audit logs exist. Yet when an employee or auditor asks a simple question such as "How quickly must a security incident be reported?" the answer requires digging through PDFs, Notion pages, ticketing systems, and sometimes Slack threads.
+
+In one hypothetical scenario that mirrors what I have seen in real environments, imagine an enterprise compliance team handling 1,200 internal control queries per month. Analysts manually search documentation, interpret clauses, and respond to stakeholders. Even with strong process discipline, interpretation risk remains. If a generic large language model is introduced without guardrails, it might generate a confident answer that is technically plausible but not aligned with the company's approved policy. In a regulated environment, that is unacceptable.
+
+As an AI Product Manager who has worked on workflow automation, decision systems, and RAG infrastructure at scale, I approached this differently. I asked myself, what if we treated AI not as a creative assistant, but as a controlled policy intelligence layer? What if every answer had to be grounded in approved internal documentation before being generated?
+
+This prototype is my answer to that question.
+
+---
+
+## Product Vision
+
+The objective is straightforward. I want to build a Retrieval-Augmented Generation assistant that answers enterprise risk, compliance, and control questions strictly from approved corporate policies, regulatory frameworks, and internal standards.
+
+The strategic shift here is subtle but critical. Instead of allowing the model to rely on pretraining data, we force it to retrieve relevant policy context first. Only after retrieving authoritative context do we allow answer construction. This architecture ensures traceability, reduces hallucinations, and aligns with audit expectations.
+
+From my experience designing AI workflows with confidence thresholds and human-in-the-loop review systems, I know that reliability is not achieved by prompts alone. It is achieved through architecture. That is why this prototype focuses more on system design than on model cleverness.
+
+---
+
+## The Enterprise Context I Am Solving For
+
+In regulated environments, Governance, Risk, and Compliance systems must satisfy strict expectations. AI cannot be a black box. It must be auditable. It must be explainable. It must be controllable.
+
+In practice, that means we design systems that:
+
+1. Retrieve from a curated source of truth.
+2. Generate only within the boundaries of retrieved evidence.
+3. Surface the supporting context for review.
+4. Fail predictably when no policy evidence exists.
+
+When I previously built AI-driven workflow systems that reduced manual operations significantly, the biggest learning for me was that automation is not about removing humans. It is about creating structured confidence. The same philosophy applies here.
+
+---
+
+## Architecture Overview
+
+This prototype uses a modern GenAI stack designed for enterprise reliability.
+
+LangChain orchestrates retrieval and generation flow. ChromaDB acts as the vector store. HuggingFace embeddings convert policy text into vector representations. The data source is a simulated Enterprise Information Security and Compliance Policy for 2025.
+
+I deliberately kept the dataset small for demonstration clarity, but the architecture is scalable. In real deployments, I would layer in document versioning, metadata filters, access control constraints, and evaluation pipelines.
+
+---
+
+# Cell 1: Install GenAI Stack
+
+```python
+# LangChain is the industry standard for building LLM apps (Updated for Latest LangChain v0.3+)
+!pip install -q --upgrade requests==2.32.5
+!pip install -q langchain langchain-community langchain-core langchain-text-splitters langchain-huggingface langchain-chroma chromadb sentence-transformers
+!pip install -q opentelemetry-exporter-otlp-proto-http==1.30.0 opentelemetry-api==1.30.0 opentelemetry-sdk==1.30.0
+
+import os
+
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
+from langchain_core.documents import Document
+
+print("GenAI Environment Configured.")
+```
+
+In production, I would additionally integrate observability tooling, structured logging, and evaluation hooks. Based on my past work building AI pipelines, instrumentation is not optional. It is foundational.
+
+```python
+# Splitting the guideline text into smaller chunks for the Vector DB
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+texts = text_splitter.split_text(guideline_text)
+
+# Wrap text chunks into LangChain Document objects
+docs = [Document(page_content=t) for t in texts]
+
+print(f"Split guideline into {len(docs)} document chunks.")
+```
+
+Chunking strategy matters. In previous RAG systems I have built, retrieval quality improved significantly when chunk boundaries aligned with logical policy sections rather than arbitrary character counts. For this prototype, I use a simple recursive splitter for clarity.
+
+---
+
+# Cell 2: Ingest Simulated Enterprise Policy
+
+```python
+guideline_text = """
+POLICY TITLE: Enterprise Information Security & Compliance Policy (2025)
+
+1. ACCESS CONTROL:
+All privileged access must follow the principle of least privilege and require formal approval.
+User access reviews must be conducted quarterly.
+
+2. INCIDENT MANAGEMENT:
+Security incidents must be reported within 1 hour of detection.
+All critical incidents require a root cause analysis within 5 business days.
+
+3. DATA PROTECTION:
+Sensitive data must be encrypted at rest and in transit using approved encryption standards.
+Data classification levels: Public, Internal, Confidential, Restricted.
+
+4. THIRD-PARTY RISK MANAGEMENT:
+All vendors handling confidential or restricted data must undergo a security risk assessment annually.
+
+5. AUDIT & LOGGING:
+Security logs must be retained for a minimum of 12 months.
+Privileged activity must be monitored and reviewed regularly.
+"""
+```
+
+This simulated policy represents the type of structured enterprise documentation I have worked with in compliance platforms. In real deployments, ingestion would include metadata tagging such as control ID, framework mapping, risk category, and effective date.
+
+---
+
+# Cell 3: The Brain, Vector Database
+
+```python
+embedding_function = HuggingFaceEmbeddings(model_name="all-MiniLM-L6-v2")
+
+db = Chroma.from_documents(
+    documents=docs,
+    embedding=embedding_function
+)
+
+print("Knowledge Base Vectorized and Stored in ChromaDB.")
+```
+
+When I think about this layer from a product lens, I do not see just a database. I see a decision substrate. Every future answer depends on how well this layer retrieves relevant context. In enterprise AI systems I have previously built, retrieval tuning alone improved answer precision more than prompt rewriting.
+
+---
+
+# Cell 4: Controlled Retrieval Logic
+
+```python
+def ask_grc_assistant(query):
+    results = db.similarity_search(query, k=2)
+    context = "\n".join([doc.page_content for doc in results])
+
+    print(f"USER QUERY: {query}")
+    print("RETRIEVED POLICY CONTEXT:")
+    print(f"{context}")
+    print("-" * 30)
+
+    if "least privilege" in context:
+        return "All privileged access must follow least privilege and be formally approved. Quarterly access reviews are required."
+    elif "1 hour" in context and "incident" in context.lower():
+        return "Security incidents must be reported within 1 hour of detection, with root cause analysis for critical incidents."
+    elif "encrypted" in context:
+        return "Sensitive data must be encrypted at rest and in transit using approved encryption standards."
+    else:
+        return "No relevant requirement found in approved enterprise policies."
+```
+
+Notice the philosophy here. We retrieve first. We expose context. We answer only if evidence exists. If not, we explicitly state that no requirement was found. That predictable failure mode is critical for regulated environments.
+
+In a scaled product, I would layer in confidence scoring, escalation workflows, and audit logging for every query. Based on my experience building AI automation systems, governance is not a feature that can be added later. It must be embedded from day one.
+
+---
+
+# Cell 5: Testing the System
+
+```python
+response = ask_grc_assistant("How quickly must a security incident be reported?")
+print(f"GRC ASSISTANT: {response}")
+```
+
+If this were deployed inside a compliance platform, the assistant would display the cited policy clause alongside the answer. An auditor could trace the response back to the exact document section. That closes the loop between AI convenience and governance integrity.
+
+---
+
+## Final Reflection
+
+As an AI Product Manager, I view this prototype not as a chatbot demo but as a controlled decision system. It reflects how I think about enterprise AI. Structured retrieval. Deterministic boundaries. Human override paths. Observable workflows.
+
+If I were taking this from prototype to production, my roadmap would include policy version control, role-based access filters, framework cross-mapping, automated evaluation datasets, and staged rollouts from pilot to general availability. That approach mirrors how I have previously scaled AI products from zero to meaningful enterprise adoption.
+
+Ultimately, my goal is simple. I want AI systems inside enterprises to reduce manual burden without increasing regulatory risk. This RAG architecture is a concrete step toward that outcome.
+1f:T3e36,
 My goal here is not to restate textbook definitions. I care about shortening the path between idea and shipped system. I care about improving retrieval quality without burning cycles on the wrong layer of the stack. Chunking sits at that inflection point. It looks like an implementation detail, yet it quietly shapes user trust, answer accuracy, and infrastructure cost.
 
 ![RAG chunking overview](https://substack-post-media.s3.amazonaws.com/public/images/6878b8fa-5e74-45a1-9a89-5aab92889126_2366x990.gif)
@@ -458,7 +707,7 @@ We instrument early. We adapt by document class and intent. We layer sophisticat
 
 
 
-1d:T39e5,
+20:T39e5,
 My goal with architecture discussions is always the same. I want the platform to scale without constant intervention from infrastructure teams. I want engineers to ship services quickly while still maintaining governance, cost visibility, and security. When organizations move from traditional on-prem environments to cloud platforms, architecture decisions become product decisions.
 
 The diagrams below reflect how I typically frame that journey. I start by understanding the current state deeply. Then I define a target platform architecture that removes operational friction while introducing strong platform guardrails. Finally, I design a cost attribution and chargeback model so teams understand how their infrastructure usage translates into spend.
@@ -715,7 +964,7 @@ Platform architecture should not be designed purely as infrastructure diagrams. 
 By moving from fragmented on-prem environments to a structured cloud platform, we reduce operational complexity, improve developer velocity, and introduce clear cost accountability.
 
 That combination ultimately turns infrastructure from a bottleneck into an enabler of product development.
-1e:T9f5,
+21:T9f8,
 When I look at how most financial institutions handle Know Your Customer (KYC) processes, the pattern is almost always the same.
 
 Customers struggle to submit the right documents. Compliance teams spend hours reviewing incomplete applications. Operations teams chase missing paperwork. And regulators expect strict traceability for every decision.
@@ -758,9 +1007,9 @@ A single missing page or unreadable document can delay onboarding by days. Compl
 
 This is where AI agents can provide leverage.
 
-The result is a system that is not only more efficient but also easier for customers and analysts to trust.
+The result is a system that is not only more efficient but also easier for customers and analysts to trust. :)
 
-1f:T321b,
+22:T321b,
 ## Overview
 
 This project demonstrates an **AI-powered Continuous Compliance Engine** that monitors operational events, evaluates contextual risk, and automatically enforces security and compliance controls.
@@ -1162,7 +1411,7 @@ This engine can integrate with:
 * Executive risk dashboards
 
 Together, these components form a full **AI-Native Continuous Compliance Platform**.
-20:T65b5,
+23:T65b5,
 # AI Decision Orchestration Platform (SaaS)
 
 **Agentic Intelligence for Enterprise Operations**
@@ -1730,7 +1979,7 @@ The platform supports multiple enterprise deployment models:
 * On-premise AI inference for regulated environments
 
 Data residency and model isolation requirements can be enforced at the tenant level.
-21:T1b7c,
+24:T1b7c,
 ## Executive Summary
 
 I led this modernization as a platform product transformation, not a lift-and-shift migration. We moved a legacy on-prem Hadoop analytics estate to Google Cloud BigQuery in six phased months, while maintaining compliance controls, preserving data integrity, and avoiding business disruption.
@@ -1810,7 +2059,85 @@ When these three vectors are managed together, migration stops being a backend e
 Today, the organization is operating on a modern analytics foundation that is better positioned for advanced analytics and AI-driven workflows. The next horizon is focused on streaming ingestion, domain-level data products, and tighter cost governance automation.
 
 My priority going forward is to keep the platform reliable while expanding high-value use cases in a controlled, measurable way.
-22:Tc97a,
+25:T13dd,
+# LLM Stack: A Practical 5-Layer Map for Product Managers
+
+When I build AI products, I do not think in terms of hype or model names. I think in layers. Over time, I have found that most LLM systems can be understood through five practical layers. This structure helps me decide where to go deep, where to stay conceptual, and how to connect technical decisions back to product outcomes.
+
+This page is a short map. Each layer has its own subpage where I go deeper.
+
+The five layers are:
+
+| # | Layer Name           | What it covers                                                                                      | Sub-layers                                                                                  |
+|---|----------------------|-----------------------------------------------------------------------------------------------------|------------------------------------------------------------------------|
+| 1 | **Infra**            | Physical and cloud infrastructure needed to train and run LLMs                                      | Hardware & Infra (1)                                                  |
+| 2 | **Models**           | How LLMs are built and aligned before being used in products                                        | Data & Pretraining (2), Transformer Architecture (3), Training & Alignment (4) |
+| 3 | **Data & Knowledge** | How models are adapted to a product and connected to data (prompts, RAG, tools, APIs, DBs)          | Adaptation via Prompts & Fine-tuning (5), Knowledge & Tools / RAG (6) |
+| 4 | **Orchestration**    | How all components run together in production, including workflows, agents, evals, and safety       | Workflows/Chains (7), Single & Multi-Agent Systems (8, 9), Evals & Safety & Governance (10) |
+| 5 | **App / Product**    | The actual product: UX, JTBD, interaction patterns, pricing, adoption, and feedback loops           | Product Layer – UX & Business (11)                                    |
+
+---
+
+---
+
+## Layer 1: Infra
+
+This layer answers a simple question: what does it cost to run this intelligence?
+
+Here I think about GPUs, inference vs training, latency, throughput, and cost per request. As a PM, I do not need to understand CUDA kernels, but I do need to reason about trade-offs. If I increase context size, latency increases. If I call the largest model for every interaction, margin disappears.
+
+Infra shapes product constraints. It determines whether a feature feels instant or slow, cheap or premium, scalable or fragile.
+
+---
+
+## Layer 2: Models
+
+This is the conceptual backbone.
+
+I make sure I understand tokens, context windows, transformers, alignment, and why different model families behave differently. A base model has general knowledge, not my product knowledge. Alignment tuning explains tone and safety behavior. Context windows explain why I cannot just "paste everything" into a prompt.
+
+When I choose a model, I am choosing trade-offs between quality, cost, latency, and control.
+
+---
+
+## Layer 3: Data & Knowledge
+
+This is where real product differentiation happens.
+
+Here I design prompts, define structured outputs, connect RAG pipelines, and wire tools to APIs or databases. This is how a generic LLM becomes my product's assistant. I decide what knowledge is injected, how documents are chunked, how embeddings are stored, and how retrieval works.
+
+If the product needs to reason over internal policies, user data, or recent events, this layer is the bridge. In my experience, most practical AI work for PMs lives here.
+
+---
+
+## Layer 4: Orchestration
+
+This layer is about how everything runs together in production.
+
+I define workflows such as classify -> retrieve -> generate -> validate -> respond. I decide when a simple chain is enough and when an agent loop is justified. I also think about evaluation, logging, safety filters, and fallback paths.
+
+Orchestration turns isolated prompts into reliable systems. Without it, AI features feel impressive in demos but brittle in production.
+
+---
+
+## Layer 5: App / Product
+
+This is the layer users actually see.
+
+Here I define the job to be done, the persona, the interaction pattern, and the success metrics. Is the AI a chat assistant, a background copilot, a structured form enhancer, or a decision helper? Where does the human review output? How do we measure value created?
+
+Every lower layer should justify itself through this one. If infra, models, data, and orchestration choices do not clearly improve user outcomes, they are over-engineering.
+
+---
+
+## How I Use This Stack
+
+I usually learn and design in this order:
+
+I build a strong intuition for models. I go deep on data and RAG because that is where product leverage lives. I wrap it in a clear product story with defined metrics. Then I add orchestration and evaluation to make it production ready. Infra stays as a constraint lens throughout.
+
+This five-layer map keeps AI systems grounded for me. It helps me move from curiosity to shipping, without getting lost in unnecessary depth.
+26:Tc97a,
 # The Misalignment Dilemma
 
 **Picture this:** I am a product manager at a well known Indian e commerce company, trying to revolutionise the customer experience with a cutting edge AI recommendation engine. In the initial presentation, the energy in the room is electric. PowerPoint slides show exponential growth curves, leadership applauds the vision, and the product roadmap glows with optimism. A few days later, the PRD lands neatly on the AI team’s desk. It outlines everything, goals, KPIs, timelines, except for one critical detail, how these worlds, product and AI, will actually work together.
@@ -2328,7 +2655,235 @@ When I reach that stage with a team, meetings shorten, reviews simplify, and res
 I have learned that progress is not measured only by features shipped or accuracy improved, but by how deeply two different kinds of minds begin to understand each other. That understanding doesn’t arrive with a sprint or a review; it arrives quietly, somewhere between a dataset and a design file, when both sides finally listen.
 
 That, to me, is where product and AI finally meet: not at the feature, not at the model, but in the mind they build together.
-23:T5b00,
+27:T376b,
+# AI MVP vs Traditional MVP: My Production Playbook for B2B SaaS
+
+## Core Question
+
+How do I decide when to build a traditional MVP versus an AI MVP, and how do I ship the AI version fast without sacrificing reliability, governance, or unit economics?
+
+In B2B SaaS, I repeatedly see two architectural extremes. Some teams over-rotate on caution. They build rigid deterministic systems, prove workflow demand, and only later attempt to layer AI on top. Retrofitting intelligence into a system that was never designed for probabilistic execution creates friction at every seam. Other teams sprint in the opposite direction. They wire a model endpoint to a UI, call it an AI MVP, and discover a few weeks later that they have no traceability, no evaluation baseline, and no understanding of cost per outcome.
+
+My approach treats AI MVP design as a constrained systems problem. I evaluate workflow leverage, execution quality, control surfaces, unit economics, and long-term evolvability as a connected set. An AI MVP is not simply a faster MVP. It is a different operational category.
+
+---
+
+# What Actually Changes in an AI MVP
+
+A traditional MVP proves demand for a workflow. An AI MVP must prove demand and model-mediated execution quality under variability at the same time.
+
+In a deterministic MVP, the validation loop is structurally simple.
+
+```
+User Input
+    ↓
+Deterministic Rules Engine
+    ↓
+Stored Output
+    ↓
+Task Completion
+```
+
+Variance is low because the same input produces the same output. Instrumentation focuses on funnel metrics such as completion rate, drop-off, and retention.
+
+In an AI MVP, the validation unit contains a probabilistic core.
+
+```
+User Input
+    ↓
+Context Assembly (RAG, state, metadata)
+    ↓
+Model Execution
+    ↓
+Schema Validation
+    ↓
+User Review or Automated Action
+```
+
+The same input may produce different outputs depending on context retrieval, prompt version, and model routing. That forces me to introduce a second measurement plane that sits beneath workflow metrics.
+
+| Layer         | What I Measure                       | Why It Matters              |
+| ------------- | ------------------------------------ | --------------------------- |
+| Workflow      | Completion rate, cycle time          | Proves demand               |
+| Model Quality | First-pass acceptance, edit distance | Proves usable intelligence  |
+| Grounding     | Faithfulness to retrieved context    | Controls hallucination risk |
+| Economics     | Cost per accepted output             | Protects margin             |
+
+Without this layered instrumentation, I cannot attribute success or failure correctly.
+
+---
+
+# When I Choose AI Instead of Deterministic Logic
+
+I do not default to AI. I adopt it when it materially changes workflow economics.
+
+If a task is governed by stable rules and structured inputs, deterministic systems are often superior. They are predictable, cheap, and easy to reason about. AI becomes compelling when inputs are ambiguous, unstructured, or context-heavy, and when exceptions are frequent and expensive.
+
+In B2B environments, I look for workflows where interpretation drives value. Support triage across messy ticket descriptions. Policy-grounded drafting based on long documentation. Cross-document reasoning that would otherwise require manual synthesis. If AI compresses cycle time meaningfully or increases throughput without linear headcount expansion, I treat it as justified architectural complexity.
+
+Error tolerance is another decisive factor. In high-risk domains, I often begin in assistive mode. The AI drafts. The human approves. Only after quality stabilizes do I consider automation of state-changing actions.
+
+AI is not chosen because it is modern. It is chosen because it shifts the cost structure or the throughput curve.
+
+---
+
+# The Minimum Viable Intelligence Stack
+
+When I build an AI MVP, I separate control from execution. This is what allows rapid iteration without entangling business logic with probabilistic behavior.
+
+A simplified production view looks like this:
+
+```
+                    ┌───────────────────┐
+                    │   User Interface  │
+                    └─────────┬─────────┘
+                              ↓
+                    ┌───────────────────┐
+                    │ Application Layer │
+                    └─────────┬─────────┘
+                              ↓
+                    ┌───────────────────┐
+                    │ Orchestration     │
+                    │ Routing + Policy  │
+                    └───────┬─────┬─────┘
+                            ↓     ↓
+                 ┌────────────┐  ┌──────────────┐
+                 │ Prompt     │  │ Retrieval +  │
+                 │ Engine     │  │ Tool Gateway │
+                 └─────┬──────┘  └──────┬───────┘
+                       ↓                ↓
+                   ┌────────────────────────┐
+                   │      Model Endpoint    │
+                   └────────────┬───────────┘
+                                ↓
+                   ┌────────────────────────┐
+                   │ Validators + Parsers   │
+                   └────────────┬───────────┘
+                                ↓
+                   ┌────────────────────────┐
+                   │ Telemetry + Cost Logs  │
+                   └────────────────────────┘
+```
+
+The orchestration layer is my control surface. It owns routing, prompt versioning, tool permissions, and trace logging. The model is treated as a capability provider, not as the core system.
+
+From the first release, I require explicit controls.
+
+| Control Surface               | Purpose                         | Failure if Missing                     |
+| ----------------------------- | ------------------------------- | -------------------------------------- |
+| Structured output schema      | Enforces downstream reliability | Retry loops and silent data corruption |
+| Full prompt and context trace | Enables debugging and audit     | Non-reproducible incidents             |
+| Deterministic fallback        | Preserves workflow continuity   | Hard failure under model outage        |
+| Offline evaluation baseline   | Protects against regression     | Invisible quality drift                |
+| Cost and latency budgets      | Protects unit economics         | Margin erosion                         |
+
+These are not scale optimizations. They define whether the MVP is operationally credible.
+
+---
+
+# Cost Is Measured Per Outcome, Not Per Call
+
+Token pricing is a misleading abstraction if viewed in isolation. What matters in B2B SaaS is cost per successful outcome.
+
+I calculate it as the combined cost of inference, retrieval, tool execution, orchestration overhead, and rework, divided by successful task completions. Rework is often the hidden multiplier. If users rerun prompts due to low trust or inconsistent quality, effective cost can double even when nominal per-call cost looks stable.
+
+Context length growth, retry loops caused by schema violations, and unnecessary model escalations are the most common early drivers of margin erosion. I monitor these aggressively. Retrieval tuning and tighter chunking reduce irrelevant context. Schema validators reduce retries. Calibrated routing prevents overuse of large models.
+
+If I cannot explain cost per accepted output to leadership in one sentence, I do not yet understand my own system.
+
+---
+
+# Latency Is a Product Decision
+
+Latency is not merely an infrastructure metric. It shapes the cognitive contract between user and system.
+
+Inline assistive experiences demand sub-two-second responsiveness and often benefit from streaming. Guided generation can tolerate a few seconds if the user sees progress and receives an editable draft. Background automation can run asynchronously, provided status and auditability are clear.
+
+Instead of forcing one latency target across all workflows, I classify each interaction and design architecture accordingly. Queue management, tiered models, and caching strategies are chosen based on the UX contract, not in isolation.
+
+---
+
+# Failure Modes I Design for Before Beta
+
+AI systems fail in patterned ways. I document these patterns before exposing the system to real customers because each maps to a specific architectural weakness.
+
+| Failure Pattern           | Typical Root Cause              | Architectural Control                                  |
+| ------------------------- | ------------------------------- | ------------------------------------------------------ |
+| Hallucinated policy claim | Weak or misaligned retrieval    | Mandatory citation fields and refusal without evidence |
+| Incorrect business action | Over-broad tool permissions     | Scoped allowlists and approval gates                   |
+| Latency spikes under load | No routing or backpressure      | Tiered models and queue constraints                    |
+| Cost runaway              | Unbounded context and retries   | Token caps and budget alerts                           |
+| Silent quality drift      | Prompt edits without regression | Versioned prompts with evaluation diffs                |
+
+These patterns are predictable because probabilistic systems amplify small configuration errors. By treating each failure as a design category rather than an incident, I reduce roadmap volatility.
+
+To visualize this, I think in terms of layered risk:
+
+```
+User Layer Risk      → Misleading Output
+Business Layer Risk  → Wrong Action Executed
+Economic Risk        → Margin Compression
+Governance Risk      → Audit Failure
+```
+
+Each risk layer must have a corresponding control in architecture. If one layer lacks a control, the MVP is structurally fragile.
+
+---
+
+# Controlled Use of Agents
+
+I do not introduce agents because they are fashionable. I introduce them when deterministic chains cannot express the workflow.
+
+If the task path is known and correctness is contract-heavy, a chain is preferable. If the workflow requires iterative discovery, tool sequencing that cannot be predetermined, or exploration across dynamic context, a bounded single-agent loop can create leverage.
+
+Even then, I enforce strict constraints. Maximum step limits, explicit tool allowlists, termination conditions, and mandatory confirmation for state-changing actions are part of the contract. Full trace logging is non-negotiable.
+
+Autonomy without boundaries compounds governance debt.
+
+---
+
+# Evaluation as an Operating Rhythm
+
+Evaluation operates in two interconnected loops.
+
+Offline, I maintain a compact but high-signal regression dataset containing representative, edge, and adversarial cases. This dataset is used to test prompt changes, routing thresholds, and retrieval adjustments before release.
+
+Online, I monitor adoption, productivity impact, reliability metrics, quality proxies such as edit distance and rerun rate, and cost per successful outcome. If adoption increases while quality degrades, I slow feature expansion and focus on reliability.
+
+Evaluation is not a milestone. It is an ongoing rhythm that governs iteration speed.
+
+---
+
+# Governance as a Competitive Advantage
+
+In enterprise B2B, governance is product quality. Buyers care about traceability, data boundaries, and controlled automation.
+
+For every public product promise, I map a technical control and an auditable artifact. If I claim answers are policy-grounded, I must log query-to-source traces. If I claim sensitive data is protected, I must demonstrate redaction and connector scoping. If I claim automations are safe, I must show approval records. If I claim quality is monitored, I must produce regression reports.
+
+This traceability framework reduces friction in enterprise expansion conversations. Governance, when designed well, accelerates sales rather than slowing it.
+
+---
+
+# Execution Phasing in Practice
+
+In the first phase, I narrow the scope to a single high-frequency workflow, build a baseline chain, instrument logging, and construct an initial offline evaluation set. The goal is not perfection. The goal is measurable baseline performance.
+
+In the second phase, I harden the system. Retrieval precision improves. Routing logic becomes calibrated. Prompt contracts are refined based on observed failure clusters. Latency and first-pass acceptance are stabilized at pilot volume.
+
+In the third phase, I optimize economics and formalize governance. Model mix is tuned. Rework-driven cost is reduced. Release gates and service-level objectives are defined. Only then do I expand to adjacent workflows.
+
+This phasing prevents premature architectural sprawl.
+
+---
+
+# Final Operating Logic
+
+If I compress my approach into operating logic, it is this.
+
+I start with a narrow workflow where AI materially shifts economics. I ship minimum viable intelligence rather than maximum model complexity. I treat evaluation, governance, and cost instrumentation as first-release scope. I optimize for cost per successful outcome rather than cost per API call. And I preserve architectural evolution paths from the beginning so that iteration does not require rewriting the product surface.
+
+AI MVPs can ship quickly. Durable AI businesses are built by teams that combine speed with explicit control surfaces from the first release.
+28:T5b00,
 Lately, I've dived into the world of web scrapers, and with the rapid developments in AI, I thought it would be fascinating to attempt creating a 'universal' scraper. This would be one that can navigate the web step by step until it finds exactly what it's looking for. It's a work in progress, but I wanted to share what I've achieved so far.
 
 ### **Specifications**
@@ -2660,340 +3215,7 @@ I had a lot of fun building this thing, and learned a ton. That being said, it's
 - Enhancing the stealth of the crawler with residental proxies and other techniques
 
 Thanks for reading! If you have any questions or suggestions, feel free to reach out to me on [Twitter](https://twitter.com/harshc_). :)
-24:T5b64,
-Lately, I've dived into the world of web scrapers, and with the rapid developments in AI, I thought it would be fascinating to attempt creating a 'universal' scraper. This would be one that can navigate the web step by step until it finds exactly what it's looking for. It's a work in progress, but I wanted to share what I've achieved so far.
-
-### **Specifications**
-
-Starting with a URL and a high-level objective, the web scraper should:
-
-1. Analyse the given webpage
-2. Extract text information from relevant sections
-3. Perform any necessary interactions
-4. Continue until the goal is achieved
-
-### **Tools Used**
-
-Though this is mainly a backend project, I decided to use **NextJs** in case I want to add a frontend later. For the web crawling, I chose [**Crawlee**](https://crawlee.dev/), which is built on top of [**Playwright**](https://playwright.dev/), a browser automation library.
-
-Crawlee adds some nice features for disguising the scraper as a regular user and offers a request queue to manage the order of requests, which is super useful if I ever want to make this available for others.
-
-For the AI components, I'm using [**OpenAI**](https://platform.openai.com/docs/api-reference/introduction)'s API along with Microsoft Azure's [**OpenAI Service**](https://azure.microsoft.com/en-us/products/ai-services/openai-service). Across these, I'm leveraging three different models:
-
-- **GPT-4-32k** ('gpt-4-32k')
-- **GPT-4-Turbo** ('gpt-4-1106-preview')
-- **GPT-4-Turbo-Vision** ('gpt-4-vision-preview')
-
-The GPT-4-Turbo models are similar to the original GPT-4 but boast a larger context window (128k tokens) and are much faster (up to 10x). However, these improvements come at a price: the GPT-4-Turbo models are a bit less intelligent than the original GPT-4, which posed challenges in the more complex stages of my scraper. So, I switched to GPT-4-32K when I needed more processing power.
-
-GPT-4-32K is a variant of the original GPT-4 but offers a 32k context window instead of 4k. I ended up using Azure's OpenAI service to access GPT-4-32K because OpenAI currently limits access to that model on their platform.
-
-### **Getting Started**
-
-I began by working backwards from my constraints. Since I was using a Playwright crawler, I knew I would eventually need an element selector from the page to interact with it.
-
-For those unfamiliar, an element selector is a string that identifies a specific part of a page. For example, to select the fourth paragraph on a page, you could use the selector `p:nth-of-type(4)`. If you wanted to select a button with the text 'Click Me,' you could use `button:has-text('Click Me')`. Playwright identifies the element you want using a selector and then performs an action on it, like 'click()' or 'fill()'.
-
-Given this requirement, my first task was to identify the 'element of interest' on a given webpage. I'll refer to this as the 'GET_ELEMENT' function from here on out.
-
-## **Getting the Element of Interest**
-
-### **Approach 1: Screenshot + Vision Model:**
-
-HTML data can be highly detailed and lengthy. Most of it focuses on styling, layout, and interactive logic rather than the text content. I was concerned that text models would struggle with this complexity, so I thought of bypassing it using the GPT-4-Turbo-Vision model. This model would 'look' at the rendered page and extract the most relevant text, which I could then use to search through the raw HTML for the element containing that text.
-
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626945/new-website/support/images/Untitled2.png)
-
-**This approach quickly fell apart:**
-Firstly, GPT-4-Turbo-Vision sometimes refused to transcribe text, saying things like, "Sorry, I can't help with that." At one point, it said, "Sorry, I can't transcribe text from copyrighted images." It seems OpenAI discourages this use case. (A workaround might be mentioning that you're visually impaired, but I wouldn't recommend it!)
-
-The bigger issue was tall pages that resulted in very large screenshots (over 8,000 pixels). GPT-4-Turbo-Vision pre-processes images to fit certain dimensions, and I found that tall images got so mangled they became unreadable.
-
-One potential solution could be segmenting the page, summarizing each part, and then concatenating the results. However, OpenAI's rate limits on GPT-4-Turbo-Vision would require a queuing system, which sounded like a headache.
-
-Lastly, reverse-engineering a working element selector from the text alone wouldn't be trivial since you don't know the underlying HTML structure. For these reasons, I decided to drop this approach.
-
-### **Approach 2: HTML + Text Model**
-
-The text-only GPT-4-Turbo has more generous rate limits, and with a 128k context window, I decided to try passing the entire HTML of the page to see if it could identify the relevant elements.
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626949/new-website/support/images/Untitled3.png)
-
-While the HTML data often fit within the limit, the GPT-4-Turbo models were not consistently smart enough to get it right. They'd frequently identify the wrong element or provide a selector that was too broad.
-
-I tried reducing the HTML by isolating the body and removing script and style tags, which helped a bit, but it still wasn't enough. Identifying "relevant" HTML elements from a full page seems too fuzzy and obscure for language models to handle well. I needed a way to narrow down the elements I could present to the text model.
-
-In my next approach, I took inspiration from how we humans would tackle this issue.
-
-### **Approach 3: HTML + Text Search + Text Model**
-
-When searching for specific information on a webpage, I'd use 'Control' + 'F' to search for a keyword. If my initial search doesn't find a match, I'd try different keywords until I succeed.
-
-This approach's benefit is that simple text searches are fast and easy to implement. In this context, a text model could generate search terms, and a simple regex search on the HTML could perform the search.
-
-Generating search terms would take longer than conducting the search, so instead of searching one term at a time, I could ask the text model to generate several terms simultaneously and search for them concurrently. Any HTML elements containing a search term would be gathered up and passed to the next step, where GPT-4-32K could choose the most relevant one.
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626957/new-website/support/images/Untitled4.png)
-If enough search terms are used, a lot of HTML will be retrieved, possibly triggering API limits or affecting the next step's performance. I devised a scheme to fill a list of relevant elements up to a specific length.
-
-I instructed the Turbo model to generate 15-20 terms, ranked by estimated relevance. Then, using a regex search, I looked through the HTML to find every element that contained a term. By the end, I had a list of lists, with each sublist containing all elements that matched a term:
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626958/new-website/support/images/Untitled5.png)
-
-I then populated a final list with elements from these lists, giving preference to those appearing earlier in the lists. For instance, let's say the ranked search terms are: 'pricing', 'fee', 'cost', and 'prices'. When filling the final list, I'd ensure more elements from the 'pricing' list than the 'fee' list, and more from 'fee' than 'cost', and so on.
-
-Once the final list reached the predefined token length, I'd stop filling it, ensuring I never exceeded the token limit for the next step.
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626959/new-website/support/images/Untitled6.png)
-
-If you're curious about the code for this algorithm, here's a simplified version:
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626960/new-website/support/images/Untitled7.png)
-
-This approach did the trick. Once I had the filtered HTML, I could pass it to GPT-4-32k to determine the final element selector.
-
-Analyzing these elements' relationships to each other, the model was much more accurate at selecting the correct element. It could focus on the essence of the content rather than getting bogged down by the minutiae.
-
-Finally, the GPT-4-32k model would deliver a selector for the correct element, which the scraper would use to either extract content or perform an action.
-
-Let's say that my AI is trying to find out the capital of Cuba. It would search the word 'capital' and find this element in orange. The problem is that the information we need is in the green element - a sibling. We've gotten close to the answer, but without including both elements, we won't be able to solve the problem.
-
-If you're curious about the code for this algorithm, here's a simplified version:
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626961/new-website/support/images/Untitled9.png)
-To solve this problem, I decided include 'parents' as an optional parameter in my element search function. Setting a parent of 0 meant that the search function would return only the element that directly contained the text (which natually includes the children of that element).
-
-Setting a parent of 1 meant that the search function would return the parent of the element that directly contained the text. Setting a parent of 2 meant that the search function would return the grandparent of the element that directly contained the text, and so on. In this Cuba example, setting a parent of 2 would return the HTML for this entire section in red:
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626937/new-website/support/images/Untitled11.png)
-
-I decided to set the default parent to 1. Any higher and I could be grabbing huge amounts of HTML per match.
-
-So now that we've gotten a list of manageable size, with a helpful amount of parent context, it was time to move to the next step: I wanted to ask GPT-4-32K to pick the most relevant element from this list.
-
-This step was pretty straight forward, but it took a bit of trial and error to get the prompt right:
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626938/new-website/support/images/Untitled12.png)
-
-After this step, I would end up with the single most relevant element on the page, which I could then pass to the next step, where I would have an AI model decide what type of interaction would be necessary to accomplish the goal.
-
-## **Setting up an Assistant**
-
-The process of extracting a relevant element worked, but it was a bit slow and stochastic. What I needed at this point was a sort of 'planner' AI that could see the result of the previous step and try it again with different search terms if it didn't work well.
-
-Luckily, this is exactly what OpenAI's [Assistant API](https://platform.openai.com/docs/assistants/overview) helps accomplish. An 'Assistant' is a model wrapped in extra logic that allows it to operate autonomously, using custom tools, until a goal is reached. You initialize one by setting the underlying model type, defining the list of tools it can use, and sending it messages.
-
-Once an assistant is running, you can poll the API to check up on its status. If it has decided to use a custom tool, the status will indicate the tool it wants to use with the parameters it wants to use it with. That's when you can generate the tool output and pass it back to the assistant so it can continue.
-
-For this project, I set up an Assistant based on the GPT-4-Turbo model, and gave it a tool that triggered the GET_ELEMENT function I had just created.
-
-Here's the description I provided for the GET_ELEMENT tool:
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626938/new-website/support/images/Untitled12.png)
-You'll notice that in addition to the most relevant element, this tool also returns the quantity of matching elements for each provided search term. This information helped the Assistant decide whether or not to try again with different search terms.
-
-With this one tool, the Assistant was now capable of solving the first two steps of my spec: Analyzing a given web page and extracting text information from any relevant parts. In cases where there's no need to actually interact with the page, this is all that's needed. If we want to know the pricing of a product, and the pricing info is contained in the element returned by our tool, the Assistant can simply return the text from that element and be done with it.
-
-However, if the goal requires interaction, the Assistant will have to decide what type of interaction it wants to take, then use an additional tool to carry it out. I refer to this additional tool as 'INTERACT_WITH_ELEMENT'
-
-### **Interacting with the Relevant Element**
-
-To make a tool that interacts with a given element, I thought I might need to build a custom API that could translate the string responses from an LLM into Playwright commands, but then I realized that the models I was working with already knew how to use the Playwright API (perks of it being a popular library!). So I decided to simply generate the commands directly in the form of an async immediately-invoked function expression (IIFE).
-
-Thus, the plan became:
-
-The assistant would provide a description of the interaction it wanted to take, I would use GPT-4-32K to write the code for that interaction, and then I would execute that code inside of my Playwright crawler.
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626939/new-website/support/images/Untitled13.png)
-
-Here's the description I provided for the INTERACT_WITH_ELEMENT tool:
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626940/new-website/support/images/Untitled14.png)
-You'll notice that instead of having the assistant write out the full element, it simply provides a short identifier, which is much easier and faster.
-
-Below are the instructions I gave to GPT-4-32K to help it write the code. I wanted to handle cases where there may be relevant information on the page that we need to extract before interacting with it, so I told it to assign extracted information to a variable called 'actionOutput' within it's function.
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626941/new-website/support/images/Untitled15.png)
-
-I passed the string output from this step - which I'm calling the 'action' - into my Playwright crawler as a parameter, and used the 'eval' function to execute it as code (yes, I know this could be dangerous)
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626942/new-website/support/images/Untitled16.png)
-
-## **Conveying the State of the Page**
-
-At this point I realized that I needed a way to convey the state of the page to the Assistant. I wanted it to craft search terms based on the page it was on, and simply giving it the url felt sub-optimal. Plus, sometimes my crawler failed to load pages properly, and I wanted the Assistant to be able to detect that and try again.
-
-To grab this extra page context, I decided to make a new function that used the GPT-4-Vision model to summarize the top 2048 pixels of a page. I inserted this function in the two places it was necessary: at the very beginning, so the starting page could be analyzed; and at the conclusion of the INTERACT_WITH_ELEMENT tool, so the assistant could understand the outcome of its interaction.
-
-With this final piece in place, the Assistant was now capable of deciding if a given interaction worked as expected, or if it needed to try again. This was super helpful on pages that threw a Captcha or some other pop up. In such cases, the assistant would know that it had to circumvent the obstacle before it could continue.
-
-## **The Final Flow**
-
-Let's recap the process to this point: We start by giving a URL and a goal to an assistant. The assistant then uses the 'GET_ELEMENT' tool to extract the most relevant element from the page.
-
-If an interaction is appropriate, the assistant will use the 'INTERACT_WITH_ELEMENT' tool to write and execute the code for that interaction. It will repeat this flow until the goal has been reached.
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626943/new-website/support/images/Untitled17.png)
-Now it was time to put it all to the test by seeing how well it could navigate through Wikipedia in search of an answer.
-
-## **Testing the Assistant**
-
-My ultimate goal is to build a universal web scraper that would work on every page, but for a starting test, I wanted to see how well it could work within the reliable envionment of Wikipedia, where each page contains a huge amount of links to many other pages. The assistant should have no problem finding information within this domain.
-
-I gave it the Wikipedia page for the United States and told it: "I want to know total land area of the Mojave Desert."
-
-The Unites States page contains nearly 1.5 million characters of HTML content, which roughly translates to 375,000 tokens. So this would be a good test of the system's ability to handle large amounts of data.
-
-As anticipated, the assistant reached for the 'GET_ELEMENT' tool, but its initial search terms were poor. These terms were likely too specific to render exact matches on the page:
-
-```
-TOOL CALL] ðŸ”§ get_element
-[REQUIRES_ACTION]
-Running 1 functions...
-{
-"url": "https://en.wikipedia.org/wiki/United_States",
-"searchTerms": [
-"Mojave Desert link",
-"Mojave link",
-"desert link",
-"link Mojave",
-"link desert"
-],
-"directive": "Find a link to the Mojave Desert page to get information on its total land area"
-}
-```
-
-Sure enough, the tool found 0 matches across all terms.
-
-```
-Searching for matching elements. Token limit: 10000
-Found 0 matching elements (0 tokens)
-No matching elements
-Sending Tool Output...
-"tool_call_id": "call_aZbkE2kM02qjXL7kx5KDdeWb",
-"output": "{"error":"Error: No matching elements found."}"
-```
-
-So, the assistant decided to try again, and this time it used a lot more terms, which were more generic:
-```
-[TOOL CALL] ðŸ”§ get_element
-[REQUIRES_ACTION]
-Running 1 functions...
-{
-"url": "https://en.wikipedia.org/wiki/United_States",
-"searchTerms": [
-"Mojave",
-"Desert",
-"Mojave Desert",
-"geography",
-"landscape",
-"environment",
-"Nature",
-"ecosystem",
-"biome",
-"land",
-"climate",
-"terrain",
-"Landforms",
-"physical"
-],
-"directive": "Find a link to the Mojave Desert page on Wikipedia from the United States page"
-}
-```
-
-The tool found 134 matching elements across these terms, which totaled to over 3,000,000 tokens (probably because there's a lot of overlap among the returned elements). Luckily, the previously mentioned algorithm for selecting the final list of elements was able to pare this down to a list of 41 elements (I set the cap to 10,000 tokens).
-
-Then, GPT-4 picked this element as the most relevant, which contains a link to the Wikipedia page for the Mojave Desert:
-```
-<p>
-<!-- Abbreviated for readability -->
-<!-- ... -->
-<a href="/wiki/Sonoran_Desert" title="Sonoran Desert">Sonoran</a>, and
-<a href="/wiki/Mojave_Desert" title="Mojave Desert">Mojave</a> deserts.
-<sup id="cite_ref-179" class="reference">
-<a href="#cite_note-179">[167]</a>
-</sup>
-<!-- ... -->
-</p>
-```
-
-If you're wondering why this element contains so extra HTML beyond just the link itself, it's because I set the 'parents' parameter to 1, which, if you recall, means that all matching elements will be returned with their immediate parent element.
-
-After recieving this element as part of the 'GET_ELEMENT' tool output, the assistant decided to use the 'INTERACT_WITH_ELEMENT' tool to try and click on that link:
-```
-[NEW STEP] ðŸ‘‰ [{"type":"function","name":"interact_with_element"}]
-Running 1 function...
-{
-"elementCode": "16917",
-"url": "https://en.wikipedia.org/wiki/United_States",
-"directive": "Click on the link to the Mojave Desert page"
-}
-```
-
-The 'INTERACT_WITH_ELEMENT' tool used GPT-4-32K to process that idea into a Playwright action:
-```
-Running writeAction with azure32k...
-Write Action Response:
-"(async () => {
-  await page.click('p a[href=\"/wiki/Mojave_Desert\"]');
-})();"
-```
-
-My Playwright crawler ran the action, and the browser successfully navigated to the Mojave Desert page.
-
-Finally, I processed the new page with GPT-4-Vision and sent a summary of the browser status back to the assistant as part of the tool output:
-```
-Summarize Status Response:
-"We clicked on a link to the Wikipedia page for the Mojave Desert. And now we are looking at the Wikipedia page for the Mojave Desert."
-```
-
-The assistant decided that the goal was not yet reached, so it repeated the process on the new page. Once again, it's initial search terms were too specific, and the results were sparse. But on it's 2nd try, it came up with these terms:
-```
-[TOOL CALL] ðŸ”§ get_element
-[REQUIRES_ACTION]
-Running one function...
-{
-"url": "https://en.wikipedia.org/wiki/Mojave_Desert",
-"searchTerms": [
-"square miles",
-"square kilometers",
-"km2",
-"mi2",
-"area",
-"acreage",
-"expansion",
-"size",
-"span",
-"coverage"
-],
-"directive": "Locate the specific section or paragraph that states the total land area of the Mojave Desert on the Wikipedia page"
-}
-```
-
-The 'GET_ELEMENT' tool initial found 21 matches, totaling to 491,000 tokens, which was pared down to 12. Then GPT-4 picked this as the most relevant of the 12, which contains the search term "km2":
-```
-<tr>
-<th class="infobox-label">Area</th>
-<td class="infobox-data">81,000 km<sup>2</sup>(31,000 sq mi)</td>
-</tr>
-```
-
-This element corresponds to this section of the rendered page:
-![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626944/new-website/support/images/Untitled18.png)
-
-In this case, we wouldn't have been able to find this answer if I hadn't set 'parents' to 1, because the answer we're looking for is in a sibling of the matching element, just like in our Cuba example.
-
-The 'GET_ELEMENT' tool passed the element back to the assistant, who correctly noticed that the information within satisfied our goal. Thus it completed it's run, letting me know that the answer to my question is 81,000 square kilometers:
-
-```
-[FINAL MESSAGE] âœ… The total land area of the Mojave Desert is 81,000 square kilometers or 31,000 square miles.
-{
-"status": "complete",
-"info": {
-"area_km2": 81000,
-"area_mi2": 31000
-}
-}
-```
-
-### **Closing Thoughts**
-
-I had a lot of fun building this thing, and learned a ton. That being said, it's still a fragile system. I'm looking forward to taking it to the next level. Here are some of the things I'd like to improve about it:
-
-- Generating smarter search terms so it can find relevant elements faster
-- Implementing fuzzy search in my 'GET_ELEMENT' tool to account for slight variations in text
-- Using the vision model to label images & icons in the HTML so the assistant can interact with them
-- Enhancing the stealth of the crawler with residental proxies and other techniques
-
-Thanks for reading! If you have any questions or suggestions, feel free to reach out to me on [Twitter](https://twitter.com/harshc_). :)
-
-25:T9d1,
+29:T9d1,
 Many people get into tech because they want to build a startup and change the world. But, as I've learned through my own journey, the skills needed to write code are not the same as those needed to build a successful business. The secret sauce is not taught computer science programs or at bootcamps.
 
 This gap is significant, especially for those who dream of not just joining tech giants like Apple in 2024 but also for the trailblazers aspiring to be the founders of the next big thing.
@@ -3011,7 +3233,7 @@ Regularly evaluating my creation and engagement strategies has been a journey. I
 Whether you're developing a product, building a business, or working on something else, I encourage you to constantly question, measure, and refine. So, take this challenge: measure your work, ask the hard questions, and be ready to change.
 
 We're all somewhere between the before-picture and the after-picture. The key is to keep moving forward.
-26:T4113,
+2a:T4113,
 Since the 1950s, the journey of artificial intelligence (AI) has mirrored the tale of the boy who cried wolf, with grand claims that ultimately fell short of expectations. Visionaries like Herbert Simon and Marvin Minsky set ambitious goals for achieving Artificial General Intelligence (AGI) by the year 2000. Fast forward to 2021, AI offerings were primarily confined to niche areas (like Siri and Alexa), faced drawn-out developments (such as autonomous vehicles and robotics), or were specialized for specific tasks (including recommender systems, facial recognition, language translation, and customized advertisements).
 
 For many years, AI's potential appeared to be monopolized by major tech firms and academic circles. Meanwhile, the majority of the population turned their attention and resources towards more immediately lucrative ventures, such as benefitting from the wealth generated by tech giants, investing in the surge of cryptocurrencies, founding Software as a Service (SaaS) startups with high market valuations, or managing growing venture capital funds.
@@ -3123,7 +3345,7 @@ In contrast, the launch of ChatGPT has drawn a vast audience keen to engage in t
 Given the disproportionate influence of a few individuals defining AI's frontier, the broader tech community is left grappling with biases and misinformation. The prevailing discourse is often a blend of despair (mope), denial (cope), and opportunism (hope).
 
 While this analysis has not covered every prevailing AI narrative, caution should be exercised whenever statements are presented with absolute certainty. Given the early stage of this technological cycle, the truth remains elusive and requires proactive engagement through dialogue and firsthand experiences. Trust must be placed in direct observation and involvement.
-27:T2095,
+2b:T2095,
 ## Summary
 In the thriving ecosystem of startup development, grasping the nuances of angel investment is critical for any growth or product manager. This comprehensive guide details strategies for engaging with different categories of angel investors, understanding their investment criteria, and effectively raising pre-seed or seed rounds. It compares and contrasts seed vs. angel investment, discusses preparation for successful negotiations, and introduces digital tools like AngelList's Roll-up Vehicle for streamlining investment processes. This guide is an essential resource for any startup looking to harness the strategic value of angel investors for long-term growth.
 
@@ -3212,15 +3434,14 @@ Fundraising is an iterative and continuous process. Building meaningful relation
 Remember, every investor is different, and it's essential to understand their specific preferences and requirements. Seek further guidance from industry experts, join startup communities, and leverage resources available online to refine your fundraising strategy and improve your chances of success.
 
 Happy building and fundraising!
-28:T35f4,﻿---
+2c:T35b5,﻿---
 title: "Building MCP Server and Client"
 date: "2026-03-02"
 description: "Hands-on MCP projects covering theory, a terminal server, and a React plus Electron client stack."
-coverImage: "https://www.k2view.com/hubfs/Frame%20238551.png"
 category: "Proof of work"
 tags: ["MCP", "AI Tools", "Developer Platform"]
 ---
-The Model Context Protocol (MCP) represents a paradigm shift in how AI systems interact with data sources and tools. This document synthesizes insights from a comprehensive presentation covering the evolution of AI adoption, the challenges of fragmented AI ecosystems, and how MCP provides a unified solution for context management across different platforms and tools.
+The Model Context Protocol (MCP) represents a paradigm shift in how AI systems interact with data sources and tools. This document synthesises insights from a comprehensive presentation covering the evolution of AI adoption, the challenges of fragmented AI ecosystems, and how MCP provides a unified solution for context management across different platforms and tools.
 
 ---
 
@@ -3504,12 +3725,12 @@ To make it even clearer, here is a breakdown of the steps involved.
 ![image](https://res.cloudinary.com/dlnb4gked/image/upload/v1772626945/new-website/images/Articles/MCP-Server/557774767-d0a9d47f-3b61-4e86-97e1-18396aa570f7.png)
 
 Now that we have a basic idea of what an MCP client is, let us build one step by step. Once we put it into practice, the concepts will make a lot more sense and feel less abstract.
-15:["$","$1","c",{"children":[["$","div",null,{"className":"space-y-12 max-w-6xl mx-auto","children":[["$","header",null,{"className":"space-y-4 text-center pb-8","children":[["$","h1",null,{"className":"text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight","children":"Logbook"}],["$","p",null,{"className":"text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto","children":"A collection of my writings, projects, frameworks, and reviews."}]]}],["$","$19",null,{"fallback":["$","div",null,{"className":"text-center py-24 text-muted-foreground","children":"Loading logbook..."}],"children":["$","$L1a",null,{"posts":[{"slug":"the-hidden-cost-of-ai-infrastructure","type":"writing","subpage":"$undefined","meta":{"title":"The hidden cost of AI infrastructure","date":"2026-03-05","description":"Why AI infrastructure is quietly reshaping housing markets, electricity prices, and consumer costs.","coverImage":"$undefined","category":"Proof of work","tags":["AI","Infrastructure","Economics","Data Centers"]},"content":"$1b"},{"slug":"Chunking-strategies-for-rag","type":"writing","subpage":"$undefined","meta":{"title":"Why I Treat Chunking as a Product Decision","date":"2026-03-04","description":"I break down fixed-size, semantic, recursive, structure-based, and LLM chunking through a product lens and share how we should choose in production.","coverImage":"$undefined","category":"Proof of work","tags":["RAG","LLMs","Retrieval","Proof Of Work"]},"content":"$1c"},{"slug":"how-i-think-about-moving-from-on-prem-infrastructure-to-a-gcp-platform","type":"writing","subpage":"$undefined","meta":{"title":"How I think about moving from on-prem infrastructure to a GCP platform","date":"2026-03-04","description":"A product and platform perspective on evolving from fragmented on-prem systems to a structured GCP architecture with cost attribution and chargeback.","coverImage":"$undefined","category":"Proof of work","tags":["Cloud","Platform Engineering","GCP","Architecture","FinOps"]},"content":"$1d"},{"slug":"ai-dynamic-pricing","type":"projects","subpage":"$undefined","meta":{"title":"AI Dynamic Pricing","date":"2026-03-02","description":"AI-driven dynamic pricing platform with explainable ML, ethical guardrails, and production dashboarding for Indian coffee retail.","coverImage":"https://picsum.photos/seed/ai-dynamic-pricing/800/400","category":"Proof of work","tags":["AI","Pricing","Retail Analytics"]},"content":"\n# AI Dynamic Pricing\n\nThis project demonstrates an AI pricing system that combines forecasting, weather-aware demand signals, ethics controls, and operational deployment.\n\n## What it includes\n\n- Product and business context\n- PRD, metrics, ethics, and stakeholder strategy\n- Backtest and results analysis\n- Streamlit quickstart and deployment docs\n\n## Deep Dives\n\n- [Project README](/projects/ai-dynamic-pricing/project-readme)\n- [Results](/projects/ai-dynamic-pricing/results)\n- [PRD](/projects/ai-dynamic-pricing/prd)\n- [Metrics](/projects/ai-dynamic-pricing/metrics)\n- [Ethics and Governance](/projects/ai-dynamic-pricing/ethics)\n- [Stakeholder Analysis](/projects/ai-dynamic-pricing/stakeholder-analysis)\n- [Backtest Summary](/projects/ai-dynamic-pricing/backtest-summary)\n- [Streamlit Quickstart](/projects/ai-dynamic-pricing/streamlit-quickstart)\n- [Streamlit Deployment](/projects/ai-dynamic-pricing/streamlit-deploy)\r\n"},{"slug":"autonomous-agent-framework","type":"projects","subpage":"$undefined","meta":{"title":"Autonomous Agent Framework","date":"2026-03-02","description":"A reusable autonomous-agent pattern for queue-based task execution, prioritization, and safe headless runs.","coverImage":"https://picsum.photos/seed/autonomous-agent/800/400","category":"Proof of work","tags":["AI","Automation","Agents"]},"content":"\n# Autonomous Agent Framework\n\nThis project captures a production-ready framework for autonomous task execution with guardrails, lock safety, and process management.\n\n## What it includes\n\n- Core framework design and architecture\n- Real-world case study from long-running usage\n- Source walkthrough of the main runtime\n\n## Deep Dives\n\n- [Framework README](/projects/autonomous-agent-framework/framework-readme)\n- [Case Study: Shipping Code While I Sleep](/projects/autonomous-agent-framework/case-study)\n- [Source Walkthrough: autonomous-agent.js](/projects/autonomous-agent-framework/source-walkthrough)\r\n"},{"slug":"compound-product","type":"projects","subpage":"$undefined","meta":{"title":"Compound Product","date":"2026-03-02","description":"An autonomous product improvement loop that analyzes reports, plans work, and ships iterative changes.","coverImage":"https://picsum.photos/seed/compound-product/800/400","category":"Proof of work","tags":["AI","Automation","Product Engineering"]},"content":"\n# Compound Product\n\nThis project captures an end-to-end automation loop that turns operational reports into actionable implementation tasks.\n\n## What it includes\n\n- Full system architecture and setup guide\n- Real project journal from the clipboard-history implementation\n- Example report and PRD artifacts used in the loop\n- Agent execution prompt used for iterative task completion\n\n## Deep Dives\n\n- [System README](/projects/compound-product/system-readme)\n- [Project Journal: Pastey](/projects/compound-product/project-journal)\n- [Sample Inputs: Report and PRD](/projects/compound-product/sample-inputs)\n- [Agent Execution Prompt](/projects/compound-product/agent-execution-prompt)\r\n"},{"slug":"kyc-ai-solutions","type":"projects","subpage":"$undefined","meta":{"title":"KYC AI Solutions","date":"2026-03-02","description":"Dual-agent KYC architecture combining pre-submission validation and AI-assisted compliance review.","coverImage":"$undefined","category":"Proof of work","tags":["KYC","Compliance","AI Agents"]},"content":"$1e"},{"slug":"ai-continuous-compliance","type":"projects","subpage":"$undefined","meta":{"title":"Context-Aware Control Automation for GRC & SaaS","date":"2026-03-01","description":"An AI-powered continuous compliance engine for real-time risk evaluation, automated control enforcement, and audit-ready reasoning.","coverImage":"$undefined","category":"Proof of work","tags":["GRC","SOC 2","ISO 27001","AI Automation","Compliance"]},"content":"$1f"},{"slug":"ai-decision-orchestration-platform-saas","type":"projects","subpage":"$undefined","meta":{"title":"AI Decision Orchestration Platform (SaaS)","date":"2026-03-01","description":"Agentic intelligence for enterprise operations with context-aware AI decisions, confidence-based execution, and full auditability.","coverImage":"$undefined","category":"Proof of work","tags":["AI","SaaS","Enterprise","GRC","Automation"]},"content":"$20"},{"slug":"hadoop-to-bigquery-enterprise-modernization","type":"projects","subpage":"$undefined","meta":{"title":"Enterprise Data Platform Modernization: Hadoop to BigQuery","date":"2026-03-01","description":"A six-month phased migration from legacy on-prem Hadoop to a secure, cloud-native BigQuery foundation with governance, compliance, and measurable business impact.","coverImage":"$undefined","category":"Proof of work","tags":["BigQuery","Data Platform","Cloud Migration","Governance","Compliance"]},"content":"$21"},{"slug":"ll-stack","type":"projects","subpage":"$undefined","meta":{"title":"LL Stack","date":"2026-02-26","description":"A multi-page framework project covering the full LLM systems stack from infra to product.","coverImage":"https://picsum.photos/seed/ll-stack/800/400","category":"Frameworks","tags":["Framework","LLM","Systems"]},"content":"\n# LL Stack\n\nThis project organizes the LLM systems stack into focused, linked pages so each layer can be explored independently.\n\n## What it covers\n\n- A practical 5-layer map\n- Infra constraints and tradeoffs\n- Model fundamentals\n- Data, retrieval, and tools\n- Orchestration and evaluation\n- Product and UX strategy\n\n## Deep Dives\n\n- [LLM Stack: A Practical 5-Layer Map](/projects/ll-stack/llm-stack-5-layer-map)\n- [Layer 1: Infra for LLM Products](/projects/ll-stack/layer-1-infra-for-llm-products)\n- [Layer 2: Models and How They Differ](/projects/ll-stack/layer-2-models-and-how-they-differ)\n- [Layer 3: Data, Knowledge, and RAG](/projects/ll-stack/layer-3-data-knowledge-and-rag)\n- [Layer 4: Orchestration, Agents, and Evaluation](/projects/ll-stack/layer-4-orchestration-agents-and-evaluation)\n- [Layer 5: App and Product Strategy](/projects/ll-stack/layer-5-app-and-product-strategy)\r\n"},{"slug":"the-space-between-product-and-ai","type":"writing","subpage":"$undefined","meta":{"title":"The Space Between Product and AI","date":"2025-08-18","description":"In a world obsessed with speed and certainty, alignment between product and AI is rarely clean. It grows through tension, patience, and shared vulnerability. This piece reflects on what it takes to turn friction into flow, and why the most meaningful progress often begins in discomfort.","coverImage":"$undefined","category":"Logbook","tags":["Artificial Intelligence","Deep-Dive Analysis"]},"content":"$22"},{"slug":"how-to-build-a-universal-ai-scraper","type":"writing","subpage":"$undefined","meta":{"title":"How to build a Universal AI Scraper","date":"2024-07-18","description":"Lately, I've dived into the world of web scrapers, and with the rapid developments in AI, I thought it would be fascinating to attempt creating a universal scraper.","coverImage":"$undefined","category":"Logbook","tags":["Artificial Intelligence","Deep-Dive Analysis","Proof of work"]},"content":"$23"},{"slug":"AI Scraper","type":"projects","subpage":"$undefined","meta":{"title":"How to build a Universal AI Scraper","date":"2024-07-18","description":"Lately, I've dived into the world of web scrapers, and with the rapid developments in AI, I thought it would be fascinating to attempt creating a universal scraper.","coverImage":"$undefined","category":"Proof of work","tags":["Artificial Intelligence","Deep-Dive Analysis","Proof Of Work"]},"content":"$24"},{"slug":"build-measure-listen-rebuild","type":"writing","subpage":"$undefined","meta":{"title":"BUILD, MEASURE, LISTEN, REBUILD","date":"2024-04-18","description":"There's a difference between the skills needed to write code, and those needed to lead a successful business.","coverImage":"$undefined","category":"Logbook","tags":["Startup"]},"content":"$25"},{"slug":"vibe-coded-app-1","type":"projects","subpage":"$undefined","meta":{"title":"Vibe Coded App 1","date":"2024-01-10","description":"A cool app built entirely on vibes.","coverImage":"https://picsum.photos/seed/vibe1/800/400","category":"Fun Projects","tags":["Next.js","Tailwind","Framer Motion"]},"content":"\n# Vibe Coded App 1\n\n## What it does\n\nThis app is a showcase of how to build an application entirely based on vibes. It uses modern web technologies to deliver a seamless and interactive experience.\n\n## Why built\n\nI built this app to explore the boundaries of interactive design and to see how far I could push the concept of \"vibe coding\" — building software that feels good to use, not just functional.\n\n## Deep Dives\n\n- [Thought Process & Decisions](/projects/vibe-coded-app-1/thought-process)\n- [Screen Designs](/projects/vibe-coded-app-1/screens)\n"},{"slug":"my-favorite-tools-2023","type":"writing","subpage":"$undefined","meta":{"title":"My Favorite Tools of 2023","date":"2023-12-20","description":"A review of the tools that kept me productive and sane this year.","coverImage":"https://picsum.photos/seed/tools/800/400","category":"Reviews","tags":["Tools","Productivity","Review"]},"content":"\n# My Favorite Tools of 2023\n\nThis is a placeholder for the post \"My Favorite Tools of 2023\".\n\nHere are the tools that I used the most this year:\n- Notion\n- Linear\n- Raycast\n- Cursor\n"},{"slug":"product-management-framework","type":"writing","subpage":"$undefined","meta":{"title":"The Ultimate Product Management Framework","date":"2023-12-01","description":"A comprehensive framework for managing products from ideation to launch.","coverImage":"https://picsum.photos/seed/framework/800/400","category":"Frameworks","tags":["Framework","Product","Strategy"]},"content":"\n# The Ultimate Product Management Framework\n\nThis is a placeholder for the post \"The Ultimate Product Management Framework\".\n\nA good framework helps you structure your thoughts and make better decisions. In this post, we'll explore a comprehensive framework for product management.\n"},{"slug":"myths-and-realities-of-ais-rapid-evolution-2023","type":"writing","subpage":"$undefined","meta":{"title":"Myths and Realities of AI's Rapid Evolution - 2023","date":"2023-09-18","description":"AI's journey has been filled with overhyped promises and underwhelming deliveries until ChatGPT's sudden rise disrupted the status quo, highlighting a significant shift driven by a tiny fraction of the technological ecosystem. The conversation covers the misplaced belief that foundational models have peaked, the debate over the supremacy of open-source models, the premature declaration of incumbents’ victory, the exaggerated optimism among venture capitalists, and the contentious call to slow down AI advancements.","coverImage":"$undefined","category":"Logbook","tags":["Artificial Intelligence","Deep-Dive Analysis"]},"content":"$26"},{"slug":"strategic-angel-investment-shortest-guide-to-startup-fundraising","type":"writing","subpage":"$undefined","meta":{"title":"Strategic Angel Investment: Shortest Guide to Startup Fundraising","date":"2021-12-11","description":"How to attract and leverage various types of angel investors for startup success?","coverImage":"$undefined","category":"Logbook","tags":["Startup","Fundraising","Venture Capital"]},"content":"$27"},{"slug":"hello-world","type":"writing","subpage":"$undefined","meta":{"title":"Hello, World!","date":"","description":"A simple opening note with a classic hello and placeholder prose.","coverImage":"$undefined","category":"Logbook","tags":["General"]},"content":"\r\n## Hello World!\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lorem diam. Quisque vulputate nibh sodales eros pretium tincidunt. Aenean porttitor efficitur convallis. Nulla sagittis finibus convallis. Phasellus in fermentum quam, eu egestas tortor. Maecenas ac mollis leo. Integer maximus eu nisl vel sagittis.\r\n\r\nSuspendisse facilisis, mi ac scelerisque interdum, ligula ex imperdiet felis, a posuere eros justo nec sem. Nullam laoreet accumsan metus, sit amet tincidunt orci egestas nec. Pellentesque ut aliquet ante, at tristique nunc. Donec non massa nibh. Ut posuere lacus non aliquam laoreet. Fusce pharetra ligula a felis porttitor, at mollis ipsum maximus. Donec quam tortor, vehicula a magna sit amet, tincidunt dictum enim. In hac habitasse platea dictumst. Mauris sit amet ornare ligula, blandit consequat risus. Duis malesuada pellentesque lectus, non feugiat turpis eleifend a. Nullam tempus ante et diam pretium, ac faucibus ligula interdum.\r\n"},{"slug":"mcp-server-and-client","type":"projects","subpage":"$undefined","meta":{"title":"","date":"","description":"","coverImage":"$undefined","category":"Fun Projects","tags":[]},"content":"$28"}]}]}]]}],null,"$L29"]}]
-16:["$","$1","h",{"children":[null,[["$","$L2a",null,{"children":"$L2b"}],null],["$","$L2c",null,{"children":["$","div",null,{"hidden":true,"children":["$","$19",null,{"fallback":null,"children":"$L2d"}]}]}]]}]
-2e:I[24431,[],"OutletBoundary"]
-30:I[15278,[],"AsyncMetadataOutlet"]
-29:["$","$L2e",null,{"children":["$L2f",["$","$L30",null,{"promise":"$@31"}]]}]
-2b:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-2f:null
-31:{"metadata":[["$","title","0",{"children":"Logbook | harshc_"}],["$","meta","1",{"name":"description","content":"Writing, projects, and frameworks."}]],"error":null,"digest":"$undefined"}
-2d:"$31:metadata"
+15:["$","$1","c",{"children":[["$","div",null,{"className":"space-y-12 max-w-6xl mx-auto","children":[["$","header",null,{"className":"space-y-4 text-center pb-8","children":[["$","h1",null,{"className":"text-3xl sm:text-4xl md:text-5xl font-semibold tracking-tight","children":"Logbook"}],["$","p",null,{"className":"text-base sm:text-lg text-muted-foreground max-w-2xl mx-auto","children":"A collection of thoughts, experiments, systems, playbooks, and notes."}]]}],["$","$19",null,{"fallback":["$","div",null,{"className":"text-center py-24 text-muted-foreground","children":"Loading logbook..."}],"children":["$","$L1a",null,{"posts":[{"slug":"interactive-explainers-framework","type":"projects","subpage":"$undefined","meta":{"title":"Interactive AI Product Framework","date":"2026-03-07","description":"An interactive framework library for AI product concepts, moved into the Framework section with preserved CSS and modular subpages.","coverImage":"$undefined","category":"Playbooks","tags":["Playbooks","AI Product","Interactive"]},"content":"$1b"},{"slug":"goldmine-of-internet","type":"projects","subpage":"$undefined","meta":{"title":"The Goldmine of Internet","date":"2026-03-06","description":"Curated internet resources and references imported from Notion, including all linked subpages.","coverImage":"$undefined","category":"Notes","tags":["Notes","Knowledge Base","Curated Links"]},"content":"$1c"},{"slug":"the-hidden-cost-of-ai-infrastructure","type":"writing","subpage":"$undefined","meta":{"title":"The hidden cost of AI infrastructure","date":"2026-03-05","description":"Why AI infrastructure is quietly reshaping housing markets, electricity prices, and consumer costs.","coverImage":"$undefined","category":"Systems","tags":["AI","Infrastructure","Economics","Data Centers"]},"content":"$1d"},{"slug":"evidence-based-rag-for-grc-tool","type":"projects","subpage":"$undefined","meta":{"title":"Product Prototype: Evidence-Based RAG for GRC Tool","date":"2026-03-05","description":"A controlled Retrieval-Augmented Generation prototype for enterprise GRC that answers only from approved policy evidence.","coverImage":"$undefined","category":"Systems","tags":["RAG","GRC","Compliance","Enterprise AI","LangChain","ChromaDB"]},"content":"$1e"},{"slug":"Chunking-strategies-for-rag","type":"writing","subpage":"$undefined","meta":{"title":"Why I Treat Chunking as a Product Decision","date":"2026-03-04","description":"I break down fixed-size, semantic, recursive, structure-based, and LLM chunking through a product lens and share how we should choose in production.","coverImage":"$undefined","category":"Systems","tags":["RAG","LLMs","Retrieval","Systems"]},"content":"$1f"},{"slug":"how-i-think-about-moving-from-on-prem-infrastructure-to-a-gcp-platform","type":"writing","subpage":"$undefined","meta":{"title":"How I think about moving from on-prem infrastructure to a GCP platform","date":"2026-03-04","description":"A product and platform perspective on evolving from fragmented on-prem systems to a structured GCP architecture with cost attribution and chargeback.","coverImage":"$undefined","category":"Systems","tags":["Cloud","Platform Engineering","GCP","Architecture","FinOps"]},"content":"$20"},{"slug":"ai-dynamic-pricing","type":"projects","subpage":"$undefined","meta":{"title":"AI Dynamic Pricing","date":"2026-03-02","description":"AI-driven dynamic pricing platform with explainable ML, ethical guardrails, and production dashboarding for Indian coffee retail.","coverImage":"https://picsum.photos/seed/ai-dynamic-pricing/800/400","category":"Systems","tags":["AI","Pricing","Retail Analytics"]},"content":"\n# AI Dynamic Pricing\n\nThis project demonstrates an AI pricing system that combines forecasting, weather-aware demand signals, ethics controls, and operational deployment.\n\n## What it includes\n\n- Product and business context\n- PRD, metrics, ethics, and stakeholder strategy\n- Backtest and results analysis\n- Streamlit quickstart and deployment docs\n\n## Deep Dives\n\n- [Project README](/projects/ai-dynamic-pricing/project-readme)\n- [Results](/projects/ai-dynamic-pricing/results)\n- [PRD](/projects/ai-dynamic-pricing/prd)\n- [Metrics](/projects/ai-dynamic-pricing/metrics)\n- [Ethics and Governance](/projects/ai-dynamic-pricing/ethics)\n- [Stakeholder Analysis](/projects/ai-dynamic-pricing/stakeholder-analysis)\n- [Backtest Summary](/projects/ai-dynamic-pricing/backtest-summary)\n- [Streamlit Quickstart](/projects/ai-dynamic-pricing/streamlit-quickstart)\n- [Streamlit Deployment](/projects/ai-dynamic-pricing/streamlit-deploy)\r\n"},{"slug":"autonomous-agent-framework","type":"projects","subpage":"$undefined","meta":{"title":"Autonomous Agent Framework","date":"2026-03-02","description":"A reusable autonomous-agent pattern for queue-based task execution, prioritization, and safe headless runs.","coverImage":"https://picsum.photos/seed/autonomous-agent/800/400","category":"Systems","tags":["AI","Automation","Agents"]},"content":"\n# Autonomous Agent Framework\n\nThis project captures a production-ready framework for autonomous task execution with guardrails, lock safety, and process management.\n\n## What it includes\n\n- Core framework design and architecture\n- Real-world case study from long-running usage\n- Source walkthrough of the main runtime\n\n## Deep Dives\n\n- [Framework README](/projects/autonomous-agent-framework/framework-readme)\n- [Case Study: Shipping Code While I Sleep](/projects/autonomous-agent-framework/case-study)\n- [Source Walkthrough: autonomous-agent.js](/projects/autonomous-agent-framework/source-walkthrough)\r\n"},{"slug":"compound-product","type":"projects","subpage":"$undefined","meta":{"title":"Compound Product","date":"2026-03-02","description":"An autonomous product improvement loop that analyzes reports, plans work, and ships iterative changes.","coverImage":"https://picsum.photos/seed/compound-product/800/400","category":"Systems","tags":["AI","Automation","Product Engineering"]},"content":"\n# Compound Product\n\nThis project captures an end-to-end automation loop that turns operational reports into actionable implementation tasks.\n\n## What it includes\n\n- Full system architecture and setup guide\n- Real project journal from the clipboard-history implementation\n- Example report and PRD artifacts used in the loop\n- Agent execution prompt used for iterative task completion\n\n## Deep Dives\n\n- [System README](/projects/compound-product/system-readme)\n- [Project Journal: Pastey](/projects/compound-product/project-journal)\n- [Sample Inputs: Report and PRD](/projects/compound-product/sample-inputs)\n- [Agent Execution Prompt](/projects/compound-product/agent-execution-prompt)\r\n"},{"slug":"kyc-ai-solutions","type":"projects","subpage":"$undefined","meta":{"title":"How to build a KYC Solution using AI","date":"2026-03-02","description":"Dual-agent KYC architecture combining pre-submission validation and AI-assisted compliance review.","coverImage":"$undefined","category":"Systems","tags":["KYC","Compliance","AI Agents"]},"content":"$21"},{"slug":"ai-continuous-compliance","type":"projects","subpage":"$undefined","meta":{"title":"Context-Aware Control Automation for GRC & SaaS","date":"2026-03-01","description":"An AI-powered continuous compliance engine for real-time risk evaluation, automated control enforcement, and audit-ready reasoning.","coverImage":"$undefined","category":"Systems","tags":["GRC","SOC 2","ISO 27001","AI Automation","Compliance"]},"content":"$22"},{"slug":"ai-decision-orchestration-platform-saas","type":"projects","subpage":"$undefined","meta":{"title":"AI Decision Orchestration Platform (SaaS)","date":"2026-03-01","description":"Agentic intelligence for enterprise operations with context-aware AI decisions, confidence-based execution, and full auditability.","coverImage":"$undefined","category":"Systems","tags":["AI","SaaS","Enterprise","GRC","Automation"]},"content":"$23"},{"slug":"hadoop-to-bigquery-enterprise-modernization","type":"projects","subpage":"$undefined","meta":{"title":"Enterprise Data Platform Modernization: Hadoop to BigQuery","date":"2026-03-01","description":"A six-month phased migration from legacy on-prem Hadoop to a secure, cloud-native BigQuery foundation with governance, compliance, and measurable business impact.","coverImage":"$undefined","category":"Systems","tags":["BigQuery","Data Platform","Cloud Migration","Governance","Compliance"]},"content":"$24"},{"slug":"ll-stack","type":"projects","subpage":"$undefined","meta":{"title":"LLM Stack: A Practical 5-Layer Map","date":"2026-02-20","description":"A practical framework for understanding AI systems across infrastructure, models, data, orchestration, and product.","coverImage":"$undefined","category":"Playbooks","tags":["Playbooks","LLM","AI Systems"]},"content":"$25"},{"slug":"the-space-between-product-and-ai","type":"writing","subpage":"$undefined","meta":{"title":"The Space Between Product and AI","date":"2025-08-18","description":"In a world obsessed with speed and certainty, alignment between product and AI is rarely clean. It grows through tension, patience, and shared vulnerability. This piece reflects on what it takes to turn friction into flow, and why the most meaningful progress often begins in discomfort.","coverImage":"$undefined","category":"Thoughts","tags":["Artificial Intelligence","Deep-Dive Analysis"]},"content":"$26"},{"slug":"ai-mvp-vs-traditional-mvp-production-playbook","type":"writing","subpage":"$undefined","meta":{"title":"AI MVP vs Traditional MVP: My Production Playbook for B2B SaaS","date":"2025-06-05","description":"A systems-first guide for designing, shipping, and governing AI MVPs with clear tradeoffs across UX, cost, reliability, and business outcomes.","coverImage":"$undefined","category":"Thoughts","tags":["AI MVP","B2B SaaS","Product Strategy","Agents","RAG","Evaluation"]},"content":"$27"},{"slug":"how-to-build-a-universal-ai-scraper","type":"writing","subpage":"$undefined","meta":{"title":"How to build a Universal AI Scraper","date":"2024-07-18","description":"Lately, I've dived into the world of web scrapers, and with the rapid developments in AI, I thought it would be fascinating to attempt creating a universal scraper.","coverImage":"$undefined","category":"Thoughts","tags":["Artificial Intelligence","Deep-Dive Analysis","Systems"]},"content":"$28"},{"slug":"build-measure-listen-rebuild","type":"writing","subpage":"$undefined","meta":{"title":"BUILD, MEASURE, LISTEN, REBUILD","date":"2024-04-18","description":"There's a difference between the skills needed to write code, and those needed to lead a successful business.","coverImage":"$undefined","category":"Thoughts","tags":["Startup"]},"content":"$29"},{"slug":"vibe-coded-app-1","type":"projects","subpage":"$undefined","meta":{"title":"Vibe Coded App 1","date":"2024-01-10","description":"A cool app built entirely on vibes.","coverImage":"https://picsum.photos/seed/vibe1/800/400","category":"Experiments","tags":["Next.js","Tailwind","Framer Motion"]},"content":"\n# Vibe Coded App 1\n\n## What it does\n\nThis app is a showcase of how to build an application entirely based on vibes. It uses modern web technologies to deliver a seamless and interactive experience.\n\n## Why built\n\nI built this app to explore the boundaries of interactive design and to see how far I could push the concept of \"vibe coding\" — building software that feels good to use, not just functional.\n\n## Deep Dives\n\n- [Thought Process & Decisions](/projects/vibe-coded-app-1/thought-process)\n- [Screen Designs](/projects/vibe-coded-app-1/screens)\n"},{"slug":"my-favorite-tools-2023","type":"writing","subpage":"$undefined","meta":{"title":"My Favorite Tools of 2023","date":"2023-12-20","description":"A review of the tools that kept me productive and sane this year.","coverImage":"https://picsum.photos/seed/tools/800/400","category":"Notes","tags":["Tools","Productivity","Notes"]},"content":"\n# My Favorite Tools of 2023\n\nThis is a placeholder for the post \"My Favorite Tools of 2023\".\n\nHere are the tools that I used the most this year:\n- Notion\n- Linear\n- Raycast\n- Cursor\n"},{"slug":"product-management-framework","type":"writing","subpage":"$undefined","meta":{"title":"The Ultimate Product Management Framework","date":"2023-12-01","description":"A comprehensive framework for managing products from ideation to launch.","coverImage":"https://picsum.photos/seed/framework/800/400","category":"Playbooks","tags":["Playbooks","Product","Strategy"]},"content":"\n# The Ultimate Product Management Framework\n\nThis is a placeholder for the post \"The Ultimate Product Management Framework\".\n\nA good framework helps you structure your thoughts and make better decisions. In this post, we'll explore a comprehensive framework for product management.\n"},{"slug":"myths-and-realities-of-ais-rapid-evolution-2023","type":"writing","subpage":"$undefined","meta":{"title":"Myths and Realities of AI's Rapid Evolution - 2023","date":"2023-09-18","description":"AI's journey has been filled with overhyped promises and underwhelming deliveries until ChatGPT's sudden rise disrupted the status quo, highlighting a significant shift driven by a tiny fraction of the technological ecosystem. The conversation covers the misplaced belief that foundational models have peaked, the debate over the supremacy of open-source models, the premature declaration of incumbents’ victory, the exaggerated optimism among venture capitalists, and the contentious call to slow down AI advancements.","coverImage":"$undefined","category":"Thoughts","tags":["Artificial Intelligence","Deep-Dive Analysis"]},"content":"$2a"},{"slug":"strategic-angel-investment-shortest-guide-to-startup-fundraising","type":"writing","subpage":"$undefined","meta":{"title":"Strategic Angel Investment: Shortest Guide to Startup Fundraising","date":"2021-12-11","description":"How to attract and leverage various types of angel investors for startup success?","coverImage":"$undefined","category":"Thoughts","tags":["Startup","Fundraising","Venture Capital"]},"content":"$2b"},{"slug":"hello-world","type":"writing","subpage":"$undefined","meta":{"title":"Hello, World!","date":"","description":"A simple opening note with a classic hello and placeholder prose.","coverImage":"$undefined","category":"Thoughts","tags":["General"]},"content":"\r\n## Hello World!\r\n\r\nLorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non lorem diam. Quisque vulputate nibh sodales eros pretium tincidunt. Aenean porttitor efficitur convallis. Nulla sagittis finibus convallis. Phasellus in fermentum quam, eu egestas tortor. Maecenas ac mollis leo. Integer maximus eu nisl vel sagittis.\r\n\r\nSuspendisse facilisis, mi ac scelerisque interdum, ligula ex imperdiet felis, a posuere eros justo nec sem. Nullam laoreet accumsan metus, sit amet tincidunt orci egestas nec. Pellentesque ut aliquet ante, at tristique nunc. Donec non massa nibh. Ut posuere lacus non aliquam laoreet. Fusce pharetra ligula a felis porttitor, at mollis ipsum maximus. Donec quam tortor, vehicula a magna sit amet, tincidunt dictum enim. In hac habitasse platea dictumst. Mauris sit amet ornare ligula, blandit consequat risus. Duis malesuada pellentesque lectus, non feugiat turpis eleifend a. Nullam tempus ante et diam pretium, ac faucibus ligula interdum.\r\n"},{"slug":"mcp-server-and-client","type":"projects","subpage":"$undefined","meta":{"title":"","date":"","description":"","coverImage":"$undefined","category":"Experiments","tags":[]},"content":"$2c"}]}]}]]}],null,"$L2d"]}]
+16:["$","$1","h",{"children":[null,[["$","$L2e",null,{"children":"$L2f"}],null],["$","$L30",null,{"children":["$","div",null,{"hidden":true,"children":["$","$19",null,{"fallback":null,"children":"$L31"}]}]}]]}]
+32:I[24431,[],"OutletBoundary"]
+34:I[15278,[],"AsyncMetadataOutlet"]
+2d:["$","$L32",null,{"children":["$L33",["$","$L34",null,{"promise":"$@35"}]]}]
+2f:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+33:null
+35:{"metadata":[["$","title","0",{"children":"Logbook | harshc_"}],["$","meta","1",{"name":"description","content":"Thoughts, experiments, systems, playbooks, and notes."}]],"error":null,"digest":"$undefined"}
+31:"$35:metadata"

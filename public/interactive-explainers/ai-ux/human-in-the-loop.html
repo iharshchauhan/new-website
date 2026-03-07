@@ -1,0 +1,1445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>When to Keep Humans in the Loop — AI for PMs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css?v=8">
+  <style>
+    .article-hero { background: var(--accent-ux-gradient); }
+    .toc__list a:hover { color: var(--accent-ux); }
+    .prose blockquote { border-left-color: var(--accent-ux); }
+    .widget { background: var(--accent-ux-light); border-color: #C7D2FE; }
+    .widget__label { color: var(--accent-ux); }
+    .btn--primary { background: var(--accent-ux); }
+    .btn--active { background: var(--accent-ux); border-color: var(--accent-ux); }
+    .btn--secondary:hover:not(:disabled) { border-color: var(--accent-ux); color: var(--accent-ux); }
+
+    /* --- Widget 1: Automation Threshold Calculator --- */
+    .threshold-controls {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+      margin-top: var(--space-4);
+    }
+
+    .threshold-slider-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+    }
+
+    .threshold-slider-label {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      min-width: 120px;
+      flex-shrink: 0;
+      color: var(--color-text);
+    }
+
+    .threshold-slider-input {
+      flex: 1;
+      -webkit-appearance: none;
+      appearance: none;
+      height: 6px;
+      border-radius: 3px;
+      background: var(--color-border);
+      outline: none;
+    }
+    .threshold-slider-input::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-ux);
+      cursor: pointer;
+      border: 2px solid white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+    .threshold-slider-input::-moz-range-thumb {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent-ux);
+      cursor: pointer;
+      border: 2px solid white;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    }
+
+    .threshold-slider-value {
+      font-family: var(--font-mono);
+      font-size: var(--text-sm);
+      min-width: 80px;
+      text-align: right;
+      flex-shrink: 0;
+      color: var(--color-text);
+    }
+
+    .threshold-volume-select {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      padding: var(--space-2) var(--space-3);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+      flex: 1;
+      max-width: 200px;
+    }
+
+    .threshold-results {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-6);
+      margin-top: var(--space-6);
+    }
+
+    .threshold-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .threshold-stat {
+      text-align: center;
+      padding: var(--space-3);
+      background: var(--accent-ux-light);
+      border-radius: 8px;
+    }
+
+    .threshold-stat__value {
+      font-family: var(--font-mono);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--accent-ux);
+      display: block;
+    }
+
+    .threshold-stat__value--danger {
+      color: #DC2626;
+    }
+
+    .threshold-stat__label {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      margin-top: var(--space-1);
+      display: block;
+    }
+
+    .threshold-dot-grid {
+      display: grid;
+      grid-template-columns: repeat(50, 1fr);
+      gap: 2px;
+      margin-top: var(--space-4);
+    }
+
+    .threshold-dot {
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: #A5B4FC;
+      min-width: 4px;
+      transition: background var(--duration-fast);
+    }
+
+    .threshold-dot--error {
+      background: #EF4444;
+    }
+
+    .threshold-message {
+      margin-top: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      line-height: 1.55;
+    }
+
+    .threshold-message--green {
+      background: #F0FDF4;
+      border: 1px solid #A7F3D0;
+      color: #065F46;
+    }
+
+    .threshold-message--yellow {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      color: #92400E;
+    }
+
+    .threshold-message--red {
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #991B1B;
+    }
+
+    .threshold-presets {
+      margin-top: var(--space-4);
+    }
+
+    .threshold-presets__label {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-2);
+      display: block;
+    }
+
+    /* --- Widget 2: Review Queue Simulator --- */
+    .review-queue {
+      margin-top: var(--space-4);
+    }
+
+    .review-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+      gap: var(--space-3);
+      margin-bottom: var(--space-6);
+    }
+
+    .review-metric {
+      text-align: center;
+      padding: var(--space-3);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+    }
+
+    .review-metric__value {
+      font-family: var(--font-mono);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--accent-ux);
+      display: block;
+    }
+
+    .review-metric__label {
+      font-family: var(--font-sans);
+      font-size: 11px;
+      color: var(--color-text-secondary);
+      margin-top: 2px;
+      display: block;
+    }
+
+    .review-item {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+      margin-bottom: var(--space-3);
+      transition: all var(--duration-normal) var(--ease-out);
+      animation: messageSlideIn var(--duration-normal) var(--ease-out);
+    }
+
+    .review-item--processed {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+
+    .review-item__header {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-3);
+    }
+
+    .review-item__confidence {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 12px;
+      color: white;
+      flex-shrink: 0;
+    }
+
+    .review-item__confidence--high {
+      background: #059669;
+    }
+
+    .review-item__confidence--medium {
+      background: #D97706;
+    }
+
+    .review-item__confidence--low {
+      background: #DC2626;
+    }
+
+    .review-item__query {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+
+    .review-item__response {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+      padding: var(--space-3);
+      background: #F8F7F5;
+      border-radius: 6px;
+      margin-bottom: var(--space-3);
+    }
+
+    .review-item__actions {
+      display: flex;
+      gap: var(--space-2);
+    }
+
+    .review-item__result {
+      padding: var(--space-2) var(--space-3);
+      border-radius: 6px;
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      margin-top: var(--space-2);
+    }
+
+    .review-item__result--approved {
+      background: #F0FDF4;
+      color: #065F46;
+    }
+
+    .review-item__result--edited {
+      background: #FFFBEB;
+      color: #92400E;
+    }
+
+    .review-item__result--rejected {
+      background: #FEF2F2;
+      color: #991B1B;
+    }
+
+    .review-complete {
+      text-align: center;
+      padding: var(--space-8);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      display: none;
+    }
+
+    .review-complete__title {
+      font-family: var(--font-serif);
+      font-size: var(--text-lg);
+      font-weight: 600;
+      color: var(--accent-ux);
+      margin-bottom: var(--space-3);
+    }
+
+    .review-complete__text {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.55;
+    }
+
+    /* --- Widget 3: Feedback Loop Visualizer --- */
+    .feedback-canvas-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--color-surface);
+      border-radius: 8px;
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      margin-top: var(--space-4);
+    }
+
+    .feedback-canvas-wrap canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .feedback-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      gap: var(--space-4);
+      margin-top: var(--space-6);
+    }
+
+    .feedback-metric {
+      text-align: center;
+      padding: var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+    }
+
+    .feedback-metric__value {
+      font-family: var(--font-mono);
+      font-size: var(--text-xl);
+      font-weight: 600;
+      color: var(--accent-ux);
+      display: block;
+    }
+
+    .feedback-metric__label {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      margin-top: var(--space-1);
+      display: block;
+    }
+
+    .feedback-metric__sub {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      color: var(--color-text-secondary);
+      opacity: 0.7;
+      margin-top: 2px;
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .threshold-slider-row { flex-wrap: wrap; }
+      .threshold-slider-label { min-width: 100%; }
+      .threshold-stats { grid-template-columns: repeat(2, 1fr); }
+      .threshold-dot-grid { grid-template-columns: repeat(25, 1fr); }
+      .review-metrics { grid-template-columns: repeat(2, 1fr); }
+      .feedback-metrics { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="article-hero" id="article-hero">
+    <canvas class="article-hero__canvas" id="hero-canvas"></canvas>
+    <div class="article-hero__overlay"></div>
+    <div class="article-hero__content">
+      <nav class="breadcrumb breadcrumb--hero">
+        <a href="../index.html">AI for PMs</a> &nbsp;/&nbsp; <a href="index.html">AI UX &amp; Human-in-the-Loop</a> &nbsp;/&nbsp; <span>Part 2</span>
+      </nav>
+      <div class="article-header__meta" style="color: rgba(255,255,255,0.9);">Part 2 of 2 &middot; ~8 min read</div>
+      <h1 style="color: #fff;">When to Keep Humans in the Loop</h1>
+      <p class="lead" style="color: rgba(255,255,255,0.85);">Full automation sounds great until a 5% error rate meets a million decisions a day. Knowing where to draw the line is the hardest design call in AI products.</p>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc__inner">
+      <div class="toc__title">Contents</div>
+      <ol class="toc__list">
+        <li><span class="toc__numeral">I.</span><a href="#automation-threshold">The Automation Threshold</a></li>
+        <li><span class="toc__numeral">II.</span><a href="#review-queues">Review Queues</a></li>
+        <li><span class="toc__numeral">III.</span><a href="#escalation-patterns">Escalation Patterns</a></li>
+        <li><span class="toc__numeral">IV.</span><a href="#feedback-loops">Feedback Loops</a></li>
+        <li><span class="toc__numeral">V.</span><a href="#eighty-twenty">The 80/20 Rule</a></li>
+        <li><span class="toc__numeral">VI.</span><a href="#measuring-success">Measuring Success</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="epigraph">
+    <p class="epigraph__verse">
+      Ninety-five percent sounds like you're winning the fight,<br>
+      Till a million decisions turn five percent to blight.<br>
+      Automate the easy, flag the rest with care &mdash;<br>
+      The best AI products know when not to be there.
+    </p>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section I: The Automation Threshold
+         ================================================================ -->
+    <h2 id="automation-threshold"><span class="section-number">I</span> The Automation Threshold</h2>
+
+    <p>Every stakeholder meeting has the person who says "why can't we just automate all of it?" And the answer is never "we can't" &mdash; it's "what happens when we do and the model gets it wrong?"</p>
+
+    <p>A model that classifies customer support tickets at 95% accuracy sounds impressive. But that same 95% applied to medical triage means one in twenty patients gets a potentially dangerous misclassification. Same number, radically different consequences. <strong>The automation threshold isn't about model performance. It's about the cost of being wrong.</strong></p>
+
+    <p>This creates a spectrum. On one end, fully automated decisions where errors are cheap and reversible: auto-tagging photos, sorting emails into folders, generating first-draft summaries. On the other end, decisions where errors carry legal, financial, or human-safety consequences: approving loan applications, flagging child safety content, recommending treatment plans. Between these poles lies a broad gray zone where the right answer depends on your product, your users, and your risk tolerance.</p>
+
+    <div class="callout callout--insight">
+      <div class="callout__label">Key Insight</div>
+      <div class="callout__body">The automation threshold isn't about AI capability &mdash; it's about error cost. A 95% accurate system that handles medical diagnoses is dangerous. A 95% accurate system that tags photos is fine. <strong>The same accuracy rate can be brilliant or reckless depending on the domain.</strong></div>
+    </div>
+
+    <p>For PMs, the framework is straightforward: map every AI-powered decision in your product on two axes &mdash; error cost and decision volume. High error cost pushes you toward human review. High volume pushes you toward automation. The tension between these two forces is where product design happens.</p>
+
+    <!-- ================================================================
+         Section II: Review Queues
+         ================================================================ -->
+    <h2 id="review-queues"><span class="section-number">II</span> Review Queues</h2>
+
+    <p>The most common human-in-the-loop pattern is the review queue: AI handles the easy cases autonomously and routes uncertain ones to humans. Think of a content moderation system that auto-approves clearly safe posts and auto-removes obvious violations, but queues borderline content for human reviewers.</p>
+
+    <p>The difference between a review queue that works and one that becomes a bottleneck comes down to three design choices:</p>
+
+    <ol>
+      <li><strong>Sort by confidence, lowest first.</strong> Human attention is the scarce resource &mdash; possibly the only scarce resource in your system. Route it to the cases where AI is least certain and most likely to be wrong. A reviewer who spends their first hour rubber-stamping 99%-confidence items is burning the most valuable minutes of their shift.</li>
+      <li><strong>Show the AI's reasoning alongside the item.</strong> Don't just present the content &mdash; show <em>why</em> the AI flagged it. "Flagged for potential hate speech &mdash; keyword match on 'kill' in gaming context" gives the reviewer instant orientation. Without reasoning, every review starts from zero. That's not a review queue, it's a homework assignment.</li>
+      <li><strong>Make approve/edit/reject fast.</strong> If each review takes 30 seconds, your reviewers process 120 items per hour. If you can get it to 10 seconds through smart UI &mdash; keyboard shortcuts, pre-populated responses, one-click actions &mdash; that's 360 items per hour. You just tripled throughput without a single new hire.</li>
+    </ol>
+
+    <div class="callout callout--pm-tip">
+      <div class="callout__label">PM Tip</div>
+      <div class="callout__body">The best review queues get <em>shorter over time</em>, not longer. If your human review volume stays flat month over month, something is broken &mdash; either the model isn't learning from corrections, or your confidence thresholds aren't calibrated. Track review volume as a leading indicator of system health.</div>
+    </div>
+
+    <p>Explore how accuracy and volume interact:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 1: Automation Threshold Calculator
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-threshold">
+      <div class="widget__label">Calculate</div>
+      <div class="widget__title">Automation Threshold Calculator</div>
+      <div class="widget__instruction">Adjust accuracy and volume to see how many errors slip through. Try the presets to see realistic scenarios.</div>
+
+      <div class="threshold-controls">
+        <div class="threshold-slider-row">
+          <div class="threshold-slider-label">Accuracy</div>
+          <input type="range" class="threshold-slider-input" id="threshold-accuracy" min="900" max="999" value="950" step="1">
+          <span class="threshold-slider-value" id="threshold-accuracy-val">95.0%</span>
+        </div>
+        <div class="threshold-slider-row">
+          <div class="threshold-slider-label">Volume</div>
+          <select class="threshold-volume-select" id="threshold-volume">
+            <option value="100">100 / day</option>
+            <option value="1000">1,000 / day</option>
+            <option value="10000" selected>10,000 / day</option>
+            <option value="100000">100,000 / day</option>
+            <option value="1000000">1,000,000 / day</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="threshold-presets">
+        <span class="threshold-presets__label">Presets</span>
+        <div class="widget__controls" id="threshold-presets">
+          <button class="btn btn--secondary" data-acc="960" data-vol="10000">Email classification</button>
+          <button class="btn btn--secondary" data-acc="985" data-vol="1000">Medical triage</button>
+          <button class="btn btn--secondary" data-acc="940" data-vol="100000">Content moderation</button>
+          <button class="btn btn--secondary" data-acc="920" data-vol="1000">Code review</button>
+        </div>
+      </div>
+
+      <div class="threshold-results" id="threshold-results">
+        <div class="threshold-stats" id="threshold-stats"></div>
+        <div class="threshold-dot-grid" id="threshold-dots"></div>
+        <div class="threshold-message" id="threshold-message"></div>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section III: Escalation Patterns
+         ================================================================ -->
+    <h2 id="escalation-patterns"><span class="section-number">III</span> Escalation Patterns</h2>
+
+    <p>Not all human involvement looks the same. You wouldn't call the fire department for every smoke alarm, and you wouldn't ignore every one either. Three escalation patterns cover most production use cases:</p>
+
+    <p><strong>Confidence-based routing.</strong> The simplest pattern. The model outputs a confidence score alongside its decision. Above a threshold, the decision is automated. Below it, the item routes to a human. A customer support system might auto-respond when confidence exceeds 85% and queue everything else. The threshold is your dial between speed and safety &mdash; turn it up for more automation, down for more oversight.</p>
+
+    <p><strong>Exception handling.</strong> Instead of routing based on raw confidence, the model is trained to recognize specific classes of edge cases and flag them explicitly. "This looks like a request to close an account &mdash; routing to retention specialist" is more informative than "low confidence." Exception handling works best when you can enumerate the categories of risk upfront: cancellations, legal requests, safety concerns, VIP customers.</p>
+
+    <p><strong>Periodic sampling.</strong> Even high-confidence automated decisions need auditing. Random sampling pulls a percentage of automated decisions for human review after the fact. This catches systematic errors that confidence scores miss &mdash; like a model that confidently and consistently miscategorizes a new product line because it wasn't in the training data. Sampling rates between 1% and 5% are typical, with higher rates during model rollouts.</p>
+
+    <div class="callout callout--analogy">
+      <div class="callout__label">Analogy</div>
+      <div class="callout__body">Think of these patterns like airport security. Confidence-based routing is the metal detector &mdash; everyone passes through, and only those who trigger it get pulled aside. Exception handling is the watch list &mdash; specific categories flagged in advance. Periodic sampling is the random pat-down &mdash; a small percentage checked regardless of how clean they look.</div>
+    </div>
+
+    <p>Most production systems layer all three: confidence routing for real-time decisions, exception handling for known risk categories, and periodic sampling as a safety net. The combination creates defense in depth &mdash; no single failure mode goes unchecked.</p>
+
+    <p>Try processing a review queue yourself:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 2: Review Queue Simulator
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-review">
+      <div class="widget__label">Simulate</div>
+      <div class="widget__title">Review Queue Simulator</div>
+      <div class="widget__instruction">Process these AI-generated customer support responses. Approve, edit, or reject each one. Watch the metrics as you go.</div>
+
+      <div class="review-metrics" id="review-metrics">
+        <div class="review-metric">
+          <span class="review-metric__value" id="review-remaining">10</span>
+          <span class="review-metric__label">Remaining</span>
+        </div>
+        <div class="review-metric">
+          <span class="review-metric__value" id="review-approved">0%</span>
+          <span class="review-metric__label">Approval rate</span>
+        </div>
+        <div class="review-metric">
+          <span class="review-metric__value" id="review-edited">0%</span>
+          <span class="review-metric__label">Edit rate</span>
+        </div>
+        <div class="review-metric">
+          <span class="review-metric__value" id="review-rejected">0%</span>
+          <span class="review-metric__label">Rejection rate</span>
+        </div>
+        <div class="review-metric">
+          <span class="review-metric__value" id="review-time-saved">0%</span>
+          <span class="review-metric__label">Time saved vs. manual</span>
+        </div>
+      </div>
+
+      <div class="review-queue" id="review-queue"></div>
+
+      <div class="review-complete" id="review-complete">
+        <div class="review-complete__title">Queue Complete</div>
+        <div class="review-complete__text" id="review-summary-text"></div>
+        <button class="btn btn--primary" id="review-reset" style="margin-top: var(--space-4);">Reset Queue</button>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section IV: Feedback Loops
+         ================================================================ -->
+    <h2 id="feedback-loops"><span class="section-number">IV</span> Feedback Loops</h2>
+
+    <p>Human corrections aren't just quality control &mdash; they're training data. The most powerful HITL systems create a flywheel: AI generates a response, a human corrects it, those corrections become training data, the model improves, and fewer corrections are needed over time.</p>
+
+    <p>The flywheel has four stages:</p>
+
+    <ol>
+      <li><strong>Generate.</strong> The AI produces an output &mdash; a classification, a draft response, a recommendation.</li>
+      <li><strong>Correct.</strong> A human reviews the output and approves, edits, or rejects it. Each action is a labeled data point.</li>
+      <li><strong>Retrain.</strong> Accumulated corrections are used to fine-tune the model, update retrieval indexes, or adjust prompts. This can happen weekly, daily, or continuously depending on your architecture.</li>
+      <li><strong>Improve.</strong> The updated model handles more cases correctly, which means fewer items need human review, which frees up human capacity, which allows you to raise quality standards or reduce headcount.</li>
+    </ol>
+
+    <div class="callout callout--insight">
+      <div class="callout__label">Key Insight</div>
+      <div class="callout__body"><strong>Every human correction is worth more than just that one fixed response.</strong> It's a labeled example that prevents the same mistake across all future interactions. Teams that treat human review as a cost center miss the bigger picture: it's an investment in model quality. The question isn't "how do we minimize review?" but "how do we maximize the learning from every review?"</div>
+    </div>
+
+    <p>The compounding effect is significant. A team that systematically feeds corrections back into their model can see accuracy improve 10&ndash;15 percentage points over 12 weeks. A team that doesn't retrain watches accuracy stay flat while the world changes around the model. Visualize the difference below:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 3: Feedback Loop Visualizer
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-feedback">
+      <div class="widget__label">Visualize</div>
+      <div class="widget__title">Feedback Loop Visualizer</div>
+      <div class="widget__instruction">Watch how model accuracy diverges over 12 weeks depending on whether human corrections feed back into the model.</div>
+
+      <div class="feedback-canvas-wrap">
+        <canvas id="feedback-canvas"></canvas>
+      </div>
+
+      <div class="widget__controls widget__controls--mt">
+        <button class="btn btn--primary" id="feedback-replay">Replay</button>
+        <button class="btn btn--secondary" id="feedback-toggle">Hide "Without Feedback"</button>
+      </div>
+
+      <div class="feedback-metrics" id="feedback-metrics">
+        <div class="feedback-metric">
+          <span class="feedback-metric__value" id="fb-accuracy-with">94%</span>
+          <span class="feedback-metric__label">Accuracy (with feedback)</span>
+          <span class="feedback-metric__sub">Week 12</span>
+        </div>
+        <div class="feedback-metric">
+          <span class="feedback-metric__value" id="fb-accuracy-without">83%</span>
+          <span class="feedback-metric__label">Accuracy (without)</span>
+          <span class="feedback-metric__sub">Week 12</span>
+        </div>
+        <div class="feedback-metric">
+          <span class="feedback-metric__value" id="fb-review-volume">-62%</span>
+          <span class="feedback-metric__label">Human review volume</span>
+          <span class="feedback-metric__sub">Reduction by week 12</span>
+        </div>
+        <div class="feedback-metric">
+          <span class="feedback-metric__value" id="fb-automated">88%</span>
+          <span class="feedback-metric__label">Items fully automated</span>
+          <span class="feedback-metric__sub">With feedback loop</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section V: The 80/20 Rule
+         ================================================================ -->
+    <h2 id="eighty-twenty"><span class="section-number">V</span> The 80/20 Rule</h2>
+
+    <p>Here's a pattern you'll see in almost every AI product: roughly 80% of cases are straightforward &mdash; the model handles them correctly with high confidence and no human involvement. The remaining 20% are the hard cases: ambiguous inputs, edge cases, novel scenarios, or decisions where errors carry real consequences.</p>
+
+    <p>The goal of a HITL system isn't 100% automation &mdash; and if someone on your team is pitching that, they haven't thought through the long tail. Teams that chase full automation end up with brittle systems that fail spectacularly on the weird cases. Teams that review everything end up with expensive, slow systems that negate the point of using AI in the first place. The sweet spot is a clean handoff at the boundary between "easy" and "hard."</p>
+
+    <p>The boundary isn't static. As the feedback loop operates, cases that were once hard become easy. A customer complaint phrased in an unusual way stumps the model on week one, gets corrected by a human, feeds back into retraining, and gets handled automatically by week six. The 80/20 line drifts &mdash; more cases move from "needs review" to "fully automated" over time. But new edge cases always emerge, so the hard 20% refills with different content even as it shrinks in absolute terms.</p>
+
+    <div class="callout callout--summary">
+      <div class="callout__label">Takeaway</div>
+      <div class="callout__body"><strong>Design for the handoff, not for the end state.</strong> The most resilient HITL systems have clear escalation paths, fast context transfer from AI to human, and structured feedback channels from human back to AI. Get the boundary right and make it easy to cross in both directions &mdash; that matters more than where the boundary sits on day one.</div>
+    </div>
+
+    <!-- ================================================================
+         Section VI: Measuring Success
+         ================================================================ -->
+    <h2 id="measuring-success"><span class="section-number">VI</span> Measuring Success</h2>
+
+    <p>A HITL system without metrics is a faith-based initiative. You need to know whether automation is improving, whether humans are adding value, and whether the feedback loop is actually spinning or just decorative. Five metrics form the core dashboard:</p>
+
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>Metric</th>
+          <th>What It Measures</th>
+          <th>Target Direction</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Automation rate</td>
+          <td>Percentage of decisions handled without any human involvement</td>
+          <td>Up over time (indicates model improvement)</td>
+        </tr>
+        <tr>
+          <td>Escalation rate</td>
+          <td>Percentage of decisions routed to human review</td>
+          <td>Down over time (fewer uncertain cases)</td>
+        </tr>
+        <tr>
+          <td>Human agreement rate</td>
+          <td>How often humans approve the AI's suggestion without changes</td>
+          <td>Up over time (AI aligns with human judgment)</td>
+        </tr>
+        <tr>
+          <td>Time-to-resolution</td>
+          <td>Average time from item entering the queue to final decision</td>
+          <td>Down (faster throughput per reviewer)</td>
+        </tr>
+        <tr>
+          <td>Feedback incorporation rate</td>
+          <td>Percentage of human corrections that feed back into model retraining</td>
+          <td>As close to 100% as possible</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>Track these weekly. The automation rate and escalation rate tell you whether the system is getting smarter. The human agreement rate tells you whether the AI's suggestions are useful or just creating busywork. Time-to-resolution measures operational efficiency. And the feedback incorporation rate tells you whether the flywheel is actually spinning or just sitting idle.</p>
+
+    <p>The healthiest HITL systems show a consistent pattern: automation rate climbing, escalation rate falling, agreement rate rising, resolution time dropping. When all four move in the right direction simultaneously, you've built something rare &mdash; a system that genuinely learns from humans and gives that learning back in the form of better automation. That's not just a feature. That's a flywheel. And flywheels are the whole game.</p>
+  </article>
+
+  <!-- ================================================================
+       Article Navigation
+       ================================================================ -->
+  <nav class="article-nav">
+    <a href="designing-for-uncertainty.html">&larr; Part 1: Designing for Uncertainty</a>
+    <a href="../index.html">Back to all topics &rarr;</a>
+  </nav>
+
+  <!-- ================================================================
+       Scripts
+       ================================================================ -->
+  <script>
+  // ====================================================================
+  // Hero: Animated network/node background
+  // ====================================================================
+  (function() {
+    var canvas = document.getElementById('hero-canvas');
+    var ctx = canvas.getContext('2d');
+    var hero = document.getElementById('article-hero');
+    var nodes = [];
+    var numNodes = 40;
+    var connectionDist = 140;
+    var dpr = window.devicePixelRatio || 1;
+    var w, h;
+    var running = true;
+
+    function resize() {
+      var rect = hero.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function initNodes() {
+      nodes = [];
+      for (var i = 0; i < numNodes; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          r: 2 + Math.random() * 3,
+          pulse: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function draw() {
+      if (!running) return;
+      ctx.clearRect(0, 0, w, h);
+
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x += n.vx * 0.3;
+        n.y += n.vy * 0.3;
+        n.pulse += 0.015;
+        if (n.x < -20) n.x = w + 20;
+        if (n.x > w + 20) n.x = -20;
+        if (n.y < -20) n.y = h + 20;
+        if (n.y > h + 20) n.y = -20;
+      }
+
+      ctx.lineWidth = 1;
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var dx = nodes[i].x - nodes[j].x;
+          var dy = nodes[i].y - nodes[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < connectionDist) {
+            var alpha = (1 - dist / connectionDist) * 0.3;
+            ctx.strokeStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        var glow = 0.5 + 0.5 * Math.sin(n.pulse);
+        var r = n.r * (0.8 + 0.4 * glow);
+        ctx.fillStyle = 'rgba(255, 255, 255, ' + (0.4 + 0.4 * glow) + ')';
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+      running = entries[0].isIntersecting;
+      if (running) requestAnimationFrame(draw);
+    }, { threshold: 0 });
+
+    resize();
+    initNodes();
+    observer.observe(hero);
+    requestAnimationFrame(draw);
+
+    window.addEventListener('resize', function() {
+      resize();
+      initNodes();
+    });
+  })();
+
+  // ====================================================================
+  // Widget 1: Automation Threshold Calculator
+  // ====================================================================
+  (function() {
+    const accuracySlider = document.getElementById('threshold-accuracy');
+    const accuracyVal = document.getElementById('threshold-accuracy-val');
+    const volumeSelect = document.getElementById('threshold-volume');
+    const statsEl = document.getElementById('threshold-stats');
+    const dotsEl = document.getElementById('threshold-dots');
+    const messageEl = document.getElementById('threshold-message');
+    const presetsEl = document.getElementById('threshold-presets');
+
+    function formatComma(n) {
+      return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    function update() {
+      const accuracy = parseInt(accuracySlider.value) / 10;
+      const volume = parseInt(volumeSelect.value);
+      const errorRate = (100 - accuracy) / 100;
+      const errors = Math.round(volume * errorRate);
+      const correct = volume - errors;
+
+      accuracyVal.textContent = accuracy.toFixed(1) + '%';
+
+      // Stats
+      statsEl.innerHTML = '';
+      const stats = [
+        { value: formatComma(volume), label: 'Items processed / day' },
+        { value: formatComma(correct), label: 'Correct decisions' },
+        { value: formatComma(errors), label: 'Errors that reach users', danger: errors > 100 }
+      ];
+      stats.forEach(function(stat) {
+        const div = document.createElement('div');
+        div.className = 'threshold-stat';
+        div.innerHTML = '<span class="threshold-stat__value' + (stat.danger ? ' threshold-stat__value--danger' : '') + '">' + stat.value + '</span>' +
+                        '<span class="threshold-stat__label">' + stat.label + '</span>';
+        statsEl.appendChild(div);
+      });
+
+      // Dot grid: show 200 dots representing a sample
+      dotsEl.innerHTML = '';
+      const totalDots = 200;
+      const errorDots = Math.max(1, Math.round(totalDots * errorRate));
+      const sampleDots = Math.min(totalDots, totalDots);
+
+      for (let i = 0; i < sampleDots; i++) {
+        const dot = document.createElement('div');
+        dot.className = 'threshold-dot';
+        if (i >= sampleDots - errorDots) {
+          dot.className += ' threshold-dot--error';
+        }
+        dotsEl.appendChild(dot);
+      }
+
+      // Message
+      if (errors <= 5) {
+        messageEl.className = 'threshold-message threshold-message--green';
+        messageEl.innerHTML = '<strong>Low risk.</strong> At ' + accuracy.toFixed(1) + '% accuracy with ' + formatComma(volume) + ' items/day, only ' + formatComma(errors) + ' error' + (errors !== 1 ? 's' : '') + ' reach your users daily. Full automation is likely safe for low-stakes decisions.';
+      } else if (errors <= 500) {
+        messageEl.className = 'threshold-message threshold-message--yellow';
+        messageEl.innerHTML = '<strong>Moderate risk.</strong> At ' + accuracy.toFixed(1) + '% accuracy with ' + formatComma(volume) + ' items/day, ' + formatComma(errors) + ' errors reach your users every day. Consider human review for high-stakes categories.';
+      } else {
+        messageEl.className = 'threshold-message threshold-message--red';
+        messageEl.innerHTML = '<strong>High risk.</strong> At ' + accuracy.toFixed(1) + '% accuracy with ' + formatComma(volume) + ' items/day, ' + formatComma(errors) + ' errors reach your users every day. Human-in-the-loop review is strongly recommended.';
+      }
+    }
+
+    accuracySlider.addEventListener('input', update);
+    volumeSelect.addEventListener('change', update);
+
+    presetsEl.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-acc]');
+      if (!btn) return;
+      accuracySlider.value = parseInt(btn.dataset.acc);
+      volumeSelect.value = btn.dataset.vol;
+
+      // Highlight active preset
+      presetsEl.querySelectorAll('.btn').forEach(function(b) {
+        b.classList.remove('btn--active');
+      });
+      btn.classList.add('btn--active');
+
+      update();
+    });
+
+    update();
+  })();
+
+  // ====================================================================
+  // Widget 2: Review Queue Simulator
+  // ====================================================================
+  (function() {
+    const items = [
+      {
+        query: 'Where is my order? I placed it 5 days ago.',
+        response: 'I can see your order #4821 was shipped on Monday and is currently in transit. The tracking number is TRK-8847291. Based on the carrier estimate, it should arrive within 1-2 business days. You can track it in real-time using the link in your shipping confirmation email.',
+        confidence: 95,
+        needsEdit: false
+      },
+      {
+        query: 'I want a refund. The product was nothing like the description.',
+        response: 'I understand your frustration and I apologize for the discrepancy. I have initiated a full refund to your original payment method. You should see the funds within 5-7 business days. There is no need to return the item.',
+        confidence: 42,
+        needsEdit: true
+      },
+      {
+        query: 'Can you help me reset my password?',
+        response: 'Of course! I have sent a password reset link to the email address associated with your account. Please check your inbox (and spam folder) for an email from us. The link will expire in 24 hours. If you do not receive it within a few minutes, let me know and I can resend it.',
+        confidence: 97,
+        needsEdit: false
+      },
+      {
+        query: 'I was charged twice for the same subscription.',
+        response: 'I see two charges on your account dated March 12th and March 14th. The March 14th charge appears to be a duplicate. I have flagged this for our billing team and will process a refund for the duplicate charge immediately. You will receive a confirmation email shortly.',
+        confidence: 61,
+        needsEdit: true
+      },
+      {
+        query: 'Your app keeps crashing on my iPhone.',
+        response: 'I am sorry to hear about the crashes. Here are a few steps that usually resolve this: 1) Make sure you are on the latest app version (check the App Store for updates), 2) Try force-closing and reopening the app, 3) Restart your iPhone. If the issue persists, please let me know your iOS version and I will escalate this to our engineering team.',
+        confidence: 88,
+        needsEdit: false
+      },
+      {
+        query: 'I need to cancel my account immediately and delete all my data.',
+        response: 'I can help you with that. I have cancelled your subscription effective immediately. You will not be charged again. Regarding data deletion, I have submitted a request to permanently delete all personal data associated with your account per our privacy policy. This process takes up to 30 days to complete.',
+        confidence: 45,
+        needsEdit: true
+      },
+      {
+        query: 'Do you offer a student discount?',
+        response: 'Yes, we do! Students get 40% off any annual plan. To verify your student status, just sign up with your .edu email address or upload a valid student ID at checkout. The discount applies automatically once verified.',
+        confidence: 92,
+        needsEdit: false
+      },
+      {
+        query: 'Your website says my coupon code is invalid but I just received it today.',
+        response: 'I apologize for the inconvenience. I have looked into this and it appears the coupon code SAVE20 was activated on our end but may take up to an hour to propagate to all systems. Could you try again in about 30 minutes? If it still does not work, I can manually apply the 20% discount to your order.',
+        confidence: 73,
+        needsEdit: false
+      },
+      {
+        query: 'I accidentally upgraded to the wrong plan. Can you switch me back?',
+        response: 'No problem at all. I have switched your account back to the Basic plan and issued a prorated refund of $12.50 for the difference. The change is effective immediately and you will see the refund in 3-5 business days.',
+        confidence: 54,
+        needsEdit: true
+      },
+      {
+        query: 'My colleague says she cannot access the shared workspace I created.',
+        response: 'Let me help troubleshoot that. First, please confirm you have added her email address as a collaborator in the workspace settings. If her email is already listed, ask her to check for an invitation email or try logging out and back in. If the issue continues, it may be a permissions conflict with her account tier.',
+        confidence: 81,
+        needsEdit: false
+      }
+    ];
+
+    // Sort by confidence (lowest first)
+    items.sort(function(a, b) { return a.confidence - b.confidence; });
+
+    let processed = 0;
+    let approvals = 0;
+    let edits = 0;
+    let rejections = 0;
+
+    const queueEl = document.getElementById('review-queue');
+    const completeEl = document.getElementById('review-complete');
+    const summaryTextEl = document.getElementById('review-summary-text');
+    const resetBtn = document.getElementById('review-reset');
+
+    function getConfidenceClass(conf) {
+      if (conf >= 85) return 'high';
+      if (conf >= 60) return 'medium';
+      return 'low';
+    }
+
+    function updateMetrics() {
+      const total = processed || 1;
+      document.getElementById('review-remaining').textContent = items.length - processed;
+      document.getElementById('review-approved').textContent = Math.round((approvals / total) * 100) + '%';
+      document.getElementById('review-edited').textContent = Math.round((edits / total) * 100) + '%';
+      document.getElementById('review-rejected').textContent = Math.round((rejections / total) * 100) + '%';
+
+      // Time saved: approvals save 100%, edits save 60%, rejections save 0%
+      const manualTime = processed * 120; // 120 seconds per manual response
+      const reviewTime = approvals * 10 + edits * 45 + rejections * 120;
+      const timeSaved = manualTime > 0 ? Math.round(((manualTime - reviewTime) / manualTime) * 100) : 0;
+      document.getElementById('review-time-saved').textContent = timeSaved + '%';
+    }
+
+    function buildQueue() {
+      queueEl.innerHTML = '';
+      processed = 0;
+      approvals = 0;
+      edits = 0;
+      rejections = 0;
+      completeEl.style.display = 'none';
+
+      items.forEach(function(item, index) {
+        const div = document.createElement('div');
+        div.className = 'review-item';
+        div.dataset.index = index;
+
+        const confClass = getConfidenceClass(item.confidence);
+
+        div.innerHTML =
+          '<div class="review-item__header">' +
+            '<span class="review-item__confidence review-item__confidence--' + confClass + '">' + item.confidence + '% confidence</span>' +
+            '<span class="review-item__query">' + item.query + '</span>' +
+          '</div>' +
+          '<div class="review-item__response">' + item.response + '</div>' +
+          '<div class="review-item__actions">' +
+            '<button class="btn btn--secondary" data-action="approve" data-idx="' + index + '">Approve</button>' +
+            '<button class="btn btn--secondary" data-action="edit" data-idx="' + index + '">Edit</button>' +
+            '<button class="btn btn--secondary" data-action="reject" data-idx="' + index + '">Reject</button>' +
+          '</div>';
+
+        queueEl.appendChild(div);
+      });
+
+      updateMetrics();
+    }
+
+    function processItem(index, action) {
+      const itemEl = queueEl.querySelector('[data-index="' + index + '"]');
+      if (!itemEl || itemEl.classList.contains('review-item--processed')) return;
+
+      processed++;
+      if (action === 'approve') approvals++;
+      else if (action === 'edit') edits++;
+      else if (action === 'reject') rejections++;
+
+      // Disable buttons and show result
+      const actionsEl = itemEl.querySelector('.review-item__actions');
+      actionsEl.innerHTML = '';
+
+      const resultDiv = document.createElement('div');
+      const labels = { approve: 'Approved', edit: 'Edited', reject: 'Rejected' };
+      resultDiv.className = 'review-item__result review-item__result--' + (action === 'approve' ? 'approved' : action === 'edit' ? 'edited' : 'rejected');
+      resultDiv.textContent = labels[action];
+      actionsEl.appendChild(resultDiv);
+
+      setTimeout(function() {
+        itemEl.classList.add('review-item--processed');
+      }, 300);
+
+      updateMetrics();
+
+      if (processed === items.length) {
+        setTimeout(showComplete, 500);
+      }
+    }
+
+    function showComplete() {
+      completeEl.style.display = 'block';
+
+      const total = items.length;
+      const lowConfItems = items.filter(function(it) { return it.confidence < 60; }).length;
+      const highConfItems = items.filter(function(it) { return it.confidence >= 85; }).length;
+
+      let insight = 'You processed all ' + total + ' items. ';
+      if (approvals > edits + rejections) {
+        insight += 'The high approval rate suggests AI responses are generally solid. ';
+      }
+      if (edits > 0 || rejections > 0) {
+        insight += 'Notice that most edits and rejections concentrated on low-confidence items ' +
+          '(' + lowConfItems + ' items below 60% confidence). This validates confidence-based routing: ' +
+          'if you auto-sent the ' + highConfItems + ' high-confidence responses, human reviewers could focus ' +
+          'entirely on the uncertain cases.';
+      }
+
+      summaryTextEl.textContent = insight;
+    }
+
+    queueEl.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-action]');
+      if (!btn) return;
+      processItem(parseInt(btn.dataset.idx), btn.dataset.action);
+    });
+
+    resetBtn.addEventListener('click', buildQueue);
+
+    buildQueue();
+  })();
+
+  // ====================================================================
+  // Widget 3: Feedback Loop Visualizer
+  // ====================================================================
+  (function() {
+    const canvas = document.getElementById('feedback-canvas');
+    const ctx = canvas.getContext('2d');
+    const wrap = canvas.parentElement;
+    const replayBtn = document.getElementById('feedback-replay');
+    const toggleBtn = document.getElementById('feedback-toggle');
+
+    // Data: accuracy per week (0-12)
+    const withFeedback =    [82, 83, 85, 87, 88, 89, 90, 91, 92, 92.5, 93, 93.5, 94];
+    const withoutFeedback = [82, 82.5, 83, 83, 82.5, 83, 83, 82.5, 83, 83, 82.5, 83, 83];
+
+    const annotations = [
+      { week: 3, label: 'First retraining batch' },
+      { week: 8, label: 'Review volume drops 40%' }
+    ];
+
+    let showWithout = true;
+    let animProgress = 0; // 0 to 1
+    let animRAF = null;
+    let dpr = window.devicePixelRatio || 1;
+    let cw, ch;
+
+    // Chart dimensions
+    const padLeft = 60;
+    const padRight = 30;
+    const padTop = 40;
+    const padBottom = 50;
+
+    function resize() {
+      const rect = wrap.getBoundingClientRect();
+      dpr = window.devicePixelRatio || 1;
+      cw = rect.width;
+      ch = rect.height;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      drawChart();
+    }
+
+    function weekToX(week) {
+      return padLeft + (week / 12) * (cw - padLeft - padRight);
+    }
+
+    function accToY(acc) {
+      // Range: 75% to 100%
+      const minAcc = 75;
+      const maxAcc = 100;
+      const t = (acc - minAcc) / (maxAcc - minAcc);
+      return padTop + (1 - t) * (ch - padTop - padBottom);
+    }
+
+    function drawChart() {
+      ctx.clearRect(0, 0, cw, ch);
+
+      // Background
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, cw, ch);
+
+      // Grid lines
+      ctx.strokeStyle = '#F0EEEA';
+      ctx.lineWidth = 1;
+      for (let acc = 80; acc <= 100; acc += 5) {
+        const y = accToY(acc);
+        ctx.beginPath();
+        ctx.moveTo(padLeft, y);
+        ctx.lineTo(cw - padRight, y);
+        ctx.stroke();
+
+        // Y-axis labels
+        ctx.fillStyle = '#9CA3AF';
+        ctx.font = '11px Inter, system-ui, sans-serif';
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(acc + '%', padLeft - 10, y);
+      }
+
+      // X-axis labels
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'top';
+      for (let w = 0; w <= 12; w += 2) {
+        const x = weekToX(w);
+        ctx.fillStyle = '#9CA3AF';
+        ctx.font = '11px Inter, system-ui, sans-serif';
+        ctx.fillText('W' + w, x, ch - padBottom + 10);
+
+        // Tick mark
+        ctx.strokeStyle = '#E8E6E2';
+        ctx.beginPath();
+        ctx.moveTo(x, ch - padBottom);
+        ctx.lineTo(x, ch - padBottom + 5);
+        ctx.stroke();
+      }
+
+      // Axis labels
+      ctx.fillStyle = '#6B6B6B';
+      ctx.font = '600 11px Inter, system-ui, sans-serif';
+      ctx.textAlign = 'center';
+      ctx.fillText('Week', cw / 2, ch - 8);
+
+      ctx.save();
+      ctx.translate(14, (padTop + ch - padBottom) / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.textAlign = 'center';
+      ctx.fillText('Accuracy', 0, 0);
+      ctx.restore();
+
+      // Calculate how many data points to draw based on animProgress
+      const maxPoints = Math.min(13, Math.floor(animProgress * 13) + 1);
+      const partialT = (animProgress * 13) - Math.floor(animProgress * 13);
+
+      // Draw "Without Feedback" line
+      if (showWithout && maxPoints > 0) {
+        ctx.strokeStyle = '#D1D5DB';
+        ctx.lineWidth = 2.5;
+        ctx.setLineDash([6, 4]);
+        ctx.beginPath();
+        for (let i = 0; i < maxPoints; i++) {
+          const x = weekToX(i);
+          const y = accToY(withoutFeedback[i]);
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        if (maxPoints < 13 && maxPoints > 0) {
+          const nextIdx = Math.min(maxPoints, 12);
+          const prevIdx = maxPoints - 1;
+          const ix = weekToX(prevIdx) + (weekToX(nextIdx) - weekToX(prevIdx)) * partialT;
+          const iy = accToY(withoutFeedback[prevIdx]) + (accToY(withoutFeedback[nextIdx]) - accToY(withoutFeedback[prevIdx])) * partialT;
+          ctx.lineTo(ix, iy);
+        }
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        // Label
+        if (animProgress >= 0.95) {
+          const lx = weekToX(12) + 5;
+          const ly = accToY(withoutFeedback[12]);
+          ctx.fillStyle = '#9CA3AF';
+          ctx.font = '500 11px Inter, system-ui, sans-serif';
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+        }
+      }
+
+      // Draw "With Feedback" line
+      if (maxPoints > 0) {
+        ctx.strokeStyle = '#4F46E5';
+        ctx.lineWidth = 3;
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        for (let i = 0; i < maxPoints; i++) {
+          const x = weekToX(i);
+          const y = accToY(withFeedback[i]);
+          if (i === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        if (maxPoints < 13 && maxPoints > 0) {
+          const nextIdx = Math.min(maxPoints, 12);
+          const prevIdx = maxPoints - 1;
+          const ix = weekToX(prevIdx) + (weekToX(nextIdx) - weekToX(prevIdx)) * partialT;
+          const iy = accToY(withFeedback[prevIdx]) + (accToY(withFeedback[nextIdx]) - accToY(withFeedback[prevIdx])) * partialT;
+          ctx.lineTo(ix, iy);
+        }
+        ctx.stroke();
+
+        // Dots on with-feedback line
+        ctx.fillStyle = '#4F46E5';
+        for (let i = 0; i < maxPoints; i++) {
+          ctx.beginPath();
+          ctx.arc(weekToX(i), accToY(withFeedback[i]), 4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // Dots on without-feedback line
+      if (showWithout && maxPoints > 0) {
+        ctx.fillStyle = '#D1D5DB';
+        for (let i = 0; i < maxPoints; i++) {
+          ctx.beginPath();
+          ctx.arc(weekToX(i), accToY(withoutFeedback[i]), 3, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      }
+
+      // Annotations (only show when animation has reached them)
+      if (animProgress >= 0.3) {
+        annotations.forEach(function(ann) {
+          const weekProgress = ann.week / 12;
+          if (animProgress < weekProgress) return;
+
+          const x = weekToX(ann.week);
+          const y = accToY(withFeedback[ann.week]);
+
+          // Vertical dashed line
+          ctx.strokeStyle = 'rgba(79, 70, 229, 0.3)';
+          ctx.lineWidth = 1;
+          ctx.setLineDash([3, 3]);
+          ctx.beginPath();
+          ctx.moveTo(x, y - 8);
+          ctx.lineTo(x, padTop + 5);
+          ctx.stroke();
+          ctx.setLineDash([]);
+
+          // Label background
+          ctx.font = '500 10px Inter, system-ui, sans-serif';
+          const textWidth = ctx.measureText(ann.label).width;
+          const labelX = Math.min(x - textWidth / 2 - 6, cw - padRight - textWidth - 12);
+          const labelXClamped = Math.max(padLeft, labelX);
+          ctx.fillStyle = 'rgba(79, 70, 229, 0.1)';
+          ctx.beginPath();
+          ctx.roundRect(labelXClamped, padTop - 2, textWidth + 12, 18, 4);
+          ctx.fill();
+
+          ctx.fillStyle = '#4F46E5';
+          ctx.textAlign = 'left';
+          ctx.textBaseline = 'middle';
+          ctx.fillText(ann.label, labelXClamped + 6, padTop + 7);
+        });
+      }
+
+      // Legend
+      if (animProgress > 0.1) {
+        const legendX = padLeft + 10;
+        const legendY = padTop + 10;
+
+        // With feedback
+        ctx.strokeStyle = '#4F46E5';
+        ctx.lineWidth = 3;
+        ctx.setLineDash([]);
+        ctx.beginPath();
+        ctx.moveTo(legendX, legendY);
+        ctx.lineTo(legendX + 25, legendY);
+        ctx.stroke();
+        ctx.fillStyle = '#4F46E5';
+        ctx.font = '500 11px Inter, system-ui, sans-serif';
+        ctx.textAlign = 'left';
+        ctx.textBaseline = 'middle';
+        ctx.fillText('With feedback loop', legendX + 30, legendY);
+
+        // Without feedback
+        if (showWithout) {
+          ctx.strokeStyle = '#D1D5DB';
+          ctx.lineWidth = 2.5;
+          ctx.setLineDash([6, 4]);
+          ctx.beginPath();
+          ctx.moveTo(legendX, legendY + 18);
+          ctx.lineTo(legendX + 25, legendY + 18);
+          ctx.stroke();
+          ctx.setLineDash([]);
+          ctx.fillStyle = '#9CA3AF';
+          ctx.fillText('Without feedback loop', legendX + 30, legendY + 18);
+        }
+      }
+    }
+
+    function animate() {
+      if (animRAF) cancelAnimationFrame(animRAF);
+      animProgress = 0;
+      const duration = 4000; // 4 seconds
+      const startTime = performance.now();
+
+      function step(now) {
+        const elapsed = now - startTime;
+        animProgress = Math.min(elapsed / duration, 1);
+        // Ease out
+        animProgress = 1 - Math.pow(1 - animProgress, 2);
+        drawChart();
+        if (animProgress < 1) {
+          animRAF = requestAnimationFrame(step);
+        }
+      }
+      animRAF = requestAnimationFrame(step);
+    }
+
+    replayBtn.addEventListener('click', function() {
+      animate();
+    });
+
+    toggleBtn.addEventListener('click', function() {
+      showWithout = !showWithout;
+      toggleBtn.textContent = showWithout ? 'Hide "Without Feedback"' : 'Show "Without Feedback"';
+      drawChart();
+    });
+
+    window.addEventListener('resize', resize);
+
+    // Initial setup with intersection observer to trigger animation when visible
+    const observer = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        resize();
+        animate();
+        observer.disconnect();
+      }
+    }, { threshold: 0.3 });
+    observer.observe(wrap);
+
+    resize();
+    drawChart();
+  })();
+  </script>
+
+</body>
+</html>
