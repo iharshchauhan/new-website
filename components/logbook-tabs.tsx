@@ -46,11 +46,13 @@ function pickNoteIcon(slug: string) {
 }
 
 export function LogbookTabs({ posts }: { posts: Post[] }) {
+  const POSTS_PER_PAGE = 7;
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
   const rawTabFromUrl = searchParams.get('tab');
+  const rawPageFromUrl = Number(searchParams.get('page') || '1');
   const tabFromUrl = rawTabFromUrl
     ? (LEGACY_TAB_MAP[rawTabFromUrl] || rawTabFromUrl)
     : null;
@@ -63,14 +65,33 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
     setActiveTabState(tabId);
     const params = new URLSearchParams(searchParams.toString());
     params.set('tab', tabId);
+    params.set('page', '1');
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
-  const filteredPosts =
+  const filteredPosts = (
     activeTab === 'All'
       ? posts
-      : posts.filter((post) => post.meta.category === activeTab);
+      : posts.filter((post) => post.meta.category === activeTab)
+  ).sort((a, b) => (a.meta.date > b.meta.date ? -1 : 1));
   const notesMode = activeTab === 'Notes';
+  const totalPages =
+    activeTab === 'All' ? Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE)) : 1;
+  const currentPage =
+    activeTab === 'All'
+      ? Math.min(totalPages, Math.max(1, Number.isFinite(rawPageFromUrl) ? rawPageFromUrl : 1))
+      : 1;
+  const paginatedPosts =
+    activeTab === 'All'
+      ? filteredPosts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE)
+      : filteredPosts;
+
+  const handlePageChange = (nextPage: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('tab', 'All');
+    params.set('page', String(nextPage));
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
 
   return (
     <div className="space-y-10">
@@ -97,7 +118,7 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
       </div>
 
       <div className="mx-auto max-w-5xl flex flex-col gap-4">
-        {filteredPosts.map((post) => {
+        {paginatedPosts.map((post) => {
           const isProject = post.meta.category === 'Experiments';
 
           return (
@@ -159,12 +180,50 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
           );
         })}
 
-        {filteredPosts.length === 0 && (
+        {paginatedPosts.length === 0 && (
           <div className="text-center py-24 text-muted-foreground bg-card rounded-[2rem] border border-border">
             No posts found in this category.
           </div>
         )}
       </div>
+
+      {activeTab === 'All' && totalPages > 1 && (
+        <div className="mx-auto max-w-5xl flex items-center justify-center gap-2 pt-2">
+          <button
+            type="button"
+            onClick={() => handlePageChange(currentPage - 1)}
+            disabled={currentPage === 1}
+            className="rounded-lg border border-border/60 bg-white/55 px-3 py-1.5 text-sm font-medium text-foreground disabled:opacity-40 disabled:cursor-not-allowed hover:bg-white/85 transition-colors"
+          >
+            Prev
+          </button>
+
+          {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+            <button
+              type="button"
+              key={page}
+              onClick={() => handlePageChange(page)}
+              className={cn(
+                'rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors',
+                currentPage === page
+                  ? 'border-primary/40 bg-primary/10 text-primary'
+                  : 'border-border/60 bg-white/55 text-foreground hover:bg-white/85',
+              )}
+            >
+              {page}
+            </button>
+          ))}
+
+          <button
+            type="button"
+            onClick={() => handlePageChange(currentPage + 1)}
+            disabled={currentPage === totalPages}
+            className="rounded-lg border border-border/60 bg-white/55 px-3 py-1.5 text-sm font-medium text-foreground disabled:opacity-40 disabled:cursor-not-allowed hover:bg-white/85 transition-colors"
+          >
+            Next
+          </button>
+        </div>
+      )}
     </div>
   );
 }
