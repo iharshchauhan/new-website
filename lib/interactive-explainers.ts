@@ -7,6 +7,8 @@ type InteractiveAsset = {
   section: string;
 };
 
+export const INTERACTIVE_EXPLAINERS_OVERVIEW_PATH = "/interactive-explainers/index.html";
+
 function humanizeSegment(segment: string) {
   return segment
     .replace(/[-_]+/g, " ")

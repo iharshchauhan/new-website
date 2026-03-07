@@ -20,6 +20,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
   }
 
   const topicItems = getProjectTopicItems(project);
+  const isInteractiveFramework = project === 'interactive-explainers-framework';
 
   return (
     <article className="max-w-[96rem] mx-auto space-y-10">
@@ -56,7 +57,23 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
 
       <div className="grid lg:grid-cols-[340px_minmax(0,1fr)] gap-10 items-start">
         <div className="space-y-12 lg:order-2">
-          <div className="rounded-2xl border border-white/60 bg-[#f6f4ea]/85 px-6 sm:px-12 py-8">
+          <div
+            className={
+              isInteractiveFramework
+                ? "rounded-[2rem] border border-white/70 bg-[linear-gradient(180deg,rgba(250,247,238,0.97)_0%,rgba(244,239,226,0.93)_100%)] px-6 py-8 shadow-[0_28px_80px_rgba(36,60,53,0.08)] sm:px-12"
+                : "rounded-2xl border border-white/60 bg-[#f6f4ea]/85 px-6 sm:px-12 py-8"
+            }
+          >
+            {isInteractiveFramework && (
+              <div className="mb-8 flex flex-wrap items-center gap-3 border-b border-border/50 pb-5">
+                <span className="rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.24em] text-primary">
+                  AI Product Playbook
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  A structured entry point into the explainer library.
+                </span>
+              </div>
+            )}
             <MDXContent content={post.content} />
           </div>
         </div>
