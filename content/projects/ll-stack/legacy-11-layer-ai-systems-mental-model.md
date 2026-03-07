@@ -1,6 +1,6 @@
 ﻿---
 title: "Legacy: 11-Layer AI Systems Mental Model"
-date: "2025-11-13"
+date: "2025-04-13"
 description: "Original 11-layer mental model that later evolved into the practical 5-layer LLM stack."
 category: "Frameworks"
 tags: ["Framework", "AI Systems", "Legacy"]
