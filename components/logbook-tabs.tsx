@@ -1,8 +1,4 @@
-'use client';
-
-import { useMemo, useState } from 'react';
 import Link from 'next/link';
-import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ArrowRight, BookOpen, Briefcase, LayoutTemplate, Sparkles, Star, Layers } from 'lucide-react';
 import { Post } from '@/lib/mdx';
 import { cn } from '@/lib/utils';
@@ -26,7 +22,7 @@ const TABS = [
   { id: 'Systems', label: 'Systems', icon: Briefcase },
   { id: 'Playbooks', label: 'Playbooks', icon: LayoutTemplate },
   { id: 'Notes', label: 'Notes', icon: Star },
-];
+] as const;
 
 const NOTE_BADGE_STYLES = [
   'bg-[#0f7770] text-[#d7fff8]',
@@ -41,35 +37,56 @@ function pickNoteBadge(slug: string) {
   const hash = Array.from(slug).reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return NOTE_BADGE_STYLES[hash % NOTE_BADGE_STYLES.length];
 }
+
 function pickNoteIcon(slug: string) {
   const hash = Array.from(slug).reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return NOTE_BADGE_ICONS[hash % NOTE_BADGE_ICONS.length];
 }
 
-export function LogbookTabs({ posts }: { posts: Post[] }) {
-  const POSTS_PER_PAGE = 7;
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
+function normalizeActiveTab(rawTab?: string) {
+  if (!rawTab) {
+    return 'All';
+  }
 
-  const rawTabFromUrl = searchParams.get('tab');
-  const rawPageFromUrl = Number(searchParams.get('page') || '1');
-  const tabFromUrl = rawTabFromUrl
-    ? (LEGACY_TAB_MAP[rawTabFromUrl] || rawTabFromUrl)
-    : null;
-  const validTabIds = useMemo(() => new Set(TABS.map((tab) => tab.id)), []);
-  const [activeTabState, setActiveTabState] = useState('All');
-  const activeTab =
-    tabFromUrl && validTabIds.has(tabFromUrl) ? tabFromUrl : activeTabState;
+  const mapped = LEGACY_TAB_MAP[rawTab] || rawTab;
+  return TABS.some((tab) => tab.id === mapped) ? mapped : 'All';
+}
 
-  const handleTabChange = (tabId: string) => {
-    setActiveTabState(tabId);
-    const params = new URLSearchParams(searchParams.toString());
+function normalizePage(rawPage?: string, totalPages = 1) {
+  const parsed = Number(rawPage || '1');
+  if (!Number.isFinite(parsed)) {
+    return 1;
+  }
+
+  return Math.min(totalPages, Math.max(1, parsed));
+}
+
+function buildLogbookHref(tabId: string, page = 1) {
+  const params = new URLSearchParams();
+
+  if (tabId !== 'All') {
     params.set('tab', tabId);
-    params.set('page', '1');
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-  };
+  }
 
+  if (tabId === 'All' && page > 1) {
+    params.set('page', String(page));
+  }
+
+  const query = params.toString();
+  return query ? `/logbook?${query}` : '/logbook';
+}
+
+export function LogbookTabs({
+  posts,
+  rawTab,
+  rawPage,
+}: {
+  posts: Post[];
+  rawTab?: string;
+  rawPage?: string;
+}) {
+  const POSTS_PER_PAGE = 7;
+  const activeTab = normalizeActiveTab(rawTab);
   const filteredPosts = (
     activeTab === 'All'
       ? posts
@@ -78,21 +95,11 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
   const notesMode = activeTab === 'Notes';
   const totalPages =
     activeTab === 'All' ? Math.max(1, Math.ceil(filteredPosts.length / POSTS_PER_PAGE)) : 1;
-  const currentPage =
-    activeTab === 'All'
-      ? Math.min(totalPages, Math.max(1, Number.isFinite(rawPageFromUrl) ? rawPageFromUrl : 1))
-      : 1;
+  const currentPage = activeTab === 'All' ? normalizePage(rawPage, totalPages) : 1;
   const paginatedPosts =
     activeTab === 'All'
       ? filteredPosts.slice((currentPage - 1) * POSTS_PER_PAGE, currentPage * POSTS_PER_PAGE)
       : filteredPosts;
-
-  const handlePageChange = (nextPage: number) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set('tab', 'All');
-    params.set('page', String(nextPage));
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-  };
 
   return (
     <div className="space-y-10">
@@ -100,10 +107,11 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
         {TABS.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
+
           return (
-            <button
+            <Link
               key={tab.id}
-              onClick={() => handleTabChange(tab.id)}
+              href={buildLogbookHref(tab.id)}
               className={cn(
                 'inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm font-semibold transition-colors',
                 isActive
@@ -113,7 +121,7 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
             >
               <Icon className="h-3.5 w-3.5" />
               <span>{tab.label}</span>
-            </button>
+            </Link>
           );
         })}
       </div>
@@ -191,20 +199,23 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
 
       {activeTab === 'All' && totalPages > 1 && (
         <div className="mx-auto max-w-5xl flex items-center justify-center gap-2 pt-2">
-          <button
-            type="button"
-            onClick={() => handlePageChange(currentPage - 1)}
-            disabled={currentPage === 1}
-            className="rounded-lg border border-border/60 bg-white/55 px-3 py-1.5 text-sm font-medium text-foreground disabled:opacity-40 disabled:cursor-not-allowed hover:bg-white/85 transition-colors"
+          <Link
+            href={buildLogbookHref('All', currentPage - 1)}
+            aria-disabled={currentPage === 1}
+            className={cn(
+              'rounded-lg border border-border/60 bg-white/55 px-3 py-1.5 text-sm font-medium text-foreground transition-colors',
+              currentPage === 1
+                ? 'pointer-events-none opacity-40'
+                : 'hover:bg-white/85',
+            )}
           >
             Prev
-          </button>
+          </Link>
 
           {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
-            <button
-              type="button"
+            <Link
               key={page}
-              onClick={() => handlePageChange(page)}
+              href={buildLogbookHref('All', page)}
               className={cn(
                 'rounded-lg border px-3 py-1.5 text-sm font-medium transition-colors',
                 currentPage === page
@@ -213,17 +224,21 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
               )}
             >
               {page}
-            </button>
+            </Link>
           ))}
 
-          <button
-            type="button"
-            onClick={() => handlePageChange(currentPage + 1)}
-            disabled={currentPage === totalPages}
-            className="rounded-lg border border-border/60 bg-white/55 px-3 py-1.5 text-sm font-medium text-foreground disabled:opacity-40 disabled:cursor-not-allowed hover:bg-white/85 transition-colors"
+          <Link
+            href={buildLogbookHref('All', currentPage + 1)}
+            aria-disabled={currentPage === totalPages}
+            className={cn(
+              'rounded-lg border border-border/60 bg-white/55 px-3 py-1.5 text-sm font-medium text-foreground transition-colors',
+              currentPage === totalPages
+                ? 'pointer-events-none opacity-40'
+                : 'hover:bg-white/85',
+            )}
           >
             Next
-          </button>
+          </Link>
         </div>
       )}
     </div>
