@@ -8,9 +8,33 @@ tags: ["Framework", "Grounding", "Safety"]
 
 # Grounding and Guardrails
 
-This module focuses on reducing hallucinations and improving trust by grounding model outputs in controlled data and policy layers.
+LLMs are confident even when wrong. This module covers grounding with real data, improving retrieval quality, and building safety controls to ship responsibly.
 
-- [Open topic overview](/interactive-explainers/grounding/index.html)
-- [Grounding Your Data](/interactive-explainers/grounding/grounding-your-data.html)
-- [When RAG Is Not Enough](/interactive-explainers/grounding/when-rag-isnt-enough.html)
-- [Hallucinations and Safety](/interactive-explainers/grounding/hallucinations-safety.html)
+## Topic overview
+
+- [Open interactive overview](/interactive-explainers/grounding/index.html)
+- Series scope: 3 parts, ~25 min total
+
+## Part 1
+
+### Grounding Models in Your Data
+
+RAG pipeline fundamentals: embeddings, vector retrieval, and enterprise knowledge access.
+
+- [Open Part 1](/interactive-explainers/grounding/grounding-your-data.html)
+
+## Part 2
+
+### When RAG Isn't Enough
+
+Chunking, hybrid search, reranking, and query rewriting for higher retrieval quality.
+
+- [Open Part 2](/interactive-explainers/grounding/when-rag-isnt-enough.html)
+
+## Part 3
+
+### Hallucinations, Safety and Trust
+
+Detecting hallucinations, content safety layers, red-teaming, and trust architecture.
+
+- [Open Part 3](/interactive-explainers/grounding/hallucinations-safety.html)

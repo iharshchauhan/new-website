@@ -8,8 +8,25 @@ tags: ["Framework", "Cost", "Latency"]
 
 # Cost and Latency Tradeoffs
 
-Use these explainers to pick model tiers and response strategies that are both useful and economically sustainable.
+Tokens are not free, and speed directly changes UX outcomes. This module gives the core economics and optimization model for shipping viable AI features.
 
-- [Open topic overview](/interactive-explainers/cost-latency/index.html)
-- [Latency Tradeoffs](/interactive-explainers/cost-latency/latency.html)
-- [Token Economics](/interactive-explainers/cost-latency/tokens.html)
+## Topic overview
+
+- [Open interactive overview](/interactive-explainers/cost-latency/index.html)
+- Series scope: 2 parts, ~14 min total
+
+## Part 1
+
+### Tokens, Models and the Cost Curve
+
+How token pricing works and why cost-per-user-action is the key metric.
+
+- [Open Part 1](/interactive-explainers/cost-latency/tokens.html)
+
+## Part 2
+
+### Latency, Streaming and Optimization
+
+Why LLM interactions feel slow and the practical playbook for improving response speed and cost.
+
+- [Open Part 2](/interactive-explainers/cost-latency/latency.html)

@@ -8,8 +8,25 @@ tags: ["Framework", "Context", "RAG"]
 
 # Context Windows and Memory
 
-This section helps decide when prompt-only memory is enough and when retrieval layers are required.
+Why do models forget? This module explains context windows, token limits, and conversation patterns that provide the illusion of persistent memory.
 
-- [Open topic overview](/interactive-explainers/context-windows/index.html)
-- [The Context Window](/interactive-explainers/context-windows/the-context-window.html)
-- [Designing for Memory](/interactive-explainers/context-windows/designing-for-memory.html)
+## Topic overview
+
+- [Open interactive overview](/interactive-explainers/context-windows/index.html)
+- Series scope: 2 parts, ~14 min total
+
+## Part 1
+
+### The Context Window
+
+What context windows are, why bigger is not always better, and the lost-in-the-middle problem.
+
+- [Open Part 1](/interactive-explainers/context-windows/the-context-window.html)
+
+## Part 2
+
+### Designing for Memory
+
+Conversation-history strategies, summarization, and memory stacks used in production systems.
+
+- [Open Part 2](/interactive-explainers/context-windows/designing-for-memory.html)

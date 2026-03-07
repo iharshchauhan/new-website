@@ -8,8 +8,25 @@ tags: ["Framework", "Evaluation", "Testing"]
 
 # Evaluation and Testing
 
-Use this section as a framework for converting subjective AI quality into measurable outcomes and release criteria.
+How do you know your AI feature is actually good? This module covers evaluation mindset, practical testing methods, and release decision frameworks.
 
-- [Open topic overview](/interactive-explainers/evaluation/index.html)
-- [What Makes AI Good](/interactive-explainers/evaluation/what-makes-ai-good.html)
-- [Evals in Practice](/interactive-explainers/evaluation/evals-in-practice.html)
+## Topic overview
+
+- [Open interactive overview](/interactive-explainers/evaluation/index.html)
+- Series scope: 2 parts, ~14 min total
+
+## Part 1
+
+### What Makes AI Good?
+
+AI failure types, non-deterministic behavior, and which evaluation methods matter most.
+
+- [Open Part 1](/interactive-explainers/evaluation/what-makes-ai-good.html)
+
+## Part 2
+
+### Evals in Practice
+
+Test set design, handling model variance, and making ship-or-hold calls.
+
+- [Open Part 2](/interactive-explainers/evaluation/evals-in-practice.html)

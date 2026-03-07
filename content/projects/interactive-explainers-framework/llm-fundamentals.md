@@ -6,10 +6,27 @@ category: "Frameworks"
 tags: ["Framework", "LLM", "Foundations"]
 ---
 
-# LLM Fundamentals
+# How LLMs Actually Work
 
-Use this module to align the team on what LLMs are actually doing under the hood before discussing product architecture.
+Before agents, cost tradeoffs, or evaluation frameworks make sense, you need a mental model of what large language models actually do: how they are trained, how they generate text, and where they break down.
 
-- [Open topic overview](/interactive-explainers/llm-fundamentals/index.html)
-- [How LLMs Work](/interactive-explainers/llm-fundamentals/how-llms-work.html)
-- [ML Concepts for PMs](/interactive-explainers/llm-fundamentals/ml-concepts.html)
+## Topic overview
+
+- [Open interactive overview](/interactive-explainers/llm-fundamentals/index.html)
+- Series scope: 2 parts, ~16 min total
+
+## Part 1
+
+### The ML Concepts Behind LLMs
+
+The vocabulary and mental models every PM needs: supervised learning, overfitting, fine-tuning, embeddings, and related foundations.
+
+- [Open Part 1](/interactive-explainers/llm-fundamentals/ml-concepts.html)
+
+## Part 2
+
+### How LLMs Actually Work
+
+From training to inference, next-token prediction to model selection, with practical decision context for AI product work.
+
+- [Open Part 2](/interactive-explainers/llm-fundamentals/how-llms-work.html)
