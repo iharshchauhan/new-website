@@ -223,5 +223,5 @@ If you're exploring similar questions, I'd love to hear about it.
 
 ---
 
-*This case study accompanies the Autonomous Agent Framework. See the README for implementation details.*
+*This case study accompanies the Autonomous Agent Framework. See the Outline for implementation details.*
 
