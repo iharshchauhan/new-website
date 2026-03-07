@@ -6,6 +6,7 @@ import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { ArrowRight, BookOpen, Briefcase, LayoutTemplate, Sparkles, Star, Layers } from 'lucide-react';
 import { Post } from '@/lib/mdx';
 import { cn } from '@/lib/utils';
+import { PostTags } from '@/components/post-tags';
 
 const LEGACY_TAB_MAP: Record<string, string> = {
   All: 'All',
@@ -147,6 +148,7 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
                         year: 'numeric',
                       })}
                     </time>
+                    <PostTags tags={post.meta.tags} compact />
                     <p className="text-base sm:text-[1.12rem] leading-relaxed text-foreground/75 max-w-2xl">
                       {post.meta.description}
                     </p>

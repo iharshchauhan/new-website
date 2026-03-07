@@ -5,6 +5,7 @@ import { BackNavLink } from '@/components/back-nav-link';
 import Image from 'next/image';
 import { getProjectTopicItems } from '@/lib/project-navigation';
 import { ProjectTopicMap } from '@/components/project-topic-map';
+import { PostTags } from '@/components/post-tags';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs('projects');
@@ -40,6 +41,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
               year: 'numeric',
             })}
           </time>
+          <PostTags tags={post.meta.tags} />
         </div>
       </div>
 

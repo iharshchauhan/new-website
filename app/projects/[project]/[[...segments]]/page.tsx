@@ -13,6 +13,7 @@ import {
 } from '@/lib/project-navigation';
 import { ProjectTopicMap } from '@/components/project-topic-map';
 import { getInteractiveExplainerAsset } from '@/lib/interactive-explainers';
+import { PostTags } from '@/components/post-tags';
 
 export async function generateStaticParams() {
   const projects = getPostSlugs('projects');
@@ -94,6 +95,7 @@ export default async function ProjectSubpage({
               year: 'numeric',
             })}
           </time>
+          <PostTags tags={post.meta.tags} />
         </div>
       </div>
 

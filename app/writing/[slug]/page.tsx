@@ -2,6 +2,7 @@ import { getPostBySlug, getPostSlugs } from '@/lib/mdx';
 import { MDXContent } from '@/components/mdx-content';
 import { notFound } from 'next/navigation';
 import { ReadingControls } from '@/components/reading-controls';
+import { PostTags } from '@/components/post-tags';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs('writing');
@@ -36,6 +37,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
                 })}
               </time>
             </div>
+            <PostTags tags={post.meta.tags} className="justify-center" />
           </div>
         </div>
 
