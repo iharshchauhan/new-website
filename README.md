@@ -1,72 +1,15 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/37ec1f41-9811-44cd-a8d0-ba7a11830494
-
-## Run Locally
-
-**Prerequisites:**  Node.js
+# Personal Website
 
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+Welcome to my personal website! <br> This website was built with a lot of hard work, a dash of creativity, and of course, a healthy amount of caffeine-fueled coding sessions. 
+<br>
 
-## Cloudinary image integration
+<br>
+You might be wondering, what's so special about this website?
 
-If local markdown images break on GitHub Pages/static export, use Cloudinary URLs instead of serving from the repo.
+Well, this website is not just about content. <br> It's also a showcase of my personality and interests. You'll find pages dedicated to my hobbies, my thoughts on various topics (which might change every five minutes because, you know, indecisiveness is my middle name), and even some funny anecdotes from my life. 
 
-1. Add Cloudinary keys to `.env.local`:
-   `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
-2. Optional: set `CLOUDINARY_FOLDER` (defaults to `new-website`).
-3. Upload local site images and generate a manifest:
-   `npm run cloudinary:upload`
-4. Convert local markdown image paths to Cloudinary links:
-   `npm run cloudinary:rewrite`
-5. Run both in sequence:
-   `npm run cloudinary:sync`
-6. Build/run:
-   `npm run build` or `npm run dev`
-
-How it works:
-- Upload script pushes images from `public/images` and `public/support/images`.
-- A mapping file is generated at `lib/cloudinary-manifest.json`.
-- Markdown `<img>` rendering in `components/mdx-content.tsx` uses Cloudinary URL when a local path exists in this mapping.
-- A rewrite script updates markdown content in `content/**` from local image paths (for example `public/images/...`) to Cloudinary URLs.
-
-### GitHub automation
-
-`.github/workflows/cloudinary-sync.yml` runs automatically on pushes to `main` that modify:
-- `public/images/**`
-- `public/support/images/**`
-
-It uploads images to Cloudinary, regenerates the manifest, rewrites local markdown image links, and commits updates back to `main`.
-
-Required GitHub repository secrets:
-- `CLOUDINARY_CLOUD_NAME`
-- `CLOUDINARY_API_KEY`
-- `CLOUDINARY_API_SECRET`
-- Optional: `CLOUDINARY_FOLDER`
-
-## Mobile capture to review drafts
-
-You can trigger `.github/workflows/capture-review.yml` from your phone to create:
-
-- a new review markdown file in `content/writing`
-- a draft PR ready for your PC review/merge
-
-This supports:
-
-- `provider=gemini` (uses `GEMINI_API_KEY`)
-- `provider=grok` (uses `GROK_API_KEY`)
-- `summary_text` input (skip model API call)
-- API keys are loaded from `.env` / `.env.local` (see `.env.example`)
-
-Setup and Shortcut/API details: `docs/mobile-capture-reviews.md`
+<br>
+<br><br><br>
+Cheers, <br>
+Harsh
