@@ -1,6 +1,6 @@
 ---
 title: "AI Decision Orchestration Platform (SaaS)"
-date: "2026-03-01"
+date: "2025-06-11"
 description: "Agentic intelligence for enterprise operations with context-aware AI decisions, confidence-based execution, and full auditability."
 category: "Proof of work"
 tags: ["AI", "SaaS", "Enterprise", "GRC", "Automation"]
