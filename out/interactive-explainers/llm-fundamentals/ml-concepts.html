@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The ML Concepts Behind LLMs — AI for PMs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css?v=8">
+  <style>
+    .article-hero { background: var(--accent-llm-gradient); }
+    .toc__list a:hover { color: var(--accent-llm); }
+    .prose blockquote { border-left-color: var(--accent-llm); }
+    .widget { background: var(--accent-llm-light); border-color: #CBD5E1; }
+    .widget__label { color: var(--accent-llm); }
+    .btn--primary { background: var(--accent-llm); }
+    .btn--active { background: var(--accent-llm); border-color: var(--accent-llm); }
+    .btn--secondary:hover:not(:disabled) { border-color: var(--accent-llm); color: var(--accent-llm); }
+
+    /* Widget 1: Overfitting Playground */
+    .ofp__canvas-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--color-surface);
+      border-radius: 8px;
+      border: 1px solid var(--color-border);
+      overflow: hidden;
+      margin-bottom: var(--space-4);
+    }
+    .ofp__canvas-wrap canvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .ofp__legend {
+      display: flex;
+      gap: var(--space-6);
+      flex-wrap: wrap;
+      margin-top: var(--space-4);
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+    }
+    .ofp__legend-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+    }
+    .ofp__legend-swatch {
+      width: 16px;
+      height: 3px;
+      border-radius: 2px;
+    }
+    .ofp__verdict {
+      margin-top: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+      min-height: 44px;
+    }
+
+    /* Widget 2: Fine-Tuning vs. Prompting Decider */
+    /* uses shared quiz styles */
+
+    /* Widget 3: Embedding Similarity Explorer */
+    .emb__pairs {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-6);
+    }
+    .emb__pair-btn {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+    }
+    .emb__inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+    .emb__input-group label {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-2);
+    }
+    .emb__input-group input {
+      width: 100%;
+      padding: var(--space-3) var(--space-4);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      background: var(--color-surface);
+      outline: none;
+      transition: border-color var(--duration-fast);
+    }
+    .emb__input-group input:focus {
+      border-color: var(--accent-llm);
+    }
+    .emb__result {
+      text-align: center;
+      padding: var(--space-6);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+    }
+    .emb__score {
+      font-family: var(--font-mono);
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      color: var(--accent-llm);
+      margin-bottom: var(--space-3);
+    }
+    .emb__bar-wrap {
+      width: 100%;
+      max-width: 400px;
+      margin: 0 auto var(--space-3);
+      background: var(--color-border-light);
+      border-radius: 4px;
+      height: 10px;
+      overflow: hidden;
+    }
+    .emb__bar {
+      height: 100%;
+      background: var(--accent-llm);
+      border-radius: 4px;
+      transition: width var(--duration-normal) var(--ease-out);
+    }
+    .emb__label {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+    }
+    .emb__explanation {
+      margin-top: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 720px) {
+      .emb__inputs { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script src="../styles/site-shell.js" defer></script>
+</head>
+<body>
+
+  <header class="article-hero" id="article-hero">
+    <canvas class="article-hero__canvas" id="hero-canvas"></canvas>
+    <div class="article-hero__overlay"></div>
+    <div class="article-hero__content">
+      <nav class="breadcrumb breadcrumb--hero">
+        <a href="../index.html">AI for PMs</a> &nbsp;/&nbsp; <a href="index.html">How LLMs Actually Work</a> &nbsp;/&nbsp; <span>Part 1</span>
+      </nav>
+      <div class="article-header__meta" style="color: rgba(255,255,255,0.9);">Part 1 of 2 &middot; ~8 min read</div>
+      <h1 style="color: #fff;">The ML Concepts Behind LLMs</h1>
+      <p class="lead" style="color: rgba(255,255,255,0.85);">The vocabulary and mental models from machine learning that every PM needs — no math required.</p>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc__inner">
+      <div class="toc__title">Contents</div>
+      <ol class="toc__list">
+        <li><span class="toc__numeral">I.</span><a href="#why-this-matters">Why This Matters</a></li>
+        <li><span class="toc__numeral">II.</span><a href="#supervised-vs-unsupervised">Supervised vs. Unsupervised Learning</a></li>
+        <li><span class="toc__numeral">III.</span><a href="#overfitting-generalization">Overfitting &amp; Generalization</a></li>
+        <li><span class="toc__numeral">IV.</span><a href="#train-test-split">The Train/Test Split</a></li>
+        <li><span class="toc__numeral">V.</span><a href="#fine-tuning-vs-prompting">Fine-Tuning vs. Prompting</a></li>
+        <li><span class="toc__numeral">VI.</span><a href="#embeddings-similarity">Embeddings &amp; Similarity</a></li>
+        <li><span class="toc__numeral">VII.</span><a href="#whats-next">What's Next</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="epigraph">
+    <p class="epigraph__verse">
+      They'll sell you "trained on your data" like it's magic sauce,<br>
+      But overfit on garbage and the model's a loss.<br>
+      Know the split, know the fit, know the embed game —<br>
+      Or every vendor pitch will sound the same.
+    </p>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section I: Why This Matters
+         ================================================================ -->
+    <h2 id="why-this-matters"><span class="section-number">I</span> Why This Matters</h2>
+
+    <p>You've sat in a meeting where someone said "we'll just fine-tune it" like they were ordering lunch. Or watched a vendor demo a 98% accuracy number that crumbled the moment it touched real data. These moments happen when PMs don't speak ML — and they happen constantly.</p>
+
+    <p>You don't need to train models. You do need to call bluffs. The five concepts in this article — supervised learning, overfitting, train/test splits, fine-tuning, embeddings — are the vocabulary that separates PMs who evaluate AI products from PMs who just applaud demos.</p>
+
+    <!-- ================================================================
+         Section II: Supervised vs. Unsupervised Learning
+         ================================================================ -->
+    <h2 id="supervised-vs-unsupervised"><span class="section-number">II</span> Supervised vs. Unsupervised Learning</h2>
+
+    <p><strong>Supervised learning</strong> means labeled examples. "Here are 10,000 emails. These are spam. These aren't. Learn the difference." The model sees inputs and correct answers, adjusts until it can predict labels on new examples. Your spam filter, your Netflix recommendations, your credit card fraud alerts — all supervised.</p>
+
+    <p><strong>Unsupervised learning</strong> means no labels. You hand the model a pile of data and say "surprise me." Clustering customers by behavior, spotting anomalies in server logs. Useful when you don't even know what you're looking for yet.</p>
+
+    <p>LLMs pulled off an elegant heist: <strong>self-supervised learning</strong>. Take a massive text corpus, hide the next word, and train the model to predict it. The "labels" are baked into the text — no human annotation needed. That's how you train on trillions of tokens without labeling a single one.</p>
+
+    <div class="callout callout--analogy">
+      <div class="callout__label">Analogy</div>
+      <div class="callout__body"><strong>Supervised learning</strong> is studying with an answer key — you check every answer and learn from mistakes. <strong>Self-supervised learning</strong> is covering the next word in a sentence and guessing. No teacher needed. The text <em>is</em> the test.</div>
+    </div>
+
+    <!-- ================================================================
+         Section III: Overfitting & Generalization
+         ================================================================ -->
+    <h2 id="overfitting-generalization"><span class="section-number">III</span> Overfitting &amp; Generalization</h2>
+
+    <p><strong>Overfitting</strong> is the A+ student who memorized the textbook but can't answer a question that wasn't in it. The model aces its training data and falls apart on anything new. It didn't learn the pattern — it learned the <em>answers</em>. This is the single most common way ML projects fail quietly.</p>
+
+    <p><strong>Generalization</strong> is what you're actually paying for: a model that learned the pattern well enough to handle data it's never seen. A spam filter that catches novel spam. A sentiment model that works on <em>your</em> customers' messy writing, not just the pristine training set.</p>
+
+    <div class="callout callout--pm-tip">
+      <div class="callout__label">PM Tip</div>
+      <div class="callout__body"><strong>If a vendor shows accuracy only on their test set, ask for results on YOUR data.</strong> A model that's 98% accurate on curated benchmarks might be 70% accurate on your messy, real-world inputs. That 28-point gap between demo and production is where AI projects go to die.</div>
+    </div>
+
+    <p>There's also the opposite problem: <strong>underfitting</strong>. A model that's too simple to capture the pattern at all. A straight line trying to fit curved data. It fails on both training data and new data.</p>
+
+    <p>See the difference for yourself:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 1: Overfitting Playground
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-ofp">
+      <div class="widget__label">Interactive</div>
+      <div class="widget__title">Overfitting Playground</div>
+      <div class="widget__instruction">Toggle between three model fits. Then click "Show New Data" to see which model generalizes to unseen examples.</div>
+
+      <div class="ofp__canvas-wrap">
+        <canvas id="ofp-canvas"></canvas>
+      </div>
+
+      <div class="widget__controls">
+        <button class="btn btn--secondary" data-fit="underfit">Too Simple</button>
+        <button class="btn btn--secondary btn--active" data-fit="justright">Just Right</button>
+        <button class="btn btn--secondary" data-fit="overfit">Overfit</button>
+        <span style="flex:1;"></span>
+        <button class="btn btn--primary" id="ofp-newdata">Show New Data</button>
+        <button class="btn btn--secondary" id="ofp-reset">Reset</button>
+      </div>
+
+      <div class="ofp__legend">
+        <div class="ofp__legend-item"><div class="ofp__legend-swatch" style="background:#94A3B8;"></div>Training data</div>
+        <div class="ofp__legend-item"><div class="ofp__legend-swatch" style="background:#F59E0B;"></div>New (test) data</div>
+        <div class="ofp__legend-item"><div class="ofp__legend-swatch" style="background:#DC2626;"></div>Too Simple</div>
+        <div class="ofp__legend-item"><div class="ofp__legend-swatch" style="background:#059669;"></div>Just Right</div>
+        <div class="ofp__legend-item"><div class="ofp__legend-swatch" style="background:#7C3AED;"></div>Overfit</div>
+      </div>
+
+      <div class="ofp__verdict" id="ofp-verdict">
+        Select a model fit and click "Show New Data" to see how well it generalizes.
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <!-- ================================================================
+         Section IV: The Train/Test Split
+         ================================================================ -->
+    <h2 id="train-test-split"><span class="section-number">IV</span> The Train/Test Split</h2>
+
+    <p>If overfitting is the disease, the train/test split is how you catch it. Before training, you divide your data into three sets — and you guard that separation like a secret:</p>
+
+    <ul>
+      <li><strong>Training set</strong> (~70-80%) — the model learns from this.</li>
+      <li><strong>Validation set</strong> (~10-15%) — used during training to catch overfitting early. Never trained on directly.</li>
+      <li><strong>Test set</strong> (~10-15%) — the final exam. Used <em>once</em> after training to estimate real-world performance.</li>
+    </ul>
+
+    <p><strong>Data contamination</strong> is when the test set leaks into training — the ML equivalent of stealing the final exam. Scores look great. They mean nothing. And this isn't hypothetical: if an LLM's training data included your benchmark questions, every benchmark score it published is a lie.</p>
+
+    <!-- ================================================================
+         Section V: Fine-Tuning vs. Prompting
+         ================================================================ -->
+    <h2 id="fine-tuning-vs-prompting"><span class="section-number">V</span> Fine-Tuning vs. Prompting</h2>
+
+    <p>You have a pre-trained LLM and want it to do something specific for your product. You've got two levers, and most teams reach for the wrong one first.</p>
+
+    <p><strong>Prompting</strong> is giving the model instructions at inference time — system prompt, examples, output format. No weights change. It's fast (minutes to iterate), cheap (no training compute), and fully reversible. But it has a ceiling: context window constraints, fragile complex instructions, and some tasks — matching your brand's exact tone, learning domain jargon — simply resist even the most clever prompts.</p>
+
+    <p><strong>Fine-tuning</strong> is additional training on your data. Feed the model examples of the behavior you want and let it adjust its weights. It costs real money and real time. But a fine-tuned model doesn't follow instructions about how to sound — it <em>actually sounds that way</em>.</p>
+
+    <div class="callout callout--insight">
+      <div class="callout__label">Key Insight</div>
+      <div class="callout__body"><strong>"Prompting is telling the model what to do. Fine-tuning is teaching it how to be."</strong> Start with prompting — always. It's faster, cheaper, and reversible. Only move to fine-tuning when you've hit a clear ceiling that better prompts can't solve, and you have enough quality training examples (typically 500+) to make the investment worthwhile.</div>
+    </div>
+
+    <p>The tradeoff isn't always obvious. Test your intuition:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 2: Fine-Tuning vs. Prompting Decider
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-ftp">
+      <div class="widget__label">Quiz</div>
+      <div class="widget__title">Fine-Tuning vs. Prompting Decider</div>
+      <div class="widget__instruction">For each scenario, choose whether you'd start with prompt engineering or invest in fine-tuning.</div>
+
+      <div class="quiz__progress">
+        <div class="quiz__progress-bar" id="ftp-progress-bar"></div>
+      </div>
+      <div class="quiz__progress-text" id="ftp-progress-text">Question 1 of 5</div>
+
+      <div class="quiz__card" id="ftp-card">
+        <div class="quiz__scenario" id="ftp-scenario"></div>
+        <div class="widget__controls" id="ftp-choices"></div>
+        <div id="ftp-explanation"></div>
+      </div>
+
+      <div class="widget__controls widget__controls--mt" id="ftp-nav" style="display:none;">
+        <button class="btn btn--primary" id="ftp-next">Next Scenario &rarr;</button>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <!-- ================================================================
+         Section VI: Embeddings & Similarity
+         ================================================================ -->
+    <h2 id="embeddings-similarity"><span class="section-number">VI</span> Embeddings &amp; Similarity</h2>
+
+    <p>Computers work with numbers. Text is stubbornly not numbers. <strong>Embeddings</strong> solve this — they're a list of numbers that represent the <em>meaning</em> of text, not the characters. Similar meanings land close together in this number space. "Happy" and "joyful" are neighbors. "Happy" and "carburetor" are strangers.</p>
+
+    <p>You'll encounter embeddings everywhere, even if nobody calls them that:</p>
+
+    <ul>
+      <li><strong>Semantic search</strong> — finding documents by meaning, not keywords. "How do I cancel my subscription" matches "Ending your plan" even though they share no words.</li>
+      <li><strong>RAG</strong> — grounding LLM responses in your data. Embeddings power the retrieval step. (More in the <a href="../grounding/index.html">Grounding &amp; Guardrails</a> series.)</li>
+      <li><strong>Classification</strong> — sorting inputs by meaning. Cluster feedback into topics. Route tickets to the right team.</li>
+    </ul>
+
+    <p>Explore how similarity works:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 3: Embedding Similarity Explorer
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-emb">
+      <div class="widget__label">Explore</div>
+      <div class="widget__title">Embedding Similarity Explorer</div>
+      <div class="widget__instruction">Type two texts or select a pre-loaded pair to see their similarity score (0 = unrelated, 1 = near-identical meaning).</div>
+
+      <div class="emb__pairs" id="emb-pairs">
+        <button class="btn btn--secondary btn--active emb__pair-btn" data-pair="0">"king" / "queen"</button>
+        <button class="btn btn--secondary emb__pair-btn" data-pair="1">"cat" / "dog"</button>
+        <button class="btn btn--secondary emb__pair-btn" data-pair="2">"cat" / "democracy"</button>
+        <button class="btn btn--secondary emb__pair-btn" data-pair="3">"happy" / "joyful"</button>
+        <button class="btn btn--secondary emb__pair-btn" data-pair="4">"bank" (river) / "bank" (finance)</button>
+      </div>
+
+      <div class="emb__inputs">
+        <div class="emb__input-group">
+          <label for="emb-input-a">Text A</label>
+          <input type="text" id="emb-input-a" placeholder="Enter first text..." autocomplete="off">
+        </div>
+        <div class="emb__input-group">
+          <label for="emb-input-b">Text B</label>
+          <input type="text" id="emb-input-b" placeholder="Enter second text..." autocomplete="off">
+        </div>
+      </div>
+
+      <div class="emb__result">
+        <div class="emb__score" id="emb-score">0.00</div>
+        <div class="emb__bar-wrap"><div class="emb__bar" id="emb-bar" style="width: 0%;"></div></div>
+        <div class="emb__label" id="emb-label">Enter text to see similarity</div>
+      </div>
+
+      <div class="emb__explanation" id="emb-explanation"></div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section VII: What's Next
+         ================================================================ -->
+    <h2 id="whats-next"><span class="section-number">VII</span> What's Next</h2>
+
+    <p>You now speak ML well enough to be dangerous in a vendor meeting. Part 2 teaches what happens when you actually press "send" — how LLMs generate text one token at a time, and why that single mechanism explains everything these models can and can't do.</p>
+
+    <div class="callout callout--summary">
+      <div class="callout__label">Summary</div>
+      <div class="callout__body">
+        <strong>Five concepts, one sentence each:</strong><br><br>
+        <strong>Supervised learning</strong> — models learn from labeled examples; LLMs pulled off an elegant trick by using the text itself as labels.<br>
+        <strong>Overfitting</strong> — memorizing answers instead of learning patterns; the silent killer of ML projects.<br>
+        <strong>Train/test split</strong> — hold out data to honestly evaluate; contamination turns every score into a lie.<br>
+        <strong>Fine-tuning vs. prompting</strong> — tell the model what to do first; only teach it how to be when instructions hit a wall.<br>
+        <strong>Embeddings</strong> — text as numbers that capture meaning; the invisible engine behind search, RAG, and classification.
+      </div>
+    </div>
+  </article>
+
+  <!-- ================================================================
+       Article Navigation
+       ================================================================ -->
+  <nav class="article-nav">
+    <a href="index.html">&larr; Back to series</a>
+    <a href="how-llms-work.html">Part 2: How LLMs Actually Work &rarr;</a>
+  </nav>
+
+  <!-- ================================================================
+       Scripts
+       ================================================================ -->
+  <script>
+  // ====================================================================
+  // Hero: Animated network/node background
+  // ====================================================================
+  (function() {
+    var canvas = document.getElementById('hero-canvas');
+    var ctx = canvas.getContext('2d');
+    var hero = document.getElementById('article-hero');
+    var nodes = [];
+    var numNodes = 40;
+    var connectionDist = 140;
+    var dpr = window.devicePixelRatio || 1;
+    var w, h;
+
+    function resize() {
+      var rect = hero.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function initNodes() {
+      nodes = [];
+      for (var i = 0; i < numNodes; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          r: 2 + Math.random() * 3,
+          pulse: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x += n.vx; n.y += n.vy; n.pulse += 0.015;
+        if (n.x < -20) n.x = w + 20; if (n.x > w + 20) n.x = -20;
+        if (n.y < -20) n.y = h + 20; if (n.y > h + 20) n.y = -20;
+      }
+      ctx.lineWidth = 1;
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < connectionDist) {
+            ctx.strokeStyle = 'rgba(255,255,255,' + ((1 - dist / connectionDist) * 0.3) + ')';
+            ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
+          }
+        }
+      }
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i], glow = 0.5 + 0.5 * Math.sin(n.pulse);
+        ctx.fillStyle = 'rgba(255,255,255,' + (0.4 + 0.4 * glow) + ')';
+        ctx.beginPath(); ctx.arc(n.x, n.y, n.r * (0.8 + 0.4 * glow), 0, Math.PI * 2); ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+
+    resize(); initNodes(); requestAnimationFrame(draw);
+    window.addEventListener('resize', function() { resize(); initNodes(); });
+  })();
+
+  // ====================================================================
+  // Widget 1: Overfitting Playground
+  // ====================================================================
+  (function() {
+    var canvas = document.getElementById('ofp-canvas');
+    var ctx = canvas.getContext('2d');
+    var wrap = canvas.parentElement;
+    var verdictEl = document.getElementById('ofp-verdict');
+    var dpr = window.devicePixelRatio || 1;
+    var w, h;
+    var PAD = 40;
+
+    // True underlying function: a gentle curve
+    function trueFunc(x) {
+      return 0.3 + 0.4 * Math.sin(x * Math.PI * 0.9);
+    }
+
+    // Generate training data
+    var seed = 42;
+    function seededRandom() {
+      seed = (seed * 16807 + 0) % 2147483647;
+      return (seed - 1) / 2147483646;
+    }
+
+    var trainData = [];
+    var testData = [];
+    var showTest = false;
+    var activeFit = 'justright';
+
+    function generateTrainData() {
+      seed = 42;
+      trainData = [];
+      for (var i = 0; i < 15; i++) {
+        var x = 0.05 + (i / 14) * 0.9;
+        var y = trueFunc(x) + (seededRandom() - 0.5) * 0.18;
+        trainData.push({ x: x, y: Math.max(0.05, Math.min(0.95, y)) });
+      }
+    }
+
+    function generateTestData() {
+      seed = 137;
+      testData = [];
+      for (var i = 0; i < 12; i++) {
+        var x = 0.08 + (i / 11) * 0.84;
+        var y = trueFunc(x) + (seededRandom() - 0.5) * 0.18;
+        testData.push({ x: x, y: Math.max(0.05, Math.min(0.95, y)) });
+      }
+    }
+
+    generateTrainData();
+    generateTestData();
+
+    function resize() {
+      var rect = wrap.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function toCanvasX(x) { return PAD + x * (w - 2 * PAD); }
+    function toCanvasY(y) { return h - PAD - y * (h - 2 * PAD); }
+
+    // Model curves
+    function underfitFunc(x) {
+      // Linear fit — too simple
+      return 0.35 + 0.2 * x;
+    }
+
+    function justRightFunc(x) {
+      // Smooth curve close to true function
+      return 0.3 + 0.38 * Math.sin(x * Math.PI * 0.9);
+    }
+
+    function overfitFunc(x) {
+      // Wiggly interpolation through training points using RBF-ish approach
+      var val = 0;
+      var wsum = 0;
+      for (var i = 0; i < trainData.length; i++) {
+        var dx = x - trainData[i].x;
+        var weight = Math.exp(-dx * dx / 0.003);
+        val += weight * trainData[i].y;
+        wsum += weight;
+      }
+      if (wsum < 0.0001) return trueFunc(x);
+      return val / wsum;
+    }
+
+    var fitFuncs = {
+      underfit: underfitFunc,
+      justright: justRightFunc,
+      overfit: overfitFunc
+    };
+
+    var fitColors = {
+      underfit: '#DC2626',
+      justright: '#059669',
+      overfit: '#7C3AED'
+    };
+
+    function drawGrid() {
+      ctx.strokeStyle = '#F0EEEA';
+      ctx.lineWidth = 1;
+      for (var i = 0; i <= 4; i++) {
+        var y = toCanvasY(i / 4);
+        ctx.beginPath(); ctx.moveTo(PAD, y); ctx.lineTo(w - PAD, y); ctx.stroke();
+      }
+      for (var i = 0; i <= 4; i++) {
+        var x = toCanvasX(i / 4);
+        ctx.beginPath(); ctx.moveTo(x, PAD); ctx.lineTo(x, h - PAD); ctx.stroke();
+      }
+    }
+
+    function drawPoints(data, color, radius) {
+      ctx.fillStyle = color;
+      for (var i = 0; i < data.length; i++) {
+        ctx.beginPath();
+        ctx.arc(toCanvasX(data[i].x), toCanvasY(data[i].y), radius, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    }
+
+    function drawCurve(func, color) {
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      for (var px = 0; px <= 200; px++) {
+        var x = px / 200;
+        var y = func(x);
+        var cx = toCanvasX(x);
+        var cy = toCanvasY(y);
+        if (px === 0) ctx.moveTo(cx, cy);
+        else ctx.lineTo(cx, cy);
+      }
+      ctx.stroke();
+    }
+
+    function calcError(func, data) {
+      var sum = 0;
+      for (var i = 0; i < data.length; i++) {
+        var diff = func(data[i].x) - data[i].y;
+        sum += diff * diff;
+      }
+      return Math.sqrt(sum / data.length);
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      ctx.fillStyle = '#FFFFFF';
+      ctx.fillRect(0, 0, w, h);
+
+      drawGrid();
+
+      // Draw axes labels
+      ctx.font = '11px Inter, sans-serif';
+      ctx.fillStyle = '#94A3B8';
+      ctx.textAlign = 'center';
+      ctx.fillText('Input feature', w / 2, h - 8);
+      ctx.save();
+      ctx.translate(12, h / 2);
+      ctx.rotate(-Math.PI / 2);
+      ctx.fillText('Output', 0, 0);
+      ctx.restore();
+
+      // Draw training data
+      drawPoints(trainData, '#94A3B8', 5);
+
+      // Draw test data if shown
+      if (showTest) {
+        drawPoints(testData, '#F59E0B', 6);
+        // draw X through test points
+        ctx.strokeStyle = '#F59E0B';
+        ctx.lineWidth = 1.5;
+        for (var i = 0; i < testData.length; i++) {
+          var cx = toCanvasX(testData[i].x);
+          var cy = toCanvasY(testData[i].y);
+          ctx.beginPath(); ctx.moveTo(cx - 4, cy - 4); ctx.lineTo(cx + 4, cy + 4); ctx.stroke();
+          ctx.beginPath(); ctx.moveTo(cx + 4, cy - 4); ctx.lineTo(cx - 4, cy + 4); ctx.stroke();
+        }
+      }
+
+      // Draw active curve
+      drawCurve(fitFuncs[activeFit], fitColors[activeFit]);
+    }
+
+    function updateVerdict() {
+      if (!showTest) {
+        var trainErr = calcError(fitFuncs[activeFit], trainData);
+        var labels = { underfit: 'Too Simple', justright: 'Just Right', overfit: 'Overfit' };
+        verdictEl.textContent = labels[activeFit] + ' — Training error: ' + trainErr.toFixed(3) + '. Click "Show New Data" to test generalization.';
+        return;
+      }
+      var trainErr = calcError(fitFuncs[activeFit], trainData);
+      var testErr = calcError(fitFuncs[activeFit], testData);
+      var verdicts = {
+        underfit: 'Too Simple — Train error: ' + trainErr.toFixed(3) + ', Test error: ' + testErr.toFixed(3) + '. The line is too rigid to capture the curve. It fails on both old and new data.',
+        justright: 'Just Right — Train error: ' + trainErr.toFixed(3) + ', Test error: ' + testErr.toFixed(3) + '. The smooth curve captures the real pattern. It generalizes well to new data.',
+        overfit: 'Overfit — Train error: ' + trainErr.toFixed(3) + ', Test error: ' + testErr.toFixed(3) + '. The wiggly line memorized the training data perfectly but misses the new points. This is overfitting.'
+      };
+      verdictEl.textContent = verdicts[activeFit];
+    }
+
+    // Controls
+    var controlsEl = document.querySelector('#widget-ofp .widget__controls');
+    controlsEl.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-fit]');
+      if (!btn) return;
+      controlsEl.querySelectorAll('[data-fit]').forEach(function(b) { b.classList.remove('btn--active'); });
+      btn.classList.add('btn--active');
+      activeFit = btn.dataset.fit;
+      draw();
+      updateVerdict();
+    });
+
+    document.getElementById('ofp-newdata').addEventListener('click', function() {
+      showTest = true;
+      draw();
+      updateVerdict();
+    });
+
+    document.getElementById('ofp-reset').addEventListener('click', function() {
+      showTest = false;
+      draw();
+      updateVerdict();
+    });
+
+    resize();
+    draw();
+    updateVerdict();
+    window.addEventListener('resize', function() { resize(); draw(); });
+  })();
+
+  // ====================================================================
+  // Widget 2: Fine-Tuning vs. Prompting Decider
+  // ====================================================================
+  (function() {
+    var scenarios = [
+      {
+        text: 'Your company wants a customer support chatbot that answers common questions about your product using your existing help docs. The answers need to be accurate but don\'t require a specialized tone.',
+        answer: 'prompt',
+        promptExplanation: 'Correct! This is a textbook RAG + prompting use case. Stuff the relevant help docs into context and let the model answer. No fine-tuning needed — the knowledge comes from retrieval, not model weights.',
+        finetuneExplanation: 'Not quite. This is a classic RAG + prompting use case. The knowledge lives in your help docs — you retrieve relevant passages and include them in the prompt. Fine-tuning would be overkill and wouldn\'t keep up with doc changes.'
+      },
+      {
+        text: 'A legal team needs an AI that drafts contract clauses in their firm\'s specific style, using precise legal terminology and formatting conventions that are unique to the firm.',
+        answer: 'finetune',
+        promptExplanation: 'Not quite. Style, terminology, and formatting conventions that are highly specific to one firm are hard to capture in a prompt alone. Fine-tuning on hundreds of example clauses teaches the model to write like a member of the firm — not just to follow instructions about it.',
+        finetuneExplanation: 'Correct! Firm-specific style, jargon, and formatting conventions are hard to fully specify in a prompt. Fine-tuning on the firm\'s actual clause library lets the model internalize the patterns rather than approximating them from instructions.'
+      },
+      {
+        text: 'You\'re building an internal tool that summarizes meeting transcripts into bullet points. Transcripts are in English, and the summaries should be concise and factual.',
+        answer: 'prompt',
+        promptExplanation: 'Correct! Summarization is one of the tasks LLMs are best at out of the box. A clear system prompt specifying the format (bullet points, concise, factual) will get you 90%+ of the way there. No fine-tuning needed.',
+        finetuneExplanation: 'Not quite. Modern LLMs are excellent at summarization with just prompting. A well-crafted system prompt that specifies "bullet points, concise, factual" will get strong results immediately. Save fine-tuning for when prompting demonstrably falls short.'
+      },
+      {
+        text: 'A healthcare company needs a triage model that classifies patient messages into urgency levels (emergency, urgent, routine) with very high accuracy. Misclassification can delay critical care.',
+        answer: 'finetune',
+        promptExplanation: 'Not quite. When stakes are this high and the task is narrow classification, fine-tuning on labeled examples of real patient messages gives you the most reliable, consistent performance. Prompting alone is too fragile for safety-critical classification.',
+        finetuneExplanation: 'Correct! High-stakes, narrow classification on domain-specific data is exactly where fine-tuning shines. You need consistent, reliable performance — not prompt-dependent variability. Fine-tune on labeled examples of real patient messages with expert-verified urgency labels.'
+      },
+      {
+        text: 'A marketing team wants to quickly generate social media post variations for A/B testing. They\'ll review and edit all outputs before publishing.',
+        answer: 'prompt',
+        promptExplanation: 'Correct! This is a low-risk creative task with human review in the loop. A prompt with brand guidelines, example posts, and tone instructions will produce plenty of good variations. The human editing step catches any misses. No reason to fine-tune.',
+        finetuneExplanation: 'Not quite. For creative content generation with a human reviewer in the loop, prompting is the right call. Include brand guidelines and example posts in the prompt. The team will edit outputs anyway, so perfect first-draft quality isn\'t critical.'
+      }
+    ];
+
+    var current = 0;
+    var score = 0;
+    var answered = false;
+
+    var scenarioEl = document.getElementById('ftp-scenario');
+    var choicesEl = document.getElementById('ftp-choices');
+    var explanationEl = document.getElementById('ftp-explanation');
+    var progressBar = document.getElementById('ftp-progress-bar');
+    var progressText = document.getElementById('ftp-progress-text');
+    var navEl = document.getElementById('ftp-nav');
+    var nextBtn = document.getElementById('ftp-next');
+
+    function render() {
+      if (current >= scenarios.length) {
+        renderSummary();
+        return;
+      }
+
+      var s = scenarios[current];
+      answered = false;
+      scenarioEl.textContent = s.text;
+      explanationEl.innerHTML = '';
+      navEl.style.display = 'none';
+      progressBar.style.width = ((current / scenarios.length) * 100) + '%';
+      progressText.textContent = 'Question ' + (current + 1) + ' of ' + scenarios.length;
+
+      choicesEl.innerHTML = '';
+      var promptBtn = document.createElement('button');
+      promptBtn.className = 'btn btn--secondary';
+      promptBtn.textContent = 'Prompt Engineering';
+      promptBtn.addEventListener('click', function() { answer('prompt'); });
+
+      var finetuneBtn = document.createElement('button');
+      finetuneBtn.className = 'btn btn--secondary';
+      finetuneBtn.textContent = 'Fine-Tuning';
+      finetuneBtn.addEventListener('click', function() { answer('finetune'); });
+
+      choicesEl.appendChild(promptBtn);
+      choicesEl.appendChild(finetuneBtn);
+    }
+
+    function answer(choice) {
+      if (answered) return;
+      answered = true;
+
+      var s = scenarios[current];
+      var correct = choice === s.answer;
+      if (correct) score++;
+
+      var btns = choicesEl.querySelectorAll('.btn');
+      btns.forEach(function(b) {
+        var btnChoice = b.textContent === 'Prompt Engineering' ? 'prompt' : 'finetune';
+        if (btnChoice === s.answer) {
+          b.classList.add('btn--correct');
+        } else if (btnChoice === choice && !correct) {
+          b.classList.add('btn--incorrect');
+        }
+        b.style.pointerEvents = 'none';
+      });
+
+      var explanation = correct
+        ? (choice === 'prompt' ? s.promptExplanation : s.finetuneExplanation)
+        : (choice === 'prompt' ? s.promptExplanation : s.finetuneExplanation);
+      var div = document.createElement('div');
+      div.className = 'quiz__explanation quiz__explanation--' + (correct ? 'correct' : 'incorrect');
+      div.textContent = explanation;
+      explanationEl.appendChild(div);
+
+      navEl.style.display = 'flex';
+      if (current === scenarios.length - 1) {
+        nextBtn.textContent = 'See Results';
+      }
+    }
+
+    function renderSummary() {
+      progressBar.style.width = '100%';
+      progressText.textContent = 'Complete!';
+      navEl.style.display = 'none';
+
+      var card = document.getElementById('ftp-card');
+      var level = score >= 4 ? 'Strong instincts!' : score >= 3 ? 'Solid understanding.' : 'Worth reviewing the section above.';
+      card.innerHTML =
+        '<div class="quiz__summary">' +
+          '<div class="quiz__score">' + score + ' / ' + scenarios.length + '</div>' +
+          '<div class="quiz__summary-text">' + level + ' The key rule: start with prompting, measure the gap, and only fine-tune when that gap is clear and consistent.</div>' +
+          '<div style="margin-top: var(--space-6);"><button class="btn btn--secondary" id="ftp-retry">Try Again</button></div>' +
+        '</div>';
+      document.getElementById('ftp-retry').addEventListener('click', function() {
+        current = 0;
+        score = 0;
+        card.innerHTML =
+          '<div class="quiz__scenario" id="ftp-scenario"></div>' +
+          '<div class="widget__controls" id="ftp-choices"></div>' +
+          '<div id="ftp-explanation"></div>';
+        scenarioEl = document.getElementById('ftp-scenario');
+        choicesEl = document.getElementById('ftp-choices');
+        explanationEl = document.getElementById('ftp-explanation');
+        render();
+      });
+    }
+
+    nextBtn.addEventListener('click', function() {
+      current++;
+      render();
+    });
+
+    render();
+  })();
+
+  // ====================================================================
+  // Widget 3: Embedding Similarity Explorer
+  // ====================================================================
+  (function() {
+    // Keyword-group simulation: words belong to semantic groups.
+    // Similarity is computed as overlap between group vectors.
+    var groups = {
+      royalty:    ['king', 'queen', 'prince', 'princess', 'throne', 'crown', 'monarch', 'royal', 'kingdom', 'reign'],
+      animals:   ['cat', 'dog', 'pet', 'animal', 'kitten', 'puppy', 'fish', 'bird', 'horse', 'mammal'],
+      politics:  ['democracy', 'government', 'vote', 'election', 'politics', 'congress', 'senate', 'law', 'president', 'policy'],
+      emotions:  ['happy', 'joyful', 'sad', 'angry', 'excited', 'content', 'pleased', 'glad', 'cheerful', 'delighted'],
+      finance:   ['bank', 'money', 'finance', 'investment', 'loan', 'credit', 'stock', 'currency', 'account', 'deposit'],
+      nature:    ['river', 'bank', 'water', 'lake', 'mountain', 'forest', 'tree', 'ocean', 'stream', 'shore'],
+      tech:      ['computer', 'software', 'code', 'algorithm', 'data', 'program', 'machine', 'digital', 'model', 'network'],
+      food:      ['pizza', 'food', 'cook', 'restaurant', 'meal', 'recipe', 'kitchen', 'eat', 'dinner', 'lunch'],
+      gender:    ['male', 'female', 'man', 'woman', 'king', 'queen', 'boy', 'girl', 'prince', 'princess'],
+      positive:  ['happy', 'joyful', 'good', 'great', 'excellent', 'wonderful', 'amazing', 'pleased', 'glad', 'cheerful']
+    };
+
+    var groupNames = Object.keys(groups);
+
+    function getVector(text) {
+      var words = text.toLowerCase().replace(/[^a-z0-9\s]/g, '').split(/\s+/);
+      var vec = {};
+      for (var g = 0; g < groupNames.length; g++) {
+        var name = groupNames[g];
+        var groupWords = groups[name];
+        var score = 0;
+        for (var i = 0; i < words.length; i++) {
+          if (groupWords.indexOf(words[i]) !== -1) {
+            score += 1;
+          }
+        }
+        vec[name] = score;
+      }
+      return vec;
+    }
+
+    function cosineSimilarity(a, b) {
+      var dot = 0, magA = 0, magB = 0;
+      for (var g = 0; g < groupNames.length; g++) {
+        var name = groupNames[g];
+        dot += (a[name] || 0) * (b[name] || 0);
+        magA += (a[name] || 0) * (a[name] || 0);
+        magB += (b[name] || 0) * (b[name] || 0);
+      }
+      if (magA === 0 || magB === 0) return 0;
+      return dot / (Math.sqrt(magA) * Math.sqrt(magB));
+    }
+
+    var pairs = [
+      { a: 'king', b: 'queen', explanation: 'Both share royalty and gendered concepts. In real embeddings, "king" and "queen" are very close, differing mainly along a gender dimension.' },
+      { a: 'cat', b: 'dog', explanation: 'Both are common pets and animals — related but distinct. Real embeddings place them close but not identical, reflecting their shared category but different characteristics.' },
+      { a: 'cat', b: 'democracy', explanation: 'These words share almost no semantic overlap. Real embeddings would place them far apart in vector space — essentially unrelated concepts.' },
+      { a: 'happy', b: 'joyful', explanation: 'Near-synonyms with overlapping emotional meaning. Real embeddings would place these very close together — they\'re used in almost identical contexts.' },
+      { a: 'river bank', b: 'bank account', explanation: '"Bank" is ambiguous. With context words ("river" vs. "account"), a real embedding model would place these in different regions of vector space despite sharing a word.' }
+    ];
+
+    var inputA = document.getElementById('emb-input-a');
+    var inputB = document.getElementById('emb-input-b');
+    var scoreEl = document.getElementById('emb-score');
+    var barEl = document.getElementById('emb-bar');
+    var labelEl = document.getElementById('emb-label');
+    var explanationEl = document.getElementById('emb-explanation');
+    var pairsEl = document.getElementById('emb-pairs');
+    var activePair = 0;
+
+    function updateScore() {
+      var a = inputA.value.trim();
+      var b = inputB.value.trim();
+
+      if (!a || !b) {
+        scoreEl.textContent = '0.00';
+        barEl.style.width = '0%';
+        labelEl.textContent = 'Enter text to see similarity';
+        explanationEl.textContent = '';
+        return;
+      }
+
+      var vecA = getVector(a);
+      var vecB = getVector(b);
+      var sim = cosineSimilarity(vecA, vecB);
+
+      scoreEl.textContent = sim.toFixed(2);
+      barEl.style.width = (sim * 100) + '%';
+
+      if (sim >= 0.8) labelEl.textContent = 'Very similar meaning';
+      else if (sim >= 0.5) labelEl.textContent = 'Moderately similar';
+      else if (sim > 0.1) labelEl.textContent = 'Weakly related';
+      else labelEl.textContent = 'Unrelated or no recognized words';
+
+      // Check if matches a preset pair
+      var matchedPair = null;
+      for (var i = 0; i < pairs.length; i++) {
+        if ((a.toLowerCase() === pairs[i].a && b.toLowerCase() === pairs[i].b) ||
+            (a.toLowerCase() === pairs[i].b && b.toLowerCase() === pairs[i].a)) {
+          matchedPair = pairs[i];
+          break;
+        }
+      }
+      explanationEl.textContent = matchedPair ? matchedPair.explanation : 'This demo uses keyword-group matching as a simplified simulation. Real embedding models capture far more nuance through high-dimensional vector representations.';
+    }
+
+    function selectPair(idx) {
+      activePair = idx;
+      inputA.value = pairs[idx].a;
+      inputB.value = pairs[idx].b;
+      pairsEl.querySelectorAll('.btn').forEach(function(b) { b.classList.remove('btn--active'); });
+      pairsEl.querySelector('[data-pair="' + idx + '"]').classList.add('btn--active');
+      updateScore();
+    }
+
+    pairsEl.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-pair]');
+      if (!btn) return;
+      selectPair(parseInt(btn.dataset.pair));
+    });
+
+    inputA.addEventListener('input', function() {
+      pairsEl.querySelectorAll('.btn').forEach(function(b) { b.classList.remove('btn--active'); });
+      updateScore();
+    });
+    inputB.addEventListener('input', function() {
+      pairsEl.querySelectorAll('.btn').forEach(function(b) { b.classList.remove('btn--active'); });
+      updateScore();
+    });
+
+    // Init with first pair
+    selectPair(0);
+  })();
+  </script>
+
+</body>
+</html>

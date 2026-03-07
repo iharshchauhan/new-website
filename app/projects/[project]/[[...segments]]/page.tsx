@@ -12,6 +12,7 @@ import {
   slugToSegments,
 } from '@/lib/project-navigation';
 import { ProjectTopicMap } from '@/components/project-topic-map';
+import { getInteractiveExplainerAsset } from '@/lib/interactive-explainers';
 
 export async function generateStaticParams() {
   const projects = getPostSlugs('projects');
@@ -54,6 +55,7 @@ export default async function ProjectSubpage({
     currentIndex >= 0 && currentIndex < topicItems.length - 1
       ? topicItems[currentIndex + 1]
       : null;
+  const interactiveAsset = post.format === 'html' ? getInteractiveExplainerAsset(subpage) : null;
 
   return (
     <article className="max-w-[96rem] mx-auto space-y-10">
@@ -97,9 +99,46 @@ export default async function ProjectSubpage({
 
       <div className="grid lg:grid-cols-[340px_minmax(0,1fr)] gap-10 items-start">
         <div className="space-y-7 lg:order-2">
-          <div className="rounded-2xl border border-white/60 bg-[#f6f4ea]/85 px-6 sm:px-12 py-8">
-            <MDXContent content={post.content} />
-          </div>
+          {post.format === 'html' ? (
+            <section className="space-y-4 rounded-2xl border border-white/60 bg-[#f6f4ea]/85 p-4 sm:p-6">
+              {interactiveAsset ? (
+                <>
+                  <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+                    <p className="text-sm text-muted-foreground">
+                      Embedded from {interactiveAsset.section}.
+                    </p>
+                    <Link
+                      href={interactiveAsset.publicPath}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-sm font-medium text-primary underline underline-offset-4"
+                    >
+                      Open standalone page
+                    </Link>
+                  </div>
+                  <iframe
+                    src={interactiveAsset.publicPath}
+                    title={post.meta.title}
+                    className="h-[900px] w-full rounded-xl border border-border bg-white"
+                  />
+                </>
+              ) : (
+                <div className="space-y-3 px-2 py-4">
+                  <p className="text-base text-foreground">
+                    This subpage is stored as HTML, but no matching public explainer asset was found.
+                  </p>
+                  <p className="text-sm text-muted-foreground">
+                    Add the built file under `public/interactive-explainers` or convert this page to
+                    markdown if you want it rendered inline.
+                  </p>
+                </div>
+              )}
+            </section>
+          ) : (
+            <div className="rounded-2xl border border-white/60 bg-[#f6f4ea]/85 px-6 sm:px-12 py-8">
+              <MDXContent content={post.content} />
+            </div>
+          )}
 
           {(previousTopic || nextTopic) && (
             <div className="grid sm:grid-cols-2 gap-3">

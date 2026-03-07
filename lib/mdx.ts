@@ -18,9 +18,60 @@ export type Post = {
   slug: string;
   type: "writing" | "projects";
   subpage?: string;
+  format: "md" | "html";
   meta: PostMeta;
   content: string;
 };
+
+function stripHtml(html: string) {
+  return html
+    .replace(/<script[\s\S]*?<\/script>/gi, " ")
+    .replace(/<style[\s\S]*?<\/style>/gi, " ")
+    .replace(/<[^>]+>/g, " ")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/&amp;/gi, "&")
+    .replace(/&mdash;/gi, "—")
+    .replace(/&ndash;/gi, "–")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function decodeHtmlEntities(text: string) {
+  return text
+    .replace(/&amp;/gi, "&")
+    .replace(/&mdash;/gi, "—")
+    .replace(/&ndash;/gi, "–")
+    .replace(/&quot;/gi, '"')
+    .replace(/&#39;/gi, "'")
+    .replace(/&nbsp;/gi, " ")
+    .trim();
+}
+
+function extractHtmlPostMeta(fileContents: string, fallbackDate = "") {
+  const titleMatch = fileContents.match(/<title>([\s\S]*?)<\/title>/i);
+  const descriptionMatch = fileContents.match(
+    /<meta\s+name=["']description["']\s+content=["']([\s\S]*?)["'][^>]*>/i,
+  );
+  const leadMatch = fileContents.match(
+    /<p[^>]*class=["'][^"']*lead[^"']*["'][^>]*>([\s\S]*?)<\/p>/i,
+  );
+  const headingMatch = fileContents.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+
+  const title = decodeHtmlEntities(
+    stripHtml(titleMatch?.[1] || headingMatch?.[1] || ""),
+  );
+  const description = decodeHtmlEntities(
+    stripHtml(descriptionMatch?.[1] || leadMatch?.[1] || ""),
+  );
+
+  return {
+    title,
+    description,
+    date: fallbackDate,
+  };
+}
 
 function normalizeCategory(category: string | undefined, type: "writing" | "projects") {
   const raw = (category || "").trim();
@@ -84,10 +135,21 @@ export function getPostBySlug(
   subpage?: string,
 ): Post | null {
   let fullPath = "";
+  let format: "md" | "html" = "md";
 
   if (type === "projects") {
     if (subpage) {
-      fullPath = path.join(contentDirectory, type, slug, `${subpage}.md`);
+      const mdPath = path.join(contentDirectory, type, slug, `${subpage}.md`);
+      const htmlPath = path.join(contentDirectory, type, slug, `${subpage}.html`);
+
+      if (fs.existsSync(mdPath)) {
+        fullPath = mdPath;
+      } else if (fs.existsSync(htmlPath)) {
+        fullPath = htmlPath;
+        format = "html";
+      } else {
+        return null;
+      }
     } else {
       fullPath = path.join(contentDirectory, type, slug, "index.md");
     }
@@ -100,6 +162,27 @@ export function getPostBySlug(
   }
 
   const fileContents = fs.readFileSync(fullPath, "utf8");
+
+  if (format === "html") {
+    const parentPost = getPostBySlug(slug, type);
+    const htmlMeta = extractHtmlPostMeta(fileContents, parentPost?.meta.date || "");
+
+    return {
+      slug,
+      type,
+      subpage,
+      format,
+      meta: {
+        title: htmlMeta.title,
+        date: htmlMeta.date,
+        description: htmlMeta.description,
+        category: parentPost?.meta.category || normalizeCategory(undefined, type),
+        tags: parentPost?.meta.tags || [],
+      },
+      content: fileContents,
+    };
+  }
+
   const { data, content } = matter(fileContents);
 
   const category = normalizeCategory(data.category, type);
@@ -111,6 +194,7 @@ export function getPostBySlug(
     slug,
     type,
     subpage,
+    format,
     meta: {
       title: data.title || "",
       date: data.date || "",
@@ -142,8 +226,9 @@ export function getProjectSubpages(projectSlug: string) {
     .filter(
       (dirent) =>
         dirent.isFile() &&
-        dirent.name.endsWith(".md") &&
-        dirent.name !== "index.md",
+        (dirent.name.endsWith(".md") || dirent.name.endsWith(".html")) &&
+        dirent.name !== "index.md" &&
+        dirent.name !== "index.html",
     )
-    .map((dirent) => dirent.name.replace(/\.md$/, ""));
+    .map((dirent) => dirent.name.replace(/\.(md|html)$/, ""));
 }

@@ -1,4 +1,5 @@
 import { getPostBySlug, getProjectSubpages } from "@/lib/mdx";
+import { getInteractiveExplainerAsset } from "@/lib/interactive-explainers";
 
 export type ProjectTopicItem = {
   slug: string;
@@ -32,6 +33,11 @@ export function getProjectSubpageHref(projectSlug: string, subpageSlug: string):
 }
 
 function inferGroup(slug: string, title: string) {
+  const interactiveAsset = getInteractiveExplainerAsset(slug);
+  if (interactiveAsset) {
+    return interactiveAsset.section;
+  }
+
   const hierarchy = slugToSegments(slug);
   if (hierarchy.length > 1) {
     return humanizeSegment(hierarchy[0]);
