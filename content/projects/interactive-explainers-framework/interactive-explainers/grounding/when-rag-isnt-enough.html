@@ -1,0 +1,1119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>When RAG Isn't Enough — AI for PMs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css?v=8">
+  <style>
+    .article-hero { background: var(--accent-grounding-gradient); }
+    .toc__list a:hover { color: var(--accent-grounding); }
+    .prose blockquote { border-left-color: var(--accent-grounding); }
+    .widget { background: var(--accent-grounding-light); border-color: #FECDD3; }
+    .widget__label { color: var(--accent-grounding); }
+    .btn--primary { background: var(--accent-grounding); }
+    .btn--active { background: var(--accent-grounding); border-color: var(--accent-grounding); }
+    .btn--secondary:hover:not(:disabled) { border-color: var(--accent-grounding); color: var(--accent-grounding); }
+
+    /* --- Widget 1: Chunking Comparator --- */
+    .chunk-doc {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-6);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      line-height: 1.75;
+      margin-top: var(--space-4);
+      position: relative;
+    }
+
+    .chunk-doc mark {
+      padding: 1px 0;
+      border-radius: 2px;
+      transition: background var(--duration-normal);
+    }
+
+    .chunk-retrieval {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+      margin-top: var(--space-4);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+    }
+
+    .chunk-retrieval__question {
+      font-weight: 600;
+      margin-bottom: var(--space-3);
+      color: var(--color-text);
+    }
+
+    .chunk-retrieval__result {
+      padding: var(--space-3) var(--space-4);
+      border-radius: 6px;
+      margin-top: var(--space-2);
+      line-height: 1.55;
+    }
+
+    .chunk-retrieval__result--good {
+      background: #F0FDF4;
+      border: 1px solid #A7F3D0;
+      color: #065F46;
+    }
+
+    .chunk-retrieval__result--partial {
+      background: #FFFBEB;
+      border: 1px solid #FDE68A;
+      color: #92400E;
+    }
+
+    .chunk-retrieval__result--bad {
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #991B1B;
+    }
+
+    .chunk-retrieval__verdict {
+      font-weight: 600;
+      margin-top: var(--space-2);
+      font-size: var(--text-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    /* --- Widget 2: Hybrid Search Demo --- */
+    .hybrid-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-4);
+    }
+
+    @media (max-width: 600px) {
+      .hybrid-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hybrid-column {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+    }
+
+    .hybrid-column__title {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-3);
+      padding-bottom: var(--space-2);
+      border-bottom: 2px solid var(--color-border-light);
+    }
+
+    .hybrid-column__title--keyword { color: #D97706; border-bottom-color: #FDE68A; }
+    .hybrid-column__title--vector { color: #7C3AED; border-bottom-color: #DDD6FE; }
+    .hybrid-column__title--hybrid { color: var(--accent-grounding); border-bottom-color: #FECDD3; }
+
+    .hybrid-result {
+      padding: var(--space-2) var(--space-3);
+      border-radius: 6px;
+      margin-bottom: var(--space-2);
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      line-height: 1.5;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border-light);
+      animation: messageSlideIn var(--duration-normal) var(--ease-out);
+    }
+
+    .hybrid-result__rank {
+      font-weight: 600;
+      color: var(--color-text-secondary);
+      margin-right: var(--space-1);
+    }
+
+    .hybrid-result__title {
+      font-weight: 500;
+      color: var(--color-text);
+      display: block;
+      margin-bottom: var(--space-1);
+    }
+
+    .hybrid-result__score-bar {
+      height: 4px;
+      background: var(--color-border-light);
+      border-radius: 2px;
+      margin-top: var(--space-1);
+      overflow: hidden;
+    }
+
+    .hybrid-result__score-fill {
+      height: 100%;
+      border-radius: 2px;
+      transition: width 0.5s var(--ease-out);
+    }
+
+    .hybrid-result__score-fill--keyword { background: #D97706; }
+    .hybrid-result__score-fill--vector { background: #7C3AED; }
+    .hybrid-result__score-fill--hybrid { background: var(--accent-grounding); }
+
+    .hybrid-result__score-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-text-secondary);
+      margin-top: 2px;
+      display: block;
+    }
+
+    .hybrid-query-label {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      margin-top: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+    }
+
+    .hybrid-query-label strong {
+      color: var(--accent-grounding);
+    }
+
+    /* --- Widget 3: Reranking Before/After --- */
+    .rerank-columns {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      margin-top: var(--space-4);
+    }
+
+    @media (max-width: 600px) {
+      .rerank-columns {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .rerank-column {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4);
+    }
+
+    .rerank-column__title {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: var(--space-3);
+      padding-bottom: var(--space-2);
+      border-bottom: 2px solid var(--color-border-light);
+      color: var(--color-text-secondary);
+    }
+
+    .rerank-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-2) var(--space-3);
+      border-radius: 6px;
+      margin-bottom: var(--space-2);
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      line-height: 1.45;
+      background: var(--color-bg);
+      border: 1px solid var(--color-border-light);
+      transition: transform 0.6s var(--ease-out), background 0.4s, border-color 0.4s;
+    }
+
+    .rerank-item--highlight {
+      background: #FFF1F2;
+      border-color: #FECDD3;
+    }
+
+    .rerank-item__rank {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      min-width: 20px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .rerank-item__body {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .rerank-item__title {
+      font-weight: 500;
+      color: var(--color-text);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .rerank-item__score-bar {
+      height: 4px;
+      background: var(--color-border-light);
+      border-radius: 2px;
+      overflow: hidden;
+      margin-top: 2px;
+    }
+
+    .rerank-item__score-fill {
+      height: 100%;
+      border-radius: 2px;
+      background: var(--accent-grounding);
+      transition: width 0.6s var(--ease-out);
+    }
+
+    .rerank-item__score-label {
+      font-family: var(--font-mono);
+      font-size: 10px;
+      color: var(--color-text-secondary);
+      display: block;
+      margin-top: 1px;
+    }
+
+    .rerank-item__badge {
+      font-family: var(--font-sans);
+      font-size: 9px;
+      font-weight: 600;
+      padding: 1px 6px;
+      border-radius: 10px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .rerank-item__badge--up {
+      background: #F0FDF4;
+      color: #059669;
+    }
+
+    .rerank-item__badge--down {
+      background: #FEF2F2;
+      color: #DC2626;
+    }
+
+    .rerank-item__badge--same {
+      background: var(--color-border-light);
+      color: var(--color-text-secondary);
+    }
+
+    .rerank-query-label {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      margin-top: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+    }
+
+    .rerank-query-label strong {
+      color: var(--accent-grounding);
+    }
+  </style>
+  <script src="../styles/site-shell.js" defer></script>
+</head>
+<body>
+
+  <header class="article-hero" id="article-hero">
+    <canvas class="article-hero__canvas" id="hero-canvas"></canvas>
+    <div class="article-hero__overlay"></div>
+    <div class="article-hero__content">
+      <nav class="breadcrumb breadcrumb--hero">
+        <a href="../index.html">AI for PMs</a> &nbsp;/&nbsp; <a href="index.html">Grounding &amp; Guardrails</a> &nbsp;/&nbsp; <span>Part 2</span>
+      </nav>
+      <div class="article-header__meta" style="color: rgba(255,255,255,0.9);">Part 2 of 3 &middot; ~8 min read</div>
+      <h1 style="color: #fff;">When RAG Isn't Enough</h1>
+      <p class="lead" style="color: rgba(255,255,255,0.85);">Basic retrieval gets you 70% of the way. Chunking strategies, hybrid search, reranking, and query rewriting close the gap.</p>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc__inner">
+      <div class="toc__title">Contents</div>
+      <ol class="toc__list">
+        <li><span class="toc__numeral">I.</span><a href="#retrieval-ceiling">The Retrieval Quality Ceiling</a></li>
+        <li><span class="toc__numeral">II.</span><a href="#chunking">Chunking Strategies</a></li>
+        <li><span class="toc__numeral">III.</span><a href="#hybrid-search">Hybrid Search</a></li>
+        <li><span class="toc__numeral">IV.</span><a href="#reranking">Reranking</a></li>
+        <li><span class="toc__numeral">V.</span><a href="#query-rewriting">Query Rewriting</a></li>
+        <li><span class="toc__numeral">VI.</span><a href="#whats-next">What's Next</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="epigraph">
+    <p class="epigraph__verse">
+      Retrieval got me halfway, now I need it right,<br>
+      Chunks are cut all wrong and the context ain't tight.<br>
+      Rerank the results, rewrite the ask &mdash;<br>
+      Good answers start before the model gets the task.
+    </p>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section I: The Retrieval Quality Ceiling
+         ================================================================ -->
+    <h2 id="retrieval-ceiling"><span class="section-number">I</span> The Retrieval Quality Ceiling</h2>
+
+    <p>Retrieval-Augmented Generation changed the game. Instead of hallucinating answers, the model looks things up first. But "looking things up" is harder than it sounds.</p>
+
+    <p>A basic RAG pipeline &mdash; split documents into chunks, embed them, retrieve the top-K by cosine similarity &mdash; gets you surprisingly far. For FAQ-style questions where the answer lives in a single clean paragraph, it works beautifully. The trouble starts when it doesn't: when the answer spans two paragraphs, when the user's phrasing doesn't match the document's vocabulary, when the most relevant passage ranks sixth out of five retrieved.</p>
+
+    <p><strong>The ceiling is retrieval quality.</strong> Give the model perfect context and even a mediocre model produces excellent answers. Give a frontier model garbage context and you get confidently wrong answers with citations. Garbage in, eloquent garbage out.</p>
+
+    <div class="callout callout--insight">
+      <div class="callout__label">Key Insight</div>
+      <div class="callout__body"><strong>RAG quality is a pipeline problem, not a model problem.</strong> Upgrading from GPT-4 to the latest model with bad retrieval buys you marginal improvement. Fixing the retrieval pipeline with the same model can double your accuracy. Always optimize retrieval before upgrading the generator.</div>
+    </div>
+
+    <p>The rest of this article covers the four techniques that close the gap: chunking strategies, hybrid search, reranking, and query rewriting. Each one addresses a different failure mode. Together, they turn a decent RAG system into a great one.</p>
+
+    <!-- ================================================================
+         Section II: Chunking Strategies
+         ================================================================ -->
+    <h2 id="chunking"><span class="section-number">II</span> Chunking Strategies</h2>
+
+    <p>Before you can retrieve anything, you have to decide how to slice your documents. This is chunking, and it matters more than most teams realize.</p>
+
+    <p><strong>Fixed-size chunking</strong> is the default: split every 200 characters or 500 tokens regardless of content. It's fast and predictable, but it splits sentences mid-thought and frequently slices the answer to a question across two separate chunks. When the retriever pulls chunk 7 but the answer actually spans chunks 7 and 8, the model gets half the context it needs.</p>
+
+    <p><strong>Sentence-boundary chunking</strong> is a step up. Each chunk ends at a sentence boundary, so you never split a thought mid-sentence. But individual sentences are often too small to be useful &mdash; a standalone sentence like "The return window is 30 days" has no surrounding context to help the embedder understand what product or policy it refers to.</p>
+
+    <p><strong>Semantic chunking</strong> groups related sentences together by measuring embedding similarity between consecutive sentences. When two adjacent sentences are semantically similar, they stay in the same chunk. When there's a topic shift, a new chunk begins. This produces chunks that map to coherent ideas rather than arbitrary boundaries.</p>
+
+    <div class="callout callout--analogy">
+      <div class="callout__label">Analogy</div>
+      <div class="callout__body">Chunking is like cutting a book into pieces for a quiz. Cut at chapter boundaries and each piece tells a complete story. Cut every 200 characters and you'll split the climax across two pieces &mdash; the student who draws piece one gets the setup without the punchline.</div>
+    </div>
+
+    <p>The right strategy depends on your content. Technical documentation with clear section headers benefits from structure-aware chunking. Conversational transcripts work well with semantic chunking. Legal contracts might need overlapping windows so no clause gets orphaned. Try it yourself:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 1: Chunking Comparator
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-chunking">
+      <div class="widget__label">Interactive</div>
+      <div class="widget__title">Chunking Comparator</div>
+      <div class="widget__instruction">Click a chunking strategy to see how the same document gets split &mdash; and which chunks get retrieved for the question below.</div>
+
+      <div class="widget__controls" id="chunking-controls">
+        <button class="btn btn--secondary" data-strategy="fixed">Fixed-Size (200 chars)</button>
+        <button class="btn btn--secondary" data-strategy="sentence">Sentence Boundary</button>
+        <button class="btn btn--secondary" data-strategy="semantic">Semantic</button>
+      </div>
+
+      <div class="chunk-doc" id="chunk-doc">
+        <em style="color: var(--color-text-secondary);">Select a strategy above to see the document highlighted by chunks.</em>
+      </div>
+
+      <div class="chunk-retrieval" id="chunk-retrieval" style="display: none;">
+        <div class="chunk-retrieval__question" id="chunk-question"></div>
+        <div id="chunk-result"></div>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section III: Hybrid Search
+         ================================================================ -->
+    <h2 id="hybrid-search"><span class="section-number">III</span> Hybrid Search</h2>
+
+    <p>Most RAG tutorials use vector search &mdash; embed the query, find the nearest document embeddings, return the top-K. This works well for semantic similarity: "How do I cancel my subscription?" matches a document about "ending your membership" even though they share no keywords. But it fails on the exact queries that users expect to work best.</p>
+
+    <p>Search for "error code E-4012" and vector search might return documents about error handling in general rather than the specific error code. Search for "HIPAA compliance requirements" and you'll get results about healthcare privacy that never mention HIPAA by name. Embeddings capture meaning, not exact terms.</p>
+
+    <p><strong>Keyword search (BM25)</strong> is the opposite. It excels at exact matches: product names, error codes, legal terms, acronyms. It has decades of engineering behind it and is fast. But it can't bridge vocabulary gaps &mdash; if the user says "cheap flights" and the document says "budget airfare," keyword search returns nothing.</p>
+
+    <p><strong>Hybrid search</strong> runs both in parallel and fuses the results. The most common approach is Reciprocal Rank Fusion (RRF): each search method ranks its results, and the final score is the sum of inverse ranks. A document that ranks #1 in keyword and #5 in vector gets a combined score that reflects both signals. This way, exact-match queries are handled by BM25, semantic queries are handled by vectors, and ambiguous queries benefit from both.</p>
+
+    <p>The implementation cost is minimal &mdash; you're already running vector search, and BM25 is a well-supported algorithm in every search library. The quality improvement is typically 10&ndash;25% on recall benchmarks. Explore the difference below:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 2: Hybrid Search Demo
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-hybrid">
+      <div class="widget__label">Compare</div>
+      <div class="widget__title">Hybrid Search Demo</div>
+      <div class="widget__instruction">Select a query to compare keyword-only, vector-only, and hybrid search results.</div>
+
+      <div class="widget__controls" id="hybrid-controls">
+        <button class="btn btn--secondary" data-query="0">Error code E-4012</button>
+        <button class="btn btn--secondary" data-query="1">How do I cancel?</button>
+        <button class="btn btn--secondary" data-query="2">HIPAA compliance</button>
+        <button class="btn btn--secondary" data-query="3">Cheap alternatives</button>
+      </div>
+
+      <div class="hybrid-query-label" id="hybrid-query-label" style="display: none;">
+        Query: <strong id="hybrid-query-text"></strong>
+      </div>
+
+      <div class="hybrid-columns" id="hybrid-columns" style="display: none;">
+        <div class="hybrid-column" id="hybrid-keyword">
+          <div class="hybrid-column__title hybrid-column__title--keyword">Keyword Only (BM25)</div>
+          <div id="hybrid-keyword-results"></div>
+        </div>
+        <div class="hybrid-column" id="hybrid-vector">
+          <div class="hybrid-column__title hybrid-column__title--vector">Vector Only</div>
+          <div id="hybrid-vector-results"></div>
+        </div>
+        <div class="hybrid-column" id="hybrid-hybrid">
+          <div class="hybrid-column__title hybrid-column__title--hybrid">Hybrid (Fused)</div>
+          <div id="hybrid-hybrid-results"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section IV: Reranking
+         ================================================================ -->
+    <h2 id="reranking"><span class="section-number">IV</span> Reranking</h2>
+
+    <p>Initial retrieval &mdash; whether keyword, vector, or hybrid &mdash; is designed to be fast. It scans millions of documents in milliseconds using approximate methods. The tradeoff is precision. The top 10 results are "probably relevant," but their ordering is rough. The best answer might sit at position 7.</p>
+
+    <p>A <strong>reranker</strong> is a second-stage model &mdash; typically a cross-encoder &mdash; that takes the query and each retrieved document as a pair and scores their relevance with much higher accuracy. Cross-encoders are too slow to run over your entire document store (they process one pair at a time), but they're perfect for rescoring 10&ndash;20 candidates. The most relevant result jumps from position 7 to position 1. Marginal results drop to the bottom.</p>
+
+    <p>The pattern is simple: retrieve broadly, then rerank precisely. First-stage retrieval casts a wide net (top-20 or top-50). The reranker narrows it down to the 3&ndash;5 best results that actually go into the LLM's context. This two-stage approach consistently outperforms single-stage retrieval, often by 15&ndash;30% on precision metrics.</p>
+
+    <div class="callout callout--pm-tip">
+      <div class="callout__label">PM Tip</div>
+      <div class="callout__body">Reranking is one of the highest-ROI improvements you can make to a RAG pipeline. It adds 100&ndash;300ms of latency and costs fractions of a cent per query. If your team hasn't implemented reranking yet, it should be the next thing on the roadmap. Services like Cohere Rerank and open-source models like ColBERT make it a one-day integration.</div>
+    </div>
+
+    <p>Watch reranking in action:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 3: Reranking Before/After
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-rerank">
+      <div class="widget__label">Visualize</div>
+      <div class="widget__title">Reranking Before &amp; After</div>
+      <div class="widget__instruction">Select a query, then press "Rerank" to watch the results reshuffle based on cross-encoder scores.</div>
+
+      <div class="widget__controls" id="rerank-query-controls">
+        <button class="btn btn--secondary" data-rquery="0">Return policy for electronics</button>
+        <button class="btn btn--secondary" data-rquery="1">How to migrate to v3 API</button>
+        <button class="btn btn--secondary" data-rquery="2">Side effects of medication</button>
+      </div>
+
+      <div class="rerank-query-label" id="rerank-query-label" style="display: none;">
+        Query: <strong id="rerank-query-text"></strong>
+      </div>
+
+      <div class="rerank-columns" id="rerank-columns" style="display: none;">
+        <div class="rerank-column" id="rerank-before-col">
+          <div class="rerank-column__title">Before Reranking</div>
+          <div id="rerank-before"></div>
+        </div>
+        <div class="rerank-column" id="rerank-after-col">
+          <div class="rerank-column__title">After Reranking</div>
+          <div id="rerank-after"></div>
+        </div>
+      </div>
+
+      <div class="widget__controls widget__controls--mt" id="rerank-actions" style="display: none;">
+        <button class="btn btn--primary" id="rerank-btn">Rerank</button>
+        <button class="btn btn--secondary" id="rerank-reset-btn">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section V: Query Rewriting
+         ================================================================ -->
+    <h2 id="query-rewriting"><span class="section-number">V</span> Query Rewriting</h2>
+
+    <p>Every technique so far improves what happens <em>after</em> the search runs. Query rewriting improves what goes <em>into</em> the search. Users are terrible at writing search queries. They use ambiguous pronouns ("How do I fix it?"), abbreviations ("What's the ETA on the SOW?"), and compound questions that should be three separate searches ("Compare the pricing, features, and support tiers of our enterprise plan vs. the competitor").</p>
+
+    <p>A <strong>query rewriter</strong> sits between the user and the retrieval pipeline. It takes the raw user query and transforms it into one or more optimized search queries. The simplest version expands abbreviations and adds context from the conversation: "How do I fix it?" becomes "How do I fix the authentication timeout error in the mobile app?" when the conversation history mentions that error. More advanced rewriters decompose complex questions into sub-queries and run each one independently.</p>
+
+    <p>The four most common rewriting patterns:</p>
+
+    <ol>
+      <li><strong>Expansion.</strong> Add context from conversation history. "What about pricing?" becomes "What is the pricing for the Enterprise plan discussed earlier?"</li>
+      <li><strong>Decomposition.</strong> Break compound queries into atomic searches. One question becomes three, each with its own retrieval pass.</li>
+      <li><strong>Hypothetical Document Embedding (HyDE).</strong> Ask the LLM to write a hypothetical answer, then embed <em>that</em> instead of the question. A fake answer is often closer in embedding space to the real answer than the question is.</li>
+      <li><strong>Step-back prompting.</strong> Abstract the query to a higher level. "Why did revenue drop in Q3?" becomes "What factors affect quarterly revenue?" to retrieve background context before answering the specific question.</li>
+    </ol>
+
+    <div class="callout callout--summary">
+      <div class="callout__label">Takeaway</div>
+      <div class="callout__body"><strong>The full advanced RAG stack: chunk well, search with hybrid, rerank the results, rewrite the query.</strong> Each layer addresses a different failure mode. Chunking fixes context boundaries. Hybrid search fixes vocabulary mismatch. Reranking fixes imprecise ordering. Query rewriting fixes ambiguous user intent. You don't need all four on day one, but knowing the stack lets you diagnose exactly where your pipeline is failing.</div>
+    </div>
+
+    <!-- ================================================================
+         Section VI: What's Next
+         ================================================================ -->
+    <h2 id="whats-next"><span class="section-number">VI</span> What's Next</h2>
+
+    <p>You now know how to build retrieval that's genuinely good &mdash; not just "works in the demo" good, but "handles real user queries in production" good. Better chunking, hybrid search, reranking, and query rewriting are the tools that get you there.</p>
+
+    <p>But even with perfect retrieval, the model can still go wrong. In <a href="hallucinations-safety.html">Part 3: Hallucinations, Safety &amp; Trust</a>, we tackle the output side: detecting and preventing hallucinations, building safety guardrails, establishing trust with users, and the human-in-the-loop patterns that keep AI systems accountable. Grounding gets the right information in. Guardrails keep the wrong information out.</p>
+  </article>
+
+  <!-- ================================================================
+       Article Navigation
+       ================================================================ -->
+  <nav class="article-nav">
+    <a href="grounding-your-data.html">&larr; Part 1: Grounding Models in Your Data</a>
+    <a href="hallucinations-safety.html">Part 3: Hallucinations, Safety &amp; Trust &rarr;</a>
+  </nav>
+
+  <!-- ================================================================
+       Scripts
+       ================================================================ -->
+  <script>
+  // ====================================================================
+  // Hero: Animated floating particles
+  // ====================================================================
+  (function() {
+    var canvas = document.getElementById('hero-canvas');
+    var ctx = canvas.getContext('2d');
+    var hero = document.getElementById('article-hero');
+    var nodes = [];
+    var numNodes = 40;
+    var connectionDist = 140;
+    var dpr = window.devicePixelRatio || 1;
+    var w, h;
+    var running = true;
+
+    function resize() {
+      var rect = hero.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function initNodes() {
+      nodes = [];
+      for (var i = 0; i < numNodes; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          r: 2 + Math.random() * 3,
+          pulse: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function draw() {
+      if (!running) return;
+      ctx.clearRect(0, 0, w, h);
+
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x += n.vx * 0.3;
+        n.y += n.vy * 0.3;
+        n.pulse += 0.015;
+        if (n.x < -20) n.x = w + 20;
+        if (n.x > w + 20) n.x = -20;
+        if (n.y < -20) n.y = h + 20;
+        if (n.y > h + 20) n.y = -20;
+      }
+
+      ctx.lineWidth = 1;
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var dx = nodes[i].x - nodes[j].x;
+          var dy = nodes[i].y - nodes[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < connectionDist) {
+            var alpha = (1 - dist / connectionDist) * 0.3;
+            ctx.strokeStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        var glow = 0.5 + 0.5 * Math.sin(n.pulse);
+        var r = n.r * (0.8 + 0.4 * glow);
+        ctx.fillStyle = 'rgba(255, 255, 255, ' + (0.4 + 0.4 * glow) + ')';
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    var observer = new IntersectionObserver(function(entries) {
+      running = entries[0].isIntersecting;
+      if (running) requestAnimationFrame(draw);
+    }, { threshold: 0 });
+
+    resize();
+    initNodes();
+    observer.observe(hero);
+    requestAnimationFrame(draw);
+
+    window.addEventListener('resize', function() {
+      resize();
+      initNodes();
+    });
+  })();
+
+  // ====================================================================
+  // Widget 1: Chunking Comparator
+  // ====================================================================
+  (function() {
+    const docText = "Acme Corp Return Policy. All purchases may be returned within 30 days of delivery for a full refund. Electronics have a 15-day return window and must be in original packaging with all accessories included. Opened software and digital downloads are non-refundable. To initiate a return, visit your order history page and select the item you wish to return. You will receive a prepaid shipping label via email within 24 hours. Refunds are processed within 5-7 business days after we receive the item. Damaged or defective items may be returned at any time within the 1-year warranty period. Contact our support team for expedited replacement of defective products.";
+
+    const question = "What's the return window for electronics?";
+
+    // Chunk definitions per strategy
+    const strategies = {
+      fixed: {
+        chunks: [
+          { start: 0, end: 200 },
+          { start: 200, end: 400 },
+          { start: 400, end: 600 },
+          { start: 600, end: docText.length }
+        ],
+        colors: ['#FECDD3', '#FDE68A', '#BBF7D0', '#BFDBFE'],
+        retrieved: [0, 1],
+        verdict: 'partial',
+        verdictText: 'Partial match',
+        explanation: "Fixed-size chunking splits the answer across chunks 1 and 2. Chunk 1 ends mid-sentence at \"...15-day return window and must be in ori\" and chunk 2 starts with \"ginal packaging with all accessories included.\" The retriever pulls chunk 1 (partial match on \"electronics\" and \"return\") but misses the packaging requirement in chunk 2."
+      },
+      sentence: {
+        chunks: [
+          { start: 0, end: 25 },
+          { start: 26, end: 91 },
+          { start: 92, end: 188 },
+          { start: 189, end: 239 },
+          { start: 240, end: 339 },
+          { start: 340, end: 404 },
+          { start: 405, end: 470 },
+          { start: 471, end: 555 },
+          { start: 556, end: docText.length }
+        ],
+        colors: ['#FECDD3', '#FDE68A', '#BBF7D0', '#BFDBFE', '#DDD6FE', '#FECDD3', '#FDE68A', '#BBF7D0', '#BFDBFE'],
+        retrieved: [2],
+        verdict: 'partial',
+        verdictText: 'Good but narrow',
+        explanation: "Sentence chunking retrieves the exact sentence about electronics (\"Electronics have a 15-day return window and must be in original packaging with all accessories included.\"). Accurate, but the chunk is just one sentence -- it lacks the broader context about how to initiate the return or the general 30-day baseline."
+      },
+      semantic: {
+        chunks: [
+          { start: 0, end: 239 },
+          { start: 240, end: 470 },
+          { start: 471, end: docText.length }
+        ],
+        colors: ['#FECDD3', '#BBF7D0', '#BFDBFE'],
+        retrieved: [0],
+        verdict: 'good',
+        verdictText: 'Best match',
+        explanation: "Semantic chunking groups the return policy rules together: general 30-day policy, the 15-day electronics exception, and the non-refundable clause. One chunk, one coherent topic. The retriever pulls this chunk and the model gets full context: the 15-day window, the packaging requirement, and the baseline 30-day policy for comparison."
+      }
+    };
+
+    const controlsEl = document.getElementById('chunking-controls');
+    const docEl = document.getElementById('chunk-doc');
+    const retrievalEl = document.getElementById('chunk-retrieval');
+    const questionEl = document.getElementById('chunk-question');
+    const resultEl = document.getElementById('chunk-result');
+    let activeStrategy = null;
+
+    function renderDoc(strategyKey) {
+      const strat = strategies[strategyKey];
+      let html = '';
+      for (let i = 0; i < strat.chunks.length; i++) {
+        const chunk = strat.chunks[i];
+        const text = docText.slice(chunk.start, chunk.end);
+        const isRetrieved = strat.retrieved.includes(i);
+        const border = isRetrieved ? '2px solid ' + (strat.verdict === 'good' ? '#059669' : (strat.verdict === 'partial' ? '#D97706' : '#DC2626')) : 'none';
+        html += '<mark style="background: ' + strat.colors[i] + '; outline: ' + border + '; outline-offset: 1px;" title="Chunk ' + (i + 1) + (isRetrieved ? ' (retrieved)' : '') + '">' + escapeHtml(text) + '</mark>';
+      }
+      docEl.innerHTML = html;
+
+      questionEl.innerHTML = 'Query: "' + question + '"';
+
+      const verdictClass = strat.verdict === 'good' ? 'good' : (strat.verdict === 'partial' ? 'partial' : 'bad');
+      resultEl.innerHTML =
+        '<div class="chunk-retrieval__result chunk-retrieval__result--' + verdictClass + '">' +
+          '<div class="chunk-retrieval__verdict">' + strat.verdictText + '</div>' +
+          '<p style="margin-top: var(--space-2);">' + strat.explanation + '</p>' +
+        '</div>';
+      retrievalEl.style.display = 'block';
+    }
+
+    function escapeHtml(text) {
+      return text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    }
+
+    controlsEl.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-strategy]');
+      if (!btn) return;
+      const key = btn.dataset.strategy;
+      activeStrategy = key;
+
+      controlsEl.querySelectorAll('.btn').forEach(function(b) {
+        b.classList.toggle('btn--active', b.dataset.strategy === key);
+      });
+
+      renderDoc(key);
+    });
+  })();
+
+  // ====================================================================
+  // Widget 2: Hybrid Search Demo
+  // ====================================================================
+  (function() {
+    const queries = [
+      {
+        text: 'error code E-4012',
+        keyword: [
+          { title: 'Troubleshooting E-4012: Database connection timeout', score: 0.95 },
+          { title: 'Error codes reference: E-4000 through E-4099', score: 0.88 },
+          { title: 'Known issue: E-4012 in v2.3 deployments', score: 0.82 }
+        ],
+        vector: [
+          { title: 'Common database connectivity issues', score: 0.72 },
+          { title: 'How to diagnose timeout errors in production', score: 0.68 },
+          { title: 'Connection pooling best practices', score: 0.61 }
+        ],
+        hybrid: [
+          { title: 'Troubleshooting E-4012: Database connection timeout', score: 0.96 },
+          { title: 'Error codes reference: E-4000 through E-4099', score: 0.89 },
+          { title: 'Known issue: E-4012 in v2.3 deployments', score: 0.85 }
+        ]
+      },
+      {
+        text: 'How do I cancel my subscription?',
+        keyword: [
+          { title: 'Subscription management FAQ', score: 0.61 },
+          { title: 'Cancel order before shipping', score: 0.43 },
+          { title: 'Account cancellation policy', score: 0.38 }
+        ],
+        vector: [
+          { title: 'Steps to end your membership', score: 0.91 },
+          { title: 'Managing your recurring billing', score: 0.84 },
+          { title: 'How to stop automatic renewal', score: 0.79 }
+        ],
+        hybrid: [
+          { title: 'Steps to end your membership', score: 0.93 },
+          { title: 'Managing your recurring billing', score: 0.86 },
+          { title: 'Subscription management FAQ', score: 0.78 }
+        ]
+      },
+      {
+        text: 'HIPAA compliance requirements',
+        keyword: [
+          { title: 'HIPAA compliance checklist for SaaS companies', score: 0.92 },
+          { title: 'Meeting HIPAA technical safeguard requirements', score: 0.87 },
+          { title: 'HIPAA Business Associate Agreement template', score: 0.79 }
+        ],
+        vector: [
+          { title: 'Healthcare data privacy regulations overview', score: 0.76 },
+          { title: 'Patient information security standards', score: 0.71 },
+          { title: 'Medical records data handling best practices', score: 0.64 }
+        ],
+        hybrid: [
+          { title: 'HIPAA compliance checklist for SaaS companies', score: 0.94 },
+          { title: 'Meeting HIPAA technical safeguard requirements', score: 0.88 },
+          { title: 'Healthcare data privacy regulations overview', score: 0.80 }
+        ]
+      },
+      {
+        text: 'cheap alternatives to Datadog',
+        keyword: [
+          { title: 'Datadog pricing comparison 2025', score: 0.58 },
+          { title: 'Datadog alternatives overview', score: 0.52 },
+          { title: 'Monitoring tool cost calculator', score: 0.35 }
+        ],
+        vector: [
+          { title: 'Budget-friendly observability platforms', score: 0.88 },
+          { title: 'Open-source monitoring tools that scale', score: 0.83 },
+          { title: 'Cost-effective APM solutions for startups', score: 0.77 }
+        ],
+        hybrid: [
+          { title: 'Budget-friendly observability platforms', score: 0.90 },
+          { title: 'Datadog alternatives overview', score: 0.82 },
+          { title: 'Open-source monitoring tools that scale', score: 0.79 }
+        ]
+      }
+    ];
+
+    const controlsEl = document.getElementById('hybrid-controls');
+    const columnsEl = document.getElementById('hybrid-columns');
+    const queryLabel = document.getElementById('hybrid-query-label');
+    const queryText = document.getElementById('hybrid-query-text');
+    const keywordResults = document.getElementById('hybrid-keyword-results');
+    const vectorResults = document.getElementById('hybrid-vector-results');
+    const hybridResults = document.getElementById('hybrid-hybrid-results');
+
+    function renderResults(container, results, type) {
+      container.innerHTML = '';
+      results.forEach(function(r, i) {
+        const div = document.createElement('div');
+        div.className = 'hybrid-result';
+        div.innerHTML =
+          '<span class="hybrid-result__rank">#' + (i + 1) + '</span>' +
+          '<span class="hybrid-result__title">' + r.title + '</span>' +
+          '<div class="hybrid-result__score-bar"><div class="hybrid-result__score-fill hybrid-result__score-fill--' + type + '" style="width: ' + (r.score * 100) + '%;"></div></div>' +
+          '<span class="hybrid-result__score-label">' + r.score.toFixed(2) + '</span>';
+        container.appendChild(div);
+      });
+    }
+
+    controlsEl.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-query]');
+      if (!btn) return;
+      const idx = parseInt(btn.dataset.query);
+      const q = queries[idx];
+
+      controlsEl.querySelectorAll('.btn').forEach(function(b) {
+        b.classList.toggle('btn--active', b.dataset.query === String(idx));
+      });
+
+      queryText.textContent = q.text;
+      queryLabel.style.display = 'block';
+      columnsEl.style.display = 'grid';
+
+      renderResults(keywordResults, q.keyword, 'keyword');
+      renderResults(vectorResults, q.vector, 'vector');
+      renderResults(hybridResults, q.hybrid, 'hybrid');
+    });
+  })();
+
+  // ====================================================================
+  // Widget 3: Reranking Before/After
+  // ====================================================================
+  (function() {
+    const rerankData = [
+      {
+        query: 'Return policy for electronics',
+        before: [
+          { id: 'a', title: 'General return policy overview', score: 0.82, rerankedPos: 3 },
+          { id: 'b', title: 'Shipping and delivery FAQ', score: 0.79, rerankedPos: 8 },
+          { id: 'c', title: 'Product warranty information', score: 0.77, rerankedPos: 4 },
+          { id: 'd', title: 'How to contact customer support', score: 0.75, rerankedPos: 9 },
+          { id: 'e', title: 'Refund processing times', score: 0.73, rerankedPos: 5 },
+          { id: 'f', title: 'Return shipping labels', score: 0.71, rerankedPos: 6 },
+          { id: 'g', title: 'Electronics return window: 15 days', score: 0.69, rerankedPos: 0 },
+          { id: 'h', title: 'Restocking fees for opened items', score: 0.67, rerankedPos: 2 },
+          { id: 'i', title: 'Electronics packaging requirements', score: 0.65, rerankedPos: 1 },
+          { id: 'j', title: 'Gift card return policy', score: 0.63, rerankedPos: 7 }
+        ]
+      },
+      {
+        query: 'How to migrate to v3 API',
+        before: [
+          { id: 'a', title: 'API versioning strategy', score: 0.85, rerankedPos: 4 },
+          { id: 'b', title: 'v3 API changelog', score: 0.83, rerankedPos: 2 },
+          { id: 'c', title: 'Authentication methods', score: 0.80, rerankedPos: 7 },
+          { id: 'd', title: 'Rate limiting documentation', score: 0.78, rerankedPos: 8 },
+          { id: 'e', title: 'v2 to v3 migration guide (step-by-step)', score: 0.76, rerankedPos: 0 },
+          { id: 'f', title: 'Breaking changes in v3', score: 0.74, rerankedPos: 1 },
+          { id: 'g', title: 'SDK installation instructions', score: 0.72, rerankedPos: 5 },
+          { id: 'h', title: 'API error codes reference', score: 0.70, rerankedPos: 9 },
+          { id: 'i', title: 'v3 endpoint deprecation schedule', score: 0.68, rerankedPos: 3 },
+          { id: 'j', title: 'Webhook configuration', score: 0.66, rerankedPos: 6 }
+        ]
+      },
+      {
+        query: 'Side effects of medication',
+        before: [
+          { id: 'a', title: 'Drug interaction checker overview', score: 0.84, rerankedPos: 3 },
+          { id: 'b', title: 'Dosage guidelines for adults', score: 0.81, rerankedPos: 5 },
+          { id: 'c', title: 'Pharmacy locations and hours', score: 0.79, rerankedPos: 9 },
+          { id: 'd', title: 'Prescription refill process', score: 0.77, rerankedPos: 8 },
+          { id: 'e', title: 'How to report adverse reactions', score: 0.75, rerankedPos: 2 },
+          { id: 'f', title: 'Common side effects and what to expect', score: 0.73, rerankedPos: 0 },
+          { id: 'g', title: 'When to contact your doctor', score: 0.71, rerankedPos: 1 },
+          { id: 'h', title: 'Storage and handling instructions', score: 0.69, rerankedPos: 7 },
+          { id: 'i', title: 'Patient safety information sheet', score: 0.67, rerankedPos: 4 },
+          { id: 'j', title: 'Insurance coverage for prescriptions', score: 0.65, rerankedPos: 6 }
+        ]
+      }
+    ];
+
+    const queryControlsEl = document.getElementById('rerank-query-controls');
+    const queryLabelEl = document.getElementById('rerank-query-label');
+    const queryTextEl = document.getElementById('rerank-query-text');
+    const columnsEl = document.getElementById('rerank-columns');
+    const beforeEl = document.getElementById('rerank-before');
+    const afterEl = document.getElementById('rerank-after');
+    const actionsEl = document.getElementById('rerank-actions');
+    const rerankBtn = document.getElementById('rerank-btn');
+    const resetBtn = document.getElementById('rerank-reset-btn');
+
+    let activeQuery = -1;
+    let hasReranked = false;
+
+    function renderBeforeList(data) {
+      beforeEl.innerHTML = '';
+      data.before.forEach(function(item, i) {
+        const div = document.createElement('div');
+        div.className = 'rerank-item';
+        div.dataset.id = item.id;
+        div.innerHTML =
+          '<div class="rerank-item__rank">' + (i + 1) + '</div>' +
+          '<div class="rerank-item__body">' +
+            '<span class="rerank-item__title">' + item.title + '</span>' +
+            '<div class="rerank-item__score-bar"><div class="rerank-item__score-fill" style="width: ' + (item.score * 100) + '%;"></div></div>' +
+            '<span class="rerank-item__score-label">Score: ' + item.score.toFixed(2) + '</span>' +
+          '</div>';
+        beforeEl.appendChild(div);
+      });
+    }
+
+    function renderAfterPlaceholder(data) {
+      afterEl.innerHTML = '';
+      data.before.forEach(function(item, i) {
+        const div = document.createElement('div');
+        div.className = 'rerank-item';
+        div.dataset.id = item.id;
+        div.style.opacity = '0.3';
+        div.innerHTML =
+          '<div class="rerank-item__rank">?</div>' +
+          '<div class="rerank-item__body">' +
+            '<span class="rerank-item__title" style="color: var(--color-text-secondary);">Press "Rerank" to see results</span>' +
+          '</div>';
+        afterEl.appendChild(div);
+      });
+    }
+
+    function doRerank(data) {
+      hasReranked = true;
+      rerankBtn.disabled = true;
+      rerankBtn.textContent = 'Reranked';
+
+      // Build the reranked order
+      const reranked = [];
+      data.before.forEach(function(item, originalIndex) {
+        reranked[item.rerankedPos] = { item: item, originalIndex: originalIndex };
+      });
+
+      // Compute new scores (highest at top)
+      const maxScore = 0.97;
+      const minScore = 0.35;
+
+      afterEl.innerHTML = '';
+      reranked.forEach(function(entry, newIndex) {
+        const item = entry.item;
+        const originalIndex = entry.originalIndex;
+        const newScore = maxScore - (newIndex * ((maxScore - minScore) / (data.before.length - 1)));
+        const moved = originalIndex - newIndex;
+
+        let badgeClass, badgeText;
+        if (moved > 0) {
+          badgeClass = 'rerank-item__badge--up';
+          badgeText = '+' + moved + ' up';
+        } else if (moved < 0) {
+          badgeClass = 'rerank-item__badge--down';
+          badgeText = Math.abs(moved) + ' down';
+        } else {
+          badgeClass = 'rerank-item__badge--same';
+          badgeText = 'same';
+        }
+
+        const isHighlight = Math.abs(moved) >= 3;
+
+        const div = document.createElement('div');
+        div.className = 'rerank-item' + (isHighlight ? ' rerank-item--highlight' : '');
+        div.dataset.id = item.id;
+        div.innerHTML =
+          '<div class="rerank-item__rank">' + (newIndex + 1) + '</div>' +
+          '<div class="rerank-item__body">' +
+            '<span class="rerank-item__title">' + item.title + '</span>' +
+            '<div class="rerank-item__score-bar"><div class="rerank-item__score-fill" style="width: ' + (newScore * 100) + '%;"></div></div>' +
+            '<span class="rerank-item__score-label">Score: ' + newScore.toFixed(2) + '</span>' +
+          '</div>' +
+          '<span class="rerank-item__badge ' + badgeClass + '">' + badgeText + '</span>';
+        afterEl.appendChild(div);
+      });
+
+      // Highlight the corresponding items in the before column
+      beforeEl.querySelectorAll('.rerank-item').forEach(function(el) {
+        const id = el.dataset.id;
+        const item = data.before.find(function(b) { return b.id === id; });
+        if (item) {
+          const moved = data.before.indexOf(item) - item.rerankedPos;
+          if (Math.abs(moved) >= 3) {
+            el.classList.add('rerank-item--highlight');
+          }
+        }
+      });
+    }
+
+    function loadQuery(idx) {
+      activeQuery = idx;
+      hasReranked = false;
+      const data = rerankData[idx];
+
+      queryControlsEl.querySelectorAll('.btn').forEach(function(b) {
+        b.classList.toggle('btn--active', b.dataset.rquery === String(idx));
+      });
+
+      queryTextEl.textContent = data.query;
+      queryLabelEl.style.display = 'block';
+      columnsEl.style.display = 'grid';
+      actionsEl.style.display = 'flex';
+      rerankBtn.disabled = false;
+      rerankBtn.textContent = 'Rerank';
+
+      renderBeforeList(data);
+      renderAfterPlaceholder(data);
+    }
+
+    queryControlsEl.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-rquery]');
+      if (!btn) return;
+      loadQuery(parseInt(btn.dataset.rquery));
+    });
+
+    rerankBtn.addEventListener('click', function() {
+      if (activeQuery < 0 || hasReranked) return;
+      doRerank(rerankData[activeQuery]);
+    });
+
+    resetBtn.addEventListener('click', function() {
+      if (activeQuery >= 0) {
+        loadQuery(activeQuery);
+      }
+    });
+  })();
+  </script>
+
+</body>
+</html>

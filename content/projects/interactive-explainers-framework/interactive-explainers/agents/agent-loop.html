@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Agent Loop — AI for PMs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css?v=8">
+  <script src="../styles/site-shell.js" defer></script>
+</head>
+<body>
+
+  <header class="article-hero" id="article-hero">
+    <canvas class="article-hero__canvas" id="hero-canvas"></canvas>
+    <div class="article-hero__overlay"></div>
+    <div class="article-hero__content">
+      <nav class="breadcrumb breadcrumb--hero">
+        <a href="../index.html">AI for PMs</a> &nbsp;/&nbsp; <a href="index.html">Agents &amp; Tool Use</a> &nbsp;/&nbsp; <span>Part 1</span>
+      </nav>
+      <div class="article-header__meta" style="color: rgba(255,255,255,0.9);">Part 1 of 3 &middot; ~8 min read</div>
+      <h1 style="color: #fff;">The Agent Loop</h1>
+      <p class="lead" style="color: rgba(255,255,255,0.85);">Think. Act. Observe. Repeat. The four-step cycle that turns a language model into something that can actually get things done.</p>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc__inner">
+      <div class="toc__title">Contents</div>
+      <ol class="toc__list">
+        <li><span class="toc__numeral">I.</span><a href="#the-gap">The Gap</a></li>
+        <li><span class="toc__numeral">II.</span><a href="#one-shot-llm">The One-Shot LLM</a></li>
+        <li><span class="toc__numeral">III.</span><a href="#the-loop">The Loop</a></li>
+        <li><span class="toc__numeral">IV.</span><a href="#agent-in-action">An Agent in Action</a></li>
+        <li><span class="toc__numeral">V.</span><a href="#when-to-use-what">When to Use What</a></li>
+        <li><span class="toc__numeral">VI.</span><a href="#whats-next">What's Next</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="epigraph">
+    <p class="epigraph__verse">
+      Ask me once, I'll tell you what to do,<br>
+      Ask me right, I'll go and do it too.<br>
+      Difference ain't the brain, it's the loop I'm in —<br>
+      Think, act, watch it land, then I go again.
+    </p>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section I: The Gap
+         ================================================================ -->
+    <h2 id="the-gap"><span class="section-number">I</span> The Gap</h2>
+
+    <p>Imagine asking your AI assistant to reschedule your 3pm meeting to tomorrow, check if the conference room is free, and send an updated calendar invite to everyone. Simple enough that you'd trust an intern with it.</p>
+
+    <p>A chatbot gives you a well-written paragraph about <em>how you could do</em> those things. An agent actually <em>does</em> them.</p>
+
+    <!-- ================================================================
+         Section II: The One-Shot LLM
+         ================================================================ -->
+    <h2 id="one-shot-llm"><span class="section-number">II</span> The One-Shot LLM</h2>
+
+    <p>A standard LLM interaction is one question in, one answer out. The model has no memory, no access to external systems, and no ability to take action.</p>
+
+    <div class="callout callout--analogy">
+      <div class="callout__label">Analogy</div>
+      <div class="callout__body">Imagine asking someone to plan a dinner party while they're locked in a room with no phone and no way to open the door. They can <em>reason</em> brilliantly — suggest a menu, draft invitations — but they cannot check the fridge, call the restaurant, or set the table. World-class dinner party planner. Zero dinners produced.</div>
+    </div>
+
+    <p>Three fundamental limitations follow:</p>
+
+    <ol>
+      <li><strong>No access to live data.</strong> Anything the model says about current state is either stale or fabricated.</li>
+      <li><strong>No ability to take action.</strong> It can only <em>describe</em> actions, not perform them.</li>
+      <li><strong>No way to self-correct.</strong> If its first response is wrong, it cannot check or try a different approach.</li>
+    </ol>
+
+    <p>Try it yourself:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 1: Ask the LLM
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-ask-llm">
+      <div class="widget__label">Try it yourself</div>
+      <div class="widget__title">Ask the LLM</div>
+      <div class="widget__instruction">Pick a task and watch the LLM respond. Pay attention to what it can and cannot actually do.</div>
+
+      <div class="widget__controls" id="ask-llm-scenarios">
+        <button class="btn btn--secondary" data-scenario="0">Reschedule meeting</button>
+        <button class="btn btn--secondary" data-scenario="1">Check inventory</button>
+        <button class="btn btn--secondary" data-scenario="2">Debug login error</button>
+      </div>
+
+      <div class="widget__chat" id="ask-llm-chat">
+        <div class="chat-placeholder">Select a scenario above to see how a standard LLM responds.</div>
+      </div>
+
+      <div class="widget__annotation" id="ask-llm-annotation" style="display: none;"></div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <p>The LLM was articulate, confident, and completely incapable of doing anything. It <em>described</em> actions instead of <em>performing</em> them — the colleague who replies "great question, here's what I'd do" and then does absolutely nothing. For products that need to interact with the real world, we need to give the LLM a body.</p>
+
+    <!-- ================================================================
+         Section III: The Loop
+         ================================================================ -->
+    <h2 id="the-loop"><span class="section-number">III</span> The Loop</h2>
+
+    <p>The agent loop transforms an LLM from a one-shot oracle into an iterative problem-solver. Four phases, repeated until the task is complete:</p>
+
+    <ol>
+      <li><strong>Think.</strong> The LLM examines the current context and reasons about what to do next.</li>
+      <li><strong>Act.</strong> The agent executes a concrete action: calling an API, querying a database, running code.</li>
+      <li><strong>Observe.</strong> The result comes back — data, an error, a confirmation — and gets fed into the LLM's context.</li>
+      <li><strong>Decide.</strong> Is the task done? If yes, deliver the answer. If not, loop back to Think with new information.</li>
+    </ol>
+
+    <div class="callout callout--insight">
+      <div class="callout__label">Key Insight</div>
+      <div class="callout__body"><strong>The agent loop is why agents can handle ambiguity.</strong> They don't need perfect instructions upfront — they explore, adapt, and try again. This is fundamentally different from traditional software where every branch must be coded in advance.</div>
+    </div>
+
+    <p>Explore the loop in the interactive diagram below:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 2: The Agent Loop (Canvas Diagram)
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-agent-loop">
+      <div class="widget__label">Interactive diagram</div>
+      <div class="widget__title">The Agent Loop</div>
+      <div class="widget__instruction">Click each phase to learn more, or press Play to watch the full cycle animate.</div>
+
+      <div class="widget__canvas-wrap" id="loop-canvas-wrap">
+        <canvas id="loop-canvas"></canvas>
+        <div class="loop-center-text" id="loop-center-text">
+          <div class="loop-center-text__phase" id="loop-phase-label">The Agent Loop</div>
+          <div class="loop-center-text__desc" id="loop-phase-desc">Click a phase to explore it.</div>
+        </div>
+      </div>
+
+      <div class="widget__controls widget__controls--mt">
+        <button class="btn btn--secondary" data-phase="0">Think</button>
+        <button class="btn btn--secondary" data-phase="1">Act</button>
+        <button class="btn btn--secondary" data-phase="2">Observe</button>
+        <button class="btn btn--secondary" data-phase="3">Decide</button>
+        <div style="flex: 1;"></div>
+        <button class="btn btn--primary" id="loop-play">&#9654; Play</button>
+        <button class="btn btn--secondary" id="loop-reset">Reset</button>
+      </div>
+
+      <div class="step-indicator" id="loop-steps">
+        <div class="step-indicator__dot"></div>
+        <div class="step-indicator__dot"></div>
+        <div class="step-indicator__dot"></div>
+        <div class="step-indicator__dot"></div>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section IV: An Agent in Action
+         ================================================================ -->
+    <h2 id="agent-in-action"><span class="section-number">IV</span> An Agent in Action</h2>
+
+    <p>Imagine you ask your AI agent: "Find the top 3 bugs by user impact from Sentry, summarize them, and post to #engineering on Slack."</p>
+
+    <p><strong>Loop 1 — Gather.</strong> The agent queries the Sentry API for recent issues sorted by frequency, getting back 10 issues with titles and error counts.</p>
+
+    <p><strong>Loop 2 — Refine.</strong> Frequency alone isn't user impact. The agent makes a second call to get unique users affected for the top 5 issues.</p>
+
+    <p><strong>Loop 3 — Deliver.</strong> It ranks the top 3, writes a markdown summary, and posts it to Slack.</p>
+
+    <div class="callout callout--pm-tip">
+      <div class="callout__label">PM Tip</div>
+      <div class="callout__body">No developer hard-coded this sequence. The agent figured out the steps — including the non-obvious second API call. This is the difference between a <strong>workflow</strong> (pre-defined steps) and an <strong>agent</strong> (dynamic steps determined at runtime).</div>
+    </div>
+
+    <p>Walk through this scenario step by step:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 3: Agent in Action
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-agent-action">
+      <div class="widget__label">Walkthrough</div>
+      <div class="widget__title">Agent in Action</div>
+      <div class="widget__instruction">Click "Next Step" to reveal each step of the agent's reasoning and actions.</div>
+
+      <div class="agent-action__header">
+        <span class="agent-action__loop-badge" id="action-loop-badge">Ready</span>
+        <span class="agent-action__phase-badge" id="action-phase-badge">—</span>
+        <span class="agent-action__progress" id="action-progress">Step 0 of 12</span>
+      </div>
+
+      <div class="widget__chat" id="action-chat" role="log" aria-live="polite">
+        <div class="chat-placeholder">Press "Next Step" to begin the walkthrough.</div>
+      </div>
+
+      <div class="widget__controls widget__controls--mt">
+        <button class="btn btn--primary" id="action-next">Next Step &rarr;</button>
+        <button class="btn btn--secondary" id="action-reset">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="callout callout--summary">
+      <div class="callout__label">Takeaway</div>
+      <div class="callout__body"><strong>Three loops. Four tool calls. One final output.</strong> No human had to open Sentry, squint at a dashboard, or remember the Slack channel name. The agent started with a broad request and navigated to a specific outcome, making judgment calls along the way.</div>
+    </div>
+
+    <!-- ================================================================
+         Section V: When to Use What
+         ================================================================ -->
+    <h2 id="when-to-use-what"><span class="section-number">V</span> When to Use What</h2>
+
+    <p>Agents are powerful — and slow, expensive, and unpredictable. The engineering equivalent of calling in a specialist when a bandaid would do. Use the right tier:</p>
+
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>Approach</th>
+          <th>When to use</th>
+          <th>Example</th>
+          <th>Tradeoff</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Simple Prompt</td>
+          <td>Self-contained, no external data needed</td>
+          <td>Summarize a doc, draft an email</td>
+          <td>Fast &amp; cheap, but no actions</td>
+        </tr>
+        <tr>
+          <td>Workflow</td>
+          <td>Known steps, deterministic routing</td>
+          <td>Classify ticket &rarr; route &rarr; draft reply</td>
+          <td>Reliable, but rigid</td>
+        </tr>
+        <tr>
+          <td>Agent</td>
+          <td>Open-ended, dynamic decision-making</td>
+          <td>Investigate why a metric dropped</td>
+          <td>Powerful, but slower &amp; pricier</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout--insight">
+      <div class="callout__label">Key Insight</div>
+      <div class="callout__body">The decision comes down to one question: <strong>how much ambiguity is there?</strong> If the task is predictable, use a simpler approach. If it requires exploration and judgment, that's where agents shine.</div>
+    </div>
+
+    <p>Test your intuition:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 4: Choose Your Approach (Quiz)
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-quiz">
+      <div class="widget__label">Test your understanding</div>
+      <div class="widget__title">Choose Your Approach</div>
+      <div class="widget__instruction">For each scenario, decide: is this a simple prompt, a workflow, or an agent?</div>
+
+      <div class="quiz__progress">
+        <div class="quiz__progress-bar" id="quiz-progress-bar"></div>
+      </div>
+      <div class="quiz__progress-text" id="quiz-progress-text">1 of 5</div>
+
+      <div class="quiz__card" id="quiz-card">
+        <p class="quiz__scenario" id="quiz-scenario"></p>
+        <div class="widget__controls" id="quiz-options">
+          <button class="btn btn--secondary" data-answer="prompt">Simple Prompt</button>
+          <button class="btn btn--secondary" data-answer="workflow">Workflow</button>
+          <button class="btn btn--secondary" data-answer="agent">Agent</button>
+        </div>
+        <div class="quiz__explanation" id="quiz-explanation" style="display: none;"></div>
+      </div>
+
+      <div class="widget__controls widget__controls--mt">
+        <button class="btn btn--primary" id="quiz-next" style="display: none;">Next Scenario &rarr;</button>
+      </div>
+
+      <div class="quiz__summary" id="quiz-summary" style="display: none;">
+        <div class="quiz__score" id="quiz-score"></div>
+        <p class="quiz__summary-text" id="quiz-summary-text"></p>
+        <button class="btn btn--secondary" id="quiz-retry" style="margin-top: var(--space-4);">Try Again</button>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section VI: What's Next
+         ================================================================ -->
+    <h2 id="whats-next"><span class="section-number">VI</span> What's Next</h2>
+
+    <p>The agent loop is the heartbeat of every AI agent — but it's only as useful as the actions the agent can take. Right now we've been hand-waving about "tool calls" and "API requests." In Part 2, we'll get specific.</p>
+
+    <p>You'll learn how tools are defined and exposed to the LLM, how the model decides which tool to call, and the design patterns that make tool use reliable. The loop gives agents their rhythm. Tools give them their reach.</p>
+  </article>
+
+  <!-- ================================================================
+       Article Navigation
+       ================================================================ -->
+  <nav class="article-nav">
+    <a href="index.html">&larr; Back to series</a>
+    <a href="tools.html">Part 2: Tools &amp; Function Calling &rarr;</a>
+  </nav>
+
+  <!-- ================================================================
+       Scripts
+       ================================================================ -->
+  <script>
+  // ====================================================================
+  // Hero: Animated network/node background
+  // ====================================================================
+  (function() {
+    var canvas = document.getElementById('hero-canvas');
+    var ctx = canvas.getContext('2d');
+    var hero = document.getElementById('article-hero');
+    var nodes = [];
+    var numNodes = 40;
+    var connectionDist = 140;
+    var dpr = window.devicePixelRatio || 1;
+    var w, h;
+
+    function resize() {
+      var rect = hero.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function initNodes() {
+      nodes = [];
+      for (var i = 0; i < numNodes; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4,
+          r: 2 + Math.random() * 3,
+          pulse: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function draw(time) {
+      ctx.clearRect(0, 0, w, h);
+
+      // Update positions
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x += n.vx;
+        n.y += n.vy;
+        n.pulse += 0.015;
+        if (n.x < -20) n.x = w + 20;
+        if (n.x > w + 20) n.x = -20;
+        if (n.y < -20) n.y = h + 20;
+        if (n.y > h + 20) n.y = -20;
+      }
+
+      // Draw connections
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.25)';
+      ctx.lineWidth = 1;
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var dx = nodes[i].x - nodes[j].x;
+          var dy = nodes[i].y - nodes[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < connectionDist) {
+            var alpha = (1 - dist / connectionDist) * 0.3;
+            ctx.strokeStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw nodes
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        var glow = 0.5 + 0.5 * Math.sin(n.pulse);
+        var r = n.r * (0.8 + 0.4 * glow);
+        ctx.fillStyle = 'rgba(255, 255, 255, ' + (0.4 + 0.4 * glow) + ')';
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    // Only animate when hero is visible
+    var observer = new IntersectionObserver(function(entries) {
+      if (entries[0].isIntersecting) {
+        requestAnimationFrame(draw);
+      }
+    }, { threshold: 0 });
+
+    resize();
+    initNodes();
+    observer.observe(hero);
+    requestAnimationFrame(draw);
+
+    window.addEventListener('resize', function() {
+      resize();
+      initNodes();
+    });
+  })();
+
+  // ====================================================================
+  // Widget 1: Ask the LLM
+  // ====================================================================
+  (function() {
+    const scenarios = [
+      {
+        user: "Reschedule my 3pm meeting with the design team to tomorrow same time, and send everyone an updated invite.",
+        assistant: "I'd be happy to help you think through rescheduling that meeting! Here's what I'd suggest:\n\n1. Open your calendar app and find the 3pm design team meeting\n2. Check tomorrow's 3pm slot for any conflicts\n3. Move the event to tomorrow at 3pm\n4. Make sure \"send update to attendees\" is checked when you save\n\nIf you're using Google Calendar, you can simply drag the event to tomorrow. In Outlook, open the event and change the date. Would you like me to draft a message to the team about the change?",
+        annotation: "The LLM gave you instructions for how to reschedule — but it never actually checked your calendar, moved the event, or sent an invite. It described the actions instead of performing them."
+      },
+      {
+        user: "Check our current inventory levels for the top 10 SKUs and flag anything below reorder threshold.",
+        assistant: "To check your inventory levels, I'd recommend the following approach:\n\n1. Log into your inventory management system (e.g., Shopify, NetSuite, or your WMS)\n2. Run a report filtering by your top 10 SKUs by sales volume\n3. Compare current stock levels against the reorder points you've configured\n4. For any SKUs below threshold, initiate a purchase order with your suppliers\n\nCommon reorder thresholds are typically set at 2-4 weeks of safety stock. Would you like help setting up alerts for low inventory? I can also help you think through your reorder point formula if you'd like.",
+        annotation: "The LLM has zero access to your inventory data. Every number it could give you would be fabricated. Instead, it told you how to check yourself — helpful advice, but not action."
+      },
+      {
+        user: "Users are reporting a login error on our app. Look at the error logs from the last hour and tell me what's going on.",
+        assistant: "Login errors can stem from several common causes. Here's a systematic approach to diagnose the issue:\n\n1. Check your application error logs for the past hour — look for patterns in stack traces, particularly around authentication middleware\n2. Verify your auth provider (Auth0, Firebase, Cognito) status page for any ongoing incidents\n3. Check if there were any recent deployments that might have affected the auth flow\n4. Look at your database connection pool — auth failures sometimes indicate DB connectivity issues\n5. Review rate limiting rules that might be blocking legitimate login attempts\n\nThe most common culprits are expired API keys, misconfigured CORS settings, or a broken session store. Would you like me to help you draft an incident response plan?",
+        annotation: "The LLM can't read your logs, check your auth provider, or inspect your database. It gave a generic troubleshooting checklist — useful as a starting point, but an agent with access to your systems could have actually found the root cause."
+      }
+    ];
+
+    const chat = document.getElementById('ask-llm-chat');
+    const annotation = document.getElementById('ask-llm-annotation');
+    const scenarioButtons = document.getElementById('ask-llm-scenarios');
+    let isTyping = false;
+
+    function clearChat() {
+      chat.innerHTML = '';
+      annotation.style.display = 'none';
+    }
+
+    function addMessage(text, type) {
+      const div = document.createElement('div');
+      div.className = 'chat-message chat-message--' + type;
+      div.textContent = text;
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+      return div;
+    }
+
+    function typeText(element, text, speed, callback) {
+      let i = 0;
+      element.textContent = '';
+      function tick() {
+        if (i < text.length) {
+          element.textContent += text[i];
+          i++;
+          chat.scrollTop = chat.scrollHeight;
+          setTimeout(tick, speed);
+        } else if (callback) {
+          callback();
+        }
+      }
+      tick();
+    }
+
+    function setActiveButton(index) {
+      scenarioButtons.querySelectorAll('.btn').forEach(function(btn, i) {
+        btn.classList.toggle('btn--active', i === index);
+      });
+    }
+
+    scenarioButtons.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-scenario]');
+      if (!btn || isTyping) return;
+      const idx = parseInt(btn.dataset.scenario);
+      const scenario = scenarios[idx];
+      isTyping = true;
+
+      setActiveButton(idx);
+      clearChat();
+
+      addMessage(scenario.user, 'user');
+
+      setTimeout(function() {
+        var assistantEl = document.createElement('div');
+        assistantEl.className = 'chat-message chat-message--assistant';
+        chat.appendChild(assistantEl);
+
+        typeText(assistantEl, scenario.assistant, 12, function() {
+          annotation.textContent = scenario.annotation;
+          annotation.style.display = 'block';
+          isTyping = false;
+        });
+      }, 400);
+    });
+  })();
+
+  // ====================================================================
+  // Widget 2: The Agent Loop (Canvas Diagram)
+  // ====================================================================
+  (function() {
+    const canvas = document.getElementById('loop-canvas');
+    const ctx = canvas.getContext('2d');
+    const wrap = document.getElementById('loop-canvas-wrap');
+    const phaseLabel = document.getElementById('loop-phase-label');
+    const phaseDesc = document.getElementById('loop-phase-desc');
+
+    const phases = [
+      {
+        id: 'think', label: 'THINK', emoji: '\uD83E\uDDE0',
+        color: '#2563EB',
+        desc: 'The LLM examines the current context and reasons about what to do next. This is where the model\'s intelligence lives.'
+      },
+      {
+        id: 'act', label: 'ACT', emoji: '\u26A1',
+        color: '#059669',
+        desc: 'The agent executes a concrete action: calling an API, querying a database, running code, or generating a response.'
+      },
+      {
+        id: 'observe', label: 'OBSERVE', emoji: '\uD83D\uDC41',
+        color: '#D97706',
+        desc: 'The result comes back — data, an error, a confirmation. This new information gets fed into the LLM\'s context.'
+      },
+      {
+        id: 'decide', label: 'DECIDE', emoji: '\uD83D\uDD00',
+        color: '#7C3AED',
+        desc: 'Is the task complete? If yes, return the answer. If not, loop back to Think with the new information.'
+      }
+    ];
+
+    let activePhase = -1;
+    let isPlaying = false;
+    let playTimer = null;
+    let animT = 0;
+    let animFrom = -1;
+    let animTo = -1;
+    let animRAF = null;
+
+    // DPI-aware sizing
+    function resize() {
+      const rect = wrap.getBoundingClientRect();
+      const dpr = window.devicePixelRatio || 1;
+      canvas.width = rect.width * dpr;
+      canvas.height = rect.height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      draw();
+    }
+
+    function getNodePositions() {
+      const rect = wrap.getBoundingClientRect();
+      var w = rect.width;
+      var h = rect.height;
+      var cx = w / 2;
+      var cy = h / 2;
+      var rx = Math.min(w, h) * 0.37;
+      var ry = rx * 0.82;
+      // Top, Right, Bottom, Left
+      var angles = [-Math.PI / 2, 0, Math.PI / 2, Math.PI];
+      return angles.map(function(a) {
+        return { x: cx + rx * Math.cos(a), y: cy + ry * Math.sin(a) };
+      });
+    }
+
+    function drawArrow(from, to, color, alpha) {
+      var dx = to.x - from.x;
+      var dy = to.y - from.y;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      var nodeR = 32;
+      // Shorten by node radius at each end
+      var sx = from.x + (dx / dist) * nodeR;
+      var sy = from.y + (dy / dist) * nodeR;
+      var ex = to.x - (dx / dist) * (nodeR + 8);
+      var ey = to.y - (dy / dist) * (nodeR + 8);
+
+      // Control point for curve (perpendicular offset)
+      var mx = (sx + ex) / 2;
+      var my = (sy + ey) / 2;
+      var nx = -(ey - sy);
+      var ny = ex - sx;
+      var nlen = Math.sqrt(nx * nx + ny * ny);
+      var offset = dist * 0.25;
+      var cpx = mx + (nx / nlen) * offset;
+      var cpy = my + (ny / nlen) * offset;
+
+      ctx.save();
+      ctx.globalAlpha = alpha;
+      ctx.strokeStyle = color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(sx, sy);
+      ctx.quadraticCurveTo(cpx, cpy, ex, ey);
+      ctx.stroke();
+
+      // Arrowhead
+      var t = 0.98;
+      var ax = (1 - t) * (1 - t) * sx + 2 * (1 - t) * t * cpx + t * t * ex;
+      var ay = (1 - t) * (1 - t) * sy + 2 * (1 - t) * t * cpy + t * t * ey;
+      var angle = Math.atan2(ey - ay, ex - ax);
+      var headLen = 10;
+      ctx.fillStyle = color;
+      ctx.beginPath();
+      ctx.moveTo(ex, ey);
+      ctx.lineTo(ex - headLen * Math.cos(angle - 0.35), ey - headLen * Math.sin(angle - 0.35));
+      ctx.lineTo(ex - headLen * Math.cos(angle + 0.35), ey - headLen * Math.sin(angle + 0.35));
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function pointOnQuadBezier(sx, sy, cpx, cpy, ex, ey, t) {
+      var x = (1 - t) * (1 - t) * sx + 2 * (1 - t) * t * cpx + t * t * ex;
+      var y = (1 - t) * (1 - t) * sy + 2 * (1 - t) * t * cpy + t * t * ey;
+      return { x: x, y: y };
+    }
+
+    function getArrowCurve(from, to) {
+      var dx = to.x - from.x;
+      var dy = to.y - from.y;
+      var dist = Math.sqrt(dx * dx + dy * dy);
+      var nodeR = 32;
+      var sx = from.x + (dx / dist) * nodeR;
+      var sy = from.y + (dy / dist) * nodeR;
+      var ex = to.x - (dx / dist) * (nodeR + 8);
+      var ey = to.y - (dy / dist) * (nodeR + 8);
+      var mx = (sx + ex) / 2;
+      var my = (sy + ey) / 2;
+      var nx = -(ey - sy);
+      var ny = ex - sx;
+      var nlen = Math.sqrt(nx * nx + ny * ny);
+      var offset = dist * 0.25;
+      var cpx = mx + (nx / nlen) * offset;
+      var cpy = my + (ny / nlen) * offset;
+      return { sx: sx, sy: sy, cpx: cpx, cpy: cpy, ex: ex, ey: ey };
+    }
+
+    function draw() {
+      var rect = wrap.getBoundingClientRect();
+      ctx.clearRect(0, 0, rect.width, rect.height);
+      var positions = getNodePositions();
+
+      // Draw arrows
+      for (var i = 0; i < 4; i++) {
+        var next = (i + 1) % 4;
+        var isActiveArrow = (animFrom === i && animTo === next);
+        var alpha = activePhase === -1 ? 0.3 : (isActiveArrow ? 0.6 : 0.12);
+        var color = activePhase === -1 ? '#9CA3AF' : (isActiveArrow ? phases[next].color : '#D1D5DB');
+        drawArrow(positions[i], positions[next], color, alpha);
+      }
+
+      // Draw traveling dot
+      if (animFrom >= 0 && animTo >= 0 && animT > 0 && animT < 1) {
+        var curve = getArrowCurve(positions[animFrom], positions[animTo]);
+        var pt = pointOnQuadBezier(curve.sx, curve.sy, curve.cpx, curve.cpy, curve.ex, curve.ey, animT);
+        ctx.save();
+        ctx.fillStyle = phases[animTo].color;
+        ctx.shadowColor = phases[animTo].color;
+        ctx.shadowBlur = 12;
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, 5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+
+      // Draw nodes
+      for (var j = 0; j < 4; j++) {
+        var p = positions[j];
+        var phase = phases[j];
+        var isActive = (activePhase === j);
+        var nodeR = isActive ? 36 : 30;
+        var alpha2 = activePhase === -1 ? 1 : (isActive ? 1 : 0.3);
+
+        ctx.save();
+        ctx.globalAlpha = alpha2;
+
+        // Shadow for active
+        if (isActive) {
+          ctx.shadowColor = phase.color;
+          ctx.shadowBlur = 20;
+        }
+
+        // Circle
+        ctx.fillStyle = isActive ? phase.color : '#F3F4F6';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, nodeR, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Border
+        ctx.strokeStyle = isActive ? phase.color : '#D1D5DB';
+        ctx.lineWidth = 2;
+        ctx.shadowBlur = 0;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, nodeR, 0, Math.PI * 2);
+        ctx.stroke();
+
+        // Label
+        ctx.fillStyle = isActive ? '#FFFFFF' : '#6B7280';
+        ctx.font = '600 11px Inter, system-ui, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(phase.label, p.x, p.y + 1);
+
+        ctx.restore();
+      }
+    }
+
+    function setPhase(index, animate) {
+      var prevPhase = activePhase;
+      activePhase = index;
+
+      if (index === -1) {
+        phaseLabel.textContent = 'The Agent Loop';
+        phaseDesc.textContent = 'Click a phase to explore it.';
+        phaseLabel.style.color = '';
+      } else {
+        phaseLabel.textContent = phases[index].emoji + ' ' + phases[index].label;
+        phaseLabel.style.color = phases[index].color;
+        phaseDesc.textContent = phases[index].desc;
+      }
+
+      // Update buttons
+      document.querySelectorAll('#widget-agent-loop [data-phase]').forEach(function(btn, i) {
+        btn.classList.toggle('btn--active', i === index);
+      });
+
+      // Update step dots
+      document.querySelectorAll('#loop-steps .step-indicator__dot').forEach(function(dot, i) {
+        dot.className = 'step-indicator__dot';
+        if (i === index) dot.classList.add('step-indicator__dot--active');
+        else if (index > -1 && i < index) dot.classList.add('step-indicator__dot--completed');
+      });
+
+      if (animate && prevPhase >= 0 && index >= 0) {
+        animateArrow(prevPhase, index);
+      } else {
+        animFrom = -1;
+        animTo = -1;
+        animT = 0;
+        draw();
+      }
+    }
+
+    function animateArrow(from, to) {
+      if (animRAF) cancelAnimationFrame(animRAF);
+      animFrom = from;
+      animTo = to;
+      animT = 0;
+      var start = null;
+      var duration = 400;
+
+      function step(timestamp) {
+        if (!start) start = timestamp;
+        animT = Math.min((timestamp - start) / duration, 1);
+        draw();
+        if (animT < 1) {
+          animRAF = requestAnimationFrame(step);
+        } else {
+          animRAF = null;
+        }
+      }
+      animRAF = requestAnimationFrame(step);
+    }
+
+    // Button clicks
+    document.querySelector('#widget-agent-loop .widget__controls').addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-phase]');
+      if (!btn) return;
+      if (isPlaying) stopPlay();
+      var idx = parseInt(btn.dataset.phase);
+      setPhase(idx, true);
+    });
+
+    // Play
+    function startPlay() {
+      isPlaying = true;
+      document.getElementById('loop-play').innerHTML = '&#9724; Pause';
+      var i = 0;
+      setPhase(0, false);
+      draw();
+      playTimer = setInterval(function() {
+        i = (i + 1) % 4;
+        setPhase(i, true);
+      }, 2000);
+    }
+
+    function stopPlay() {
+      isPlaying = false;
+      document.getElementById('loop-play').innerHTML = '&#9654; Play';
+      clearInterval(playTimer);
+      playTimer = null;
+    }
+
+    document.getElementById('loop-play').addEventListener('click', function() {
+      if (isPlaying) stopPlay();
+      else startPlay();
+    });
+
+    document.getElementById('loop-reset').addEventListener('click', function() {
+      if (isPlaying) stopPlay();
+      setPhase(-1, false);
+      draw();
+    });
+
+    // Init
+    window.addEventListener('resize', resize);
+    resize();
+  })();
+
+  // ====================================================================
+  // Widget 3: Agent in Action
+  // ====================================================================
+  (function() {
+    var messages = [
+      { type: 'user', loop: 0, phase: '', content: 'Find the top 3 bugs by user impact from our Sentry dashboard, write up a summary, and post it to the #engineering Slack channel.' },
+      { type: 'think', loop: 1, phase: 'Think', content: 'I need to query Sentry for recent issues. I\'ll start by fetching the most frequent issues to get an overview, then drill into user-impact data.' },
+      { type: 'tool-call', loop: 1, phase: 'Act', content: 'sentry.listIssues({ project: "main-app", sort: "frequency", limit: 10 })' },
+      { type: 'tool-result', loop: 1, phase: 'Observe', content: '[\n  { id: "PROJ-1234", title: "NullPointerException in checkout flow", count: 3847 },\n  { id: "PROJ-1189", title: "Timeout on search API", count: 2104 },\n  { id: "PROJ-1302", title: "Auth token expiry on mobile", count: 1876 },\n  { id: "PROJ-1288", title: "CSS layout shift on product page", count: 1340 },\n  ... 6 more\n]' },
+      { type: 'think', loop: 2, phase: 'Think', content: 'I have frequency data, but the user asked for "user impact" — that means unique users affected, not just error count. I need to make another call to get detailed stats.' },
+      { type: 'tool-call', loop: 2, phase: 'Act', content: 'sentry.getIssueStats({ issueIds: ["PROJ-1234", "PROJ-1189", "PROJ-1302", "PROJ-1288", "PROJ-1340"], field: "users_affected" })' },
+      { type: 'tool-result', loop: 2, phase: 'Observe', content: '[\n  { id: "PROJ-1234", users_affected: 1209 },\n  { id: "PROJ-1189", users_affected: 987 },\n  { id: "PROJ-1302", users_affected: 842 },\n  { id: "PROJ-1288", users_affected: 214 },\n  { id: "PROJ-1340", users_affected: 98 }\n]' },
+      { type: 'think', loop: 3, phase: 'Think', content: 'Now I can rank by user impact. Top 3:\n1. NullPointerException in checkout — 1,209 users\n2. Timeout on search API — 987 users\n3. Auth token expiry on mobile — 842 users\n\nI\'ll write a clear summary in markdown and post to Slack.' },
+      { type: 'tool-call', loop: 3, phase: 'Act', content: 'slack.postMessage({\n  channel: "#engineering",\n  text: "**Bug Impact Report — Top 3 by Users Affected**\\n\\n1. **NullPointerException in checkout** (PROJ-1234) — 1,209 users, 3,847 events\\n2. **Timeout on search API** (PROJ-1189) — 987 users, 2,104 events\\n3. **Auth token expiry on mobile** (PROJ-1302) — 842 users, 1,876 events\\n\\nRecommendation: Prioritize the checkout NPE — it affects the most users and is on the critical purchase path."\n})' },
+      { type: 'tool-result', loop: 3, phase: 'Observe', content: '{ ok: true, channel: "#engineering", ts: "1708372891.000100" }' },
+      { type: 'final', loop: 3, phase: 'Done', content: 'Done! I\'ve posted the bug impact summary to #engineering. The top 3 issues by user impact are:\n\n1. NullPointerException in checkout — 1,209 users affected\n2. Timeout on search API — 987 users\n3. Auth token expiry on mobile — 842 users\n\nI recommended prioritizing the checkout bug since it\'s on the critical purchase path.' },
+      { type: 'summary', loop: 0, phase: '', content: '3 loops \u00b7 4 tool calls \u00b7 1 final output. The agent made decisions at each step based on what it learned — including the non-obvious step of fetching user-impact data separately.' }
+    ];
+
+    var currentStep = 0;
+    var chat = document.getElementById('action-chat');
+    var loopBadge = document.getElementById('action-loop-badge');
+    var phaseBadge = document.getElementById('action-phase-badge');
+    var progress = document.getElementById('action-progress');
+    var nextBtn = document.getElementById('action-next');
+    var resetBtn = document.getElementById('action-reset');
+
+    function reset() {
+      currentStep = 0;
+      chat.innerHTML = '<div class="chat-placeholder">Press "Next Step" to begin the walkthrough.</div>';
+      loopBadge.textContent = 'Ready';
+      phaseBadge.textContent = '\u2014';
+      progress.textContent = 'Step 0 of ' + messages.length;
+      nextBtn.disabled = false;
+      nextBtn.textContent = 'Next Step \u2192';
+    }
+
+    function showNext() {
+      if (currentStep >= messages.length) return;
+      if (currentStep === 0) chat.innerHTML = '';
+
+      var msg = messages[currentStep];
+      var div = document.createElement('div');
+
+      if (msg.type === 'summary') {
+        div.style.textAlign = 'center';
+        div.style.padding = 'var(--space-4)';
+        div.style.color = 'var(--color-text-secondary)';
+        div.style.fontFamily = 'var(--font-sans)';
+        div.style.fontSize = 'var(--text-sm)';
+        div.style.fontWeight = '500';
+        div.style.marginTop = 'var(--space-4)';
+        div.style.borderTop = '1px solid var(--color-border-light)';
+        div.style.paddingTop = 'var(--space-4)';
+        div.textContent = msg.content;
+      } else {
+        div.className = 'chat-message chat-message--' + msg.type;
+        if (msg.type === 'tool-call' || msg.type === 'tool-result') {
+          div.style.whiteSpace = 'pre-wrap';
+        }
+        // For think/tool-call/tool-result, the ::before pseudo handles the label
+        // For user and final, set text directly
+        div.textContent = msg.content;
+      }
+
+      chat.appendChild(div);
+      chat.scrollTop = chat.scrollHeight;
+
+      // Update badges
+      if (msg.loop > 0) {
+        loopBadge.textContent = 'Loop ' + msg.loop + ' of 3';
+      }
+      if (msg.phase) {
+        phaseBadge.textContent = msg.phase;
+      }
+
+      currentStep++;
+      progress.textContent = 'Step ' + currentStep + ' of ' + messages.length;
+
+      if (currentStep >= messages.length) {
+        nextBtn.disabled = true;
+        nextBtn.textContent = 'Complete';
+      }
+    }
+
+    nextBtn.addEventListener('click', showNext);
+    resetBtn.addEventListener('click', reset);
+  })();
+
+  // ====================================================================
+  // Widget 4: Choose Your Approach (Quiz)
+  // ====================================================================
+  (function() {
+    var scenarios = [
+      {
+        scenario: 'Translate this product requirements document from English into French.',
+        answer: 'prompt',
+        explanation: 'This is a self-contained task. The LLM has everything it needs in the prompt — the document and the instruction. No external data, no actions, no ambiguity.'
+      },
+      {
+        scenario: 'When a new customer signs up, send a welcome email, create a CRM entry, and assign them to a sales rep based on their region.',
+        answer: 'workflow',
+        explanation: 'The steps are known and fixed: every signup triggers the same sequence. The LLM might draft the email or classify the region, but the orchestration is deterministic. No exploration or judgment needed.'
+      },
+      {
+        scenario: 'Our checkout conversion rate dropped 8% this week. Figure out why and recommend fixes.',
+        answer: 'agent',
+        explanation: 'This is an open-ended investigation. The agent needs to query analytics, compare time periods, check for recent deployments, examine funnel stages — and the exact steps depend on what it discovers along the way.'
+      },
+      {
+        scenario: 'Every morning at 9am, pull yesterday\'s key metrics from our analytics dashboard and post a summary to #team-updates on Slack.',
+        answer: 'workflow',
+        explanation: 'Same steps, same order, every day. Pull metrics, format summary, post to Slack. This is a scheduled workflow — predictable and repeatable. No dynamic decision-making required.'
+      },
+      {
+        scenario: 'A customer reports they were double-charged. Investigate their account, find the issue, process a refund if appropriate, and send them an update.',
+        answer: 'agent',
+        explanation: 'This requires investigation and judgment. The agent needs to look up the customer, examine transaction history, determine if the double-charge is real, decide whether a refund is warranted, and then take action. The path varies depending on what it finds.'
+      }
+    ];
+
+    var currentQ = 0;
+    var score = 0;
+    var answered = false;
+
+    var scenarioEl = document.getElementById('quiz-scenario');
+    var optionsEl = document.getElementById('quiz-options');
+    var explanationEl = document.getElementById('quiz-explanation');
+    var progressBar = document.getElementById('quiz-progress-bar');
+    var progressText = document.getElementById('quiz-progress-text');
+    var nextBtn = document.getElementById('quiz-next');
+    var summaryEl = document.getElementById('quiz-summary');
+    var scoreEl = document.getElementById('quiz-score');
+    var summaryTextEl = document.getElementById('quiz-summary-text');
+    var cardEl = document.getElementById('quiz-card');
+    var retryBtn = document.getElementById('quiz-retry');
+
+    function loadQuestion() {
+      answered = false;
+      var q = scenarios[currentQ];
+      scenarioEl.textContent = '"' + q.scenario + '"';
+      explanationEl.style.display = 'none';
+      nextBtn.style.display = 'none';
+
+      // Reset buttons
+      optionsEl.querySelectorAll('.btn').forEach(function(btn) {
+        btn.className = 'btn btn--secondary';
+        btn.disabled = false;
+      });
+
+      progressBar.style.width = ((currentQ) / scenarios.length * 100) + '%';
+      progressText.textContent = (currentQ + 1) + ' of ' + scenarios.length;
+    }
+
+    function handleAnswer(selected) {
+      if (answered) return;
+      answered = true;
+      var q = scenarios[currentQ];
+      var isCorrect = selected === q.answer;
+      if (isCorrect) score++;
+
+      // Style buttons
+      optionsEl.querySelectorAll('.btn').forEach(function(btn) {
+        btn.disabled = true;
+        var ans = btn.dataset.answer;
+        if (ans === q.answer) {
+          btn.className = 'btn btn--correct';
+        } else if (ans === selected && !isCorrect) {
+          btn.className = 'btn btn--incorrect';
+        }
+      });
+
+      // Show explanation
+      explanationEl.textContent = (isCorrect ? 'Correct! ' : 'Not quite. ') + q.explanation;
+      explanationEl.className = 'quiz__explanation ' + (isCorrect ? 'quiz__explanation--correct' : 'quiz__explanation--incorrect');
+      explanationEl.style.display = 'block';
+
+      progressBar.style.width = ((currentQ + 1) / scenarios.length * 100) + '%';
+
+      if (currentQ < scenarios.length - 1) {
+        nextBtn.style.display = 'inline-flex';
+      } else {
+        // Show summary after a short delay
+        setTimeout(showSummary, 800);
+      }
+    }
+
+    function showSummary() {
+      cardEl.style.display = 'none';
+      progressBar.parentElement.style.display = 'none';
+      progressText.style.display = 'none';
+      nextBtn.style.display = 'none';
+      summaryEl.style.display = 'block';
+      scoreEl.textContent = score + ' out of ' + scenarios.length;
+
+      var messages = [
+        'Keep exploring — the concepts will click with practice!',
+        'A solid start! Review the agent vs. workflow distinction.',
+        'Good grasp of the fundamentals!',
+        'Strong intuition! You\'re thinking like a PM who builds with agents.',
+        'Perfect score! You\'ve nailed the framework.'
+      ];
+      summaryTextEl.textContent = messages[score];
+    }
+
+    function reset() {
+      currentQ = 0;
+      score = 0;
+      cardEl.style.display = 'block';
+      progressBar.parentElement.style.display = 'block';
+      progressText.style.display = 'block';
+      summaryEl.style.display = 'none';
+      loadQuestion();
+    }
+
+    optionsEl.addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-answer]');
+      if (!btn) return;
+      handleAnswer(btn.dataset.answer);
+    });
+
+    nextBtn.addEventListener('click', function() {
+      currentQ++;
+      loadQuestion();
+    });
+
+    retryBtn.addEventListener('click', reset);
+
+    // Init
+    loadQuestion();
+  })();
+  </script>
+
+</body>
+</html>
