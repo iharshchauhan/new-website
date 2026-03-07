@@ -1,5 +1,5 @@
 ﻿---
-title: "Framework README"
+title: "Framework Outline"
 date: "2026-03-02"
 description: "Complete framework documentation for the autonomous agent loop, configuration, and operations."
 ---
