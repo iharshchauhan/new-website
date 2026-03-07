@@ -18,7 +18,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
   }
 
   return (
-    <article className="max-w-5xl mx-auto rounded-2xl border border-white/70 bg-[#f6f4ea]/92 px-6 sm:px-10 py-6 sm:py-10 relative">
+    <article className="max-w-6xl mx-auto rounded-2xl border border-white/70 bg-[#f6f4ea]/93 px-6 sm:px-10 md:px-14 py-6 sm:py-10 relative shadow-[0_12px_36px_rgba(31,68,61,0.08)]">
       <Link
         href="/logbook?tab=Notes"
         className="absolute right-5 top-5 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-white/60 text-primary hover:bg-white transition-colors"
@@ -45,7 +45,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
         </div>
       </div>
 
-      <MDXContent content={post.content} className="notes-prose max-w-3xl mx-auto" />
+      <MDXContent content={post.content} className="notes-prose max-w-4xl mx-auto" />
     </article>
   );
 }

@@ -32,15 +32,15 @@ const NOTE_BADGE_STYLES = [
   'bg-[#205f93] text-[#dff0ff]',
   'bg-[#49489f] text-[#e3e4ff]',
 ];
+const NOTE_BADGE_ICONS = ['🗒️', '🤖', '🔥', '🧠', '⚙️'];
 
 function pickNoteBadge(slug: string) {
   const hash = Array.from(slug).reduce((acc, char) => acc + char.charCodeAt(0), 0);
   return NOTE_BADGE_STYLES[hash % NOTE_BADGE_STYLES.length];
 }
-
-function getInitials(title: string) {
-  const words = title.trim().split(/\s+/).slice(0, 2);
-  return words.map((word) => word[0]?.toUpperCase() ?? '').join('');
+function pickNoteIcon(slug: string) {
+  const hash = Array.from(slug).reduce((acc, char) => acc + char.charCodeAt(0), 0);
+  return NOTE_BADGE_ICONS[hash % NOTE_BADGE_ICONS.length];
 }
 
 export function LogbookTabs({ posts }: { posts: Post[] }) {
@@ -69,7 +69,7 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
 
   return (
     <div className="space-y-10">
-      <div className="flex flex-wrap items-center justify-center gap-2">
+      <div className="flex flex-wrap items-center justify-center gap-2 pb-1">
         {TABS.map((tab) => {
           const Icon = tab.icon;
           const isActive = activeTab === tab.id;
@@ -91,7 +91,7 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
         })}
       </div>
 
-      <div className="mx-auto max-w-4xl flex flex-col gap-4">
+      <div className="mx-auto max-w-5xl flex flex-col gap-4">
         {filteredPosts.map((post) => {
           const isProject = post.meta.category === 'Experiments';
 
@@ -103,15 +103,15 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
             >
               <article
                 className={cn(
-                  'rounded-2xl border px-6 py-6 sm:px-8 sm:py-8 transition-all duration-300',
+                  'rounded-2xl border px-6 py-6 sm:px-9 sm:py-8 transition-all duration-300',
                   notesMode
-                    ? 'bg-[#f5f4eb]/90 border-white/45 hover:bg-[#f8f7ef] hover:shadow-[0_14px_30px_rgba(31,68,61,0.1)]'
+                    ? 'bg-[#f5f4eb]/92 border-white/50 hover:bg-[#f8f7ef] hover:shadow-[0_14px_30px_rgba(31,68,61,0.1)]'
                     : 'bg-card border-border hover:border-primary/30 hover:shadow-lg',
                 )}
               >
                 <div className="flex items-center justify-between gap-6">
                   <div className="space-y-3">
-                    <h3 className="text-xl sm:text-[2rem] sm:leading-tight font-semibold text-[#055f57] group-hover:text-primary transition-colors">
+                    <h3 className="text-xl sm:text-[2.05rem] sm:leading-tight font-semibold text-[#055f57] group-hover:text-primary transition-colors">
                       {post.meta.title}
                     </h3>
                     <p className="text-base sm:text-[1.12rem] leading-relaxed text-foreground/75 max-w-2xl">
@@ -122,11 +122,11 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
                   {!isProject && notesMode && (
                     <div
                       className={cn(
-                        'hidden sm:flex h-20 w-20 shrink-0 items-center justify-center rounded-full text-lg font-bold tracking-wide',
+                        'hidden sm:flex h-20 w-20 shrink-0 items-center justify-center rounded-full text-3xl',
                         pickNoteBadge(post.slug),
                       )}
                     >
-                      {getInitials(post.meta.title)}
+                      <span aria-hidden>{pickNoteIcon(post.slug)}</span>
                     </div>
                   )}
 
