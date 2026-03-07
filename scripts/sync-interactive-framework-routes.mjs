@@ -207,6 +207,14 @@ function rewriteHtml(html) {
 
   let rewritten = html
     .replace(
+      /(href|src)=["']\/interactive-explainers\/([^"']+)["']/g,
+      (_, attr, targetPath) => `${attr}="${explainerBase}/${targetPath}"`,
+    )
+    .replace(
+      /(href|src)=["']\/projects\/interactive-explainers-framework\/?([^"']*)["']/g,
+      (_, attr, targetPath) => `${attr}="${projectBase}${targetPath ? `/${targetPath}` : "/"}`,
+    )
+    .replace(
       /(href|src)=["']\.\.\/styles\/([^"']+)["']/g,
       (_, attr, assetPath) => `${attr}="${explainerBase}/styles/${assetPath}"`,
     )

@@ -17,9 +17,9 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          # Custom-domain deploys should use root-relative assets.
-          # Optionally set repo variable NEXT_PUBLIC_BASE_PATH if you ever need a project subpath.
-          NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH || '' }}
+          # Custom-domain deploys must publish from the domain root.
+          # If you ever move back to a repo subpath, set this explicitly in the workflow first.
+          NEXT_PUBLIC_BASE_PATH: ''
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
