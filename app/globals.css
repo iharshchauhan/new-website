@@ -96,6 +96,54 @@
   line-height: 1.15;
 }
 
+.bg-phase-green {
+  background: linear-gradient(
+    180deg,
+    rgba(177, 207, 149, 0.72) 0%,
+    rgba(199, 220, 163, 0.5) 34%,
+    rgba(225, 232, 184, 0.28) 68%,
+    rgba(245, 240, 217, 0.18) 100%
+  );
+  animation: bg-green-cycle 28s ease-in-out infinite;
+}
+
+.bg-phase-purple {
+  background: linear-gradient(
+    180deg,
+    rgba(186, 163, 216, 0.64) 0%,
+    rgba(194, 176, 222, 0.38) 32%,
+    rgba(224, 212, 237, 0.24) 70%,
+    rgba(244, 236, 246, 0.16) 100%
+  );
+  animation: bg-purple-cycle 28s ease-in-out infinite;
+}
+
+@keyframes bg-green-cycle {
+  0%,
+  24%,
+  100% {
+    opacity: 0;
+  }
+  34%,
+  62% {
+    opacity: 1;
+  }
+}
+
+@keyframes bg-purple-cycle {
+  0%,
+  55% {
+    opacity: 0;
+  }
+  70%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 @layer utilities {
   .hide-scrollbar {
     -ms-overflow-style: none;
