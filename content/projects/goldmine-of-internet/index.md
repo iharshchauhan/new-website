@@ -1,6 +1,6 @@
 ---
 title: "The Goldmine of Internet"
-date: "2026-03-06"
+date: "2021-12-06"
 description: "Curated internet resources and references imported from Notion, including all linked subpages."
 category: "Notes"
 tags: ["Notes", "Knowledge Base", "Curated Links"]
