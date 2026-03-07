@@ -1,6 +1,6 @@
 ﻿---
 title: "How to build a KYC Solution using AI"
-date: "2026-03-02"
+date: "2025-07-17"
 description: "Dual-agent KYC architecture combining pre-submission validation and AI-assisted compliance review."
 category: "Proof of work"
 tags: ["KYC", "Compliance", "AI Agents"]
