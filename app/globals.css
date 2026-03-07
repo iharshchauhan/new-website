@@ -79,7 +79,7 @@
 
 .notes-prose {
   @apply prose-slate;
-  @apply prose-headings:text-[#055f57] prose-a:text-primary;
+  @apply prose-headings:text-primary prose-a:text-primary;
   @apply prose-p:text-foreground/85 prose-li:text-foreground/85;
   @apply prose-p:leading-9 prose-li:leading-8;
   @apply prose-img:rounded-2xl prose-img:border prose-img:border-white/70;

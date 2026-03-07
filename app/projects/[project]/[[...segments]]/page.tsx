@@ -81,7 +81,7 @@ export default async function ProjectSubpage({
         </div>
 
         <div className="space-y-4 max-w-4xl">
-          <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-[#055f57]">
+          <h1 className="text-3xl md:text-5xl font-semibold tracking-tight text-primary">
             {post.meta.title}
           </h1>
           <p className="text-xl text-foreground/80">{post.meta.description}</p>

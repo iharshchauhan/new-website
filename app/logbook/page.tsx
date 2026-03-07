@@ -18,7 +18,7 @@ export default function LogbookPage() {
   return (
     <div className="space-y-14 max-w-[72rem] mx-auto">
       <header className="space-y-6 text-center pt-10 pb-14">
-        <h1 className="text-[4.8rem] sm:text-[6.2rem] md:text-[9.2rem] font-semibold leading-[0.95] tracking-[-0.03em] text-[#055f57]">
+        <h1 className="text-[4.8rem] sm:text-[6.2rem] md:text-[9.2rem] font-semibold leading-[0.95] tracking-[-0.03em] text-primary">
           Notes.
         </h1>
         <p className="text-lg sm:text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">

@@ -111,7 +111,7 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
               >
                 <div className="flex items-center justify-between gap-6">
                   <div className="space-y-3">
-                    <h3 className="text-xl sm:text-[2.05rem] sm:leading-tight font-semibold text-[#055f57] group-hover:text-primary transition-colors">
+                    <h3 className="text-xl sm:text-[2.05rem] sm:leading-tight font-semibold text-primary group-hover:text-primary/85 transition-colors">
                       {post.meta.title}
                     </h3>
                     <p className="text-base sm:text-[1.12rem] leading-relaxed text-foreground/75 max-w-2xl">
@@ -138,7 +138,7 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
                 </div>
 
                 {isProject && (
-                  <div className="pt-4 text-blue-500 flex items-center gap-1 text-sm font-medium">
+                  <div className="pt-4 text-primary flex items-center gap-1 text-sm font-medium">
                     Explore app <ArrowRight className="w-4 h-4" />
                   </div>
                 )}

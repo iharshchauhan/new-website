@@ -28,7 +28,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
       <div className="space-y-8">
         <BackNavLink href="/logbook" label="Back to Logbook" />
         <div className="space-y-6 max-w-4xl">
-          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-[#055f57]">
+          <h1 className="text-4xl md:text-6xl font-semibold tracking-tight text-primary">
             {post.meta.title}
           </h1>
           <p className="text-xl text-foreground/80 max-w-3xl">

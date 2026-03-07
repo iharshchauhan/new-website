@@ -23,7 +23,7 @@ export default async function PostPage({ params }: { params: Promise<{ slug: str
 
         <div className="space-y-10 pb-8">
           <div className="space-y-5 text-center">
-            <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight text-[#055f57] leading-none">
+            <h1 className="text-4xl sm:text-6xl font-semibold tracking-tight text-primary leading-none">
               {post.meta.title}
             </h1>
             <div className="flex items-center justify-center space-x-3 text-sm sm:text-base text-foreground/70">
