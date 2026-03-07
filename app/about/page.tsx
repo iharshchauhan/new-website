@@ -124,7 +124,7 @@ export default function AboutPage() {
                   href={company.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-start gap-4 rounded-2xl border border-border/60 bg-background/60 p-4 no-underline transition-colors hover:border-foreground/20 hover:bg-muted/40"
+                  className="group flex items-center gap-4 rounded-2xl border border-border/60 bg-background/60 p-4 no-underline transition-colors hover:border-foreground/20 hover:bg-muted/40"
                 >
                   <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-muted text-sm font-semibold tracking-[-0.02em] text-foreground">
                     {company.logoSrc ? (
@@ -139,8 +139,8 @@ export default function AboutPage() {
                     )}
                   </div>
 
-                  <div className="min-w-0 pt-1">
-                    <div className="text-[1.45rem] font-semibold leading-none tracking-[-0.03em] text-foreground">
+                  <div className="min-w-0 flex-1">
+                    <div className="text-[1.45rem] font-semibold leading-none tracking-[-0.03em] text-foreground no-underline">
                       {company.name}
                     </div>
                   </div>

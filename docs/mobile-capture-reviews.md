@@ -8,6 +8,7 @@ Add one or both repository secrets:
 
 - `GEMINI_API_KEY` for Gemini Flash
 - `GROK_API_KEY` for Grok
+- `GROQ_API_KEY` for Groq
 
 The workflow writes these into a temporary `.env` file at runtime, and `scripts/capture-review.mjs` reads keys from `.env` (or `.env.local` for local runs).
 
@@ -27,8 +28,8 @@ curl -X POST \
     "ref": "main",
     "inputs": {
       "url": "https://example.com/article",
-      "provider": "gemini",
-      "model": "gemini-2.0-flash",
+      "provider": "groq",
+      "model": "llama-3.3-70b-versatile",
       "source": "ios-shortcut",
       "tags": "Review,Notes,AI"
     }
@@ -54,7 +55,7 @@ Required PAT scopes:
   "ref": "main",
   "inputs": {
     "url": "<Shortcut Input>",
-    "provider": "gemini",
+    "provider": "groq",
     "source": "ios-shortcut"
   }
 }
@@ -65,3 +66,10 @@ Required PAT scopes:
 If you generate summary on phone first (Grok/Gemini app), pass markdown as `summary_text` input.
 
 When `summary_text` is present, the workflow skips model API calls.
+
+Supported provider values:
+
+- `gemini`
+- `grok`
+- `groq`
+- `none`

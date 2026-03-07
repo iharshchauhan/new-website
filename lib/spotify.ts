@@ -7,13 +7,7 @@ const SPOTIFY_REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
 
 const FEATURED_PLAYLIST_ID = "6rhg71awO0tB2GIunqOxAg";
 const SPOTIFY_PROFILE_URL = "https://open.spotify.com/user/harshpratapchauhan";
-const PLAYLIST_IDS = [
-  FEATURED_PLAYLIST_ID,
-  "1XoiWZo7JKCsSg0libZLwe",
-  "7sP1QRH16monjfrPiLfXf2",
-  "5z9RE0beJ1hbfX9LMr27AA",
-  "1ZbcTBBsSTNiUOmqNSUE2B",
-] as const;
+const PLAYLIST_IDS = [FEATURED_PLAYLIST_ID] as const;
 const SPOTIFY_API_BASE = "https://api.spotify.com/v1";
 const SPOTIFY_ACCOUNTS_BASE = "https://accounts.spotify.com/api";
 const SPOTIFY_SNAPSHOT_PATH = path.join(

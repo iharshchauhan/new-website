@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ExternalLink, Headphones, Music4, Waves } from "lucide-react";
+import { ExternalLink, Headphones, Music4 } from "lucide-react";
 import type { SpotifyHomeData } from "@/lib/spotify";
 
 type ListeningsSectionProps = {
@@ -11,16 +11,8 @@ type ListeningsSectionProps = {
 
 export function ListeningsSection({ data }: ListeningsSectionProps) {
   const [activeFilterId, setActiveFilterId] = useState(data.filters[0]?.id);
-  const [activePlaylistId, setActivePlaylistId] = useState(
-    data.playlist?.id || data.playlists[0]?.id,
-  );
-
   const activeFilter =
     data.filters.find((filter) => filter.id === activeFilterId) ?? data.filters[0];
-  const activePlaylist =
-    data.playlists.find((playlist) => playlist.id === activePlaylistId) ??
-    data.playlist ??
-    data.playlists[0];
 
   return (
     <section className="space-y-8">
@@ -43,8 +35,8 @@ export function ListeningsSection({ data }: ListeningsSectionProps) {
         </Link>
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[1.15fr_0.85fr]">
-        <div className="space-y-5 rounded-[2rem] border border-border/70 bg-white/55 p-5 sm:p-6">
+      <div className="grid gap-6 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+        <div className="min-w-0 space-y-5 rounded-[2rem] border border-border/70 bg-white/55 p-5 sm:p-6">
           <div className="flex flex-wrap gap-2">
             {data.filters.map((filter) => {
               const isActive = filter.id === activeFilter?.id;
@@ -90,7 +82,7 @@ export function ListeningsSection({ data }: ListeningsSectionProps) {
                   href={item.href}
                   target="_blank"
                   rel="noreferrer"
-                  className="flex items-center gap-4 rounded-2xl border border-border/60 bg-background/65 px-4 py-3 transition-transform hover:-translate-y-0.5 hover:border-border"
+                  className="flex min-w-0 items-center gap-4 rounded-2xl border border-border/60 bg-background/65 px-4 py-3 transition-transform hover:-translate-y-0.5 hover:border-border"
                 >
                   <div className="flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-primary/12 text-sm font-semibold text-primary">
                     {item.image ? (
@@ -125,14 +117,14 @@ export function ListeningsSection({ data }: ListeningsSectionProps) {
           )}
         </div>
 
-        <div className="space-y-4 rounded-[2rem] border border-border/70 bg-white/55 p-4 sm:p-5">
+        <div className="min-w-0 space-y-4 rounded-[2rem] border border-border/70 bg-white/55 p-4 sm:p-5">
           <div className="flex items-center gap-4">
             <div className="h-16 w-16 overflow-hidden rounded-2xl bg-primary/10">
-              {activePlaylist?.image ? (
+              {data.playlist.image ? (
                 // eslint-disable-next-line @next/next/no-img-element
                 <img
-                  src={activePlaylist.image}
-                  alt={activePlaylist.name}
+                  src={data.playlist.image}
+                  alt={data.playlist.name}
                   className="h-full w-full object-cover"
                 />
               ) : null}
@@ -141,86 +133,29 @@ export function ListeningsSection({ data }: ListeningsSectionProps) {
               <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">
                 Featured playlist
               </p>
-              <h3 className="truncate text-lg font-semibold">{activePlaylist?.name}</h3>
+              <h3 className="truncate text-lg font-semibold">{data.playlist.name}</h3>
               <p className="truncate text-sm text-muted-foreground">
-                by {activePlaylist?.owner}
-                {activePlaylist?.trackCount
-                  ? ` | ${activePlaylist.trackCount} tracks`
-                  : ""}
+                by {data.playlist.owner}
+                {data.playlist.trackCount ? ` | ${data.playlist.trackCount} tracks` : ""}
               </p>
             </div>
           </div>
 
           <p className="text-sm leading-6 text-muted-foreground">
-            {activePlaylist?.description}
+            {data.playlist.description}
           </p>
 
-          <div className="space-y-3">
-            <div className="flex items-center justify-between">
-              <p className="text-sm uppercase tracking-[0.2em] text-muted-foreground">
-                More playlists
-              </p>
-              <div className="inline-flex items-center gap-2 text-xs text-muted-foreground">
-                <Waves className="h-3.5 w-3.5" />
-                Swipe
-              </div>
-            </div>
-
-            <div className="hide-scrollbar -mx-1 flex snap-x snap-mandatory gap-3 overflow-x-auto px-1 pb-1">
-              {data.playlists.map((playlist) => {
-                const isActive = playlist.id === activePlaylist?.id;
-
-                return (
-                  <button
-                    key={playlist.id}
-                    type="button"
-                    onClick={() => setActivePlaylistId(playlist.id)}
-                    className={`min-w-[14rem] snap-start rounded-[1.4rem] border px-3 py-3 text-left transition-colors ${
-                      isActive
-                        ? "border-foreground/20 bg-foreground text-background"
-                        : "border-border/60 bg-background/70 text-foreground hover:border-border"
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div className="h-12 w-12 shrink-0 overflow-hidden rounded-xl bg-primary/10">
-                        {playlist.image ? (
-                          // eslint-disable-next-line @next/next/no-img-element
-                          <img
-                            src={playlist.image}
-                            alt={playlist.name}
-                            className="h-full w-full object-cover"
-                          />
-                        ) : null}
-                      </div>
-                      <div className="min-w-0">
-                        <p className="truncate text-sm font-semibold">{playlist.name}</p>
-                        <p
-                          className={`truncate text-xs ${
-                            isActive ? "text-background/75" : "text-muted-foreground"
-                          }`}
-                        >
-                          {playlist.owner}
-                        </p>
-                      </div>
-                    </div>
-                  </button>
-                );
-              })}
-            </div>
+          <div className="max-w-full overflow-hidden rounded-[1.5rem] border border-border/70 bg-background/60">
+            <iframe
+              title={`${data.playlist.name} Spotify playlist`}
+              src={`https://open.spotify.com/embed/playlist/${data.playlist.id}?utm_source=generator`}
+              width="100%"
+              height="352"
+              className="block w-full"
+              allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+              loading="lazy"
+            />
           </div>
-
-          {activePlaylist ? (
-            <div className="overflow-hidden rounded-[1.5rem] border border-border/70 bg-background/60">
-              <iframe
-                title={`${activePlaylist.name} Spotify playlist`}
-                src={`https://open.spotify.com/embed/playlist/${activePlaylist.id}?utm_source=generator`}
-                width="100%"
-                height="352"
-                allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                loading="lazy"
-              />
-            </div>
-          ) : null}
         </div>
       </div>
     </section>

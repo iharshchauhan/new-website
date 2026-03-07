@@ -176,6 +176,43 @@ async function summarizeWithGrok({ apiKey, model, prompt }) {
   return text;
 }
 
+async function summarizeWithGroq({ apiKey, model, prompt }) {
+  const res = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${apiKey}`,
+    },
+    body: JSON.stringify({
+      model,
+      temperature: 0.3,
+      max_completion_tokens: 800,
+      messages: [
+        {
+          role: "system",
+          content: "You create clear, structured markdown summaries for technical reviews.",
+        },
+        {
+          role: "user",
+          content: prompt,
+        },
+      ],
+    }),
+  });
+
+  if (!res.ok) {
+    const errBody = await res.text();
+    throw new Error(`Groq request failed (${res.status}): ${truncate(errBody, 300)}`);
+  }
+
+  const data = await res.json();
+  const text = data?.choices?.[0]?.message?.content?.trim();
+  if (!text) {
+    throw new Error("Groq returned empty content");
+  }
+  return text;
+}
+
 function fallbackSummary(url) {
   return [
     "## TL;DR",
@@ -256,6 +293,12 @@ async function main() {
     const model = requestedModel || "grok-2-latest";
     finalSummary = cleanSummary(await summarizeWithGrok({ apiKey, model, prompt }));
     modelUsed = `grok:${model}`;
+  } else if (provider === "groq") {
+    const apiKey = getEnv("GROQ_API_KEY");
+    if (!apiKey) throw new Error("GROQ_API_KEY is required when provider=groq");
+    const model = requestedModel || "llama-3.3-70b-versatile";
+    finalSummary = cleanSummary(await summarizeWithGroq({ apiKey, model, prompt }));
+    modelUsed = `groq:${model}`;
   } else {
     throw new Error(`Unsupported AI_PROVIDER: ${provider}`);
   }

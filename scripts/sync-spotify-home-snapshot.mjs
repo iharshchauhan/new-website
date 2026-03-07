@@ -9,13 +9,7 @@ const CLIENT_SECRET = process.env.SPOTIFY_CLIENT_SECRET;
 const REFRESH_TOKEN = process.env.SPOTIFY_REFRESH_TOKEN;
 const FEATURED_PLAYLIST_ID = "6rhg71awO0tB2GIunqOxAg";
 const PROFILE_URL = "https://open.spotify.com/user/harshpratapchauhan";
-const PLAYLIST_IDS = [
-  FEATURED_PLAYLIST_ID,
-  "1XoiWZo7JKCsSg0libZLwe",
-  "7sP1QRH16monjfrPiLfXf2",
-  "5z9RE0beJ1hbfX9LMr27AA",
-  "1ZbcTBBsSTNiUOmqNSUE2B",
-];
+const PLAYLIST_IDS = [FEATURED_PLAYLIST_ID];
 const OUTPUT_PATH = path.join(process.cwd(), "lib", "spotify-home-snapshot.json");
 
 function ensureEnv() {
