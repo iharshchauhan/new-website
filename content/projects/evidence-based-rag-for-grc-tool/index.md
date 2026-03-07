@@ -3,12 +3,12 @@ title: "Product Prototype: Evidence-Based RAG for GRC Tool"
 date: "2026-03-05"
 description: "A controlled Retrieval-Augmented Generation prototype for enterprise GRC that answers only from approved policy evidence."
 category: "Proof of work"
-tags: ["RAG", "GRC", "Compliance", "Enterprise AI", "LangChain", "ChromaDB"]
+tags: ["RAG", "GRC", "Compliance", "AI",]
 ---
 
 ## Why I Built This
 
-Over the last several years working in B2B and enterprise product roles, I have repeatedly seen the same operational bottleneck. Smart teams, strong compliance intent, but fragmented knowledge. Policies exist. Controls exist. Audit logs exist. Yet when an employee or auditor asks a simple question such as "How quickly must a security incident be reported?" the answer requires digging through PDFs, Notion pages, ticketing systems, and sometimes Slack threads.
+Over the past several years, in B2B and enterprise product roles, I have repeatedly encountered the same operational bottleneck: smart teams, strong compliance intent, but fragmented knowledge. Policies exist. Controls exist. Audit logs exist. Yet when an employee or auditor asks a simple question such as "How quickly must a security incident be reported?" the answer requires digging through PDFs, Notion pages, ticketing systems, and sometimes Slack threads.
 
 In one hypothetical scenario that mirrors what I have seen in real environments, imagine an enterprise compliance team handling 1,200 internal control queries per month. Analysts manually search documentation, interpret clauses, and respond to stakeholders. Even with strong process discipline, interpretation risk remains. If a generic large language model is introduced without guardrails, it might generate a confident answer that is technically plausible but not aligned with the company's approved policy. In a regulated environment, that is unacceptable.
 
@@ -177,7 +177,7 @@ If this were deployed inside a compliance platform, the assistant would display 
 
 ## Final Reflection
 
-As an AI Product Manager, I view this prototype not as a chatbot demo but as a controlled decision system. It reflects how I think about enterprise AI. Structured retrieval. Deterministic boundaries. Human override paths. Observable workflows.
+As a Product Manager, I view this prototype not as a chatbot demo but as a controlled decision system. It reflects how I think about enterprise AI. Structured retrieval. Deterministic boundaries. Human override paths. Observable workflows.
 
 If I were taking this from prototype to production, my roadmap would include policy version control, role-based access filters, framework cross-mapping, automated evaluation datasets, and staged rollouts from pilot to general availability. That approach mirrors how I have previously scaled AI products from zero to meaningful enterprise adoption.
 
