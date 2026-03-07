@@ -1,4 +1,7 @@
+'use client';
+
 import Link from 'next/link';
+import { useSearchParams } from 'next/navigation';
 import { ArrowRight, BookOpen, Briefcase, LayoutTemplate, Sparkles, Star, Layers } from 'lucide-react';
 import { Post } from '@/lib/mdx';
 import { cn } from '@/lib/utils';
@@ -77,6 +80,25 @@ function buildLogbookHref(tabId: string, page = 1) {
 }
 
 export function LogbookTabs({
+  posts,
+  rawTab,
+  rawPage,
+}: {
+  posts: Post[];
+  rawTab?: string;
+  rawPage?: string;
+}) {
+  const searchParams = useSearchParams();
+  return (
+    <LogbookTabsContent
+      posts={posts}
+      rawTab={searchParams.get('tab') ?? rawTab}
+      rawPage={searchParams.get('page') ?? rawPage}
+    />
+  );
+}
+
+export function LogbookTabsContent({
   posts,
   rawTab,
   rawPage,

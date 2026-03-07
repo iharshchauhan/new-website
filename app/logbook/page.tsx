@@ -1,19 +1,15 @@
+import { Suspense } from 'react';
 import { getAllPosts } from '@/lib/mdx';
-import { LogbookTabs } from '@/components/logbook-tabs';
+import { LogbookTabs, LogbookTabsContent } from '@/components/logbook-tabs';
 
 export const metadata = {
   title: 'Logbook | harshc_',
   description: 'A running log of ideas, experiments, systems, and notes from my product + AI journey.',
 };
 
-export default async function LogbookPage({
-  searchParams,
-}: {
-  searchParams?: Promise<{ tab?: string; page?: string }>;
-}) {
+export default function LogbookPage() {
   const writingPosts = getAllPosts('writing');
   const projectPosts = getAllPosts('projects');
-  const resolvedSearchParams = await searchParams;
   const allPosts = [...writingPosts, ...projectPosts].sort((a, b) => 
     a.meta.date > b.meta.date ? -1 : 1
   );
@@ -29,11 +25,9 @@ export default async function LogbookPage({
         </p>
       </header>
       
-      <LogbookTabs
-        posts={allPosts}
-        rawTab={resolvedSearchParams?.tab}
-        rawPage={resolvedSearchParams?.page}
-      />
+      <Suspense fallback={<LogbookTabsContent posts={allPosts} />}>
+        <LogbookTabs posts={allPosts} />
+      </Suspense>
     </div>
   );
 }
