@@ -27,13 +27,13 @@ export function ProjectTopicMap({
       )}
     >
       <div className="space-y-1">
-        <p className="text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">
+        <p className="text-sm font-semibold uppercase tracking-[0.18em] text-muted-foreground">
           Topic Map
         </p>
         <Link
           href={`/projects/${projectSlug}`}
           className={cn(
-            "inline-flex items-center gap-2 text-sm font-medium transition-colors",
+            "inline-flex items-center gap-2 text-base font-semibold transition-colors",
             currentSubpage ? "text-muted-foreground hover:text-foreground" : "text-primary",
           )}
         >
@@ -46,7 +46,7 @@ export function ProjectTopicMap({
         {groupedTopics.map(({ group, topics }) => (
           <section key={group} className="space-y-2.5">
             {group !== "Topics" && (
-              <h3 className="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+              <h3 className="text-sm font-semibold uppercase tracking-[0.14em] text-muted-foreground">
                 {group}
               </h3>
             )}
@@ -68,14 +68,14 @@ export function ProjectTopicMap({
                       <div className="space-y-0.5">
                         <p
                           className={cn(
-                            "text-sm font-semibold leading-snug",
+                            "text-base font-semibold leading-snug",
                             isActive ? "text-primary" : "text-foreground",
                           )}
                         >
                           {item.title}
                         </p>
                         {item.description && (
-                          <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2">
+                          <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2">
                             {item.description}
                           </p>
                         )}
