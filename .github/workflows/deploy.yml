@@ -17,7 +17,9 @@ jobs:
       - run: npm ci
       - run: npm run build
         env:
-          NEXT_PUBLIC_BASE_PATH: ${{ endsWith(github.event.repository.name, '.github.io') && '' || format('/{0}', github.event.repository.name) }}
+          # Custom-domain deploys should use root-relative assets.
+          # Optionally set repo variable NEXT_PUBLIC_BASE_PATH if you ever need a project subpath.
+          NEXT_PUBLIC_BASE_PATH: ${{ vars.NEXT_PUBLIC_BASE_PATH || '' }}
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./out
