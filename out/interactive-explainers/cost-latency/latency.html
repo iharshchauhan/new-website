@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MCTJXL5C');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Latency, Streaming &amp; Optimization — AI for PMs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css?v=8">
+  <script src="../styles/site-shell.js" defer></script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCTJXL5C"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="article-hero" id="article-hero" style="background: linear-gradient(135deg, #B45309 0%, #9F1239 100%);">
+    <canvas class="article-hero__canvas" id="hero-canvas"></canvas>
+    <div class="article-hero__overlay"></div>
+    <div class="article-hero__content">
+      <nav class="breadcrumb breadcrumb--hero">
+        <a href="../index.html">AI for PMs</a> &nbsp;/&nbsp; <a href="index.html">Cost &amp; Latency</a> &nbsp;/&nbsp; <span>Part 2</span>
+      </nav>
+      <div class="article-header__meta" style="color: rgba(255,255,255,0.9);">Part 2 of 2 &middot; ~7 min read</div>
+      <h1 style="color: #fff;">Latency, Streaming &amp; Optimization</h1>
+      <p class="lead" style="color: rgba(255,255,255,0.85);">Fast enough beats perfect. The levers that make AI features feel instant — and cost 80% less.</p>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc__inner">
+      <div class="toc__title">Contents</div>
+      <ol class="toc__list">
+        <li><span class="toc__numeral">I.</span><a href="#why-llms-feel-slow">Why LLMs Feel Slow</a></li>
+        <li><span class="toc__numeral">II.</span><a href="#streaming">Streaming Changes Everything</a></li>
+        <li><span class="toc__numeral">III.</span><a href="#optimization-playbook">The Optimization Playbook</a></li>
+        <li><span class="toc__numeral">IV.</span><a href="#the-triangle">The Cost-Latency-Quality Triangle</a></li>
+        <li><span class="toc__numeral">V.</span><a href="#wrapping-up">Wrapping Up</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="epigraph">
+    <p class="epigraph__verse">
+      Fast enough beats perfect, that's the game,<br>
+      Stream the first word early, the UX ain't the same.<br>
+      Cache it, trim it, batch it — three moves deep,<br>
+      Cost, latency, quality — pick two to keep.
+    </p>
+  </div>
+
+  <article class="prose">
+
+    <h2 id="why-llms-feel-slow"><span class="section-number">I</span> Why LLMs Feel Slow</h2>
+
+    <p>Google returns results in 200 milliseconds. Your AI feature takes 3 seconds. It <em>feels</em> broken — even if the answer is brilliant.</p>
+
+    <p>Two numbers explain why:</p>
+
+    <p><strong>Time to First Token (TTFT)</strong> — how long before the model starts generating. Includes network round-trip plus processing your entire input. Longer prompts and larger models both push it up. Range: 200ms (small models) to 2+ seconds (large ones).</p>
+
+    <p><strong>Time Per Output Token (TPOT)</strong> — how fast each subsequent token appears. LLMs generate sequentially, one token at a time. A 200-token response at 50 tokens/second takes 4 full seconds. Smaller models are faster: 100+ tokens/second vs. 30-50 for large models.</p>
+
+    <div class="callout callout--analogy">
+      <div class="callout__label">Analogy</div>
+      <div class="callout__body">Think of TTFT as the waiter walking to your table, and TPOT as how fast they read the specials. A slow walk plus a slow read means you're sitting there wondering if the restaurant is even open.</div>
+    </div>
+
+    <p>Total latency = TTFT + (output tokens x TPOT). For a large model generating 300 tokens: 1.5s + (300 x 0.025s) = ~9 seconds. An eternity in UX terms. But users don't need to wait for the entire response.</p>
+
+    <h2 id="streaming"><span class="section-number">II</span> Streaming Changes Everything</h2>
+
+    <p>Without streaming: a blank screen for 5, 10, 15 seconds, then the full response appears at once. With streaming: tokens appear as they're generated, word by word. Total time is identical. The <em>perceived</em> experience is not even close.</p>
+
+    <p>Streaming transforms a <strong>wait</strong> into a <strong>conversation.</strong> The user reads the first sentence while the model generates the third. By the time the response finishes, they've absorbed half of it. The loading spinner is the content itself.</p>
+
+    <div class="callout callout--insight">
+      <div class="callout__label">Key Insight</div>
+      <div class="callout__body"><strong>The speed users perceive matters more than the speed you measure.</strong> A streamed 8-second response feels faster than a non-streamed 4-second response, because the first byte arrives in 300ms instead of 4,000ms.</div>
+    </div>
+
+    <p>See the difference for yourself:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 1: Streaming Simulator
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-streaming" style="--widget-bg: var(--accent-cost-light); --widget-border: #FDE68A;">
+      <div class="widget__label" style="color: var(--accent-cost);">Experience it</div>
+      <div class="widget__title">Streaming vs. Non-Streaming</div>
+      <div class="widget__instruction">Both responses are identical and take the same total time. Notice how different they feel.</div>
+
+      <div class="streaming__grid">
+        <div class="streaming__panel">
+          <div class="streaming__panel-header">Without streaming</div>
+          <div class="streaming__panel-body" id="stream-off">
+            <div class="streaming__cursor streaming__cursor--hidden" id="cursor-off"></div>
+          </div>
+          <div class="streaming__timer" id="timer-off">—</div>
+        </div>
+        <div class="streaming__panel">
+          <div class="streaming__panel-header streaming__panel-header--active">With streaming</div>
+          <div class="streaming__panel-body" id="stream-on">
+            <div class="streaming__cursor streaming__cursor--hidden" id="cursor-on"></div>
+          </div>
+          <div class="streaming__timer" id="timer-on">—</div>
+        </div>
+      </div>
+
+      <div class="widget__controls widget__controls--mt" style="justify-content: center;">
+        <button class="btn btn--primary" id="stream-start" style="background: var(--accent-cost);">Generate Response</button>
+        <button class="btn btn--secondary" id="stream-reset">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <p>Same content. Same total time. Completely different experience. Every major AI product streams for exactly this reason. If your feature shows responses to users and you're not streaming, you're volunteering for bad NPS scores.</p>
+
+    <h2 id="optimization-playbook"><span class="section-number">III</span> The Optimization Playbook</h2>
+
+    <p>Your AI feature works. Now: "How do we make it faster and cheaper?" Five levers, roughly ordered by impact:</p>
+
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>Lever</th>
+          <th>How it works</th>
+          <th>Impact</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Model routing</td>
+          <td>Small model for easy tasks, large model for hard ones. A lightweight classifier routes each request.</td>
+          <td>50-80% cost reduction</td>
+        </tr>
+        <tr>
+          <td>Prompt caching</td>
+          <td>Cache the system prompt so the provider skips reprocessing it.</td>
+          <td>30-60% input cost &amp; TTFT reduction</td>
+        </tr>
+        <tr>
+          <td>Shorter prompts</td>
+          <td>Cut redundant instructions, compress examples. A 2,000-token prompt trimmed to 800 is 60% cheaper.</td>
+          <td>Proportional to tokens cut</td>
+        </tr>
+        <tr>
+          <td>Response caching</td>
+          <td>Cache answers to common queries. Semantic caching is harder but more powerful.</td>
+          <td>Eliminates 20-50% of LLM calls</td>
+        </tr>
+        <tr>
+          <td>Fewer output tokens</td>
+          <td>Ask the model to be concise, use <code>max_tokens</code>, or request structured output.</td>
+          <td>Proportional to tokens saved</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="callout callout--pm-tip">
+      <div class="callout__label">PM Tip</div>
+      <div class="callout__body">Start with model routing. Most production workloads are 70% simple tasks that a small model handles perfectly. Sending every request to GPT-4-class models is the API-cost equivalent of hiring a surgeon to apply bandaids.</div>
+    </div>
+
+    <p>Explore how these levers interact:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 2: Optimization Playbook
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-optimize" style="--widget-bg: var(--accent-cost-light); --widget-border: #FDE68A;">
+      <div class="widget__label" style="color: var(--accent-cost);">Experiment</div>
+      <div class="widget__title">Optimization Playbook</div>
+      <div class="widget__instruction">Toggle optimization strategies on/off and see the cumulative impact on cost and latency.</div>
+
+      <div class="opt__baseline">
+        <span class="opt__baseline-label">Baseline:</span>
+        Medium model, 1,000 input tokens, 300 output tokens, no optimizations
+      </div>
+
+      <div class="opt__toggles" id="opt-toggles">
+        <label class="opt__toggle">
+          <input type="checkbox" data-opt="routing">
+          <div class="opt__toggle-info">
+            <span class="opt__toggle-name">Model routing</span>
+            <span class="opt__toggle-desc">Route 70% of requests to a small model</span>
+          </div>
+          <span class="opt__toggle-impact" data-impact="routing">-65% cost</span>
+        </label>
+        <label class="opt__toggle">
+          <input type="checkbox" data-opt="prompt-cache">
+          <div class="opt__toggle-info">
+            <span class="opt__toggle-name">Prompt caching</span>
+            <span class="opt__toggle-desc">Cache 600 of 1,000 input tokens (system prompt)</span>
+          </div>
+          <span class="opt__toggle-impact" data-impact="prompt-cache">-40% input cost</span>
+        </label>
+        <label class="opt__toggle">
+          <input type="checkbox" data-opt="shorter-prompt">
+          <div class="opt__toggle-info">
+            <span class="opt__toggle-name">Shorter prompts</span>
+            <span class="opt__toggle-desc">Trim prompt from 1,000 to 500 tokens</span>
+          </div>
+          <span class="opt__toggle-impact" data-impact="shorter-prompt">-50% input tokens</span>
+        </label>
+        <label class="opt__toggle">
+          <input type="checkbox" data-opt="response-cache">
+          <div class="opt__toggle-info">
+            <span class="opt__toggle-name">Response caching</span>
+            <span class="opt__toggle-desc">Cache 30% of responses (common queries)</span>
+          </div>
+          <span class="opt__toggle-impact" data-impact="response-cache">-30% calls</span>
+        </label>
+        <label class="opt__toggle">
+          <input type="checkbox" data-opt="fewer-output">
+          <div class="opt__toggle-info">
+            <span class="opt__toggle-name">Fewer output tokens</span>
+            <span class="opt__toggle-desc">Constrain output to 150 tokens (concise mode)</span>
+          </div>
+          <span class="opt__toggle-impact" data-impact="fewer-output">-50% output tokens</span>
+        </label>
+      </div>
+
+      <div class="opt__results">
+        <div class="opt__bar-group">
+          <div class="opt__bar-label">Cost per 1K requests</div>
+          <div class="opt__bar-row">
+            <div class="opt__bar-track">
+              <div class="opt__bar opt__bar--baseline" id="opt-cost-base"></div>
+              <div class="opt__bar opt__bar--optimized" id="opt-cost-opt"></div>
+            </div>
+            <div class="opt__bar-values">
+              <span id="opt-cost-base-val"></span>
+              <span id="opt-cost-opt-val" style="color: #059669; font-weight: 600;"></span>
+            </div>
+          </div>
+        </div>
+        <div class="opt__bar-group">
+          <div class="opt__bar-label">Avg latency</div>
+          <div class="opt__bar-row">
+            <div class="opt__bar-track">
+              <div class="opt__bar opt__bar--baseline" id="opt-lat-base"></div>
+              <div class="opt__bar opt__bar--optimized" id="opt-lat-opt"></div>
+            </div>
+            <div class="opt__bar-values">
+              <span id="opt-lat-base-val"></span>
+              <span id="opt-lat-opt-val" style="color: #059669; font-weight: 600;"></span>
+            </div>
+          </div>
+        </div>
+        <div class="opt__savings" id="opt-savings"></div>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <p>Notice how optimizations stack. Each saves 30-50% alone, but combined they cut costs 80-90%. This isn't a "nice to have" — it's the difference between a viable product and one that burns through its API budget like a venture-funded bonfire.</p>
+
+    <h2 id="the-triangle"><span class="section-number">IV</span> The Cost-Latency-Quality Triangle</h2>
+
+    <p>Every AI product decision is a three-way tradeoff. Pick two:</p>
+
+    <ul>
+      <li><strong>Cost</strong> — price per request and how it scales.</li>
+      <li><strong>Latency</strong> — response speed and perceived snappiness.</li>
+      <li><strong>Quality</strong> — output accuracy and user satisfaction.</li>
+    </ul>
+
+    <p>A large model gives quality but costs more. A small model is cheap and fast but less capable. Aggressive caching is cheap and fast but risks stale output. You can't max all three — the physics won't allow it.</p>
+
+    <div class="callout callout--pm-tip">
+      <div class="callout__label">PM Tip</div>
+      <div class="callout__body">Your job is to find the right position in this triangle <em>for each feature</em>. Autocomplete needs speed above all else — small model, aggressive caching. Legal document review needs quality — large model, accept the cost. A support bot needs balance — medium model, streaming, smart caching. One product, three different positions.</div>
+    </div>
+
+    <p>Where does your feature sit? Explore below:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 3: The Triangle
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-triangle" style="--widget-bg: var(--accent-cost-light); --widget-border: #FDE68A;">
+      <div class="widget__label" style="color: var(--accent-cost);">Explore</div>
+      <div class="widget__title">The Cost-Latency-Quality Triangle</div>
+      <div class="widget__instruction">Select a product feature to see where it falls on the triangle and the recommended approach.</div>
+
+      <div class="widget__controls" id="tri-features">
+        <button class="btn btn--secondary" data-feature="autocomplete">Autocomplete</button>
+        <button class="btn btn--secondary" data-feature="chatbot">Support chatbot</button>
+        <button class="btn btn--secondary" data-feature="summarize">Doc summarizer</button>
+        <button class="btn btn--secondary" data-feature="analysis">Data analysis</button>
+        <button class="btn btn--secondary" data-feature="content">Content generator</button>
+      </div>
+
+      <div class="tri__display">
+        <div class="tri__meters">
+          <div class="tri__meter">
+            <div class="tri__meter-label">Cost Priority</div>
+            <div class="tri__meter-bar-wrap"><div class="tri__meter-bar" id="tri-cost" style="background: #DC2626;"></div></div>
+            <div class="tri__meter-value" id="tri-cost-val"></div>
+          </div>
+          <div class="tri__meter">
+            <div class="tri__meter-label">Latency Priority</div>
+            <div class="tri__meter-bar-wrap"><div class="tri__meter-bar" id="tri-latency" style="background: #D97706;"></div></div>
+            <div class="tri__meter-value" id="tri-latency-val"></div>
+          </div>
+          <div class="tri__meter">
+            <div class="tri__meter-label">Quality Priority</div>
+            <div class="tri__meter-bar-wrap"><div class="tri__meter-bar" id="tri-quality" style="background: #059669;"></div></div>
+            <div class="tri__meter-value" id="tri-quality-val"></div>
+          </div>
+        </div>
+        <div class="tri__recommendation" id="tri-rec">
+          <div class="tri__rec-title" id="tri-rec-title">Select a feature above</div>
+          <div class="tri__rec-body" id="tri-rec-body"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <h2 id="wrapping-up"><span class="section-number">V</span> Wrapping Up</h2>
+
+    <p>Across these two parts, you've built a complete mental model for LLM economics:</p>
+
+    <ul>
+      <li><strong>Tokens</strong> are the unit of cost — not the same as words.</li>
+      <li><strong>Output tokens</strong> cost 3-5x more than input tokens.</li>
+      <li><strong>Model tiers</strong> span a 60x cost range — match the model to the task, not to the hype.</li>
+      <li><strong>Streaming</strong> transforms perceived latency without changing actual latency.</li>
+      <li><strong>Five optimization levers</strong> (routing, caching, shorter prompts, response caching, fewer output tokens) can stack to cut costs 80-90%.</li>
+      <li>Every feature lives in a <strong>cost-latency-quality triangle</strong> — and the right position varies by use case.</li>
+    </ul>
+
+    <div class="callout callout--summary">
+      <div class="callout__label">Takeaway</div>
+      <div class="callout__body">These aren't engineering details you can delegate. They're the foundation of every pricing decision, architecture choice, and "can we afford to build this?" conversation. Engineers handle the implementation. You handle the judgment.</div>
+    </div>
+  </article>
+
+  <nav class="article-nav">
+    <a href="tokens.html">&larr; Part 1: Tokens, Models &amp; the Cost Curve</a>
+    <a href="index.html">Back to series overview &rarr;</a>
+  </nav>
+
+  <script>
+  // ====================================================================
+  // Hero animation
+  // ====================================================================
+  (function() {
+    var canvas = document.getElementById('hero-canvas');
+    var ctx = canvas.getContext('2d');
+    var hero = document.getElementById('article-hero');
+    var nodes = [], numNodes = 40, connectionDist = 140;
+    var dpr = window.devicePixelRatio || 1, w, h;
+    function resize() { var r = hero.getBoundingClientRect(); w=r.width;h=r.height; canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0); }
+    function init() { nodes=[]; for(var i=0;i<numNodes;i++) nodes.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.35,vy:(Math.random()-0.5)*0.35,r:2+Math.random()*3,pulse:Math.random()*Math.PI*2}); }
+    function draw() {
+      ctx.clearRect(0,0,w,h);
+      for(var i=0;i<nodes.length;i++){var n=nodes[i];n.x+=n.vx;n.y+=n.vy;n.pulse+=0.015;if(n.x<-20)n.x=w+20;if(n.x>w+20)n.x=-20;if(n.y<-20)n.y=h+20;if(n.y>h+20)n.y=-20;}
+      ctx.lineWidth=1;for(var i=0;i<nodes.length;i++)for(var j=i+1;j<nodes.length;j++){var dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<connectionDist){ctx.strokeStyle='rgba(255,255,255,'+((1-d/connectionDist)*0.3)+')';ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.stroke();}}
+      for(var i=0;i<nodes.length;i++){var n=nodes[i],g=0.5+0.5*Math.sin(n.pulse);ctx.fillStyle='rgba(255,255,255,'+(0.4+0.4*g)+')';ctx.beginPath();ctx.arc(n.x,n.y,n.r*(0.8+0.4*g),0,Math.PI*2);ctx.fill();}
+      requestAnimationFrame(draw);
+    }
+    resize();init();requestAnimationFrame(draw);window.addEventListener('resize',function(){resize();init();});
+  })();
+
+  // ====================================================================
+  // Widget 1: Streaming Simulator
+  // ====================================================================
+  (function() {
+    var response = "Based on our analysis, customer churn in Q4 was primarily driven by three factors: pricing sensitivity among SMB customers (accounting for 42% of churned revenue), feature gaps in the mid-market segment compared to Competitor X (31%), and poor onboarding completion rates for new signups (27%). We recommend prioritizing the onboarding flow redesign, as it has the highest ROI — our modeling suggests a 40% improvement in activation could reduce overall churn by 15%.";
+    var words = response.split(' ');
+    var streamOff = document.getElementById('stream-off');
+    var streamOn = document.getElementById('stream-on');
+    var timerOff = document.getElementById('timer-off');
+    var timerOn = document.getElementById('timer-on');
+    var cursorOff = document.getElementById('cursor-off');
+    var cursorOn = document.getElementById('cursor-on');
+    var running = false;
+
+    var TTFT = 400;
+    var totalTime = 4000;
+    var tokenInterval = (totalTime - TTFT) / words.length;
+
+    document.getElementById('stream-start').addEventListener('click', function() {
+      if (running) return;
+      running = true;
+      streamOff.textContent = '';
+      streamOn.textContent = '';
+      timerOff.textContent = 'Waiting...';
+      timerOn.textContent = 'Waiting...';
+      cursorOff.className = 'streaming__cursor';
+      cursorOn.className = 'streaming__cursor';
+      streamOff.appendChild(cursorOff);
+      streamOn.appendChild(cursorOn);
+
+      var startTime = Date.now();
+      var offDone = false, onDone = false;
+
+      // Non-streaming: wait for full time, then show all at once
+      setTimeout(function() {
+        cursorOff.className = 'streaming__cursor streaming__cursor--hidden';
+        streamOff.textContent = response;
+        timerOff.textContent = ((Date.now() - startTime) / 1000).toFixed(1) + 's — content visible';
+        offDone = true;
+        if (offDone && onDone) running = false;
+      }, totalTime);
+
+      // Streaming: TTFT delay, then word by word
+      setTimeout(function() {
+        timerOn.textContent = ((Date.now() - startTime) / 1000).toFixed(1) + 's — first word';
+        var i = 0;
+        function addWord() {
+          if (i >= words.length) {
+            cursorOn.className = 'streaming__cursor streaming__cursor--hidden';
+            timerOn.textContent = ((Date.now() - startTime) / 1000).toFixed(1) + 's — complete';
+            onDone = true;
+            if (offDone && onDone) running = false;
+            return;
+          }
+          // Remove cursor, add word, re-add cursor
+          if (cursorOn.parentNode) cursorOn.parentNode.removeChild(cursorOn);
+          streamOn.textContent += (i > 0 ? ' ' : '') + words[i];
+          streamOn.appendChild(cursorOn);
+          streamOn.scrollTop = streamOn.scrollHeight;
+          i++;
+          setTimeout(addWord, tokenInterval);
+        }
+        addWord();
+      }, TTFT);
+    });
+
+    document.getElementById('stream-reset').addEventListener('click', function() {
+      if (running) return;
+      streamOff.textContent = '';
+      streamOn.textContent = '';
+      timerOff.textContent = '\u2014';
+      timerOn.textContent = '\u2014';
+      cursorOff.className = 'streaming__cursor streaming__cursor--hidden';
+      cursorOn.className = 'streaming__cursor streaming__cursor--hidden';
+    });
+  })();
+
+  // ====================================================================
+  // Widget 2: Optimization Playbook
+  // ====================================================================
+  (function() {
+    // Baseline: medium model, 1000 input, 300 output, 1000 requests
+    var BASE_INPUT = 1000;
+    var BASE_OUTPUT = 300;
+    var PRICE_MEDIUM_IN = 3.0;
+    var PRICE_MEDIUM_OUT = 15.0;
+    var PRICE_SMALL_IN = 0.25;
+    var PRICE_SMALL_OUT = 1.25;
+    var BASE_LATENCY = 3.5; // seconds
+
+    var baseCostPer1K = ((BASE_INPUT / 1e6 * PRICE_MEDIUM_IN) + (BASE_OUTPUT / 1e6 * PRICE_MEDIUM_OUT)) * 1000;
+    var baseLatency = BASE_LATENCY;
+
+    function calculate() {
+      var opts = {};
+      document.querySelectorAll('#opt-toggles input').forEach(function(cb) {
+        opts[cb.dataset.opt] = cb.checked;
+      });
+
+      var inputTokens = BASE_INPUT;
+      var outputTokens = BASE_OUTPUT;
+      var callReduction = 1.0; // fraction of calls still made
+      var priceIn = PRICE_MEDIUM_IN;
+      var priceOut = PRICE_MEDIUM_OUT;
+      var latency = BASE_LATENCY;
+      var inputCostMultiplier = 1.0;
+
+      if (opts['shorter-prompt']) { inputTokens = 500; latency -= 0.6; }
+      if (opts['fewer-output']) { outputTokens = 150; latency -= 0.8; }
+      if (opts['prompt-cache']) { inputCostMultiplier = 0.6; latency -= 0.5; }
+      if (opts['response-cache']) { callReduction = 0.7; }
+      if (opts['routing']) {
+        // 70% go to small model, 30% to medium
+        var smallCost = (inputTokens / 1e6 * PRICE_SMALL_IN * inputCostMultiplier) + (outputTokens / 1e6 * PRICE_SMALL_OUT);
+        var medCost = (inputTokens / 1e6 * priceIn * inputCostMultiplier) + (outputTokens / 1e6 * priceOut);
+        var blendedCost = (0.7 * smallCost + 0.3 * medCost) * callReduction * 1000;
+        latency = 0.7 * (latency * 0.4) + 0.3 * latency; // small model is ~60% faster
+
+        var optPct = (1 - blendedCost / baseCostPer1K) * 100;
+        var latPct = (1 - latency / baseLatency) * 100;
+
+        renderBars(blendedCost, latency, optPct, latPct);
+        return;
+      }
+
+      var optCost = ((inputTokens / 1e6 * priceIn * inputCostMultiplier) + (outputTokens / 1e6 * priceOut)) * callReduction * 1000;
+      var optPct = (1 - optCost / baseCostPer1K) * 100;
+      var latPct = (1 - latency / baseLatency) * 100;
+      renderBars(optCost, latency, optPct, latPct);
+    }
+
+    function renderBars(optCost, optLatency, costSavingsPct, latSavingsPct) {
+      document.getElementById('opt-cost-base').style.width = '100%';
+      document.getElementById('opt-cost-opt').style.width = Math.max(5, 100 - costSavingsPct) + '%';
+      document.getElementById('opt-cost-base-val').textContent = '$' + baseCostPer1K.toFixed(2);
+      document.getElementById('opt-cost-opt-val').textContent = '$' + optCost.toFixed(2);
+
+      document.getElementById('opt-lat-base').style.width = '100%';
+      document.getElementById('opt-lat-opt').style.width = Math.max(5, 100 - latSavingsPct) + '%';
+      document.getElementById('opt-lat-base-val').textContent = baseLatency.toFixed(1) + 's';
+      document.getElementById('opt-lat-opt-val').textContent = optLatency.toFixed(1) + 's';
+
+      var savings = document.getElementById('opt-savings');
+      if (costSavingsPct > 0 || latSavingsPct > 0) {
+        savings.textContent = 'Savings: ' + Math.round(costSavingsPct) + '% cost reduction, ' + Math.round(latSavingsPct) + '% faster. Combined, these optimizations would save $' + ((baseCostPer1K - optCost) * 30).toFixed(0) + ' per 30K requests.';
+      } else {
+        savings.textContent = 'Toggle optimizations above to see their impact.';
+      }
+    }
+
+    document.getElementById('opt-toggles').addEventListener('change', calculate);
+    calculate();
+  })();
+
+  // ====================================================================
+  // Widget 3: Cost-Latency-Quality Triangle
+  // ====================================================================
+  (function() {
+    var features = {
+      autocomplete: {
+        cost: 90, latency: 95, quality: 40,
+        title: 'Autocomplete / Typeahead',
+        body: 'Speed is everything — users expect results as they type. Use the smallest, fastest model available. Aggressive response caching (many users type similar things). Accept lower quality for dramatically lower latency. Typical: small model, <200ms, cached responses.'
+      },
+      chatbot: {
+        cost: 60, latency: 60, quality: 70,
+        title: 'Customer Support Chatbot',
+        body: 'Balanced tradeoff. Quality matters (wrong answers erode trust) but latency matters too (users are waiting). Use a medium model with streaming. Cache common questions. Route simple queries to a small model, complex ones to medium. Typical: medium model, 1-3s streamed, mixed caching.'
+      },
+      summarize: {
+        cost: 50, latency: 40, quality: 80,
+        title: 'Document Summarizer',
+        body: 'Quality is the primary concern — a bad summary is worse than no summary. Users can tolerate a few seconds of wait for a long document. Use a medium-to-large model. Prompt caching helps if the instructions are consistent. Typical: medium/large model, 3-8s, prompt caching.'
+      },
+      analysis: {
+        cost: 30, latency: 20, quality: 95,
+        title: 'Data Analysis / Research',
+        body: 'Quality dominates — the entire value prop is the depth and accuracy of the analysis. Users expect to wait (it\'s replacing hours of manual work). Use the largest model available. Cost per task is high but volume is low. Typical: large model, 10-30s, no caching (unique queries).'
+      },
+      content: {
+        cost: 70, latency: 50, quality: 75,
+        title: 'Content Generation',
+        body: 'Quality and cost both matter. Users want good copy but will generate many variants. Use a medium model — it handles creative writing well and the cost scales reasonably. Stream the output so users can stop early if the direction is wrong. Typical: medium model, streamed, 2-5s.'
+      }
+    };
+
+    document.getElementById('tri-features').addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-feature]');
+      if (!btn) return;
+      var f = features[btn.dataset.feature];
+      if (!f) return;
+
+      document.querySelectorAll('#tri-features .btn').forEach(function(b) { b.classList.remove('btn--active'); });
+      btn.classList.add('btn--active');
+
+      document.getElementById('tri-cost').style.width = f.cost + '%';
+      document.getElementById('tri-cost-val').textContent = f.cost >= 70 ? 'Critical' : f.cost >= 40 ? 'Important' : 'Secondary';
+      document.getElementById('tri-latency').style.width = f.latency + '%';
+      document.getElementById('tri-latency-val').textContent = f.latency >= 70 ? 'Critical' : f.latency >= 40 ? 'Important' : 'Secondary';
+      document.getElementById('tri-quality').style.width = f.quality + '%';
+      document.getElementById('tri-quality-val').textContent = f.quality >= 70 ? 'Critical' : f.quality >= 40 ? 'Important' : 'Secondary';
+      document.getElementById('tri-rec-title').textContent = f.title;
+      document.getElementById('tri-rec-body').textContent = f.body;
+    });
+  })();
+  </script>
+
+  <style>
+    .streaming__grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-4); margin: var(--space-4) 0; }
+    .streaming__panel { border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; background: var(--color-surface); }
+    .streaming__panel-header {
+      padding: var(--space-2) var(--space-4); font-family: var(--font-sans); font-size: var(--text-xs);
+      font-weight: 600; background: #F3F4F6; color: var(--color-text-secondary); text-align: center;
+    }
+    .streaming__panel-header--active { background: #FEF3C7; color: var(--accent-cost); }
+    .streaming__panel-body {
+      padding: var(--space-4); font-family: var(--font-sans); font-size: var(--text-sm);
+      min-height: 160px; line-height: 1.6; color: var(--color-text);
+    }
+    .streaming__timer {
+      padding: var(--space-2) var(--space-4); font-family: var(--font-mono); font-size: var(--text-xs);
+      color: var(--color-text-secondary); text-align: center; border-top: 1px solid var(--color-border-light);
+    }
+    .streaming__cursor { display: inline-block; width: 2px; height: 1em; background: var(--accent-cost); vertical-align: text-bottom; animation: cursorBlink 0.8s step-end infinite; }
+    .streaming__cursor--hidden { display: none; }
+    @keyframes cursorBlink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+    .opt__baseline {
+      padding: var(--space-3) var(--space-4); background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: 8px; font-family: var(--font-sans); font-size: var(--text-sm); color: var(--color-text-secondary);
+      margin-bottom: var(--space-4);
+    }
+    .opt__baseline-label { font-weight: 600; color: var(--color-text); }
+    .opt__toggles { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-6); }
+    .opt__toggle {
+      display: flex; align-items: center; gap: var(--space-3); padding: var(--space-3) var(--space-4);
+      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px;
+      cursor: pointer; transition: border-color var(--duration-fast);
+    }
+    .opt__toggle:hover { border-color: var(--accent-cost); }
+    .opt__toggle input { accent-color: var(--accent-cost); flex-shrink: 0; }
+    .opt__toggle-info { flex: 1; }
+    .opt__toggle-name { display: block; font-family: var(--font-sans); font-size: var(--text-sm); font-weight: 500; }
+    .opt__toggle-desc { font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary); }
+    .opt__toggle-impact { font-family: var(--font-mono); font-size: var(--text-xs); color: #059669; font-weight: 500; white-space: nowrap; }
+
+    .opt__results { margin-top: var(--space-4); }
+    .opt__bar-group { margin-bottom: var(--space-4); }
+    .opt__bar-label { font-family: var(--font-sans); font-size: var(--text-sm); color: var(--color-text-secondary); margin-bottom: var(--space-2); }
+    .opt__bar-row { display: flex; align-items: center; gap: var(--space-4); }
+    .opt__bar-track { flex: 1; height: 24px; background: var(--color-border-light); border-radius: 4px; position: relative; overflow: hidden; }
+    .opt__bar { height: 100%; border-radius: 4px; transition: width var(--duration-normal) var(--ease-out); position: absolute; top: 0; left: 0; }
+    .opt__bar--baseline { background: #E5E7EB; width: 100%; }
+    .opt__bar--optimized { background: var(--accent-cost); z-index: 1; }
+    .opt__bar-values { display: flex; flex-direction: column; min-width: 80px; font-family: var(--font-mono); font-size: var(--text-xs); text-align: right; }
+    .opt__savings {
+      margin-top: var(--space-4); padding: var(--space-3) var(--space-4);
+      background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px;
+      font-family: var(--font-sans); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.55;
+    }
+
+    .tri__display { margin-top: var(--space-6); }
+    .tri__meters { display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-6); }
+    .tri__meter { display: flex; align-items: center; gap: var(--space-4); }
+    .tri__meter-label { font-family: var(--font-sans); font-size: var(--text-sm); min-width: 130px; color: var(--color-text-secondary); }
+    .tri__meter-bar-wrap { flex: 1; background: var(--color-border-light); border-radius: 4px; height: 12px; overflow: hidden; }
+    .tri__meter-bar { height: 100%; border-radius: 4px; transition: width var(--duration-normal) var(--ease-out); width: 0%; }
+    .tri__meter-value { font-family: var(--font-sans); font-size: var(--text-xs); font-weight: 600; min-width: 70px; }
+    .tri__recommendation {
+      padding: var(--space-6); background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: 8px; animation: messageSlideIn var(--duration-normal) var(--ease-out);
+    }
+    .tri__rec-title { font-family: var(--font-serif); font-size: var(--text-lg); font-weight: 600; color: var(--accent-cost); margin-bottom: var(--space-3); }
+    .tri__rec-body { font-family: var(--font-sans); font-size: var(--text-sm); color: var(--color-text-secondary); line-height: 1.65; }
+
+    @media (max-width: 720px) {
+      .streaming__grid { grid-template-columns: 1fr; }
+      .tri__meter { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+      .tri__meter-label { min-width: auto; }
+      .tri__meter-bar-wrap { width: 100%; }
+    }
+  </style>
+
+</body>
+</html>

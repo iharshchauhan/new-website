@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MCTJXL5C');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tokens, Models &amp; the Cost Curve — AI for PMs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css?v=8">
+  <script src="../styles/site-shell.js" defer></script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCTJXL5C"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="article-hero" id="article-hero" style="background: linear-gradient(135deg, #D97706 0%, #DC2626 100%);">
+    <canvas class="article-hero__canvas" id="hero-canvas"></canvas>
+    <div class="article-hero__overlay"></div>
+    <div class="article-hero__content">
+      <nav class="breadcrumb breadcrumb--hero">
+        <a href="../index.html">AI for PMs</a> &nbsp;/&nbsp; <a href="index.html">Cost &amp; Latency</a> &nbsp;/&nbsp; <span>Part 1</span>
+      </nav>
+      <div class="article-header__meta" style="color: rgba(255,255,255,0.9);">Part 1 of 2 &middot; ~7 min read</div>
+      <h1 style="color: #fff;">Tokens, Models &amp; the Cost Curve</h1>
+      <p class="lead" style="color: rgba(255,255,255,0.85);">Every character costs money. Understanding tokens and pricing is the foundation of every AI product decision.</p>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc__inner">
+      <div class="toc__title">Contents</div>
+      <ol class="toc__list">
+        <li><span class="toc__numeral">I.</span><a href="#what-are-tokens">What Are Tokens?</a></li>
+        <li><span class="toc__numeral">II.</span><a href="#the-price-tag">The Price Tag</a></li>
+        <li><span class="toc__numeral">III.</span><a href="#model-tiers">Model Tiers</a></li>
+        <li><span class="toc__numeral">IV.</span><a href="#cost-at-scale">Cost at Scale</a></li>
+        <li><span class="toc__numeral">V.</span><a href="#whats-next">What's Next</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="epigraph">
+    <p class="epigraph__verse">
+      Every token got a price tag, every call got a bill,<br>
+      Haiku for the small jobs, Opus for the skill.<br>
+      Scale it up, watch the zeros start to climb —<br>
+      Pick the right model or you're burning dimes.
+    </p>
+  </div>
+
+  <article class="prose">
+
+    <h2 id="what-are-tokens"><span class="section-number">I</span> What Are Tokens?</h2>
+
+    <p>You don't pay per word or per character. You pay per <strong>token</strong> — a chunk of text that might be a whole word ("cat"), part of a word ("understand" + "ing"), or a single character. Spaces, punctuation, and newlines count too.</p>
+
+    <div class="callout callout--analogy">
+      <div class="callout__label">Analogy</div>
+      <div class="callout__body">Think of tokens like syllables on a taxi meter. You're not charged by the sentence or the paragraph — you're charged by the chunk. And the meter runs on both sides: the tokens you send in (the prompt) <em>and</em> the tokens the model sends back (the response).</div>
+    </div>
+
+    <p><strong>Tokens are the unit of cost.</strong> If you don't understand them, you can't estimate costs or make informed decisions about prompt design, context length, or model selection. Rule of thumb: <strong>1 token ≈ 0.75 words</strong> in English (100 words ≈ 130 tokens). Code is more token-dense than prose, and non-English languages use more tokens per word.</p>
+
+    <p>Try it yourself:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 1: Tokenizer Playground
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-tokenizer" style="--widget-bg: var(--accent-cost-light); --widget-border: #FDE68A;">
+      <div class="widget__label" style="color: var(--accent-cost);">Try it yourself</div>
+      <div class="widget__title">Tokenizer Playground</div>
+      <div class="widget__instruction">Type or paste text below. Each colored block is one token.</div>
+
+      <textarea class="tokenizer__input" id="tokenizer-input" rows="3" placeholder="Type something here... try &quot;The product manager analyzed the quarterly metrics.&quot;">The product manager analyzed the quarterly metrics.</textarea>
+
+      <div class="tokenizer__output" id="tokenizer-output"></div>
+
+      <div class="tokenizer__stats" id="tokenizer-stats">
+        <div class="tokenizer__stat">
+          <span class="tokenizer__stat-value" id="tok-count">0</span>
+          <span class="tokenizer__stat-label">tokens</span>
+        </div>
+        <div class="tokenizer__stat">
+          <span class="tokenizer__stat-value" id="tok-chars">0</span>
+          <span class="tokenizer__stat-label">characters</span>
+        </div>
+        <div class="tokenizer__stat">
+          <span class="tokenizer__stat-value" id="tok-words">0</span>
+          <span class="tokenizer__stat-label">words</span>
+        </div>
+        <div class="tokenizer__stat">
+          <span class="tokenizer__stat-value" id="tok-ratio">0</span>
+          <span class="tokenizer__stat-label">tokens/word</span>
+        </div>
+      </div>
+
+      <div class="widget__controls widget__controls--mt">
+        <button class="btn btn--secondary" data-sample="prose">Try prose</button>
+        <button class="btn btn--secondary" data-sample="code">Try code</button>
+        <button class="btn btn--secondary" data-sample="json">Try JSON</button>
+        <button class="btn btn--secondary" data-sample="numbers">Try numbers</button>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <p>Notice how code and JSON use more tokens per "word" than prose. A JSON key-value pair like <code>"user_id": "abc123"</code> is 7-8 tokens despite being just a few "words." Structured data eats your token budget for breakfast.</p>
+
+    <h2 id="the-price-tag"><span class="section-number">II</span> The Price Tag</h2>
+
+    <p><strong>Input tokens and output tokens are priced differently.</strong> Output tokens cost 3-5x more because generation is computationally harder than comprehension. The meter runs faster on the way out.</p>
+
+    <div class="callout callout--insight">
+      <div class="callout__label">Key Insight</div>
+      <div class="callout__body">A classification task (long document in, one-word label out) is <em>far</em> cheaper than a content generation task (short instruction in, long article out). Your feature's cost profile depends on which direction the tokens flow.</div>
+    </div>
+
+    <p>Pricing across model tiers in 2026 (per million tokens):</p>
+
+    <table class="tier-table">
+      <thead>
+        <tr>
+          <th>Model Tier</th>
+          <th>Input</th>
+          <th>Output</th>
+          <th>Use case</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Small (Haiku-class)</td>
+          <td>$0.25</td>
+          <td>$1.25</td>
+          <td>Classification, extraction, routing</td>
+        </tr>
+        <tr>
+          <td>Medium (Sonnet-class)</td>
+          <td>$3.00</td>
+          <td>$15.00</td>
+          <td>Most product features, chat, summarization</td>
+        </tr>
+        <tr>
+          <td>Large (Opus-class)</td>
+          <td>$15.00</td>
+          <td>$75.00</td>
+          <td>Complex reasoning, coding, research</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p>That's a <strong>60x price difference</strong> between cheapest and most expensive. Choosing the right model tier is one of the highest-leverage decisions a PM can influence.</p>
+
+    <h2 id="model-tiers"><span class="section-number">III</span> Model Tiers</h2>
+
+    <p>Every provider offers small, medium, and large tiers. The naming varies — Haiku/Sonnet/Opus, GPT-4o-mini/GPT-4o/o1 — but the tradeoff is universal:</p>
+
+    <ul>
+      <li><strong>Small models</strong> — fast and cheap, but struggle with nuance and complex reasoning. Great for classification, extraction, simple Q&A.</li>
+      <li><strong>Medium models</strong> — the workhorses. Good enough for most product features. This is where most production traffic should go.</li>
+      <li><strong>Large models</strong> — most capable, slowest, most expensive. Reserve for tasks where quality genuinely can't be achieved with a smaller model.</li>
+    </ul>
+
+    <div class="callout callout--pm-tip">
+      <div class="callout__label">PM Tip</div>
+      <div class="callout__body"><strong>You don't need one model for your whole product.</strong> A small model classifies requests, a medium model handles conversations, a large model tackles the hard stuff. This is called <strong>model routing</strong>, and it cuts costs 70-80% compared to defaulting to the biggest model — which is like hiring a surgeon to apply bandaids.</div>
+    </div>
+
+    <p>Compare the same task across model tiers:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 2: Model Comparison
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-model-compare" style="--widget-bg: var(--accent-cost-light); --widget-border: #FDE68A;">
+      <div class="widget__label" style="color: var(--accent-cost);">Compare</div>
+      <div class="widget__title">Model Comparison</div>
+      <div class="widget__instruction">Pick a task type and see how each model tier handles it — quality, speed, and cost.</div>
+
+      <div class="widget__controls" id="mc-tasks">
+        <button class="btn btn--active" data-task="classify" style="--accent: var(--accent-cost);">Classify support ticket</button>
+        <button class="btn btn--secondary" data-task="summarize">Summarize document</button>
+        <button class="btn btn--secondary" data-task="analyze">Analyze churn data</button>
+      </div>
+
+      <div class="mc__grid" id="mc-grid">
+        <div class="mc__card">
+          <div class="mc__card-header" style="background: #FEF3C7;">
+            <div class="mc__card-tier">Small</div>
+            <div class="mc__card-model">Haiku-class</div>
+          </div>
+          <div class="mc__card-body">
+            <div class="mc__metric"><span class="mc__metric-label">Quality</span><div class="mc__stars" id="mc-small-quality"></div></div>
+            <div class="mc__metric"><span class="mc__metric-label">Speed</span><span class="mc__metric-value" id="mc-small-speed"></span></div>
+            <div class="mc__metric"><span class="mc__metric-label">Cost</span><span class="mc__metric-value" id="mc-small-cost"></span></div>
+            <div class="mc__response" id="mc-small-response"></div>
+          </div>
+        </div>
+        <div class="mc__card">
+          <div class="mc__card-header" style="background: #DBEAFE;">
+            <div class="mc__card-tier">Medium</div>
+            <div class="mc__card-model">Sonnet-class</div>
+          </div>
+          <div class="mc__card-body">
+            <div class="mc__metric"><span class="mc__metric-label">Quality</span><div class="mc__stars" id="mc-medium-quality"></div></div>
+            <div class="mc__metric"><span class="mc__metric-label">Speed</span><span class="mc__metric-value" id="mc-medium-speed"></span></div>
+            <div class="mc__metric"><span class="mc__metric-label">Cost</span><span class="mc__metric-value" id="mc-medium-cost"></span></div>
+            <div class="mc__response" id="mc-medium-response"></div>
+          </div>
+        </div>
+        <div class="mc__card">
+          <div class="mc__card-header" style="background: #F3E8FF;">
+            <div class="mc__card-tier">Large</div>
+            <div class="mc__card-model">Opus-class</div>
+          </div>
+          <div class="mc__card-body">
+            <div class="mc__metric"><span class="mc__metric-label">Quality</span><div class="mc__stars" id="mc-large-quality"></div></div>
+            <div class="mc__metric"><span class="mc__metric-label">Speed</span><span class="mc__metric-value" id="mc-large-speed"></span></div>
+            <div class="mc__metric"><span class="mc__metric-label">Cost</span><span class="mc__metric-value" id="mc-large-cost"></span></div>
+            <div class="mc__response" id="mc-large-response"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="dilemma__tip" id="mc-insight" style="border-color: #FDE68A;"></div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <p>Model selection is task-dependent. A small model classifies a support ticket just as well as a large one — at 1/60th the cost. But ask it to analyze churn, and you'll get the analytical equivalent of "have you tried turning it off and on again." <strong>Match the model to the task, not to your ego.</strong></p>
+
+    <h2 id="cost-at-scale"><span class="section-number">IV</span> Cost at Scale</h2>
+
+    <p>Here's where AI product plans fall apart. A prototype at $0.02 per request feels free. Multiply by real usage and it stops being free very fast.</p>
+
+    <p>The equation: <strong>cost = requests × tokens per request × price per token.</strong> Each variable varies by orders of magnitude:</p>
+
+    <ul>
+      <li><strong>Requests</strong> scale with users. 1,000 DAUs × 5 requests = 5,000/day. 100,000 DAUs = 500,000/day.</li>
+      <li><strong>Tokens per request</strong> depend on prompt design. A 200-token prompt with a 50-token response is fundamentally different from 2,000 in and 500 out.</li>
+      <li><strong>Price per token</strong> depends on model choice — a 60x range.</li>
+    </ul>
+
+    <p>Two PMs building similar features can end up with costs that differ by <strong>100x or more</strong>, based solely on design decisions:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 3: Cost at Scale
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-scale" style="--widget-bg: var(--accent-cost-light); --widget-border: #FDE68A;">
+      <div class="widget__label" style="color: var(--accent-cost);">Calculator</div>
+      <div class="widget__title">Cost at Scale</div>
+      <div class="widget__instruction">Adjust the sliders to model your product's usage pattern and see the cost impact.</div>
+
+      <div class="scale__controls">
+        <div class="scale__control">
+          <label>Daily active users</label>
+          <div class="cost__slider-row">
+            <input type="range" id="scale-users" min="100" max="500000" value="10000" step="100" class="dilemma__slider">
+            <span class="dilemma__slider-value" id="scale-users-val">10,000</span>
+          </div>
+        </div>
+        <div class="scale__control">
+          <label>Requests per user per day</label>
+          <div class="cost__slider-row">
+            <input type="range" id="scale-reqs" min="1" max="50" value="5" class="dilemma__slider">
+            <span class="dilemma__slider-value" id="scale-reqs-val">5</span>
+          </div>
+        </div>
+        <div class="scale__control">
+          <label>Avg input tokens per request</label>
+          <div class="cost__slider-row">
+            <input type="range" id="scale-input" min="50" max="4000" value="500" step="50" class="dilemma__slider">
+            <span class="dilemma__slider-value" id="scale-input-val">500</span>
+          </div>
+        </div>
+        <div class="scale__control">
+          <label>Avg output tokens per request</label>
+          <div class="cost__slider-row">
+            <input type="range" id="scale-output" min="10" max="2000" value="150" step="10" class="dilemma__slider">
+            <span class="dilemma__slider-value" id="scale-output-val">150</span>
+          </div>
+        </div>
+        <div class="scale__control">
+          <label>Model tier</label>
+          <div class="widget__controls">
+            <button class="btn btn--secondary" data-tier="small">Small ($0.25/$1.25)</button>
+            <button class="btn btn--active" data-tier="medium">Medium ($3/$15)</button>
+            <button class="btn btn--secondary" data-tier="large">Large ($15/$75)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="scale__results" id="scale-results">
+        <div class="cost__result">
+          <div class="cost__result-label">Daily requests</div>
+          <div class="cost__result-value" id="scale-daily-reqs">50,000</div>
+        </div>
+        <div class="cost__result">
+          <div class="cost__result-label">Cost per request</div>
+          <div class="cost__result-value" id="scale-per-req">$0.004</div>
+        </div>
+        <div class="cost__result">
+          <div class="cost__result-label">Daily cost</div>
+          <div class="cost__result-value" id="scale-daily-cost">$175</div>
+        </div>
+        <div class="cost__result">
+          <div class="cost__result-label">Monthly cost</div>
+          <div class="cost__result-value" id="scale-monthly-cost">$5,250</div>
+        </div>
+      </div>
+
+      <div class="dilemma__tip" id="scale-tip" style="border-color: #FDE68A;"></div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <div class="callout callout--summary">
+      <div class="callout__label">Takeaway</div>
+      <div class="callout__body"><strong>Small design decisions compound at scale.</strong> Cutting a prompt from 1,000 to 500 tokens doesn't feel significant — until you multiply by 500,000 daily requests. Switching from a large model to a medium for a task that doesn't need the extra capability can save tens of thousands per month. Your CFO will send flowers.</div>
+    </div>
+
+    <h2 id="whats-next"><span class="section-number">V</span> What's Next</h2>
+
+    <p>You now understand LLM economics: tokens as the unit of cost, input vs. output pricing, model tiers, and how costs compound at scale. But cost is only half the equation.</p>
+
+    <p>In Part 2: <strong>latency.</strong> Why LLMs feel slow, how streaming transforms the experience, and the optimization levers — caching, prompt engineering, model routing — that let you ship AI features that are both fast and affordable.</p>
+  </article>
+
+  <nav class="article-nav">
+    <a href="index.html">&larr; Back to series</a>
+    <a href="latency.html">Part 2: Latency, Streaming &amp; Optimization &rarr;</a>
+  </nav>
+
+  <script>
+  // ====================================================================
+  // Hero animation
+  // ====================================================================
+  (function() {
+    var canvas = document.getElementById('hero-canvas');
+    var ctx = canvas.getContext('2d');
+    var hero = document.getElementById('article-hero');
+    var nodes = [], numNodes = 40, connectionDist = 140;
+    var dpr = window.devicePixelRatio || 1, w, h;
+    function resize() {
+      var r = hero.getBoundingClientRect(); w = r.width; h = r.height;
+      canvas.width = w*dpr; canvas.height = h*dpr; ctx.setTransform(dpr,0,0,dpr,0,0);
+    }
+    function init() { nodes=[]; for(var i=0;i<numNodes;i++) nodes.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.35,vy:(Math.random()-0.5)*0.35,r:2+Math.random()*3,pulse:Math.random()*Math.PI*2}); }
+    function draw() {
+      ctx.clearRect(0,0,w,h);
+      for(var i=0;i<nodes.length;i++){var n=nodes[i];n.x+=n.vx;n.y+=n.vy;n.pulse+=0.015;if(n.x<-20)n.x=w+20;if(n.x>w+20)n.x=-20;if(n.y<-20)n.y=h+20;if(n.y>h+20)n.y=-20;}
+      ctx.lineWidth=1;
+      for(var i=0;i<nodes.length;i++)for(var j=i+1;j<nodes.length;j++){var dx=nodes[i].x-nodes[j].x,dy=nodes[i].y-nodes[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<connectionDist){ctx.strokeStyle='rgba(255,255,255,'+((1-d/connectionDist)*0.3)+')';ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(nodes[j].x,nodes[j].y);ctx.stroke();}}
+      for(var i=0;i<nodes.length;i++){var n=nodes[i],g=0.5+0.5*Math.sin(n.pulse);ctx.fillStyle='rgba(255,255,255,'+(0.4+0.4*g)+')';ctx.beginPath();ctx.arc(n.x,n.y,n.r*(0.8+0.4*g),0,Math.PI*2);ctx.fill();}
+      requestAnimationFrame(draw);
+    }
+    resize();init();requestAnimationFrame(draw);
+    window.addEventListener('resize',function(){resize();init();});
+  })();
+
+  // ====================================================================
+  // Widget 1: Tokenizer Playground
+  // ====================================================================
+  (function() {
+    var input = document.getElementById('tokenizer-input');
+    var output = document.getElementById('tokenizer-output');
+    var tokCount = document.getElementById('tok-count');
+    var tokChars = document.getElementById('tok-chars');
+    var tokWords = document.getElementById('tok-words');
+    var tokRatio = document.getElementById('tok-ratio');
+
+    var colors = ['#FDE68A','#BFDBFE','#BBF7D0','#FBCFE8','#DDD6FE','#FED7AA','#A5F3FC','#FCA5A5','#E9D5FF','#D9F99D'];
+
+    // Simple tokenizer approximation (not a real BPE tokenizer but demonstrates the concept)
+    function tokenize(text) {
+      if (!text) return [];
+      var tokens = [];
+      var i = 0;
+      while (i < text.length) {
+        // Try to match common patterns
+        var rest = text.slice(i);
+        var match;
+
+        // Whitespace
+        if ((match = rest.match(/^(\s+)/))) {
+          tokens.push(match[1]);
+          i += match[1].length;
+        }
+        // Numbers
+        else if ((match = rest.match(/^(\d{1,3})/))) {
+          tokens.push(match[1]);
+          i += match[1].length;
+        }
+        // Common suffixes: split word + suffix
+        else if ((match = rest.match(/^([a-zA-Z]{3,}?)(ing|tion|sion|ment|ness|able|ible|ful|less|ous|ive|ed|er|est|ly|al|ity|ize|ise)\b/))) {
+          tokens.push(match[1]);
+          tokens.push(match[2]);
+          i += match[0].length;
+        }
+        // Regular words (up to ~6 chars as one token)
+        else if ((match = rest.match(/^([a-zA-Z']{1,7})/))) {
+          tokens.push(match[1]);
+          i += match[1].length;
+        }
+        // Punctuation and symbols
+        else if ((match = rest.match(/^([^\s\w])/))) {
+          tokens.push(match[1]);
+          i += match[1].length;
+        }
+        // Fallback
+        else {
+          tokens.push(rest[0]);
+          i++;
+        }
+      }
+      return tokens;
+    }
+
+    function update() {
+      var text = input.value;
+      var tokens = tokenize(text);
+      var words = text.trim() ? text.trim().split(/\s+/).length : 0;
+
+      // Render tokens
+      output.innerHTML = '';
+      tokens.forEach(function(tok, i) {
+        var span = document.createElement('span');
+        span.className = 'tokenizer__token';
+        span.style.background = colors[i % colors.length];
+        span.textContent = tok.replace(/ /g, '\u00B7').replace(/\n/g, '\u21B5');
+        span.title = 'Token ' + (i+1) + ': "' + tok + '" (' + tok.length + ' chars)';
+        output.appendChild(span);
+      });
+
+      tokCount.textContent = tokens.length;
+      tokChars.textContent = text.length;
+      tokWords.textContent = words;
+      tokRatio.textContent = words > 0 ? (tokens.length / words).toFixed(2) : '0';
+    }
+
+    input.addEventListener('input', update);
+
+    // Sample texts
+    var samples = {
+      prose: 'The product manager analyzed the quarterly metrics and discovered that user retention had improved significantly after the onboarding redesign.',
+      code: 'function calculateCost(tokens, pricePerMillion) {\n  return (tokens / 1_000_000) * pricePerMillion;\n}',
+      json: '{"user_id": "usr_a1b2c3", "action": "search", "query": "best flights to London", "timestamp": "2026-02-19T14:30:00Z"}',
+      numbers: 'Revenue was $2,847,293 in Q4 2025, up 34.7% from $2,113,847 in Q3. Average deal size: $12,500.'
+    };
+
+    document.querySelector('#widget-tokenizer .widget__controls').addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-sample]');
+      if (!btn) return;
+      input.value = samples[btn.dataset.sample];
+      update();
+    });
+
+    update();
+  })();
+
+  // ====================================================================
+  // Widget 2: Model Comparison
+  // ====================================================================
+  (function() {
+    var tasks = {
+      classify: {
+        name: 'Classify support ticket',
+        inputTokens: 300,
+        outputTokens: 15,
+        small:  { quality: 4, speed: '0.3s', response: 'Category: billing\nPriority: medium' },
+        medium: { quality: 5, speed: '0.8s', response: 'Category: billing\nPriority: medium\nSentiment: frustrated' },
+        large:  { quality: 5, speed: '2.1s', response: 'Category: billing\nPriority: medium\nSentiment: frustrated\nSuggested action: expedite' },
+        insight: 'For classification, the small model performs nearly as well as the large one — at 1/60th the cost. This is a clear case where a small model is the right choice.'
+      },
+      summarize: {
+        name: 'Summarize a 2-page document',
+        inputTokens: 1200,
+        outputTokens: 200,
+        small:  { quality: 3, speed: '0.8s', response: 'The document discusses Q4 results. Revenue increased. The team plans to expand.' },
+        medium: { quality: 4, speed: '2.5s', response: 'Q4 revenue grew 23% YoY to $4.2M, driven by enterprise expansion. The team plans to invest in self-serve onboarding and hire 3 engineers in Q1.' },
+        large:  { quality: 5, speed: '6.2s', response: 'Q4 revenue grew 23% YoY to $4.2M, primarily driven by enterprise deal expansion (+31%) while SMB grew modestly (+8%). The team plans to invest in self-serve onboarding to address SMB conversion, hire 3 engineers, and explore a partnerships channel — though the latter carries execution risk given the small team.' },
+        insight: 'Summarization quality varies significantly. The small model misses key details. The medium model captures the essentials. The large model adds nuance and critical thinking — but costs 5x more. Most products are well-served by the medium tier here.'
+      },
+      analyze: {
+        name: 'Analyze why customers are churning',
+        inputTokens: 2000,
+        outputTokens: 500,
+        small:  { quality: 2, speed: '1.5s', response: 'Customers are churning because of pricing concerns and competition. Consider lowering prices and improving the product.' },
+        medium: { quality: 4, speed: '5.0s', response: 'Three patterns emerge: (1) SMB customers churn within 90 days — likely poor onboarding, (2) mid-market churns after contract renewal — price sensitivity, (3) enterprise rarely churns but downgrades seats. Recommendation: invest in onboarding for SMB, introduce annual discount incentives for mid-market.' },
+        large:  { quality: 5, speed: '12.0s', response: 'Analysis reveals three distinct churn cohorts with different root causes:\n\n1. SMB (< 90 days): 67% never complete onboarding. The activation flow requires 14 steps — benchmark is 5-7. These customers never see value.\n\n2. Mid-market (at renewal): Price sensitivity combined with feature gaps vs. Competitor X. Exit surveys cite "missing API access" 3x more than pricing.\n\n3. Enterprise (seat downgrades): Not true churn but revenue contraction. Correlates with hiring freezes, not product dissatisfaction.\n\nPrioritized recommendations: (1) Simplify onboarding to 5 steps, (2) Ship API access to mid-market tier, (3) Introduce usage-based pricing for enterprise.' },
+        insight: 'Complex analysis is where large models shine. The small model gives platitudes. The medium model identifies patterns. The large model finds root causes and gives actionable, prioritized recommendations. For high-stakes decisions, the extra cost is worth it.'
+      }
+    };
+
+    var currentTask = 'classify';
+    var pricing = { small: [0.25, 1.25], medium: [3, 15], large: [15, 75] };
+
+    function stars(n) {
+      var s = '';
+      for (var i = 0; i < 5; i++) s += i < n ? '\u2605' : '\u2606';
+      return s;
+    }
+
+    function calcCost(tier, task) {
+      var t = tasks[task];
+      var p = pricing[tier];
+      return ((t.inputTokens / 1000000 * p[0]) + (t.outputTokens / 1000000 * p[1])).toFixed(5);
+    }
+
+    function render() {
+      var t = tasks[currentTask];
+      ['small','medium','large'].forEach(function(tier) {
+        document.getElementById('mc-'+tier+'-quality').textContent = stars(t[tier].quality);
+        document.getElementById('mc-'+tier+'-speed').textContent = t[tier].speed;
+        document.getElementById('mc-'+tier+'-cost').textContent = '$' + calcCost(tier, currentTask);
+        document.getElementById('mc-'+tier+'-response').textContent = t[tier].response;
+      });
+      document.getElementById('mc-insight').textContent = t.insight;
+    }
+
+    document.getElementById('mc-tasks').addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-task]');
+      if (!btn) return;
+      currentTask = btn.dataset.task;
+      document.querySelectorAll('#mc-tasks .btn').forEach(function(b) {
+        b.className = 'btn ' + (b.dataset.task === currentTask ? 'btn--active' : 'btn--secondary');
+      });
+      render();
+    });
+    render();
+  })();
+
+  // ====================================================================
+  // Widget 3: Cost at Scale
+  // ====================================================================
+  (function() {
+    var pricing = { small: [0.25, 1.25], medium: [3, 15], large: [15, 75] };
+    var currentTier = 'medium';
+
+    var usersSlider = document.getElementById('scale-users');
+    var reqsSlider = document.getElementById('scale-reqs');
+    var inputSlider = document.getElementById('scale-input');
+    var outputSlider = document.getElementById('scale-output');
+
+    function update() {
+      var users = parseInt(usersSlider.value);
+      var reqs = parseInt(reqsSlider.value);
+      var inp = parseInt(inputSlider.value);
+      var out = parseInt(outputSlider.value);
+      var p = pricing[currentTier];
+
+      document.getElementById('scale-users-val').textContent = users.toLocaleString();
+      document.getElementById('scale-reqs-val').textContent = reqs;
+      document.getElementById('scale-input-val').textContent = inp;
+      document.getElementById('scale-output-val').textContent = out;
+
+      var dailyReqs = users * reqs;
+      var costPerReq = (inp / 1000000 * p[0]) + (out / 1000000 * p[1]);
+      var dailyCost = costPerReq * dailyReqs;
+      var monthlyCost = dailyCost * 30;
+
+      document.getElementById('scale-daily-reqs').textContent = dailyReqs.toLocaleString();
+      document.getElementById('scale-per-req').textContent = '$' + costPerReq.toFixed(5);
+      document.getElementById('scale-daily-cost').textContent = '$' + dailyCost.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+      document.getElementById('scale-monthly-cost').textContent = '$' + monthlyCost.toLocaleString(undefined, {minimumFractionDigits: 0, maximumFractionDigits: 0});
+
+      var tip = document.getElementById('scale-tip');
+      if (monthlyCost < 100) tip.textContent = 'At $' + monthlyCost.toFixed(0) + '/month, LLM costs are negligible. Focus on building the best experience.';
+      else if (monthlyCost < 1000) tip.textContent = 'At $' + monthlyCost.toFixed(0) + '/month, costs are manageable. Start thinking about optimization when you grow 10x.';
+      else if (monthlyCost < 10000) tip.textContent = 'At $' + Math.round(monthlyCost).toLocaleString() + '/month, optimization matters. Consider model routing — use a small model for simple requests.';
+      else if (monthlyCost < 100000) tip.textContent = 'At $' + Math.round(monthlyCost).toLocaleString() + '/month, you need an optimization strategy. Caching, prompt tuning, and model routing can cut this by 50-80%.';
+      else tip.textContent = 'At $' + Math.round(monthlyCost).toLocaleString() + '/month, LLM costs are a major line item. Every optimization lever matters — shorter prompts, caching, routing, smaller models where possible.';
+    }
+
+    [usersSlider, reqsSlider, inputSlider, outputSlider].forEach(function(s) {
+      s.addEventListener('input', update);
+    });
+
+    document.querySelector('#widget-scale .widget__controls').addEventListener('click', function(e) {
+      var btn = e.target.closest('[data-tier]');
+      if (!btn) return;
+      currentTier = btn.dataset.tier;
+      document.querySelectorAll('#widget-scale [data-tier]').forEach(function(b) {
+        b.className = 'btn ' + (b.dataset.tier === currentTier ? 'btn--active' : 'btn--secondary');
+      });
+      update();
+    });
+
+    update();
+  })();
+  </script>
+
+  <style>
+    .tokenizer__input {
+      width: 100%; padding: var(--space-4); border: 1px solid var(--color-border);
+      border-radius: 8px; font-family: var(--font-sans); font-size: var(--text-sm);
+      line-height: 1.6; resize: vertical; background: var(--color-surface);
+      margin-bottom: var(--space-4);
+    }
+    .tokenizer__input:focus { outline: 2px solid var(--accent-cost); outline-offset: -1px; border-color: transparent; }
+    .tokenizer__output {
+      padding: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: 8px; min-height: 48px; margin-bottom: var(--space-4);
+      display: flex; flex-wrap: wrap; gap: 2px; align-items: flex-start;
+      font-family: var(--font-mono); font-size: var(--text-sm);
+    }
+    .tokenizer__token {
+      padding: 2px 4px; border-radius: 3px; border: 1px solid rgba(0,0,0,0.1);
+      cursor: default; white-space: pre;
+    }
+    .tokenizer__stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4);
+      padding: var(--space-4); background: var(--color-surface); border: 1px solid var(--color-border);
+      border-radius: 8px; text-align: center; margin-bottom: var(--space-4);
+    }
+    .tokenizer__stat-value { display: block; font-family: var(--font-mono); font-size: var(--text-xl); font-weight: 600; color: var(--accent-cost); }
+    .tokenizer__stat-label { font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary); }
+
+    .mc__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-4); margin: var(--space-6) 0; }
+    .mc__card { border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; background: var(--color-surface); }
+    .mc__card-header { padding: var(--space-3) var(--space-4); }
+    .mc__card-tier { font-family: var(--font-sans); font-size: var(--text-xs); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; }
+    .mc__card-model { font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary); }
+    .mc__card-body { padding: var(--space-4); }
+    .mc__metric { display: flex; justify-content: space-between; align-items: center; padding: var(--space-2) 0; border-bottom: 1px solid var(--color-border-light); font-family: var(--font-sans); font-size: var(--text-xs); }
+    .mc__metric-label { color: var(--color-text-secondary); }
+    .mc__metric-value { font-family: var(--font-mono); font-weight: 500; }
+    .mc__stars { color: var(--accent-cost); letter-spacing: 1px; }
+    .mc__response {
+      margin-top: var(--space-3); padding: var(--space-3); background: #F9FAFB; border-radius: 6px;
+      font-family: var(--font-sans); font-size: var(--text-xs); color: var(--color-text-secondary);
+      line-height: 1.55; white-space: pre-wrap; max-height: 160px; overflow-y: auto;
+    }
+
+    .scale__controls { display: flex; flex-direction: column; gap: var(--space-4); margin-bottom: var(--space-6); }
+    .scale__control label { font-family: var(--font-sans); font-size: var(--text-sm); color: var(--color-text-secondary); display: block; margin-bottom: var(--space-2); }
+    .scale__results {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: var(--space-4);
+      padding: var(--space-6); background: var(--color-surface);
+      border: 1px solid var(--color-border); border-radius: 8px; margin-bottom: var(--space-4);
+    }
+
+    @media (max-width: 720px) {
+      .mc__grid { grid-template-columns: 1fr; }
+      .tokenizer__stats { grid-template-columns: repeat(2, 1fr); }
+      .scale__results { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+
+</body>
+</html>

@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MCTJXL5C');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How LLMs Actually Work — AI for PMs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css?v=8">
+  <style>
+    .article-hero { background: var(--accent-llm-gradient); }
+    .toc__list a:hover { color: var(--accent-llm); }
+    .prose blockquote { border-left-color: var(--accent-llm); }
+    .widget { background: var(--accent-llm-light); border-color: #CBD5E1; }
+    .widget__label { color: var(--accent-llm); }
+    .btn--primary { background: var(--accent-llm); }
+    .btn--active { background: var(--accent-llm); border-color: var(--accent-llm); }
+    .btn--secondary:hover:not(:disabled) { border-color: var(--accent-llm); color: var(--accent-llm); }
+
+    /* Widget 1: Next-Token Predictor */
+    .ntp__sentence {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4) var(--space-6);
+      font-family: var(--font-serif);
+      font-size: var(--text-base);
+      line-height: 1.8;
+      min-height: 60px;
+      margin-bottom: var(--space-4);
+    }
+    .ntp__sentence .ntp__token {
+      background: #DBEAFE;
+      padding: 2px 4px;
+      border-radius: 3px;
+      font-weight: 600;
+    }
+    .ntp__sentence .ntp__token:last-of-type {
+      background: var(--accent-llm);
+      color: #fff;
+    }
+    .ntp__candidates {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .ntp__candidate {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      padding: var(--space-2) var(--space-3);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+    }
+    .ntp__candidate:hover {
+      border-color: var(--accent-llm);
+      transform: translateX(4px);
+    }
+    .ntp__candidate-token {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      min-width: 100px;
+      color: var(--accent-llm);
+    }
+    .ntp__candidate-bar-wrap {
+      flex: 1;
+      background: var(--color-border-light);
+      border-radius: 4px;
+      height: 10px;
+      overflow: hidden;
+    }
+    .ntp__candidate-bar {
+      height: 100%;
+      background: var(--accent-llm);
+      border-radius: 4px;
+      transition: width var(--duration-normal) var(--ease-out);
+    }
+    .ntp__candidate-pct {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      min-width: 3rem;
+      text-align: right;
+    }
+    .ntp__starters-label {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 600;
+      margin-bottom: var(--space-2);
+      margin-top: var(--space-4);
+    }
+
+    /* Widget 2: Model Landscape Explorer */
+    .mle__filters {
+      display: flex;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+      margin-bottom: var(--space-6);
+    }
+    .mle__grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: var(--space-4);
+    }
+    .mle__card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4) var(--space-6);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-out);
+    }
+    .mle__card:hover {
+      border-color: var(--accent-llm);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    }
+    .mle__card--hidden { display: none; }
+    .mle__card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: var(--space-3);
+    }
+    .mle__card-name {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      color: var(--color-text);
+    }
+    .mle__card-tier {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 500;
+    }
+    .mle__card-tier--frontier { background: #FEF3C7; color: #92400E; }
+    .mle__card-tier--mid { background: #DBEAFE; color: #1E40AF; }
+    .mle__card-tier--small { background: #F3F4F6; color: #4B5563; }
+    .mle__card-provider {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-2);
+    }
+    .mle__card-best {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-2);
+    }
+    .mle__card-cost {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--accent-llm);
+      font-weight: 500;
+    }
+    .mle__card-detail {
+      display: none;
+      margin-top: var(--space-3);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--color-border-light);
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      line-height: 1.6;
+    }
+    .mle__card--expanded .mle__card-detail { display: block; }
+    .mle__card-tags {
+      display: flex;
+      gap: var(--space-1);
+      flex-wrap: wrap;
+      margin-top: var(--space-2);
+    }
+    .mle__card-tag {
+      font-family: var(--font-sans);
+      font-size: 10px;
+      padding: 1px 6px;
+      border-radius: 8px;
+      background: var(--accent-llm-light);
+      color: var(--accent-llm);
+      font-weight: 500;
+    }
+
+    /* Widget 3: Training vs Inference Cost */
+    .tvi__comparison {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-6);
+      margin-bottom: var(--space-6);
+    }
+    .tvi__side {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4) var(--space-6);
+    }
+    .tvi__side-title {
+      font-family: var(--font-sans);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      margin-bottom: var(--space-3);
+    }
+    .tvi__side-title--training { color: #DC2626; }
+    .tvi__side-title--inference { color: #059669; }
+    .tvi__metric {
+      display: flex;
+      justify-content: space-between;
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      padding: var(--space-2) 0;
+      border-bottom: 1px solid var(--color-border-light);
+    }
+    .tvi__metric:last-child { border-bottom: none; }
+    .tvi__metric-value {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      color: var(--color-text);
+    }
+    .tvi__slider-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-4);
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+    }
+    .tvi__slider {
+      flex: 1;
+      accent-color: var(--accent-llm);
+      height: 6px;
+    }
+    .tvi__slider-value {
+      font-family: var(--font-mono);
+      font-weight: 600;
+      font-size: var(--text-sm);
+      color: var(--accent-llm);
+      min-width: 7rem;
+      text-align: right;
+    }
+    .tvi__chart {
+      display: flex;
+      align-items: flex-end;
+      gap: var(--space-4);
+      height: 160px;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-4) var(--space-6);
+      position: relative;
+    }
+    .tvi__bar-group {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      height: 100%;
+      justify-content: flex-end;
+    }
+    .tvi__bar {
+      width: 60%;
+      border-radius: 4px 4px 0 0;
+      transition: height var(--duration-normal) var(--ease-out);
+      min-height: 4px;
+    }
+    .tvi__bar--training { background: #DC2626; }
+    .tvi__bar--inference { background: #059669; }
+    .tvi__bar-label {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      margin-top: var(--space-2);
+      text-align: center;
+    }
+    .tvi__bar-amount {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      color: var(--color-text);
+      margin-bottom: var(--space-1);
+    }
+    .tvi__insight {
+      margin-top: var(--space-4);
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 720px) {
+      .tvi__comparison { grid-template-columns: 1fr; }
+      .mle__grid { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script src="../styles/site-shell.js" defer></script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCTJXL5C"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="article-hero" id="article-hero">
+    <canvas class="article-hero__canvas" id="hero-canvas"></canvas>
+    <div class="article-hero__overlay"></div>
+    <div class="article-hero__content">
+      <nav class="breadcrumb breadcrumb--hero">
+        <a href="../index.html">AI for PMs</a> &nbsp;/&nbsp; <a href="index.html">How LLMs Actually Work</a> &nbsp;/&nbsp; <span>Part 2</span>
+      </nav>
+      <div class="article-header__meta" style="color: rgba(255,255,255,0.9);">Part 2 of 2 &middot; ~8 min read</div>
+      <h1 style="color: #fff;">How LLMs Actually Work</h1>
+      <p class="lead" style="color: rgba(255,255,255,0.85);">From training data to token prediction, model tiers to hard limits — the mental model every PM needs before building with AI.</p>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc__inner">
+      <div class="toc__title">Contents</div>
+      <ol class="toc__list">
+        <li><span class="toc__numeral">I.</span><a href="#before-the-magic">Before the Magic</a></li>
+        <li><span class="toc__numeral">II.</span><a href="#training-vs-inference">Training vs. Inference</a></li>
+        <li><span class="toc__numeral">III.</span><a href="#next-token-prediction">Next-Token Prediction</a></li>
+        <li><span class="toc__numeral">IV.</span><a href="#parameters-models-capability">Parameters, Models &amp; Capability</a></li>
+        <li><span class="toc__numeral">V.</span><a href="#capability-landscape">The Capability Landscape</a></li>
+        <li><span class="toc__numeral">VI.</span><a href="#limitations">Limitations That Matter</a></li>
+        <li><span class="toc__numeral">VII.</span><a href="#where-to-go-next">Where to Go Next</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="epigraph">
+    <p class="epigraph__verse">
+      Trained on words the whole world wrote,<br>
+      Predict the next one, note by note.<br>
+      Billion params, but don't be fooled —<br>
+      It's pattern matching, brilliantly schooled.
+    </p>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section I: Before the Magic
+         ================================================================ -->
+    <h2 id="before-the-magic"><span class="section-number">I</span> Before the Magic</h2>
+
+    <p>You've used ChatGPT, Claude, or Gemini. You've typed a prompt and gotten a surprisingly good response. You've wondered: <em>how does it actually know this?</em></p>
+
+    <p>You don't need a CS degree for what follows. You do need a working mental model of what these systems are, how they produce text, and where they hit walls. That model will change how you write product specs, evaluate vendors, and make build-vs-buy decisions.</p>
+
+    <!-- ================================================================
+         Section II: Training vs. Inference
+         ================================================================ -->
+    <h2 id="training-vs-inference"><span class="section-number">II</span> Training vs. Inference</h2>
+
+    <p><strong>Training</strong> is the months-long process where the model learns from data. Billions of pages of text go into a neural network that adjusts billions of internal numbers (<em>parameters</em>) until it predicts language patterns well. Thousands of GPUs. Tens of millions of dollars. Once per model version.</p>
+
+    <p><strong>Inference</strong> is what happens when you type a prompt. The trained model generates a response, token by token. Fractions of a cent per request. Billions of times per day.</p>
+
+    <div class="callout callout--analogy">
+      <div class="callout__label">Analogy</div>
+      <div class="callout__body">Training is the <strong>oven</strong> — you spend hours baking the cake once. Inference is the <strong>kitchen counter</strong> — you slice and serve instantly. You can't change the recipe once it's baked.</div>
+    </div>
+
+    <p>For PMs: you can't alter what the model knows (baked in during training). But you control <em>how</em> it responds — through prompts, fine-tuning, and context at inference time. Every product decision lives in the inference layer.</p>
+
+    <!-- ================================================================
+         Section III: Next-Token Prediction
+         ================================================================ -->
+    <h2 id="next-token-prediction"><span class="section-number">III</span> Next-Token Prediction</h2>
+
+    <p>Every LLM does exactly one thing: predict the most likely next <em>token</em> given everything before it.</p>
+
+    <p>A token is a chunk of text, roughly three-quarters of a word. The model sees your prompt as a token sequence, calculates probabilities over its vocabulary (~100K tokens), and picks one. Appends it. Predicts again. One token at a time, the response grows.</p>
+
+    <div class="callout callout--insight">
+      <div class="callout__label">Key Insight</div>
+      <div class="callout__body"><strong>Next-token prediction is ALL it does.</strong> Summarization, translation, code generation — all emergent behaviors from predicting the next token extremely well. No separate "reasoning module." It's prediction all the way down.</div>
+    </div>
+
+    <p>This is why models "hallucinate" — they produce text that <em>sounds</em> plausible because it's statistically plausible, even when it's wrong. The model isn't looking up facts. It's completing patterns. Try it yourself:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 1: Next-Token Predictor
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-ntp">
+      <div class="widget__label">Interactive</div>
+      <div class="widget__title">Next-Token Predictor</div>
+      <div class="widget__instruction">Click a token to append it to the sentence. Watch how the probability distribution shifts with each choice.</div>
+
+      <div class="ntp__sentence" id="ntp-sentence">
+        <span class="ntp__base" id="ntp-base"></span>
+      </div>
+
+      <div class="ntp__candidates" id="ntp-candidates"></div>
+
+      <div class="ntp__starters-label">Start with a different sentence</div>
+      <div class="widget__controls" id="ntp-starters">
+        <button class="btn btn--secondary btn--active" data-starter="0">The product manager</button>
+        <button class="btn btn--secondary" data-starter="1">Large language models</button>
+        <button class="btn btn--secondary" data-starter="2">When building AI features</button>
+        <button class="btn btn--secondary" data-starter="3">The training data</button>
+      </div>
+
+      <div class="widget__controls widget__controls--mt">
+        <button class="btn btn--secondary" id="ntp-reset">Reset</button>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <!-- ================================================================
+         Section IV: Parameters, Models & Capability
+         ================================================================ -->
+    <h2 id="parameters-models-capability"><span class="section-number">IV</span> Parameters, Models &amp; Capability</h2>
+
+    <p>If all LLMs predict the next token, why are some dramatically better than others? Because prediction quality depends on three things — and none of them are magic.</p>
+
+    <p><strong>Parameter count</strong> is the number everyone fixates on, but it's the wrong headline. Parameters are the model's internal numbers — its memory capacity. More generally means more nuance, but a well-trained 70B model routinely embarrasses a sloppy 200B one.</p>
+
+    <p><strong>Training data quality</strong> matters more than quantity. Curated textbooks and expert writing beat ten times as much scraped web spam. What goes in determines what comes out — always.</p>
+
+    <p><strong>Fine-tuning and alignment</strong> turn a raw model into something you'd actually ship. RLHF (reinforcement learning from human feedback) is what turned GPT from "interesting research paper" into "product that answers your question instead of rambling like a Wikipedia article."</p>
+
+    <div class="callout callout--pm-tip">
+      <div class="callout__label">PM Tip</div>
+      <div class="callout__body"><strong>Pick models by task, not parameter count.</strong> A smaller model fine-tuned for your specific use case will often outperform a frontier model used generically. If your product classifies support tickets, a fine-tuned 8B model may beat GPT-4 at a fraction of the cost. Save frontier models for tasks that genuinely need broad reasoning.</div>
+    </div>
+
+    <!-- ================================================================
+         Section V: The Capability Landscape
+         ================================================================ -->
+    <h2 id="capability-landscape"><span class="section-number">V</span> The Capability Landscape</h2>
+
+    <p><strong>Proprietary frontier models</strong> (GPT-4o, Claude Sonnet, Gemini Pro) are the most capable. Complex reasoning, broad knowledge, best instruction-following. The price: your data goes to a third party, you pay per token, and the model can change under you without warning.</p>
+
+    <p><strong>Open-source models</strong> (Llama, Mistral, Command R+) run on your infrastructure. You own the data, the cost structure, and the version. The price: you need ML talent to deploy and maintain them, and they trail proprietary models on the hardest tasks — usually by a few months, sometimes by more.</p>
+
+    <p>Explore the landscape:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 2: Model Landscape Explorer
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-mle">
+      <div class="widget__label">Explore</div>
+      <div class="widget__title">Model Landscape Explorer</div>
+      <div class="widget__instruction">Filter by category, then click any card to expand details.</div>
+
+      <div class="mle__filters" id="mle-filters">
+        <button class="btn btn--secondary btn--active" data-filter="all">All</button>
+        <button class="btn btn--secondary" data-filter="frontier">Frontier</button>
+        <button class="btn btn--secondary" data-filter="open">Open Source</button>
+        <button class="btn btn--secondary" data-filter="code">Best for Code</button>
+        <button class="btn btn--secondary" data-filter="rag">Best for RAG</button>
+      </div>
+
+      <div class="mle__grid" id="mle-grid"></div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <!-- ================================================================
+         Section VI: Limitations That Matter
+         ================================================================ -->
+    <h2 id="limitations"><span class="section-number">VI</span> Limitations That Matter</h2>
+
+    <p>Capabilities are obvious in demos. Limitations reveal themselves in production, usually at the worst possible time.</p>
+
+    <p><strong>Hallucinations.</strong> LLMs generate text that sounds authoritative and is completely wrong. They predict plausible tokens, not facts. Ask for a citation and you might get a perfectly formatted reference to a paper that doesn't exist. This isn't a bug waiting to be fixed — it's structural. Every product needs a verification layer.</p>
+
+    <p><strong>Knowledge cutoff.</strong> A model only knows its training data. Your product launched last month? The model has no idea it exists. RAG (retrieval-augmented generation) is the workaround: feed current documents into the prompt at inference time.</p>
+
+    <p><strong>Reasoning limits.</strong> LLMs approximate reasoning through pattern completion — and approximation has limits. They struggle with novel multi-step logic, reliable arithmetic, and maintaining state across long chains of thought.</p>
+
+    <div class="callout callout--summary">
+      <div class="callout__label">Takeaway</div>
+      <div class="callout__body"><strong>Design for limitations, not just capabilities.</strong> Every AI feature should have a plan for hallucinations (verification), knowledge gaps (RAG or search), and reasoning failures (guardrails and fallbacks). The PM who ships an AI product without these plans isn't being bold — they're being reckless.</div>
+    </div>
+
+    <p>See how training and inference costs compare at scale:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 3: Training vs. Inference Cost Visualizer
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-tvi">
+      <div class="widget__label">Visualize</div>
+      <div class="widget__title">Training vs. Inference Cost</div>
+      <div class="widget__instruction">Drag the slider to scale usage from 1 query to 1 million queries per day. Watch how the cost picture changes.</div>
+
+      <div class="tvi__comparison">
+        <div class="tvi__side">
+          <div class="tvi__side-title tvi__side-title--training">Training</div>
+          <div class="tvi__metric"><span>Duration</span><span class="tvi__metric-value">~3 months</span></div>
+          <div class="tvi__metric"><span>Hardware</span><span class="tvi__metric-value">10,000+ GPUs</span></div>
+          <div class="tvi__metric"><span>Cost (once)</span><span class="tvi__metric-value" id="tvi-training-cost">$50M - $100M</span></div>
+          <div class="tvi__metric"><span>Frequency</span><span class="tvi__metric-value">Per model version</span></div>
+        </div>
+        <div class="tvi__side">
+          <div class="tvi__side-title tvi__side-title--inference">Inference</div>
+          <div class="tvi__metric"><span>Duration</span><span class="tvi__metric-value">~1-10 seconds</span></div>
+          <div class="tvi__metric"><span>Hardware</span><span class="tvi__metric-value">1 API call</span></div>
+          <div class="tvi__metric"><span>Cost per query</span><span class="tvi__metric-value" id="tvi-query-cost">~$0.003</span></div>
+          <div class="tvi__metric"><span>Frequency</span><span class="tvi__metric-value" id="tvi-frequency">Per user request</span></div>
+        </div>
+      </div>
+
+      <div class="tvi__slider-row">
+        <label for="tvi-slider">Daily queries:</label>
+        <input type="range" id="tvi-slider" class="tvi__slider" min="0" max="6" value="0" step="1">
+        <span class="tvi__slider-value" id="tvi-slider-value">1</span>
+      </div>
+
+      <div class="tvi__chart" id="tvi-chart">
+        <div class="tvi__bar-group">
+          <div class="tvi__bar-amount" id="tvi-train-amount">$75M</div>
+          <div class="tvi__bar tvi__bar--training" id="tvi-train-bar" style="height: 95%;"></div>
+          <div class="tvi__bar-label">Training<br>(fixed)</div>
+        </div>
+        <div class="tvi__bar-group">
+          <div class="tvi__bar-amount" id="tvi-infer-amount">$0.003</div>
+          <div class="tvi__bar tvi__bar--inference" id="tvi-infer-bar" style="height: 2%;"></div>
+          <div class="tvi__bar-label">Inference<br>(daily)</div>
+        </div>
+      </div>
+
+      <div class="tvi__insight" id="tvi-insight">
+        At 1 query per day, training cost dwarfs inference. Training is a one-time investment; inference scales linearly with usage.
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section VII: Where to Go Next
+         ================================================================ -->
+    <h2 id="where-to-go-next"><span class="section-number">VII</span> Where to Go Next</h2>
+
+    <p>With this foundation, the rest of the AI product toolkit makes sense:</p>
+
+    <ul>
+      <li><strong><a href="../context-windows/index.html">Context Windows &amp; Memory</a></strong> — Why models "forget" and patterns for persistent memory.</li>
+      <li><strong><a href="../cost-latency/index.html">Cost &amp; Latency Tradeoffs</a></strong> — Tokens, pricing, and the optimization levers that make AI products viable at scale.</li>
+      <li><strong><a href="../grounding/index.html">Grounding &amp; Guardrails</a></strong> — How RAG grounds outputs in real data and how to build safety guardrails.</li>
+      <li><strong><a href="../evaluation/index.html">Evaluation &amp; Testing</a></strong> — How to measure whether your AI feature is actually good.</li>
+      <li><strong><a href="../agents/index.html">Agents &amp; Tool Use</a></strong> — How the agent loop turns a token predictor into a system that takes action.</li>
+      <li><strong><a href="../ai-ux/index.html">AI UX &amp; Human-in-the-Loop</a></strong> — UX patterns for uncertainty and human oversight that catches what the model misses.</li>
+    </ul>
+  </article>
+
+  <!-- ================================================================
+       Article Navigation
+       ================================================================ -->
+  <nav class="article-nav">
+    <a href="ml-concepts.html">&larr; Part 1: ML Concepts</a>
+    <a href="../index.html">All topics &rarr;</a>
+  </nav>
+
+  <!-- ================================================================
+       Scripts
+       ================================================================ -->
+  <script>
+  // ====================================================================
+  // Hero: Animated network/node background
+  // ====================================================================
+  (function() {
+    var canvas = document.getElementById('hero-canvas');
+    var ctx = canvas.getContext('2d');
+    var hero = document.getElementById('article-hero');
+    var nodes = [];
+    var numNodes = 40;
+    var connectionDist = 140;
+    var dpr = window.devicePixelRatio || 1;
+    var w, h;
+
+    function resize() {
+      var rect = hero.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function initNodes() {
+      nodes = [];
+      for (var i = 0; i < numNodes; i++) {
+        nodes.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          r: 2 + Math.random() * 3,
+          pulse: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i];
+        n.x += n.vx; n.y += n.vy; n.pulse += 0.015;
+        if (n.x < -20) n.x = w + 20; if (n.x > w + 20) n.x = -20;
+        if (n.y < -20) n.y = h + 20; if (n.y > h + 20) n.y = -20;
+      }
+      ctx.lineWidth = 1;
+      for (var i = 0; i < nodes.length; i++) {
+        for (var j = i + 1; j < nodes.length; j++) {
+          var dx = nodes[i].x - nodes[j].x, dy = nodes[i].y - nodes[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < connectionDist) {
+            ctx.strokeStyle = 'rgba(255,255,255,' + ((1 - dist / connectionDist) * 0.3) + ')';
+            ctx.beginPath(); ctx.moveTo(nodes[i].x, nodes[i].y); ctx.lineTo(nodes[j].x, nodes[j].y); ctx.stroke();
+          }
+        }
+      }
+      for (var i = 0; i < nodes.length; i++) {
+        var n = nodes[i], glow = 0.5 + 0.5 * Math.sin(n.pulse);
+        ctx.fillStyle = 'rgba(255,255,255,' + (0.4 + 0.4 * glow) + ')';
+        ctx.beginPath(); ctx.arc(n.x, n.y, n.r * (0.8 + 0.4 * glow), 0, Math.PI * 2); ctx.fill();
+      }
+      requestAnimationFrame(draw);
+    }
+
+    resize(); initNodes(); requestAnimationFrame(draw);
+    window.addEventListener('resize', function() { resize(); initNodes(); });
+  })();
+
+  // ====================================================================
+  // Widget 1: Next-Token Predictor
+  // ====================================================================
+  (function() {
+    const starters = [
+      {
+        base: "The product manager",
+        tree: [
+          { tokens: [
+            { text: " should", prob: 32 },
+            { text: " needs", prob: 24 },
+            { text: " decided", prob: 18 },
+            { text: " reviewed", prob: 15 },
+            { text: " asked", prob: 11 }
+          ], children: {
+            " should": [
+              { text: " understand", prob: 35 },
+              { text: " evaluate", prob: 25 },
+              { text: " prioritize", prob: 20 },
+              { text: " always", prob: 12 },
+              { text: " never", prob: 8 }
+            ],
+            " needs": [
+              { text: " to", prob: 52 },
+              { text: " data", prob: 20 },
+              { text: " a", prob: 15 },
+              { text: " more", prob: 8 },
+              { text: " clarity", prob: 5 }
+            ],
+            " decided": [
+              { text: " to", prob: 48 },
+              { text: " that", prob: 28 },
+              { text: " against", prob: 12 },
+              { text: " early", prob: 7 },
+              { text: " quickly", prob: 5 }
+            ],
+            " reviewed": [
+              { text: " the", prob: 42 },
+              { text: " all", prob: 22 },
+              { text: " user", prob: 18 },
+              { text: " every", prob: 11 },
+              { text: " recent", prob: 7 }
+            ],
+            " asked": [
+              { text: " the", prob: 34 },
+              { text: " about", prob: 26 },
+              { text: " why", prob: 20 },
+              { text: " for", prob: 13 },
+              { text: " whether", prob: 7 }
+            ]
+          }}
+        ]
+      },
+      {
+        base: "Large language models",
+        tree: [
+          { tokens: [
+            { text: " are", prob: 30 },
+            { text: " can", prob: 24 },
+            { text: " predict", prob: 20 },
+            { text: " generate", prob: 16 },
+            { text: " struggle", prob: 10 }
+          ], children: {
+            " are": [
+              { text: " trained", prob: 34 },
+              { text: " not", prob: 22 },
+              { text: " powerful", prob: 18 },
+              { text: " fundamentally", prob: 15 },
+              { text: " surprisingly", prob: 11 }
+            ],
+            " can": [
+              { text: " generate", prob: 28 },
+              { text: " produce", prob: 22 },
+              { text: " hallucinate", prob: 20 },
+              { text: " understand", prob: 17 },
+              { text: " summarize", prob: 13 }
+            ],
+            " predict": [
+              { text: " the", prob: 45 },
+              { text: " tokens", prob: 22 },
+              { text: " text", prob: 16 },
+              { text: " likely", prob: 10 },
+              { text: " plausible", prob: 7 }
+            ],
+            " generate": [
+              { text: " text", prob: 36 },
+              { text: " responses", prob: 24 },
+              { text: " code", prob: 18 },
+              { text: " plausible", prob: 13 },
+              { text: " coherent", prob: 9 }
+            ],
+            " struggle": [
+              { text: " with", prob: 58 },
+              { text: " to", prob: 20 },
+              { text: " when", prob: 12 },
+              { text: " at", prob: 6 },
+              { text: " most", prob: 4 }
+            ]
+          }}
+        ]
+      },
+      {
+        base: "When building AI features",
+        tree: [
+          { tokens: [
+            { text: ",", prob: 34 },
+            { text: " you", prob: 24 },
+            { text: " the", prob: 18 },
+            { text: " start", prob: 14 },
+            { text: " always", prob: 10 }
+          ], children: {
+            ",": [
+              { text: " the", prob: 28 },
+              { text: " start", prob: 24 },
+              { text: " always", prob: 20 },
+              { text: " consider", prob: 16 },
+              { text: " don't", prob: 12 }
+            ],
+            " you": [
+              { text: " should", prob: 32 },
+              { text: " need", prob: 28 },
+              { text: " must", prob: 18 },
+              { text: " want", prob: 13 },
+              { text: " can't", prob: 9 }
+            ],
+            " the": [
+              { text: " first", prob: 30 },
+              { text: " biggest", prob: 24 },
+              { text: " hardest", prob: 18 },
+              { text: " key", prob: 16 },
+              { text: " most", prob: 12 }
+            ],
+            " start": [
+              { text: " with", prob: 52 },
+              { text: " by", prob: 24 },
+              { text: " small", prob: 12 },
+              { text: " from", prob: 8 },
+              { text: " simple", prob: 4 }
+            ],
+            " always": [
+              { text: " consider", prob: 30 },
+              { text: " start", prob: 25 },
+              { text: " test", prob: 20 },
+              { text: " measure", prob: 15 },
+              { text: " plan", prob: 10 }
+            ]
+          }}
+        ]
+      },
+      {
+        base: "The training data",
+        tree: [
+          { tokens: [
+            { text: " determines", prob: 28 },
+            { text: " includes", prob: 22 },
+            { text: " shapes", prob: 20 },
+            { text: " contains", prob: 18 },
+            { text: " was", prob: 12 }
+          ], children: {
+            " determines": [
+              { text: " what", prob: 38 },
+              { text: " how", prob: 26 },
+              { text: " the", prob: 18 },
+              { text: " everything", prob: 12 },
+              { text: " model", prob: 6 }
+            ],
+            " includes": [
+              { text: " billions", prob: 30 },
+              { text: " text", prob: 24 },
+              { text: " books", prob: 18 },
+              { text: " web", prob: 16 },
+              { text: " code", prob: 12 }
+            ],
+            " shapes": [
+              { text: " the", prob: 36 },
+              { text: " what", prob: 24 },
+              { text: " how", prob: 20 },
+              { text: " every", prob: 12 },
+              { text: " model", prob: 8 }
+            ],
+            " contains": [
+              { text: " billions", prob: 32 },
+              { text: " text", prob: 22 },
+              { text: " everything", prob: 18 },
+              { text: " books", prob: 16 },
+              { text: " patterns", prob: 12 }
+            ],
+            " was": [
+              { text: " collected", prob: 30 },
+              { text: " scraped", prob: 24 },
+              { text: " curated", prob: 20 },
+              { text: " cut", prob: 16 },
+              { text: " filtered", prob: 10 }
+            ]
+          }}
+        ]
+      }
+    ];
+
+    let currentStarter = 0;
+    let chosenTokens = [];
+    let depth = 0;
+    const maxDepth = 2;
+
+    const sentenceEl = document.getElementById('ntp-sentence');
+    const candidatesEl = document.getElementById('ntp-candidates');
+    const startersEl = document.getElementById('ntp-starters');
+
+    function render() {
+      const s = starters[currentStarter];
+      let html = s.base;
+      chosenTokens.forEach(function(t) {
+        html += '<span class="ntp__token">' + escapeHtml(t) + '</span>';
+      });
+      sentenceEl.innerHTML = html;
+
+      candidatesEl.innerHTML = '';
+
+      if (depth >= maxDepth) {
+        const done = document.createElement('div');
+        done.style.cssText = 'text-align:center;padding:var(--space-4);color:var(--color-text-secondary);font-family:var(--font-sans);font-size:var(--text-sm);';
+        done.textContent = 'End of prediction tree. Click "Reset" or try a different starting sentence.';
+        candidatesEl.appendChild(done);
+        return;
+      }
+
+      let tokens;
+      if (depth === 0) {
+        tokens = s.tree[0].tokens;
+      } else {
+        const lastChosen = chosenTokens[chosenTokens.length - 1];
+        const children = s.tree[0].children;
+        tokens = children[lastChosen] || null;
+      }
+
+      if (!tokens) {
+        const done = document.createElement('div');
+        done.style.cssText = 'text-align:center;padding:var(--space-4);color:var(--color-text-secondary);font-family:var(--font-sans);font-size:var(--text-sm);';
+        done.textContent = 'End of prediction tree. Click "Reset" or try a different starting sentence.';
+        candidatesEl.appendChild(done);
+        return;
+      }
+
+      tokens.forEach(function(t) {
+        const row = document.createElement('div');
+        row.className = 'ntp__candidate';
+        row.innerHTML =
+          '<span class="ntp__candidate-token">' + escapeHtml(t.text) + '</span>' +
+          '<div class="ntp__candidate-bar-wrap"><div class="ntp__candidate-bar" style="width: ' + t.prob + '%;"></div></div>' +
+          '<span class="ntp__candidate-pct">' + t.prob + '%</span>';
+        row.addEventListener('click', function() {
+          chosenTokens.push(t.text);
+          depth++;
+          render();
+        });
+        candidatesEl.appendChild(row);
+      });
+    }
+
+    function reset() {
+      chosenTokens = [];
+      depth = 0;
+      render();
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    startersEl.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-starter]');
+      if (!btn) return;
+      startersEl.querySelectorAll('.btn').forEach(function(b) { b.classList.remove('btn--active'); });
+      btn.classList.add('btn--active');
+      currentStarter = parseInt(btn.dataset.starter);
+      reset();
+    });
+
+    document.getElementById('ntp-reset').addEventListener('click', reset);
+
+    render();
+  })();
+
+  // ====================================================================
+  // Widget 2: Model Landscape Explorer
+  // ====================================================================
+  (function() {
+    const models = [
+      {
+        name: "GPT-4o",
+        provider: "OpenAI",
+        tier: "frontier",
+        tierLabel: "Frontier",
+        best: "Complex reasoning, multimodal tasks",
+        cost: "$$$",
+        tags: ["code", "rag"],
+        detail: "OpenAI's flagship multimodal model. Excels at nuanced instruction following, complex multi-step reasoning, and tasks combining text, images, and code. The default choice when you need the highest capability and can afford the cost. Input: $5/M tokens, Output: $15/M tokens."
+      },
+      {
+        name: "Claude 3.5 Sonnet",
+        provider: "Anthropic",
+        tier: "frontier",
+        tierLabel: "Frontier",
+        best: "Long documents, careful analysis, code",
+        cost: "$$$",
+        tags: ["code", "rag"],
+        detail: "Anthropic's leading model, known for strong instruction following, careful reasoning, and excellent performance on long documents (200k context window). Particularly strong at code generation and analysis tasks. Input: $3/M tokens, Output: $15/M tokens."
+      },
+      {
+        name: "Gemini 1.5 Pro",
+        provider: "Google",
+        tier: "frontier",
+        tierLabel: "Frontier",
+        best: "Massive context (1M tokens), multimodal",
+        cost: "$$$",
+        tags: ["rag"],
+        detail: "Google's frontier model with an industry-leading 1 million token context window. Strong at processing entire codebases, long documents, and video. Best choice when your use case requires fitting very large amounts of context in a single call. Input: $3.50/M tokens, Output: $10.50/M tokens."
+      },
+      {
+        name: "Llama 3 70B",
+        provider: "Meta (Open Source)",
+        tier: "frontier",
+        tierLabel: "Frontier",
+        best: "Self-hosted, data-sensitive use cases",
+        cost: "$ (self-hosted)",
+        tags: ["open", "code"],
+        detail: "Meta's open-source frontier model. Performance approaches proprietary models on many benchmarks. The go-to choice when you need to keep data on-premise, want to fine-tune on your own data, or need predictable costs at high volume. Requires ML infrastructure to deploy."
+      },
+      {
+        name: "Mistral Large",
+        provider: "Mistral AI (Open Source)",
+        tier: "frontier",
+        tierLabel: "Frontier",
+        best: "European data sovereignty, multilingual",
+        cost: "$$",
+        tags: ["open", "rag"],
+        detail: "Mistral's top model, strong at multilingual tasks and European language support. Available both via API and as open weights. A good choice for teams that need data sovereignty (Mistral is based in France/EU) or strong non-English performance. Input: $2/M tokens, Output: $6/M tokens."
+      },
+      {
+        name: "Command R+",
+        provider: "Cohere (Open Source)",
+        tier: "mid",
+        tierLabel: "Mid-tier",
+        best: "RAG, enterprise search, grounded generation",
+        cost: "$$",
+        tags: ["open", "rag"],
+        detail: "Purpose-built for retrieval-augmented generation (RAG). Excels at citing sources, grounding responses in provided documents, and enterprise search tasks. If your product is document Q&A or knowledge base search, this model is specifically optimized for it. Input: $3/M tokens, Output: $15/M tokens."
+      },
+      {
+        name: "GPT-4o mini",
+        provider: "OpenAI",
+        tier: "mid",
+        tierLabel: "Mid-tier",
+        best: "High-volume tasks, cost-sensitive products",
+        cost: "$",
+        tags: ["code"],
+        detail: "OpenAI's cost-optimized model. 90% of GPT-4o's quality at roughly 3% of the price. Ideal for classification, summarization, and structured extraction at high volume. When your task doesn't need frontier reasoning, this is the smart default. Input: $0.15/M tokens, Output: $0.60/M tokens."
+      },
+      {
+        name: "Llama 3 8B",
+        provider: "Meta (Open Source)",
+        tier: "small",
+        tierLabel: "Small",
+        best: "Edge deployment, fine-tuning, low latency",
+        cost: "$ (self-hosted)",
+        tags: ["open"],
+        detail: "Lightweight open-source model that runs on a single GPU. Ideal for fine-tuning on specific tasks like classification, entity extraction, or intent detection. When fine-tuned, it often matches or beats frontier models on narrow tasks at dramatically lower cost and latency."
+      }
+    ];
+
+    const gridEl = document.getElementById('mle-grid');
+    const filtersEl = document.getElementById('mle-filters');
+    let activeFilter = 'all';
+
+    function renderCards() {
+      gridEl.innerHTML = '';
+      models.forEach(function(m, idx) {
+        const card = document.createElement('div');
+        card.className = 'mle__card';
+        card.dataset.index = idx;
+        card.dataset.tags = m.tags.join(',');
+        card.dataset.tier = m.tier;
+
+        const tierClass = 'mle__card-tier--' + m.tier;
+
+        card.innerHTML =
+          '<div class="mle__card-header">' +
+            '<span class="mle__card-name">' + m.name + '</span>' +
+            '<span class="mle__card-tier ' + tierClass + '">' + m.tierLabel + '</span>' +
+          '</div>' +
+          '<div class="mle__card-provider">' + m.provider + '</div>' +
+          '<div class="mle__card-best">Best for: ' + m.best + '</div>' +
+          '<div class="mle__card-cost">Cost: ' + m.cost + '</div>' +
+          '<div class="mle__card-tags">' +
+            m.tags.map(function(t) { return '<span class="mle__card-tag">' + t + '</span>'; }).join('') +
+          '</div>' +
+          '<div class="mle__card-detail">' + m.detail + '</div>';
+
+        card.addEventListener('click', function() {
+          card.classList.toggle('mle__card--expanded');
+        });
+
+        gridEl.appendChild(card);
+      });
+      applyFilter();
+    }
+
+    function applyFilter() {
+      const cards = gridEl.querySelectorAll('.mle__card');
+      cards.forEach(function(card) {
+        const tags = card.dataset.tags.split(',');
+        const tier = card.dataset.tier;
+        let show = false;
+
+        if (activeFilter === 'all') show = true;
+        else if (activeFilter === 'frontier') show = (tier === 'frontier');
+        else if (activeFilter === 'open') show = tags.indexOf('open') !== -1;
+        else if (activeFilter === 'code') show = tags.indexOf('code') !== -1;
+        else if (activeFilter === 'rag') show = tags.indexOf('rag') !== -1;
+
+        card.classList.toggle('mle__card--hidden', !show);
+      });
+    }
+
+    filtersEl.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-filter]');
+      if (!btn) return;
+      filtersEl.querySelectorAll('.btn').forEach(function(b) { b.classList.remove('btn--active'); });
+      btn.classList.add('btn--active');
+      activeFilter = btn.dataset.filter;
+      applyFilter();
+    });
+
+    renderCards();
+  })();
+
+  // ====================================================================
+  // Widget 3: Training vs. Inference Cost Visualizer
+  // ====================================================================
+  (function() {
+    const slider = document.getElementById('tvi-slider');
+    const sliderValue = document.getElementById('tvi-slider-value');
+    const trainBar = document.getElementById('tvi-train-bar');
+    const inferBar = document.getElementById('tvi-infer-bar');
+    const trainAmount = document.getElementById('tvi-train-amount');
+    const inferAmount = document.getElementById('tvi-infer-amount');
+    const insightEl = document.getElementById('tvi-insight');
+
+    const levels = [
+      { label: "1", queries: 1 },
+      { label: "100", queries: 100 },
+      { label: "10K", queries: 10000 },
+      { label: "50K", queries: 50000 },
+      { label: "100K", queries: 100000 },
+      { label: "500K", queries: 500000 },
+      { label: "1M", queries: 1000000 }
+    ];
+
+    const trainingCost = 75000000; // $75M fixed
+    const costPerQuery = 0.003;    // $0.003 per query
+
+    function formatMoney(val) {
+      if (val >= 1000000000) return '$' + (val / 1000000000).toFixed(1) + 'B';
+      if (val >= 1000000) return '$' + (val / 1000000).toFixed(1) + 'M';
+      if (val >= 1000) return '$' + (val / 1000).toFixed(1) + 'K';
+      if (val >= 1) return '$' + val.toFixed(0);
+      if (val >= 0.01) return '$' + val.toFixed(2);
+      return '$' + val.toFixed(3);
+    }
+
+    function update() {
+      const idx = parseInt(slider.value);
+      const level = levels[idx];
+      sliderValue.textContent = level.label + '/day';
+
+      const dailyInference = level.queries * costPerQuery;
+      const yearlyInference = dailyInference * 365;
+
+      trainAmount.textContent = '$75M';
+      inferAmount.textContent = formatMoney(dailyInference) + '/day';
+
+      // Scale bars relative to each other
+      const maxCost = Math.max(trainingCost, yearlyInference);
+      const trainPct = (trainingCost / maxCost) * 90 + 5;
+      const inferPct = (yearlyInference / maxCost) * 90 + 5;
+
+      trainBar.style.height = trainPct + '%';
+      inferBar.style.height = inferPct + '%';
+
+      // Insights
+      const insights = [
+        'At 1 query per day, training cost dwarfs inference by a factor of 68 billion. Training is a one-time investment; inference scales linearly with usage.',
+        'At 100 queries/day, yearly inference cost is ~$110. Training cost is still overwhelmingly dominant. This is hobby-project scale.',
+        'At 10K queries/day, you\'re spending ~$11K/year on inference. Meaningful, but still a rounding error compared to the $75M training investment.',
+        'At 50K queries/day, inference hits ~$55K/year. Now it\'s a real line item in your budget. But you\'re benefiting from a $75M model without paying for training.',
+        'At 100K queries/day (~$110K/year), inference cost is significant. This is where model choice and prompt optimization start saving real money.',
+        'At 500K queries/day (~$548K/year), inference is a serious cost center. Companies at this scale negotiate volume pricing and consider smaller or self-hosted models.',
+        'At 1M queries/day (~$1.1M/year), inference cost approaches training cost. At this scale, fine-tuning a smaller model or self-hosting can pay for itself within months.'
+      ];
+      insightEl.textContent = insights[idx];
+    }
+
+    slider.addEventListener('input', update);
+    update();
+  })();
+  </script>
+
+</body>
+</html>

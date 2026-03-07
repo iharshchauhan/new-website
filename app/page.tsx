@@ -2,14 +2,14 @@ import Link from "next/link";
 import { getAllPosts } from "@/lib/mdx";
 import { ArrowRight } from "lucide-react";
 import { CTASection } from "@/components/ui/hero-dithering-card";
+import { getSpotifyHomeData } from "@/lib/spotify";
+import { ListeningsSection } from "@/components/listenings-section";
 
-export default function Home() {
+export default async function Home() {
   const writingPosts = getAllPosts("writing");
-  const projectPosts = getAllPosts("projects");
-  
-  const recentPosts = [...writingPosts, ...projectPosts]
-    .sort((a, b) => (a.meta.date > b.meta.date ? -1 : 1))
-    .slice(0, 5);
+  const spotifyData = await getSpotifyHomeData();
+
+  const recentPosts = writingPosts.slice(0, 6);
 
   return (
     <div className="space-y-24">
@@ -18,12 +18,12 @@ export default function Home() {
       <div className="space-y-16 max-w-4xl mx-auto w-full">
         <section className="space-y-8">
           <div className="flex items-center justify-between border-b border-border/80 pb-4">
-            <h2 className="text-2xl font-semibold tracking-tight">Recent notes</h2>
+            <h2 className="text-2xl font-semibold tracking-tight">Writings</h2>
             <Link
-              href="/logbook"
+              href="/logbook?tab=Thoughts"
               className="text-sm text-muted-foreground hover:text-foreground flex items-center transition-colors"
             >
-              Browse all <ArrowRight className="w-4 h-4 ml-1" />
+              Browse all writings <ArrowRight className="w-4 h-4 ml-1" />
             </Link>
           </div>
           <div className="space-y-5">
@@ -56,6 +56,8 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        <ListeningsSection data={spotifyData} />
       </div>
     </div>
   );

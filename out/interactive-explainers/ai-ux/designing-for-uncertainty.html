@@ -1,0 +1,1114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-MCTJXL5C');</script>
+  <!-- End Google Tag Manager -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Designing for Uncertainty — AI for PMs</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&family=Newsreader:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../styles/shared.css?v=8">
+  <style>
+    .article-hero { background: var(--accent-ux-gradient); }
+    .toc__list a:hover { color: var(--accent-ux); }
+    .prose blockquote { border-left-color: var(--accent-ux); }
+    .widget { background: var(--accent-ux-light); border-color: #C7D2FE; }
+    .widget__label { color: var(--accent-ux); }
+    .btn--primary { background: var(--accent-ux); }
+    .btn--active { background: var(--accent-ux); border-color: var(--accent-ux); }
+    .btn--secondary:hover:not(:disabled) { border-color: var(--accent-ux); color: var(--accent-ux); }
+
+    /* Widget 1: Confidence Display */
+    .conf-display {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-6);
+      margin-top: var(--space-4);
+      min-height: 180px;
+      transition: all var(--duration-normal) var(--ease-out);
+    }
+    .conf-display__response {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      line-height: 1.65;
+      color: var(--color-text);
+      margin-bottom: var(--space-4);
+    }
+    .conf-display__response .highlight-uncertain {
+      background: #FEF3C7;
+      padding: 1px 4px;
+      border-radius: 3px;
+      border-bottom: 2px dashed #D97706;
+    }
+    .conf-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: var(--space-3);
+    }
+    .conf-badge--high { background: #DCFCE7; color: #166534; }
+    .conf-badge--medium { background: #FEF3C7; color: #92400E; }
+    .conf-badge--low { background: #FEE2E2; color: #991B1B; }
+    .conf-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: 500;
+      padding: 3px 10px;
+      border-radius: 6px;
+      margin-bottom: var(--space-3);
+    }
+    .conf-icon--green { background: #F0FDF4; color: #166534; border: 1px solid #BBF7D0; }
+    .conf-icon--yellow { background: #FFFBEB; color: #92400E; border: 1px solid #FDE68A; }
+    .conf-icon--red { background: #FEF2F2; color: #991B1B; border: 1px solid #FECACA; }
+    .conf-icon__dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+    .conf-icon__dot--green { background: #22C55E; }
+    .conf-icon__dot--yellow { background: #F59E0B; }
+    .conf-icon__dot--red { background: #EF4444; }
+    .conf-footnote {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      padding: var(--space-3) var(--space-4);
+      background: #F9FAFB;
+      border-radius: 6px;
+      border-left: 3px solid #D97706;
+      margin-top: var(--space-3);
+      line-height: 1.5;
+    }
+    .conf-annotation {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      margin-top: var(--space-4);
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--color-border-light);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    /* Widget 2: Loading State Builder */
+    .loading-demo {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-4);
+    }
+    .loading-demo__panel {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-6);
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+    }
+    .loading-demo__label {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-4);
+    }
+    .loading-demo__content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: var(--space-3);
+    }
+    .loading-demo__spinner {
+      width: 32px;
+      height: 32px;
+      border: 3px solid var(--color-border);
+      border-top-color: var(--accent-ux);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      display: none;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    .loading-demo__text {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+    }
+    .loading-demo__timer {
+      font-family: var(--font-mono);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+    }
+    .loading-demo__progress-wrap {
+      width: 100%;
+      display: none;
+    }
+    .loading-demo__stage {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      font-weight: 500;
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+      text-align: left;
+    }
+    .loading-demo__bar-bg {
+      width: 100%;
+      height: 6px;
+      background: var(--color-border-light);
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: var(--space-3);
+    }
+    .loading-demo__bar-fill {
+      height: 100%;
+      background: var(--accent-ux);
+      border-radius: 3px;
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    .loading-demo__stages-list {
+      width: 100%;
+      text-align: left;
+    }
+    .loading-demo__stage-item {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      padding: var(--space-1) 0;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      transition: color var(--duration-fast);
+    }
+    .loading-demo__stage-item--active {
+      color: var(--accent-ux);
+      font-weight: 500;
+    }
+    .loading-demo__stage-item--done {
+      color: #059669;
+    }
+    .loading-demo__stage-check {
+      width: 14px;
+      text-align: center;
+      flex-shrink: 0;
+    }
+    .loading-demo__result {
+      display: none;
+      text-align: left;
+      width: 100%;
+    }
+    .loading-demo__result-text {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      line-height: 1.55;
+      color: var(--color-text);
+      padding: var(--space-4);
+      background: #F0FDF4;
+      border: 1px solid #A7F3D0;
+      border-radius: 6px;
+    }
+    .loading-demo__note {
+      display: none;
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      color: var(--color-text-secondary);
+      text-align: center;
+      padding: var(--space-4);
+      margin-top: var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      line-height: 1.55;
+    }
+
+    /* Widget 3: Error State Gallery */
+    .error-gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+      margin-top: var(--space-4);
+    }
+    .error-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-6);
+      transition: border-color var(--duration-fast);
+    }
+    .error-card__type {
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-2);
+    }
+    .error-card__scenario {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text);
+      line-height: 1.5;
+      margin-bottom: var(--space-4);
+    }
+    .error-card__options {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .error-option {
+      display: block;
+      width: 100%;
+      text-align: left;
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      line-height: 1.5;
+      padding: var(--space-3) var(--space-4);
+      background: #F9FAFB;
+      border: 1px solid var(--color-border-light);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all var(--duration-fast);
+      color: var(--color-text);
+    }
+    .error-option:hover {
+      background: var(--accent-ux-light);
+      border-color: var(--accent-ux);
+    }
+    .error-option--selected {
+      border-color: var(--accent-ux);
+      background: var(--accent-ux-light);
+      font-weight: 500;
+    }
+    .error-option--correct {
+      border-color: #059669;
+      background: #F0FDF4;
+    }
+    .error-option--incorrect {
+      border-color: #DC2626;
+      background: #FEF2F2;
+      opacity: 0.7;
+    }
+    .error-option--best {
+      border-color: #059669;
+      background: #F0FDF4;
+      box-shadow: 0 0 0 2px rgba(5, 150, 105, 0.2);
+    }
+    .error-option[disabled] {
+      cursor: default;
+      pointer-events: none;
+    }
+    .error-card__feedback {
+      display: none;
+      font-family: var(--font-sans);
+      font-size: var(--text-xs);
+      line-height: 1.5;
+      padding: var(--space-3) var(--space-4);
+      border-radius: 6px;
+      margin-top: var(--space-3);
+      animation: messageSlideIn var(--duration-normal) var(--ease-out);
+    }
+    .error-card__feedback--correct {
+      background: #F0FDF4;
+      border: 1px solid #A7F3D0;
+      color: #065F46;
+    }
+    .error-card__feedback--incorrect {
+      background: #FEF2F2;
+      border: 1px solid #FECACA;
+      color: #991B1B;
+    }
+    .error-gallery__score {
+      display: none;
+      text-align: center;
+      padding: var(--space-6);
+      margin-top: var(--space-4);
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+    }
+    .error-gallery__score-value {
+      font-family: var(--font-serif);
+      font-size: var(--text-2xl);
+      font-weight: 600;
+      color: var(--accent-ux);
+      margin-bottom: var(--space-2);
+    }
+    .error-gallery__score-text {
+      font-family: var(--font-sans);
+      font-size: var(--text-sm);
+      color: var(--color-text-secondary);
+    }
+
+    @media (max-width: 720px) {
+      .loading-demo { grid-template-columns: 1fr; }
+      .error-gallery { grid-template-columns: 1fr; }
+    }
+  </style>
+  <script src="../styles/site-shell.js" defer></script>
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MCTJXL5C"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <header class="article-hero" id="article-hero">
+    <canvas class="article-hero__canvas" id="hero-canvas"></canvas>
+    <div class="article-hero__overlay"></div>
+    <div class="article-hero__content">
+      <nav class="breadcrumb breadcrumb--hero">
+        <a href="../index.html">AI for PMs</a> &nbsp;/&nbsp; <a href="index.html">AI UX &amp; Human-in-the-Loop</a> &nbsp;/&nbsp; <span>Part 1</span>
+      </nav>
+      <div class="article-header__meta" style="color: rgba(255,255,255,0.9);">Part 1 of 2 &middot; ~8 min read</div>
+      <h1 style="color: #fff;">Designing for Uncertainty</h1>
+      <p class="lead" style="color: rgba(255,255,255,0.85);">AI doesn't always know the answer. The best AI products are the ones that are honest about it.</p>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Table of contents">
+    <div class="toc__inner">
+      <div class="toc__title">Contents</div>
+      <ol class="toc__list">
+        <li><span class="toc__numeral">I.</span><a href="#ux-problem">The UX Problem with AI</a></li>
+        <li><span class="toc__numeral">II.</span><a href="#confidence-signals">Confidence Signals</a></li>
+        <li><span class="toc__numeral">III.</span><a href="#progressive-disclosure">Progressive Disclosure</a></li>
+        <li><span class="toc__numeral">IV.</span><a href="#loading-states">Loading States That Don't Lie</a></li>
+        <li><span class="toc__numeral">V.</span><a href="#error-states">Error States for AI</a></li>
+        <li><span class="toc__numeral">VI.</span><a href="#whats-next">What's Next</a></li>
+      </ol>
+    </div>
+  </nav>
+
+  <div class="epigraph">
+    <p class="epigraph__verse">
+      The model speaks in certainties but lives inside a guess,<br>
+      So dress the doubt in good design, don't leave the user stressed.<br>
+      Show the score, reveal the source, let trust be something earned —<br>
+      The best AI ain't the smartest, it's the one that says "I'm not sure, fam."
+    </p>
+  </div>
+
+  <article class="prose">
+
+    <!-- ================================================================
+         Section I: The UX Problem with AI
+         ================================================================ -->
+    <h2 id="ux-problem"><span class="section-number">I</span> The UX Problem with AI</h2>
+
+    <p>Traditional software is deterministic. Click "Calculate Total" and you get the same number every time. The search bar returns the same results for the same query. Buttons do what their labels say. Users have spent decades building mental models around this predictability, and for good reason: it works.</p>
+
+    <p>AI breaks that contract. The same prompt can produce different outputs on different runs. Quality varies from brilliant to embarrassingly wrong within the same session. The model might confidently hallucinate a fact, hedge on something it actually knows, or refuse a perfectly reasonable request because a guardrail misfired.</p>
+
+    <p>This creates a design problem that most product teams wildly underestimate. <strong>You are shipping a feature whose output you cannot fully predict.</strong> That's not a minor UX wrinkle &mdash; it's a foundational break from how software has worked for decades. The happy path is easy to design. The challenge is everything else: how does the user know when to trust the output? What happens when the model is wrong? How do you communicate uncertainty without undermining confidence in the product?</p>
+
+    <div class="callout callout--insight">
+      <div class="callout__label">Key Insight</div>
+      <div class="callout__body">The hardest UX challenge with AI isn't the happy path — it's communicating when the model isn't sure. Traditional error states are binary: it worked or it didn't. AI outputs live on a spectrum of correctness, and your interface needs to reflect that spectrum honestly.</div>
+    </div>
+
+    <p>Four design patterns help you navigate this: confidence signals, progressive disclosure, transparent loading states, and AI-specific error handling. Together they form the toolkit for AI UX that <em>earns</em> trust rather than demanding it.</p>
+
+    <!-- ================================================================
+         Section II: Confidence Signals
+         ================================================================ -->
+    <h2 id="confidence-signals"><span class="section-number">II</span> Confidence Signals</h2>
+
+    <p>When a doctor says "I think this is a migraine," the word "think" is doing important work. It tells you this is a judgment, not a lab result. It invites you to ask follow-up questions. It sets expectations for what comes next.</p>
+
+    <p>AI responses need the same kind of calibration. Without confidence signals, users default to one of two extremes: they either trust everything the model says (dangerous) or trust nothing (useless). Neither serves your product.</p>
+
+    <p>The design space for confidence signals spans a wide range:</p>
+
+    <ul>
+      <li><strong>No signal.</strong> The response appears as plain text, with no indication of certainty. This is the default for most AI products today, and it is the most dangerous — it implicitly frames every output as authoritative.</li>
+      <li><strong>Subtle visual indicators.</strong> A colored icon, a small badge, a background tint. Low-friction signals that nudge without interrupting. Best for low-stakes contexts where the user just needs a gentle heads-up.</li>
+      <li><strong>Explicit confidence.</strong> A percentage, a written caveat, highlighted uncertain phrases. High-information signals for high-stakes domains where the user genuinely needs to evaluate trustworthiness.</li>
+    </ul>
+
+    <p>The right choice depends on two factors: <strong>your audience</strong> and <strong>the stakes</strong>. A casual writing assistant can get away with no signals. A medical triage tool cannot. A developer tool might show confidence scores that a consumer app would hide behind simpler language.</p>
+
+    <div class="callout callout--pm-tip">
+      <div class="callout__label">PM Tip</div>
+      <div class="callout__body">Start with the highest-stakes failure mode your product can produce. If the AI tells a user the wrong medication dosage, "no confidence signal" is negligent. If the AI suggests a slightly suboptimal email subject line, explicit percentages are overkill. <strong>Match the signal intensity to the consequence of being wrong.</strong></div>
+    </div>
+
+    <p>See how the same response feels different with each approach:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 1: Confidence Display Modes
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-confidence">
+      <div class="widget__label">Interactive comparison</div>
+      <div class="widget__title">Confidence Display Modes</div>
+      <div class="widget__instruction">Toggle between three ways to present the same AI response. Notice how each changes your level of trust.</div>
+
+      <div class="widget__controls" id="conf-modes">
+        <button class="btn btn--active" data-mode="none">No Confidence Signal</button>
+        <button class="btn btn--secondary" data-mode="subtle">Subtle Icon</button>
+        <button class="btn btn--secondary" data-mode="explicit">Explicit Confidence</button>
+      </div>
+
+      <div class="conf-display" id="conf-display">
+        <!-- Content injected by JS -->
+      </div>
+
+      <div class="conf-annotation" id="conf-annotation"></div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <p>The response text is identical in all three modes, but the user's relationship with it changes fundamentally. The first invites blind trust. The second introduces a moment of pause. The third provides enough context for the user to make an informed decision about what to do next.</p>
+
+    <p>For most product teams, the subtle icon approach is the right starting point. It is low-effort to implement, causes minimal friction for the majority of correct responses, and meaningfully changes user behavior when the signal is amber or red. Graduate to explicit confidence when user research shows people need more granularity, or when your domain demands it.</p>
+
+    <!-- ================================================================
+         Section III: Progressive Disclosure
+         ================================================================ -->
+    <h2 id="progressive-disclosure"><span class="section-number">III</span> Progressive Disclosure</h2>
+
+    <p>AI models can generate a lot of output. A summarization model might produce a one-sentence answer and a three-paragraph explanation. A research agent might return a conclusion, its reasoning chain, ten source documents, and a list of caveats. Dumping all of this on the user at once is overwhelming and counterproductive.</p>
+
+    <p>Progressive disclosure solves this by layering information in order of importance. Show the answer first. Let the user drill into the reasoning if they want it. Bury the sources and caveats behind a toggle for the skeptical few who need them.</p>
+
+    <div class="callout callout--analogy">
+      <div class="callout__label">Analogy</div>
+      <div class="callout__body">Think of an AI response like a news article. The headline gives you the conclusion. The first paragraph gives you the key facts. The rest of the article provides context, quotes, and nuance. Most readers stop at the headline. Some read the whole thing. <strong>Good AI UX works the same way: answer first, evidence on demand.</strong></div>
+    </div>
+
+    <p>The layered reveal pattern works especially well for AI because it handles uncertainty gracefully. A confident response might only need one layer — the answer is clear and needs no qualification. An uncertain response can progressively reveal its reasoning, alternative interpretations, and sources, letting the user decide how deep to go.</p>
+
+    <p>Three rules make progressive disclosure work in AI products:</p>
+
+    <ol>
+      <li><strong>Lead with the answer, not the process.</strong> Users asked a question. Answer it. Don't start with "I analyzed 47 documents and considered 12 factors..." &mdash; that's the model being performative, not helpful. Nobody asked to watch it think.</li>
+      <li><strong>Make expansion effortless.</strong> A single click or tap to see the next layer. No page navigation, no modal dialogs, no "Show More" buttons that reload the page.</li>
+      <li><strong>Label each layer clearly.</strong> "Sources," "Reasoning," "Caveats" — the user should know what they will see before they expand.</li>
+    </ol>
+
+    <!-- ================================================================
+         Section IV: Loading States That Don't Lie
+         ================================================================ -->
+    <h2 id="loading-states"><span class="section-number">IV</span> Loading States That Don't Lie</h2>
+
+    <p>A generic spinner with "Loading..." tells the user exactly one thing: something is happening. That's barely more informative than a blank screen. For a database query that completes in 200ms, fine. For an AI process that takes 5&ndash;15 seconds, it's a recipe for frustration, tab-switching, and the quiet conviction that your app is broken.</p>
+
+    <p>Multi-step AI processes — document analysis, research tasks, complex reasoning — take significantly longer than traditional web requests. Users have been conditioned to expect sub-second responses. When you cannot deliver speed, you must deliver transparency.</p>
+
+    <p><strong>Progress indicators reduce perceived wait time by up to 40%.</strong> The actual time is identical. The experience is fundamentally different. A user who sees "Reading your document... Identifying key themes... Generating summary..." feels like progress is being made. A user staring at a spinner feels like the app might be broken.</p>
+
+    <p>Compare the two approaches side by side:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 2: Loading State Builder
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-loading">
+      <div class="widget__label">Side-by-side comparison</div>
+      <div class="widget__title">Loading State Builder</div>
+      <div class="widget__instruction">Both panels simulate the same AI task and take the same time. Watch how differently they feel.</div>
+
+      <div class="loading-demo" id="loading-demo">
+        <div class="loading-demo__panel" id="loading-generic">
+          <div class="loading-demo__label">Generic Spinner</div>
+          <div class="loading-demo__content" id="loading-generic-content">
+            <div class="loading-demo__spinner" id="generic-spinner"></div>
+            <div class="loading-demo__text" id="generic-text">Press "Start Both" to begin</div>
+            <div class="loading-demo__timer" id="generic-timer"></div>
+          </div>
+          <div class="loading-demo__result" id="generic-result">
+            <div class="loading-demo__result-text">3 key risks identified: (1) Liability cap limited to contract value, (2) Auto-renewal clause with 90-day notice requirement, (3) Non-compete extends 24 months post-termination.</div>
+          </div>
+        </div>
+
+        <div class="loading-demo__panel" id="loading-progress">
+          <div class="loading-demo__label">Multi-Step Progress</div>
+          <div class="loading-demo__content" id="loading-progress-content">
+            <div class="loading-demo__text" id="progress-text">Press "Start Both" to begin</div>
+            <div class="loading-demo__progress-wrap" id="progress-wrap">
+              <div class="loading-demo__stage" id="progress-stage">Preparing...</div>
+              <div class="loading-demo__bar-bg">
+                <div class="loading-demo__bar-fill" id="progress-bar-fill"></div>
+              </div>
+              <div class="loading-demo__stages-list" id="progress-stages-list">
+                <div class="loading-demo__stage-item" data-stage="0">
+                  <span class="loading-demo__stage-check">-</span>
+                  <span>Reading document (50 pages)...</span>
+                </div>
+                <div class="loading-demo__stage-item" data-stage="1">
+                  <span class="loading-demo__stage-check">-</span>
+                  <span>Identifying clauses and terms...</span>
+                </div>
+                <div class="loading-demo__stage-item" data-stage="2">
+                  <span class="loading-demo__stage-check">-</span>
+                  <span>Analyzing risks and obligations...</span>
+                </div>
+                <div class="loading-demo__stage-item" data-stage="3">
+                  <span class="loading-demo__stage-check">-</span>
+                  <span>Generating summary...</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="loading-demo__result" id="progress-result">
+            <div class="loading-demo__result-text">3 key risks identified: (1) Liability cap limited to contract value, (2) Auto-renewal clause with 90-day notice requirement, (3) Non-compete extends 24 months post-termination.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="widget__controls widget__controls--mt">
+        <button class="btn btn--primary" id="loading-start">Start Both</button>
+        <button class="btn btn--secondary" id="loading-reset">Reset</button>
+      </div>
+
+      <div class="loading-demo__note" id="loading-note">
+        Both panels took exactly the same time. Research on progress indicators (Harrison et al., 2007; Myers, 1985) consistently shows that <strong>users perceive structured progress as 30-40% faster</strong> than unknown waits of identical duration. The multi-step version also reduces abandonment: users who see progress are less likely to refresh or navigate away.
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <p>The implementation cost is low. Most AI pipelines already have discrete stages — document parsing, embedding retrieval, generation. Surfacing those stages to the user is a small frontend change with outsized impact on perceived quality.</p>
+
+    <p>One caveat: do not fake the stages. If your process is genuinely a single model call with no intermediate steps, a well-designed skeleton loader or streaming text output is more honest than fabricated "Analyzing..." messages. Users will notice if Stage 3 always takes exactly the same time regardless of input. Fake progress is worse than no progress &mdash; it breaks the very trust you're trying to build.</p>
+
+    <!-- ================================================================
+         Section V: Error States for AI
+         ================================================================ -->
+    <h2 id="error-states"><span class="section-number">V</span> Error States for AI</h2>
+
+    <p>Traditional software has a small taxonomy of errors: network failed, permission denied, resource not found, validation failed. Each has a well-understood UX pattern. AI introduces failure modes that most design systems have never encountered.</p>
+
+    <p>An AI feature can fail in at least four novel ways:</p>
+
+    <ol>
+      <li><strong>Timeout.</strong> The model took too long to generate a response. This is different from a network timeout — the request may have partially completed.</li>
+      <li><strong>Hallucination detected.</strong> A self-check or grounding system flagged the response as potentially containing fabricated information.</li>
+      <li><strong>Low confidence.</strong> The model produced output but assigned it very low confidence, below your product's threshold for showing results.</li>
+      <li><strong>Content filtered.</strong> A safety guardrail blocked the response. The model may have had a perfectly good answer, but a policy rule prevented delivery.</li>
+    </ol>
+
+    <p>Each of these requires a distinct error UX. A generic "Something went wrong" message is not just unhelpful — it actively erodes user trust by making every failure feel the same. The user cannot tell whether the system crashed, whether their request was bad, or whether the AI simply was not confident enough to respond.</p>
+
+    <div class="callout callout--summary">
+      <div class="callout__label">Takeaway</div>
+      <div class="callout__body"><strong>Every AI error state should answer three questions:</strong> What happened? Why? What can the user do next? A timeout should offer a retry. A low-confidence result should offer to show it anyway. A content filter should explain (briefly) what triggered it and suggest how to rephrase. The user should never feel stranded.</div>
+    </div>
+
+    <p>Test your instincts — for each failure scenario, pick the best error UX:</p>
+  </article>
+
+  <!-- ================================================================
+       Widget 3: Error State Gallery
+       ================================================================ -->
+  <div class="wide-container">
+    <div class="widget" id="widget-errors">
+      <div class="widget__label">Test your understanding</div>
+      <div class="widget__title">Error State Gallery</div>
+      <div class="widget__instruction">For each AI failure scenario, choose the best error message. Click to select, then see the recommended approach.</div>
+
+      <div class="error-gallery" id="error-gallery">
+        <!-- Card 1: Timeout -->
+        <div class="error-card" data-card="0">
+          <div class="error-card__type">Scenario 1: Timeout</div>
+          <div class="error-card__scenario">The AI was asked to analyze a long document but took over 30 seconds and timed out before completing.</div>
+          <div class="error-card__options">
+            <button class="error-option" data-option="0">Something went wrong. Please try again later.</button>
+            <button class="error-option" data-option="1">The analysis timed out because the document was too long. Try uploading a shorter document.</button>
+            <button class="error-option" data-option="2">The analysis is taking longer than expected for this 50-page document. We can (1) retry with just the first 20 pages, (2) retry the full document in the background and email you when ready, or (3) try again now.</button>
+          </div>
+          <div class="error-card__feedback" id="error-feedback-0"></div>
+        </div>
+
+        <!-- Card 2: Hallucination Detected -->
+        <div class="error-card" data-card="1">
+          <div class="error-card__type">Scenario 2: Hallucination Detected</div>
+          <div class="error-card__scenario">The AI generated a response about company financials, but the fact-check system found inconsistencies with the source data.</div>
+          <div class="error-card__options">
+            <button class="error-option" data-option="0">An error occurred while generating your response.</button>
+            <button class="error-option" data-option="1">We found potential inaccuracies in the AI's response. Please verify all financial figures independently.</button>
+            <button class="error-option" data-option="2">Our fact-checker flagged possible inaccuracies in this response. The highlighted figures could not be verified against your source data. You can view the response with flagged sections marked, or regenerate with stricter source grounding.</button>
+          </div>
+          <div class="error-card__feedback" id="error-feedback-1"></div>
+        </div>
+
+        <!-- Card 3: Low Confidence -->
+        <div class="error-card" data-card="2">
+          <div class="error-card__type">Scenario 3: Low Confidence</div>
+          <div class="error-card__scenario">The AI was asked to classify a support ticket, but its confidence in the classification was only 34% — well below the 70% threshold.</div>
+          <div class="error-card__options">
+            <button class="error-option" data-option="0">Unable to classify this ticket. Please classify manually.</button>
+            <button class="error-option" data-option="1">Low confidence classification: "Billing Issue" (34%). This ticket may need manual review.</button>
+            <button class="error-option" data-option="2">This ticket doesn't fit neatly into one category. Best guess: "Billing Issue" (34%), but it could also be "Account Access" (28%) or "Feature Request" (22%). Select the right category or add context to help the AI improve.</button>
+          </div>
+          <div class="error-card__feedback" id="error-feedback-2"></div>
+        </div>
+
+        <!-- Card 4: Content Filtered -->
+        <div class="error-card" data-card="3">
+          <div class="error-card__type">Scenario 4: Content Filtered</div>
+          <div class="error-card__scenario">A user asked the AI to write a competitive analysis, but the safety system blocked the response because it mentioned a competitor's internal pricing data.</div>
+          <div class="error-card__options">
+            <button class="error-option" data-option="0">Your request could not be completed due to content policy restrictions.</button>
+            <button class="error-option" data-option="1">Parts of this response were blocked because they referenced potentially confidential competitor information. The analysis has been generated without those sections.</button>
+            <button class="error-option" data-option="2">This response was partially filtered because it included references to non-public competitor data, which our policies restrict. Here's what we can share: [filtered response]. For the restricted sections, we recommend using publicly available sources. Would you like to regenerate using only public data?</button>
+          </div>
+          <div class="error-card__feedback" id="error-feedback-3"></div>
+        </div>
+      </div>
+
+      <div class="error-gallery__score" id="error-score">
+        <div class="error-gallery__score-value" id="error-score-value"></div>
+        <div class="error-gallery__score-text" id="error-score-text"></div>
+      </div>
+    </div>
+  </div>
+
+  <article class="prose">
+    <p>The pattern is consistent across all four scenarios. The worst approach gives no context and no next step. The middle approach explains what happened but still leaves the user passively waiting. The best approach explains, offers agency, and turns a failure into a choice the user can make.</p>
+
+    <p>This matters more than you might think. Users who encounter a thoughtful error message are significantly more likely to retry, more likely to complete their task, and — critically — more likely to trust the product's correct outputs in the future. A product that handles failure well is perceived as more reliable than a product that never shows you when it fails.</p>
+
+    <!-- ================================================================
+         Section VI: What's Next
+         ================================================================ -->
+    <h2 id="whats-next"><span class="section-number">VI</span> What's Next</h2>
+
+    <p>You now have four design patterns for AI products that earn trust instead of demanding it: confidence signals that calibrate expectations, progressive disclosure that respects attention, loading states that communicate progress, and error handling that turns failures into choices.</p>
+
+    <p>But here's the deeper question these patterns raise. In high-stakes domains &mdash; medical diagnosis, financial advice, legal analysis, content moderation &mdash; no amount of clever UX removes the need for a human to verify, approve, or override the AI's output. The best confidence badge in the world doesn't help if the stakes are someone's health or livelihood. So when should you keep humans in the loop? Where should the handoff happen?</p>
+
+    <p>That's Part 2: <strong>When to Keep Humans in the Loop</strong>.</p>
+  </article>
+
+  <!-- ================================================================
+       Article Navigation
+       ================================================================ -->
+  <nav class="article-nav">
+    <a href="index.html">&larr; Back to series</a>
+    <a href="human-in-the-loop.html">Part 2: When to Keep Humans in the Loop &rarr;</a>
+  </nav>
+
+  <!-- ================================================================
+       Scripts
+       ================================================================ -->
+  <script>
+  // ====================================================================
+  // Hero: Animated floating particles
+  // ====================================================================
+  (function() {
+    var canvas = document.getElementById('hero-canvas');
+    var ctx = canvas.getContext('2d');
+    var hero = document.getElementById('article-hero');
+    var particles = [];
+    var numParticles = 45;
+    var connectionDist = 130;
+    var dpr = window.devicePixelRatio || 1;
+    var w, h;
+
+    function resize() {
+      var rect = hero.getBoundingClientRect();
+      w = rect.width;
+      h = rect.height;
+      canvas.width = w * dpr;
+      canvas.height = h * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    }
+
+    function initParticles() {
+      particles = [];
+      for (var i = 0; i < numParticles; i++) {
+        particles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          vx: (Math.random() - 0.5) * 0.35,
+          vy: (Math.random() - 0.5) * 0.35,
+          r: 2 + Math.random() * 3,
+          pulse: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, w, h);
+
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        p.x += p.vx;
+        p.y += p.vy;
+        p.pulse += 0.015;
+        if (p.x < -20) p.x = w + 20;
+        if (p.x > w + 20) p.x = -20;
+        if (p.y < -20) p.y = h + 20;
+        if (p.y > h + 20) p.y = -20;
+      }
+
+      ctx.lineWidth = 1;
+      for (var i = 0; i < particles.length; i++) {
+        for (var j = i + 1; j < particles.length; j++) {
+          var dx = particles[i].x - particles[j].x;
+          var dy = particles[i].y - particles[j].y;
+          var dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < connectionDist) {
+            var alpha = (1 - dist / connectionDist) * 0.3;
+            ctx.strokeStyle = 'rgba(255, 255, 255, ' + alpha + ')';
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (var i = 0; i < particles.length; i++) {
+        var p = particles[i];
+        var glow = 0.5 + 0.5 * Math.sin(p.pulse);
+        ctx.fillStyle = 'rgba(255, 255, 255, ' + (0.4 + 0.4 * glow) + ')';
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r * (0.8 + 0.4 * glow), 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    initParticles();
+    requestAnimationFrame(draw);
+
+    window.addEventListener('resize', function() {
+      resize();
+      initParticles();
+    });
+  })();
+
+  // ====================================================================
+  // Widget 1: Confidence Display Modes
+  // ====================================================================
+  (function() {
+    const container = document.getElementById('conf-display');
+    const annotationEl = document.getElementById('conf-annotation');
+    const modesEl = document.getElementById('conf-modes');
+
+    const responseText = 'Based on your symptoms, this could be a migraine. Consider taking ibuprofen and resting in a dark room.';
+
+    const modes = {
+      none: {
+        render: function() {
+          return '<div class="conf-display__response">' + responseText + '</div>';
+        },
+        annotation: 'No confidence signal. The response reads as authoritative fact. A user unfamiliar with AI limitations may take this as medical advice without question. There is no indication this is a probabilistic guess, not a diagnosis.'
+      },
+      subtle: {
+        render: function() {
+          return '<div class="conf-icon conf-icon--yellow">' +
+            '<span class="conf-icon__dot conf-icon__dot--yellow"></span>' +
+            'Medium confidence' +
+          '</div>' +
+          '<div class="conf-display__response">' + responseText + '</div>';
+        },
+        annotation: 'A subtle visual cue introduces a moment of healthy skepticism. The yellow indicator signals "this might be right, but don\'t bet your health on it" without overwhelming the user with data. Good for moderate-stakes contexts.'
+      },
+      explicit: {
+        render: function() {
+          return '<div class="conf-badge conf-badge--medium">72% confidence</div>' +
+          '<div class="conf-display__response">' +
+            'Based on your symptoms, this <span class="highlight-uncertain">could be</span> a migraine. Consider taking ibuprofen and resting in a dark room.' +
+          '</div>' +
+          '<div class="conf-footnote">This response draws on general patterns. It is not a medical diagnosis. Consult a healthcare provider for medical advice.</div>';
+        },
+        annotation: 'Maximum transparency. The confidence percentage, highlighted hedging language, and explicit disclaimer give the user full context to evaluate the response. Essential for high-stakes domains like health, finance, and legal.'
+      }
+    };
+
+    let currentMode = 'none';
+
+    function render() {
+      container.innerHTML = modes[currentMode].render();
+      annotationEl.textContent = modes[currentMode].annotation;
+    }
+
+    modesEl.addEventListener('click', function(e) {
+      const btn = e.target.closest('[data-mode]');
+      if (!btn) return;
+      currentMode = btn.dataset.mode;
+      modesEl.querySelectorAll('.btn').forEach(function(b) {
+        b.className = 'btn ' + (b.dataset.mode === currentMode ? 'btn--active' : 'btn--secondary');
+      });
+      render();
+    });
+
+    render();
+  })();
+
+  // ====================================================================
+  // Widget 2: Loading State Builder
+  // ====================================================================
+  (function() {
+    const startBtn = document.getElementById('loading-start');
+    const resetBtn = document.getElementById('loading-reset');
+    const genericSpinner = document.getElementById('generic-spinner');
+    const genericText = document.getElementById('generic-text');
+    const genericTimer = document.getElementById('generic-timer');
+    const genericResult = document.getElementById('generic-result');
+    const genericContent = document.getElementById('loading-generic-content');
+    const progressText = document.getElementById('progress-text');
+    const progressWrap = document.getElementById('progress-wrap');
+    const progressStage = document.getElementById('progress-stage');
+    const progressBarFill = document.getElementById('progress-bar-fill');
+    const progressStagesList = document.getElementById('progress-stages-list');
+    const progressResult = document.getElementById('progress-result');
+    const progressContent = document.getElementById('loading-progress-content');
+    const noteEl = document.getElementById('loading-note');
+
+    const TOTAL_TIME = 6000;
+    const stages = [
+      { label: 'Reading document (50 pages)...', duration: 1500 },
+      { label: 'Identifying clauses and terms...', duration: 1800 },
+      { label: 'Analyzing risks and obligations...', duration: 1500 },
+      { label: 'Generating summary...', duration: 1200 }
+    ];
+
+    let isRunning = false;
+    let timerInterval = null;
+    let stageTimeouts = [];
+
+    function reset() {
+      isRunning = false;
+      clearInterval(timerInterval);
+      stageTimeouts.forEach(function(t) { clearTimeout(t); });
+      stageTimeouts = [];
+
+      genericSpinner.style.display = 'none';
+      genericText.textContent = 'Press "Start Both" to begin';
+      genericTimer.textContent = '';
+      genericResult.style.display = 'none';
+      genericContent.style.display = 'flex';
+
+      progressText.textContent = 'Press "Start Both" to begin';
+      progressText.style.display = 'block';
+      progressWrap.style.display = 'none';
+      progressResult.style.display = 'none';
+      progressContent.style.display = 'flex';
+      progressBarFill.style.width = '0%';
+      progressStage.textContent = 'Preparing...';
+
+      const items = progressStagesList.querySelectorAll('.loading-demo__stage-item');
+      items.forEach(function(item) {
+        item.className = 'loading-demo__stage-item';
+        item.querySelector('.loading-demo__stage-check').textContent = '-';
+      });
+
+      noteEl.style.display = 'none';
+      startBtn.disabled = false;
+      startBtn.textContent = 'Start Both';
+    }
+
+    function start() {
+      if (isRunning) return;
+      isRunning = true;
+      startBtn.disabled = true;
+      startBtn.textContent = 'Running...';
+
+      // --- Generic side ---
+      genericText.textContent = 'Loading...';
+      genericSpinner.style.display = 'block';
+      let elapsed = 0;
+      genericTimer.textContent = '0.0s';
+      timerInterval = setInterval(function() {
+        elapsed += 100;
+        genericTimer.textContent = (elapsed / 1000).toFixed(1) + 's';
+      }, 100);
+
+      const genericDone = setTimeout(function() {
+        clearInterval(timerInterval);
+        genericSpinner.style.display = 'none';
+        genericContent.style.display = 'none';
+        genericResult.style.display = 'block';
+      }, TOTAL_TIME);
+      stageTimeouts.push(genericDone);
+
+      // --- Progress side ---
+      progressText.style.display = 'none';
+      progressWrap.style.display = 'block';
+
+      let cumulativeTime = 0;
+      const items = progressStagesList.querySelectorAll('.loading-demo__stage-item');
+
+      stages.forEach(function(stage, idx) {
+        const startTime = cumulativeTime;
+        const endTime = cumulativeTime + stage.duration;
+
+        // Start this stage
+        const startTimeout = setTimeout(function() {
+          progressStage.textContent = stage.label;
+          items[idx].className = 'loading-demo__stage-item loading-demo__stage-item--active';
+          items[idx].querySelector('.loading-demo__stage-check').textContent = '\u25B6';
+
+          // Animate progress bar from start to end over duration
+          const startPct = (startTime / TOTAL_TIME) * 100;
+          const endPct = (endTime / TOTAL_TIME) * 100;
+          progressBarFill.style.width = startPct + '%';
+          requestAnimationFrame(function() {
+            progressBarFill.style.transition = 'width ' + stage.duration + 'ms linear';
+            progressBarFill.style.width = endPct + '%';
+          });
+        }, startTime);
+        stageTimeouts.push(startTimeout);
+
+        // Complete this stage
+        const endTimeout = setTimeout(function() {
+          items[idx].className = 'loading-demo__stage-item loading-demo__stage-item--done';
+          items[idx].querySelector('.loading-demo__stage-check').textContent = '\u2713';
+        }, endTime);
+        stageTimeouts.push(endTimeout);
+
+        cumulativeTime = endTime;
+      });
+
+      // Show result
+      const progressDone = setTimeout(function() {
+        progressContent.style.display = 'none';
+        progressResult.style.display = 'block';
+        progressBarFill.style.transition = '';
+      }, TOTAL_TIME);
+      stageTimeouts.push(progressDone);
+
+      // Show note after both complete
+      const showNote = setTimeout(function() {
+        noteEl.style.display = 'block';
+        startBtn.disabled = false;
+        startBtn.textContent = 'Start Both';
+        isRunning = false;
+      }, TOTAL_TIME + 500);
+      stageTimeouts.push(showNote);
+    }
+
+    startBtn.addEventListener('click', function() {
+      if (noteEl.style.display === 'block') {
+        reset();
+        setTimeout(start, 100);
+      } else {
+        start();
+      }
+    });
+    resetBtn.addEventListener('click', reset);
+  })();
+
+  // ====================================================================
+  // Widget 3: Error State Gallery
+  // ====================================================================
+  (function() {
+    const scenarios = [
+      {
+        best: 2,
+        feedbackCorrect: 'Correct! The best error UX offers multiple recovery paths tailored to the specific problem. A timeout on a long document is not the user\'s fault — give them options that respect the work they already did.',
+        feedbackIncorrect: 'Not quite. Option C is best here. A timeout on a long document needs specific recovery options: partial analysis, background processing, or retry. Generic messages leave the user stranded; simply blaming document length doesn\'t offer a path forward.'
+      },
+      {
+        best: 2,
+        feedbackCorrect: 'Correct! When a fact-check catches potential hallucinations, the best approach shows what was flagged, lets the user see the response with warnings, and offers to regenerate with stricter grounding. Transparency builds trust.',
+        feedbackIncorrect: 'Not quite. Option C is best. Hiding a hallucination behind "an error occurred" destroys trust when users eventually discover inaccuracies. A vague "verify independently" is better but passive. The best approach flags specific issues and offers the user agency.'
+      },
+      {
+        best: 2,
+        feedbackCorrect: 'Correct! When the AI isn\'t sure, showing the top candidates with their scores turns a failure into a decision-assist tool. The user picks the right answer faster than classifying from scratch, and the AI learns from the correction.',
+        feedbackIncorrect: 'Not quite. Option C is best. "Classify manually" throws away the AI\'s partial work. Showing only the top guess at 34% is barely helpful. Presenting the top 3 candidates as a choice lets the user leverage the AI\'s work while making the final call.'
+      },
+      {
+        best: 2,
+        feedbackCorrect: 'Correct! The best approach explains what was filtered and why, delivers the parts that are safe to show, and offers a clear path to get what the user actually needs using public data.',
+        feedbackIncorrect: 'Not quite. Option C is best. A vague "content policy" message frustrates users and feels like censorship. Acknowledging the filter but not showing any result is wasteful. The best approach delivers what it can, explains what was held back, and offers a concrete alternative.'
+      }
+    ];
+
+    let answered = 0;
+    let score = 0;
+    const totalCards = scenarios.length;
+
+    const gallery = document.getElementById('error-gallery');
+    const scoreEl = document.getElementById('error-score');
+    const scoreValueEl = document.getElementById('error-score-value');
+    const scoreTextEl = document.getElementById('error-score-text');
+
+    gallery.addEventListener('click', function(e) {
+      const option = e.target.closest('.error-option');
+      if (!option || option.disabled) return;
+
+      const card = option.closest('.error-card');
+      const cardIdx = parseInt(card.dataset.card);
+      const optionIdx = parseInt(option.dataset.option);
+      const scenario = scenarios[cardIdx];
+      const feedback = document.getElementById('error-feedback-' + cardIdx);
+
+      // Disable all options in this card
+      const options = card.querySelectorAll('.error-option');
+      options.forEach(function(opt) {
+        opt.disabled = true;
+      });
+
+      const isCorrect = optionIdx === scenario.best;
+
+      if (isCorrect) {
+        score++;
+        option.className = 'error-option error-option--correct';
+        feedback.className = 'error-card__feedback error-card__feedback--correct';
+        feedback.textContent = scenario.feedbackCorrect;
+      } else {
+        option.className = 'error-option error-option--incorrect';
+        // Highlight the best option
+        options[scenario.best].className = 'error-option error-option--best';
+        feedback.className = 'error-card__feedback error-card__feedback--incorrect';
+        feedback.textContent = scenario.feedbackIncorrect;
+      }
+
+      feedback.style.display = 'block';
+      answered++;
+
+      if (answered === totalCards) {
+        setTimeout(function() {
+          scoreEl.style.display = 'block';
+          scoreValueEl.textContent = score + ' out of ' + totalCards;
+          const messages = [
+            'Review the patterns above — the best error messages always explain what happened and what the user can do next.',
+            'Getting there! The key insight: good AI error states turn failures into choices.',
+            'Solid instincts! You understand that AI errors need specific, actionable recovery paths.',
+            'Strong intuition! You understand that AI errors need specific, actionable recovery paths.',
+            'Perfect score! You have a sharp eye for error UX that respects the user.'
+          ];
+          scoreTextEl.textContent = messages[score];
+        }, 600);
+      }
+    });
+  })();
+  </script>
+
+</body>
+</html>

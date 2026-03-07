@@ -6,20 +6,20 @@ export const metadata: Metadata = {
 };
 
 const companies = [
-  { name: 'QuillAudits', href: 'https://www.quillaudits.com/smart-contract-audit', note: 'quillaudits.com' },
-  { name: 'Ximi Vogue', href: 'https://ximivogueretail.com/', note: 'ximivogueretail.com' },
-  { name: 'Airtel', href: 'https://airtel.in', note: 'airtel.in' },
-  { name: 'Harman & Kardon', href: 'https://in.harmankardon.com/', note: 'harmankardon.com' },
-  { name: 'Edelman', href: 'https://www.edelman.com/', note: 'edelman.com' },
-  { name: 'Midea', href: 'https://www.midea.com/in', note: 'midea.com' },
-  { name: 'Instoried', href: 'https://instoried.com/', note: 'instoried.com' },
-  { name: 'Indiefolio', href: 'https://indiefolio.com/', note: 'indiefolio.com' },
-  { name: 'Tegro', href: 'https://tegro.com/', note: 'tegro.com' },
-  { name: 'Jovian', href: 'https://jovian.com/', note: 'jovian.com' },
-  { name: 'Bezit', href: 'https://bezit.co/', note: 'bezit.co' },
-  { name: 'PierSight', href: 'https://piersight.space/', note: 'piersight.space' },
-  { name: 'Atlas', href: 'https://atlas.so/', note: 'atlas.so' },
-  { name: 'Scrut Automation', href: 'https://scrut.io/', note: 'scrut.io' },
+  { name: 'QuillAudits', href: 'https://www.quillaudits.com/smart-contract-audit', domain: 'quillaudits.com' },
+  { name: 'Ximi Vogue', href: 'https://ximivogueretail.com/', domain: 'ximivogueretail.com' },
+  { name: 'Airtel', href: 'https://airtel.in', domain: 'airtel.in' },
+  { name: 'Harman & Kardon', href: 'https://in.harmankardon.com/', domain: 'harmankardon.com' },
+  { name: 'Edelman', href: 'https://www.edelman.com/', domain: 'edelman.com' },
+  { name: 'Midea', href: 'https://www.midea.com/in', domain: 'midea.com' },
+  { name: 'Instoried', href: 'https://instoried.com/', domain: 'instoried.com' },
+  { name: 'Indiefolio', href: 'https://indiefolio.com/', domain: 'indiefolio.com' },
+  { name: 'Tegro', href: 'https://tegro.com/', domain: 'tegro.com' },
+  { name: 'Jovian', href: 'https://jovian.com/', domain: 'jovian.com' },
+  { name: 'Bezit', href: 'https://bezit.co/', domain: 'bezit.co' },
+  { name: 'PierSight', href: 'https://piersight.space/', domain: 'piersight.space' },
+  { name: 'Atlas', href: 'https://atlas.so/', domain: 'atlas.so' },
+  { name: 'Scrut Automation', href: 'https://scrut.io/', domain: 'scrut.io' },
 ] as const;
 
 export default function AboutPage() {
@@ -66,11 +66,7 @@ export default function AboutPage() {
 
         <h2>Where I have contributed</h2>
 
-        <div className="not-prose space-y-6">
-          <div className="inline-flex rounded-2xl bg-muted px-5 py-3 text-sm font-medium text-foreground">
-            companies I&apos;ve contributed to
-          </div>
-
+        <div className="not-prose">
           <div className="grid gap-5 sm:grid-cols-2">
             {companies.map((company) => {
               const badge = company.name
@@ -79,6 +75,7 @@ export default function AboutPage() {
                 .slice(0, 2)
                 .map((part) => part[0]?.toUpperCase() ?? '')
                 .join('');
+              const logoSrc = `https://logo.clearbit.com/${company.domain}?size=128`;
 
               return (
                 <a
@@ -88,15 +85,20 @@ export default function AboutPage() {
                   rel="noreferrer"
                   className="group flex items-start gap-4 rounded-2xl border border-border/60 bg-background/60 p-4 no-underline transition-colors hover:border-foreground/20 hover:bg-muted/40"
                 >
-                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-muted text-sm font-semibold tracking-[-0.02em] text-foreground">
-                    {badge}
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-muted text-sm font-semibold tracking-[-0.02em] text-foreground">
+                    <img
+                      src={logoSrc}
+                      alt={`${company.name} logo`}
+                      className="h-10 w-10 rounded-lg object-contain"
+                      loading="lazy"
+                    />
+                    <span className="sr-only">{badge}</span>
                   </div>
 
-                  <div className="min-w-0 space-y-1">
+                  <div className="min-w-0 pt-1">
                     <div className="text-[1.45rem] font-semibold leading-none tracking-[-0.03em] text-foreground">
                       {company.name}
                     </div>
-                    <div className="text-base leading-snug text-muted-foreground">{company.note}</div>
                   </div>
                 </a>
               );
