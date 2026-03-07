@@ -34,6 +34,13 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
           <p className="text-xl text-foreground/80 max-w-3xl">
             {post.meta.description}
           </p>
+          <time dateTime={post.meta.date} className="block text-sm font-medium text-muted-foreground">
+            {new Date(post.meta.date).toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric',
+            })}
+          </time>
         </div>
       </div>
 

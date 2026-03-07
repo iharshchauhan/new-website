@@ -85,6 +85,13 @@ export default async function ProjectSubpage({
             {post.meta.title}
           </h1>
           <p className="text-xl text-foreground/80">{post.meta.description}</p>
+          <time dateTime={post.meta.date} className="block text-sm font-medium text-muted-foreground">
+            {new Date(post.meta.date).toLocaleDateString('en-US', {
+              month: 'long',
+              day: 'numeric',
+              year: 'numeric',
+            })}
+          </time>
         </div>
       </div>
 

@@ -3,11 +3,12 @@
 import { useMemo, useState } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter, useSearchParams } from 'next/navigation';
-import { ArrowRight, BookOpen, Briefcase, LayoutTemplate, Sparkles, Star } from 'lucide-react';
+import { ArrowRight, BookOpen, Briefcase, LayoutTemplate, Sparkles, Star, Layers } from 'lucide-react';
 import { Post } from '@/lib/mdx';
 import { cn } from '@/lib/utils';
 
 const LEGACY_TAB_MAP: Record<string, string> = {
+  All: 'All',
   Logbook: 'Thoughts',
   Articles: 'Thoughts',
   'Fun Projects': 'Experiments',
@@ -18,6 +19,7 @@ const LEGACY_TAB_MAP: Record<string, string> = {
 };
 
 const TABS = [
+  { id: 'All', label: 'All', icon: Layers },
   { id: 'Thoughts', label: 'Thoughts', icon: BookOpen },
   { id: 'Experiments', label: 'Experiments', icon: Sparkles },
   { id: 'Systems', label: 'Systems', icon: Briefcase },
@@ -53,7 +55,7 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
     ? (LEGACY_TAB_MAP[rawTabFromUrl] || rawTabFromUrl)
     : null;
   const validTabIds = useMemo(() => new Set(TABS.map((tab) => tab.id)), []);
-  const [activeTabState, setActiveTabState] = useState('Notes');
+  const [activeTabState, setActiveTabState] = useState('All');
   const activeTab =
     tabFromUrl && validTabIds.has(tabFromUrl) ? tabFromUrl : activeTabState;
 
@@ -64,7 +66,10 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
-  const filteredPosts = posts.filter((post) => post.meta.category === activeTab);
+  const filteredPosts =
+    activeTab === 'All'
+      ? posts
+      : posts.filter((post) => post.meta.category === activeTab);
   const notesMode = activeTab === 'Notes';
 
   return (
@@ -114,6 +119,13 @@ export function LogbookTabs({ posts }: { posts: Post[] }) {
                     <h3 className="text-xl sm:text-[2.05rem] sm:leading-tight font-semibold text-primary group-hover:text-primary/85 transition-colors">
                       {post.meta.title}
                     </h3>
+                    <time dateTime={post.meta.date} className="block text-sm font-medium text-muted-foreground">
+                      {new Date(post.meta.date).toLocaleDateString('en-US', {
+                        month: 'long',
+                        day: 'numeric',
+                        year: 'numeric',
+                      })}
+                    </time>
                     <p className="text-base sm:text-[1.12rem] leading-relaxed text-foreground/75 max-w-2xl">
                       {post.meta.description}
                     </p>

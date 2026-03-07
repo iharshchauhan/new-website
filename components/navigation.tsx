@@ -9,7 +9,7 @@ import { cn } from "@/lib/utils";
 const navItems = [
   { href: "/", name: "Home" },
   { href: "/about", name: "About" },
-  { href: "/logbook", name: "Logbook", tab: "Notes" },
+  { href: "/logbook", name: "Logbook" },
 ];
 
 export function Navigation() {
@@ -46,7 +46,7 @@ export function Navigation() {
             return (
               <Link
                 key={item.name}
-                href={isLogbookItem ? `/logbook?tab=${item.tab ?? "Notes"}` : item.href}
+                href={item.href}
                 className={cn(
                   "relative rounded-full px-4 sm:px-5 py-2 text-[0.95rem] sm:text-[1.02rem] font-semibold transition-colors",
                   isActive

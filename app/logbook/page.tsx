@@ -3,8 +3,8 @@ import { getAllPosts } from '@/lib/mdx';
 import { LogbookTabs } from '@/components/logbook-tabs';
 
 export const metadata = {
-  title: 'Notes | harshc_',
-  description: 'Thoughts, experiments, systems, playbooks, and notes.',
+  title: 'Logbook | harshc_',
+  description: 'A running log of ideas, experiments, systems, and notes from my product + AI journey.',
 };
 
 export default function LogbookPage() {
@@ -19,10 +19,10 @@ export default function LogbookPage() {
     <div className="space-y-14 max-w-[72rem] mx-auto">
       <header className="space-y-6 text-center pt-10 pb-14">
         <h1 className="text-[4.8rem] sm:text-[6.2rem] md:text-[9.2rem] font-semibold leading-[0.95] tracking-[-0.03em] text-primary">
-          Notes.
+          Logbook.
         </h1>
         <p className="text-lg sm:text-xl text-foreground/80 max-w-3xl mx-auto leading-relaxed">
-          Some thoughts, reflections, and notes on design, product, and work in progress.
+          A living archive of how I think and build: product strategy, AI systems, experiments, frameworks, and working notes from real projects.
         </p>
       </header>
       
