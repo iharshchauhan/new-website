@@ -1,6 +1,7 @@
 ---
 title: "Hello, World!"
 description: "A simple opening note with a classic hello and placeholder prose."
+date: 01/01/2000
 category: "Logbook"
 tags: ["General"]
 ---
