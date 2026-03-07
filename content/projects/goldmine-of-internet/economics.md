@@ -9,7 +9,7 @@ description: "Imported Notion subpage: Economics"
 
 [Limitations of Philanthropy](/projects/goldmine-of-internet/limitations-of-philanthropy)
 
-[**Economies of agglomeration](https://en.wikipedia.org/wiki/Economies_of_agglomeration)** 
+[**Economies of agglomeration**](https://en.wikipedia.org/wiki/Economies_of_agglomeration)
 
 [**how much the government can borrow**](https://noahpinion.substack.com/p/no-one-knows-how-much-the-government)
 
