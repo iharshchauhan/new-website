@@ -5,15 +5,31 @@ export const metadata: Metadata = {
   description: 'About Harsh Chauhan',
 };
 
+const companies = [
+  { name: 'QuillAudits', href: 'https://www.quillaudits.com/smart-contract-audit', note: 'quillaudits.com' },
+  { name: 'Ximi Vogue', href: 'https://ximivogueretail.com/', note: 'ximivogueretail.com' },
+  { name: 'Airtel', href: 'https://airtel.in', note: 'airtel.in' },
+  { name: 'Harman & Kardon', href: 'https://in.harmankardon.com/', note: 'harmankardon.com' },
+  { name: 'Edelman', href: 'https://www.edelman.com/', note: 'edelman.com' },
+  { name: 'Midea', href: 'https://www.midea.com/in', note: 'midea.com' },
+  { name: 'Instoried', href: 'https://instoried.com/', note: 'instoried.com' },
+  { name: 'Indiefolio', href: 'https://indiefolio.com/', note: 'indiefolio.com' },
+  { name: 'Tegro', href: 'https://tegro.com/', note: 'tegro.com' },
+  { name: 'Jovian', href: 'https://jovian.com/', note: 'jovian.com' },
+  { name: 'Bezit', href: 'https://bezit.co/', note: 'bezit.co' },
+  { name: 'PierSight', href: 'https://piersight.space/', note: 'piersight.space' },
+  { name: 'Atlas', href: 'https://atlas.so/', note: 'atlas.so' },
+  { name: 'Scrut Automation', href: 'https://scrut.io/', note: 'scrut.io' },
+] as const;
+
 export default function AboutPage() {
   return (
     <section className="mx-auto max-w-3xl space-y-10 px-4 sm:px-6 lg:px-8">
-      <h1 className="text-[4.2rem] sm:text-[5.2rem] md:text-[6.4rem] font-semibold leading-[0.95] tracking-[-0.03em] text-primary">
+      <h1 className="text-[4.2rem] font-semibold leading-[0.95] tracking-[-0.03em] text-primary sm:text-[5.2rem] md:text-[6.4rem]">
         About Me
       </h1>
 
-      <div className="prose prose-neutral sm:prose-lg text-muted-foreground dark:prose-invert">
-
+      <div className="prose prose-neutral text-muted-foreground dark:prose-invert sm:prose-lg">
         <p>
           Hi, I am Harsh, your friendly neighbourhood Product Generalist with 6+ years of juggling
           <strong> SaaS, GRC, AI, Space Tech, and Web3</strong> (if it is futuristic, I am into it).
@@ -50,38 +66,56 @@ export default function AboutPage() {
 
         <h2>Where I have contributed</h2>
 
-        <ul>
-          <li><a href="https://www.quillaudits.com/smart-contract-audit" target="_blank">QuillAudits</a> — part of <a href="https://quillhash.com/" target="_blank">Quillhash Group</a></li>
-          <li><a href="https://ximivogueretail.com/" target="_blank">Ximi Vogue</a></li>
-          <li><a href="https://airtel.in" target="_blank">Airtel</a></li>
-          <li><a href="https://in.harmankardon.com/" target="_blank">Harman & Kardon</a></li>
-          <li><a href="https://www.edelman.com/" target="_blank">Edelman</a></li>
-          <li><a href="https://www.midea.com/in" target="_blank">Midea</a></li>
-          <li><a href="https://instoried.com/" target="_blank">Instoried</a></li>
-          <li><a href="https://indiefolio.com/" target="_blank">Indiefolio</a></li>
-          <li><a href="https://tegro.com/" target="_blank">Tegro</a></li>
-          <li><a href="https://jovian.com/" target="_blank">Jovian</a></li>
-          <li><a href="https://bezit.co/" target="_blank">Bezit</a></li>
-          <li><a href="https://piersight.space/" target="_blank">PierSight</a></li>
-          <li><a href="https://atlas.so/" target="_blank">Atlas</a></li>
-          <li><a href="https://scrut.io/" target="_blank">Scrut Automation</a></li>
-        </ul>
+        <div className="not-prose space-y-6">
+          <div className="inline-flex rounded-2xl bg-muted px-5 py-3 text-sm font-medium text-foreground">
+            companies I&apos;ve contributed to
+          </div>
 
-        <h2>Let’s Connect and Create</h2>
+          <div className="grid gap-5 sm:grid-cols-2">
+            {companies.map((company) => {
+              const badge = company.name
+                .split(/[\s&]+/)
+                .filter(Boolean)
+                .slice(0, 2)
+                .map((part) => part[0]?.toUpperCase() ?? '')
+                .join('');
+
+              return (
+                <a
+                  key={company.name}
+                  href={company.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-start gap-4 rounded-2xl border border-border/60 bg-background/60 p-4 no-underline transition-colors hover:border-foreground/20 hover:bg-muted/40"
+                >
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl bg-muted text-sm font-semibold tracking-[-0.02em] text-foreground">
+                    {badge}
+                  </div>
+
+                  <div className="min-w-0 space-y-1">
+                    <div className="text-[1.45rem] font-semibold leading-none tracking-[-0.03em] text-foreground">
+                      {company.name}
+                    </div>
+                    <div className="text-base leading-snug text-muted-foreground">{company.note}</div>
+                  </div>
+                </a>
+              );
+            })}
+          </div>
+        </div>
+
+        <h2>Let&apos;s Connect and Create</h2>
 
         <p>
           If you are building something ambitious and want to move faster, let us connect.
           I enjoy working on ideas that turn the ordinary into something meaningful and impactful.
         </p>
 
-        <p>
-          I am available 24/7. Do not be shy.
-        </p>
+        <p>I am available 24/7. Do not be shy.</p>
 
         <p>
           Email: <a href="mailto:hey@iharsh.xyz">hey@iharsh.xyz</a>
         </p>
-
       </div>
     </section>
   );
