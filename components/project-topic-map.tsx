@@ -22,7 +22,7 @@ export function ProjectTopicMap({
   return (
     <aside
       className={cn(
-        "rounded-2xl border border-white/60 bg-[#f5f4eb]/85 p-5 md:p-6 space-y-5",
+        "rounded-2xl border border-white/60 bg-[#f5f4eb]/85 p-5 md:p-6 space-y-5 lg:max-h-[calc(100vh-6rem)] lg:overflow-y-auto",
         className,
       )}
     >

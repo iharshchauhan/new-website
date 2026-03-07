@@ -5,8 +5,6 @@ import { BackNavLink } from '@/components/back-nav-link';
 import Image from 'next/image';
 import { getProjectTopicItems } from '@/lib/project-navigation';
 import { ProjectTopicMap } from '@/components/project-topic-map';
-import Link from 'next/link';
-import { getProjectSubpageHref } from '@/lib/project-navigation';
 
 export async function generateStaticParams() {
   const slugs = getPostSlugs('projects');
@@ -58,34 +56,6 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
 
       <div className="grid lg:grid-cols-[340px_minmax(0,1fr)] gap-10 items-start">
         <div className="space-y-12 lg:order-2">
-          {topicItems.length > 0 && (
-            <section className="space-y-5 rounded-3xl border border-border bg-card p-5 sm:p-8">
-              <div className="space-y-2">
-                <h2 className="text-2xl font-semibold tracking-tight">Explore the Modules</h2>
-                <p className="text-muted-foreground">
-                  Open any topic directly from the framework overview.
-                </p>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                {topicItems.map((item) => (
-                  <Link
-                    key={item.slug}
-                    href={getProjectSubpageHref(project, item.slug)}
-                    className="rounded-2xl border border-border/60 bg-background px-4 py-4 transition-colors hover:border-primary/30 hover:bg-white"
-                  >
-                    <p className="text-base font-semibold text-foreground">{item.title}</p>
-                    {item.description && (
-                      <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
-                        {item.description}
-                      </p>
-                    )}
-                  </Link>
-                ))}
-              </div>
-            </section>
-          )}
-
           <div className="rounded-2xl border border-white/60 bg-[#f6f4ea]/85 px-6 sm:px-12 py-8">
             <MDXContent content={post.content} />
           </div>
