@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Cormorant_Garamond, Nunito_Sans } from "next/font/google";
 import "./globals.css";
 import { Navigation } from "@/components/navigation";
@@ -35,7 +36,9 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <AnimatedBackground />
-        <Navigation />
+        <Suspense fallback={null}>
+          <Navigation />
+        </Suspense>
         <main className="flex-1 pt-28 pb-20 px-4 sm:px-6 md:px-10 max-w-6xl mx-auto w-full">
           {children}
         </main>

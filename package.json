@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "postbuild": "touch out/.nojekyll",
+    "postbuild": "node -e \"const fs=require('fs');fs.mkdirSync('out',{recursive:true});fs.closeSync(fs.openSync('out/.nojekyll','w'));\"",
     "start": "next start",
     "lint": "eslint .",
     "clean": "next clean",
