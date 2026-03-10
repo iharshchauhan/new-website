@@ -35,7 +35,7 @@ export function ListeningsSection({ data }: ListeningsSectionProps) {
         </Link>
       </div>
 
-      <div className="grid gap-6 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
+      <div className="grid items-start gap-6 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]">
         <div className="min-w-0 space-y-5 rounded-[2rem] border border-border/70 bg-white/55 p-5 sm:p-6">
           <div className="flex flex-wrap gap-2">
             {data.filters.map((filter) => {
