@@ -24,7 +24,7 @@ const TABS = [
   { id: 'Experiments', label: 'Experiments', icon: Sparkles },
   { id: 'Systems', label: 'Systems', icon: Briefcase },
   { id: 'Playbooks', label: 'Playbooks', icon: LayoutTemplate },
-  { id: 'Notes', label: 'Notes', icon: Star },
+  { id: 'Notes', label: 'Curated Notes', icon: Star },
 ] as const;
 
 const NOTE_BADGE_STYLES = [
@@ -111,7 +111,7 @@ export function LogbookTabsContent({
   const activeTab = normalizeActiveTab(rawTab);
   const filteredPosts = (
     activeTab === 'All'
-      ? posts
+      ? posts.filter((post) => post.meta.category !== 'Notes')
       : posts.filter((post) => post.meta.category === activeTab)
   ).sort((a, b) => (a.meta.date > b.meta.date ? -1 : 1));
   const notesMode = activeTab === 'Notes';

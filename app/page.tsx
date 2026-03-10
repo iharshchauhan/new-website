@@ -9,7 +9,9 @@ export default async function Home() {
   const writingPosts = getAllPosts("writing");
   const spotifyData = await getSpotifyHomeData();
 
-  const recentPosts = writingPosts.slice(0, 6);
+  const recentPosts = writingPosts
+    .filter((post) => post.meta.category !== "Notes")
+    .slice(0, 6);
 
   return (
     <div className="space-y-24">
