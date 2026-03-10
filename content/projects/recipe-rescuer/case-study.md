@@ -93,8 +93,6 @@ The first version of the system was built with a minimal modern stack focused on
 | Layer          | Technology                                                  |
 | -------------- | ----------------------------------------------------------- |
 | Frontend       | Gemini AI Studio                                            |
-|                |                                                             |
-|                |                                                             |
 | Backend        | Supabase Edge Functions                                     |
 | Hosting        | Vercel                                                      |
 | Model          | Google Gemini 3                                             |
