@@ -22,6 +22,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
 
   const topicItems = getProjectTopicItems(project);
   const isInteractiveFramework = project === 'interactive-explainers-framework';
+  const demoUrl = post.meta.demoUrl;
+  const demoIframeHeight = post.meta.demoIframeHeight ?? 720;
 
   return (
     <article className="max-w-[96rem] mx-auto space-y-10">
@@ -55,6 +57,41 @@ export default async function ProjectPage({ params }: { params: Promise<{ projec
             priority
           />
         </div>
+      )}
+
+      {demoUrl && (
+        <section className="rounded-3xl overflow-hidden border border-border bg-white/55">
+          <div className="flex flex-col gap-3 border-b border-border/60 px-5 py-4 sm:flex-row sm:items-center sm:justify-between sm:px-6">
+            <div className="space-y-1">
+              <h2 className="text-base font-semibold tracking-tight text-primary">Live demo</h2>
+              <p className="text-sm text-muted-foreground">
+                Click the preview to open the app.
+              </p>
+            </div>
+            <a
+              href={demoUrl}
+              className="inline-flex items-center justify-center rounded-full border border-primary/25 bg-primary/10 px-4 py-2 text-sm font-semibold text-primary transition-colors hover:bg-primary/15"
+              rel="noreferrer"
+            >
+              Open app
+            </a>
+          </div>
+
+          <div className="relative w-full bg-background" style={{ height: demoIframeHeight }}>
+            <iframe
+              title={`${post.meta.title} preview`}
+              src={demoUrl}
+              className="h-full w-full pointer-events-none"
+              loading="lazy"
+            />
+            <a
+              href={demoUrl}
+              aria-label={`Open ${post.meta.title}`}
+              className="absolute inset-0"
+              rel="noreferrer"
+            />
+          </div>
+        </section>
       )}
 
       <div className="grid lg:grid-cols-[340px_minmax(0,1fr)] gap-10 items-start">

@@ -10,6 +10,8 @@ export type PostMeta = {
   description: string;
   order?: number;
   coverImage?: string;
+  demoUrl?: string;
+  demoIframeHeight?: number;
   category: string;
   tags: string[];
 };
@@ -189,6 +191,14 @@ export function getPostBySlug(
   const normalizedTags = Array.isArray(data.tags)
     ? [...new Set(data.tags.map((tag: unknown) => normalizeTag(String(tag))))]
     : [];
+  const demoUrl = typeof data.demoUrl === "string" ? data.demoUrl.trim() : "";
+  const demoIframeHeightRaw = data.demoIframeHeight;
+  const demoIframeHeight =
+    typeof demoIframeHeightRaw === "number"
+      ? demoIframeHeightRaw
+      : typeof demoIframeHeightRaw === "string"
+        ? Number(demoIframeHeightRaw)
+        : undefined;
 
   return {
     slug,
@@ -201,6 +211,11 @@ export function getPostBySlug(
       description: data.description || "",
       order: typeof data.order === "number" ? data.order : undefined,
       coverImage: data.coverImage || undefined,
+      demoUrl: demoUrl || undefined,
+      demoIframeHeight:
+        typeof demoIframeHeight === "number" && Number.isFinite(demoIframeHeight)
+          ? demoIframeHeight
+          : undefined,
       category,
       tags: normalizedTags,
     },
